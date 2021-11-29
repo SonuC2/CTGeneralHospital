@@ -1,0 +1,23 @@
+.content {
+    padding: 16px;
+}
+
+/* .content > mat-card {
+    margin-bottom: 16px;
+    
+    /* width: 250px; */
+/* } */ 
+
+mat-card{
+   margin-inline:50px;
+   padding: 60px;
+   margin-bottom: 20px;
+   margin-top: 20px;
+
+   /* display: flex; */
+}
+
+:host{
+    align-items: center;
+    
+}
