@@ -23,6 +23,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./nurse/nurse.module').then((m) => m.NurseModule),
       },
+
       {
         path: 'patient',
         loadChildren: () =>
@@ -31,6 +32,7 @@ const routes: Routes = [
     ],
   },
 ];
+
 
 
 @NgModule({
@@ -42,7 +44,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     SharedModule,
     NurseModule,
+
     
+
   ],
   providers: [],
   bootstrap: [AppComponent],
