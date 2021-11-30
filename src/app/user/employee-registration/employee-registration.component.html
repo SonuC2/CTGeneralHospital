@@ -1,0 +1,62 @@
+<!--<mat-grid-list cols="1" rowHeight="500px">
+    <mat-grid-tile>
+        <div class="example-container">
+
+<section class="example-section">
+    <label class="example-margin">Gender:</label>
+    <mat-radio-group [(ngModel)]="Title">
+      <mat-radio-button class="example-margin" value="after">Mr.</mat-radio-button>
+      <mat-radio-button class="example-margin" value="before">Ms.</mat-radio-button>
+      <mat-radio-button class="example-margin" value="before">Mrs.</mat-radio-button>
+      <mat-radio-button class="example-margin" value="before">Dr.</mat-radio-button>
+    </mat-radio-group>
+  </section>
+</div>
+</mat-grid-tile>
+</mat-grid-list>
+<form>
+  <mat-grid-list cols="2"
+    ><div>
+      <mat-grid-tile
+        ><mat-form-field appearance="fill">
+          <mat-label>Input</mat-label>
+
+          <input
+            type="text"
+            matInput
+            placeholder="FirstName"
+            [formControl]="firstName"
+          /> </mat-form-field
+      ></mat-grid-tile>
+    </div>
+  </mat-grid-list>
+</form>-->
+
+<form>
+  <mat-grid-list cols="2">
+   
+      <mat-grid-tile
+        ><div>
+ <mat-form-field appearance="fill" class="form-field">
+    <mat-label>Title</mat-label>  
+    <mat-radio-group aria-label="Select an option">
+      <mat-radio-button *ngFor="let title of titleEmp" [value]="title">Mr.</mat-radio-button>
+      
+    </mat-radio-group>  
+           </mat-form-field
+        >
+          <mat-form-field appearance="fill" class="form-field">
+          <mat-label>FirstName</mat-label>
+          <input matInput /> </mat-form-field
+      ><mat-form-field appearance="fill" class="form-field">
+          <mat-label>LasttName</mat-label>
+          <input matInput /> </mat-form-field
+      >
+        <mat-form-field appearance="fill"class="form-field" >
+          <mat-label>Email</mat-label>
+          <input type="email" matInput > </mat-form-field
+      ></div></mat-grid-tile>
+  
+  </mat-grid-list>
+</form>
+
