@@ -144,7 +144,7 @@
         <span *ngIf="isExpanded || isShowing">Employee</span>
       </button>
       <div class= "submenu" [ngClass]="{'expanded' : showEmployeeSubMenu}" *ngIf="isShowing || isExpanded">
-        <button mat-button class="menu-button"  routerLink="/nurse/employee-details">
+        <button mat-button class="menu-button"  routerLink="/nurse/employee-list">
           <mat-icon>list</mat-icon>
           <span >Employee Details</span>
         </button>
@@ -166,7 +166,7 @@
     </mat-sidenav>
   
     <mat-sidenav-content>
-      <div class="content mat-elevation-z8">
+      <div class="content">
         <router-outlet></router-outlet>
       </div>
     </mat-sidenav-content>

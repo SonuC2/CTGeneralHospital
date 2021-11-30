@@ -21,14 +21,14 @@ mat-sidenav {
     border-radius: 10px;
     margin: 16px;
     margin-left: 32px;
-    
-
-    display: flex;
+    /* width: 100%; */
+/* display:calc(100vh-); */
+    display:inherit;
     /* justify-content: center; */
     /* align-items: center; */
 
     font-size: 1rem;
-    color: lightgray;
+    color: black;
 }
 
 mat-sidenav-container {
