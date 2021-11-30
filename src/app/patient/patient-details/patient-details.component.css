@@ -23,3 +23,13 @@
 .wid{
     width: 50vh;
 }
+.date{
+    width: 33vh;
+}
+
+@media (max-width:700px) {
+    .pad{
+        width: 100%;
+    }
+   
+}

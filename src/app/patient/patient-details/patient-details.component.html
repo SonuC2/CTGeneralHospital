@@ -1,33 +1,33 @@
-<p>patient-details works!</p>
 <div class="main" fxLayout="row wrap">
   <div
     class="sub1"
-    fxFlex.gt-sm="35"
-    fxFlex.gt-lg="20"
+    fxFlex.gt-sm="50"
+    fxFlex.gt-lg="30"
     fx.Flex="50"
-    style="padding: 5px"
+    style="padding: 10px"
   >
     <mat-card>
       <mat-card-content>
-        <h1 class="head">Demographic Details</h1>
-        <mat-form-field appearance="fill">
+                <h1 class="head">Demographic Details</h1>
+        <mat-form-field appearance="fill" class="pad">
           <mat-label>First Name*</mat-label>
           <input matInput /> </mat-form-field
         >&nbsp; &nbsp;
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="pad">
           <mat-label>Last Name*</mat-label>
           <input matInput /> </mat-form-field
-        >&nbsp; &nbsp;<br />
-        <mat-form-field appearance="fill" style="width: 32vh">
+        >&nbsp; &nbsp;<br>
+
+        <mat-form-field appearance="fill" class="pad date">
           <mat-label>Choose a date*</mat-label>
-          <input matInput [matDatepicker]="picker" />
+          <input matInput [matDatepicker]="picker"  >
           <mat-datepicker-toggle
             matSuffix
             [for]="picker"
           ></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker> </mat-form-field
         >&nbsp; &nbsp;
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="pad">
           <mat-label>Mobile No*</mat-label>
           <input matInput /> </mat-form-field
         >&nbsp; &nbsp;<br />
@@ -39,26 +39,26 @@
             <mat-radio-button value="2">Female</mat-radio-button>
           </div> </mat-radio-group
         ><br />
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="pad">
           <mat-label>Race</mat-label>
           <input matInput /> </mat-form-field
         >&nbsp; &nbsp;
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="pad">
           <mat-label>Ethnicity</mat-label>
           <input matInput /> </mat-form-field
         >&nbsp; &nbsp;
-        <div class="example-container">
+        <div class="example-container" >
           <mat-form-field appearance="fill" class="example-full-width wid">
             <mat-label>Enter your email</mat-label>
             <input matInput placeholder="pat@example.com" required />
-            <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+            
           </mat-form-field>
         </div>
         <div class="example-container">
           <mat-form-field appearance="fill" class="example-full-width wid">
             <mat-label>Known Language</mat-label>
             <input matInput placeholder="English, Hindi, Marathi" required />
-            <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+            
           </mat-form-field>
         </div>
 
@@ -81,21 +81,21 @@
         ><br />
 
         <div [hidden]="hideAllergy">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" class="pad">
             <mat-label>Allergy Id</mat-label>
             <input matInput /> </mat-form-field
           >&nbsp; &nbsp;
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" class="pad">
             <mat-label>Allergy Type</mat-label>
             <input matInput /> </mat-form-field
           >&nbsp; &nbsp;<br />
 
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" class="pad">
             <mat-label>Allergy Name</mat-label>
             <input matInput /> </mat-form-field
           >&nbsp; &nbsp;
 
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" class="example-full-width pad">
             <mat-label>Allergy Description</mat-label>
             <input matInput /> </mat-form-field
           >&nbsp; &nbsp;<br />
@@ -103,30 +103,30 @@
             <mat-label>Allergy clinical information</mat-label>
             <input matInput /> </mat-form-field
           >&nbsp; &nbsp;
-        </div>
+            </div>
       </mat-card-content>
     </mat-card>
   </div>
   <div
     class="sub2"
-    fxFlex.gt-sm="35"
+    fxFlex.gt-sm="50"
     fxFlex.gt-lg="20"
     fx.Flex="50"
-    style="padding: 5px"
+    style="padding: 10px"
   >
     <mat-card>
       <mat-card-content>
         <h1 class="head">Emergency Contact Information</h1>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="pad">
           <mat-label>First Name*</mat-label>
           <input matInput /> </mat-form-field
         >&nbsp; &nbsp;
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="pad">
           <mat-label>Last Name*</mat-label>
           <input matInput /> </mat-form-field
         >&nbsp; &nbsp;<br />
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="pad">
           <mat-label>Relationship*</mat-label>
           <mat-select>
             <mat-option value="one">Father</mat-option>
@@ -135,7 +135,7 @@
             <mat-option value="two">Daughter</mat-option>
           </mat-select> </mat-form-field
         >&nbsp; &nbsp;
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="pad">
           <mat-label>Mobile No*</mat-label>
           <input matInput /> </mat-form-field
         >&nbsp; &nbsp;<br />
