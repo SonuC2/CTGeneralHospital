@@ -1,0 +1,35 @@
+
+/* .main{
+    display:flex;
+    justify-content: space-between;
+    margin-left: 40vh;
+    margin-right: 25vh;
+} */
+
+/* .sub1{
+    display:flex;
+    justify-content: space-between;  
+}
+.sub2{
+    display:flex;
+    justify-content: space-between;
+ 
+} */
+
+
+.head{
+    color: #0055D2;
+}
+.wid{
+    width: 50vh;
+}
+.date{
+    width: 33vh;
+}
+
+@media (max-width:700px) {
+    .pad{
+        width: 100%;
+    }
+   
+}

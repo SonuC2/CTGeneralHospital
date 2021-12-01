@@ -23,9 +23,17 @@ const routes: Routes = [
         loadChildren: () =>
           import('./nurse/nurse.module').then((m) => m.NurseModule),
       },
+
+      {
+        path: 'patient',
+        loadChildren: () =>
+          import('src/app/patient/patient.module').then((m) => m.PatientModule),
+      },
     ],
   },
 ];
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +44,9 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     SharedModule,
     NurseModule,
-    RouterModule.forRoot(routes),
+
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent],
