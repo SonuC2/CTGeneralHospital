@@ -29,6 +29,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('src/app/patient/patient.module').then((m) => m.PatientModule),
       },
+      {
+        path: 'scheduling',
+        loadChildren: () =>
+          import('src/app/scheduling/scheduling.module').then((m) => m.SchedulingModule),
+      },
     ],
   },
 ];
