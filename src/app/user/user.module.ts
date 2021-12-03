@@ -14,7 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { DesignComponent } from './design/design.component';
-
+import {MatCardModule} from '@angular/material/card';
 @NgModule({
   declarations: [
     EmployeeRegistrationComponent,
@@ -22,7 +22,7 @@ import { DesignComponent } from './design/design.component';
     DesignComponent
   ],
   imports: [
-    CommonModule,FormsModule,MatGridListModule,MatFormFieldModule,MatInputModule,FlexLayoutModule,MatRadioModule,MatDatepickerModule,MatNativeDateModule,MatSelectModule,MatButtonModule,ReactiveFormsModule
+    CommonModule,FormsModule,MatGridListModule,MatFormFieldModule,MatInputModule,FlexLayoutModule,MatRadioModule,MatDatepickerModule,MatNativeDateModule,MatSelectModule,MatButtonModule,ReactiveFormsModule,MatCardModule
   ],
   exports: [EmployeeRegistrationComponent,PatientRegistrationComponent,DesignComponent],
 })

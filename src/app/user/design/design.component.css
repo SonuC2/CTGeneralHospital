@@ -1,7 +1,43 @@
-.bgImg{
-    background-image: url("/assets/images/ctimage.jpg");
-    height: 100%;
-    width:100%;
-    color: brown;
+/*.container {
+  background-image: url("/assets/images/changepassword.jpg");
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+background-repeat: no-repeat;
+background-position: center;
+ margin: 0px 0px;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-size: cover;
+ position: relative;
 
+  overflow-x: hidden;
+}
+.abc{background-image: url("/assets/images/changepassword.jpg");
+  width: 100vh;
+height: 100vh;}*/
+div{background-image: url("/assets/images/changepassword.jpg");
+  width: 100%;
+  height: 100vh;
+  background-size: 100% 100%;
+}
+mat-card {
+  width: 400px;
+  height: 400px;
+  background-color: transparent;
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+mat-form-field {
+  display: block;
+}
+.btn {
+  width: 200px;
 }
