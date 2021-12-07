@@ -28,3 +28,14 @@
     }
    
 }
+
+.datepicker { 
+    display: inherit;
+}
+
+/* @media (min-width:700px) {
+    .pad{
+        width: 100%;
+    }
+   
+} */
