@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-patient-details',
@@ -7,8 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientDetailsComponent implements OnInit {
   hideAllergy=true;
+  isRegister=false;
+  isUpdate=true;
  
-  constructor() { }
+  constructor(public dialog:MatDialog,private _snackbar:MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -31,5 +35,17 @@ export class PatientDetailsComponent implements OnInit {
     {
       this.hideAllergy=true;
     }
+  }
+  register(){
+    this._snackbar.open("Patient Details Successfully Registered","done");
+    this.isRegister=true;
+    this.isUpdate=false;
+    console.log("registered")
+  }
+  update(){
+    console.log("update")
+  }
+  EditData(){
+    console.log("edit data")
   }
 }

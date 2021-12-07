@@ -130,7 +130,7 @@
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </button>
-    
+
     <button
       mat-button
       class="menu-button"
@@ -146,30 +146,32 @@
       [ngClass]="{ expanded: showPatientSubMenu }"
       *ngIf="isShowing || isExpanded"
     >
-      <button mat-button class="menu-button" routerLink="patient/patient-details">
-        <mat-icon>person</mat-icon>
-        <span>Enter your Details</span>
-      </button>
       <button
         mat-button
         class="menu-button"
-        routerLink="patient/my-details"
+        routerLink="patient/patient-details"
       >
+        <mat-icon>person</mat-icon>
+        <span>Enter your Details</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="patient/my-details">
         <mat-icon>list</mat-icon>
         <span>My Details</span>
       </button>
 
-      <!-- <button mat-button  class="menu-button"> -->
 
       <button mat-button class="menu-button">
         <mat-icon>person</mat-icon>
         <span>My Visits</span>
       </button>
-
+      <button mat-button class="menu-button">
         <mat-icon>person</mat-icon>
         <span>My visit history</span>
       </button>
-
+      <button mat-button class="menu-button" routerLink="patient/get-my-data">
+        <mat-icon>download</mat-icon>
+        <span>Download My Data</span>
+      </button>
     </div>
     <button
       mat-button
@@ -197,7 +199,6 @@
       </button>
     </div>
 
-
     <button
       mat-button
       class="menu-button"
@@ -216,10 +217,10 @@
       <button
         mat-button
         class="menu-button"
-        routerLink="/nurse/employee-details"
+        
       >
-        <mat-icon>list</mat-icon>
-        <span>change password</span>
+        <mat-icon>password</mat-icon>
+        <span>Change Password</span>
       </button>
 
 
@@ -238,7 +239,7 @@
     </button>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content >
     <div class="content">
       <router-outlet></router-outlet>
     </div>
