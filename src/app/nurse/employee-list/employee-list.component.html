@@ -1,8 +1,9 @@
 <!-- <p>employee-list works!</p> -->
 <!-- <div class="Container"> -->
     <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
-        <div ffxFlex.sm="0 1 calc(100%-10px)" fxFlex.md="0 1 calc(100%-10px)" fxFlex.gt-md="0 1 calc(100%-10px)" class="mat-elevation-z4" >
-            <h1>Employee Details</h1>
+        <!-- <div ffxFlex.sm="0 1 calc(100%-10px)" fxFlex.md="0 1 calc(100%-10px)" fxFlex.gt-md="0 1 calc(100%-10px)" class="mat-elevation-z4" > -->
+          <div fxFlex.gt-sm="100" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
+          <h1>Employee Details</h1>
     
             <mat-form-field appearance="standard" style="width: 100%;">
                 <mat-label>Filter</mat-label>
@@ -62,5 +63,7 @@
               
         </div>
     </div>
+
+    <router-outlet></router-outlet>
 
 <!-- </div> -->
