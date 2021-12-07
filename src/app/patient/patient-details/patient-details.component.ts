@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-patient-details',
@@ -8,10 +9,10 @@ import { Router } from '@angular/router';
 })
 export class PatientDetailsComponent implements OnInit {
   hideAllergy=true;
-  isNurse :boolean = true;
-  isPatient : boolean = false;
+  isRegister=false;
+  isUpdate=true;
  
-  constructor(private router: Router) { }
+  constructor(public dialog:MatDialog,private _snackbar:MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -35,8 +36,16 @@ export class PatientDetailsComponent implements OnInit {
       this.hideAllergy=true;
     }
   }
-
-  navigateToVital(){
-    this.router.navigate(['/nurse/patient-visit']);
+  register(){
+    this._snackbar.open("Patient Details Successfully Registered","done");
+    this.isRegister=true;
+    this.isUpdate=false;
+    console.log("registered")
+  }
+  update(){
+    console.log("update")
+  }
+  EditData(){
+    console.log("edit data")
   }
 }
