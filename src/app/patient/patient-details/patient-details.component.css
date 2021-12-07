@@ -26,6 +26,9 @@
 .date{
     width: 33vh;
 }
+.w{
+    width: 40%;
+}
 
 @media (max-width:700px) {
     .pad{

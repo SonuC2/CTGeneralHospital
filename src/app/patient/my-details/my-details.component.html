@@ -1,30 +1,153 @@
-<!-- <p>my-details works!</p>
-<div fxLayout="row wrap">
-  <div
-    class="sub1"
-    fxFlex.gt-sm="50"
-    fxFlex.gt-lg="20"
-    fx.Flex="50"
-    style="padding: 10px"
-  >
-    <mat-card>
-        <mat-card-title>Patient Name</mat-card-title>
-
-      <mat-card-content>
-          <table>
-
-            <tr>
-                <td>First Name</td>
-                <td>Bhushan</td>
-            </tr>
-          </table>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit et nulla
-        laborum, amet rerum inventore commodi earum facilis rem laboriosam odio
-        dolores quidem minima numquam illum nemo explicabo distinctio odit qui
-        esse. Culpa minima esse dicta, nobis placeat optio laborum ipsam dolorum
-        et, ea reiciendis voluptatem fugit voluptatibus qui vitae.
-      </mat-card-content></mat-card
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <h1
+      style="
+        background-color: cadetblue;
+        text-align: center;
+        width: 80%;
+        height: 40px;
+      "
     >
-  </div>
-</div> -->
+      Your Details
+    </h1>
+    <mat-card-title>Patient Name</mat-card-title>
+    <mat-card-subtitle
+      >Patient age: 35 <br />Patient Place: Pune</mat-card-subtitle
+    >
+  </mat-card-header>
 
+  <mat-card-content>
+    <div class="bounds">
+      <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <div fxFlex="33" class="sec1" fxFlex.xs="55">
+          <h1 class="head">Demographic Details</h1>
+          <mat-card class="justify"
+            ><div>FirstName</div>
+            :
+            <div>Bhushan</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>LastName</div>
+            :
+            <div>Gandole</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>DateOfBirth</div>
+            :
+            <div>11/09/2005</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Mobile no</div>
+            :
+            <div>1234567890</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Race</div>
+            :
+            <div>Race</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Ethnicity</div>
+            :
+            <div>Ethnicity</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Gender</div>
+            :
+            <div>Male</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>email</div>
+            :
+            <div>bhushan@gmail.com</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Known Language</div>
+            :
+            <div>Marathi,Hindi,English</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Address</div>
+            :
+            <div>Pune</div></mat-card
+          >
+        </div>
+        <div fxFlex="33" class="sec2" fxFlex.xs="55" style="padding-left: 2px">
+          <h1 class="head">Emergency Contact Information</h1>
+          <mat-card class="justify"
+            ><div>First Name</div>
+            :
+            <div>Rohit</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Last Name</div>
+            :
+            <div>Sharma</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Mobile NO</div>
+            :
+            <div>1234567890</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Relation</div>
+            :
+            <div>Brother</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>email</div>
+            :
+            <div>hitman@gmail.com</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Address</div>
+            :
+            <div>Mumbai Indian</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Acess</div>
+            :
+            <div>Yes</div></mat-card
+          >
+        </div>
+        <div fxFlex="30" class="sec2" fxFlex.xs="55" style="padding-left: 2px">
+          <h1 class="head">Allergy Details</h1>
+          <mat-card class="justify"
+            ><div>Allergy Id</div>
+            :
+            <div>CD4334</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Allergy Type</div>
+            :
+            <div>SFSDGGFD</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Allergy Name</div>
+            :
+            <div>whatever</div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>
+              Allergy <br />
+              Discription
+            </div>
+            :
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa !
+            </div></mat-card
+          >
+          <mat-card class="justify"
+            ><div>Allergy Clinical Information</div>
+            :
+            <div>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo,
+              ex!
+            </div></mat-card
+          >
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
