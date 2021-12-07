@@ -16,23 +16,20 @@ mat-sidenav {
 }
 
 .content {
-  height: calc(100vh - 98px);
-  border-radius: 10px;
-  margin: 16px;
-  margin-left: 32px;
-  /* width: 100%; */
+    height: calc(100vh - 98px);
+    border-radius: 10px;
 
-  /* display:calc(100vh-); */
+    margin: 16px;
+    margin-left: 32px;
+    /* width: 100%; */
+/* display:calc(100vh-); */
+    display:inherit;
+    /* justify-content: center; */
+    /* align-items: center; */
 
-  display: inherit;
+    font-size: 1rem;
+    color: black;
 
-  /* justify-content: center; */
-
-  /* align-items: center; */
-
-  font-size: 1rem;
-
-  color: black;
 }
 
 mat-sidenav-container {
