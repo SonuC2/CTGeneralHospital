@@ -11,11 +11,13 @@ export class PatientDetailsComponent implements OnInit {
   hideAllergy=true;
   isRegister=false;
   isUpdate=true;
- 
+  isEdit=true;
   constructor(public dialog:MatDialog,private _snackbar:MatSnackBar) { }
 
   ngOnInit(): void {
+
   }
+  
   allergyFalse(event:any)
   {
     console.log("event");
@@ -39,7 +41,7 @@ export class PatientDetailsComponent implements OnInit {
   register(){
     this._snackbar.open("Patient Details Successfully Registered","done");
     this.isRegister=true;
-    this.isUpdate=false;
+    this.isEdit=false;
     console.log("registered")
   }
   update(){
@@ -47,5 +49,7 @@ export class PatientDetailsComponent implements OnInit {
   }
   EditData(){
     console.log("edit data")
+    this.isEdit=true;
+    this.isUpdate=false;
   }
 }
