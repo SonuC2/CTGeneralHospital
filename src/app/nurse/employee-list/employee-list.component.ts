@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 export interface EmployeeData {
   id: number;
@@ -36,12 +36,12 @@ export class EmployeeListComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'designation','speciality','userType'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-
+id!:number;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  @Input() queryID =0;
 
-
-  constructor(private router: Router) { }
+  constructor(private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
@@ -62,7 +62,10 @@ export class EmployeeListComponent implements OnInit {
 
   getRecord(row:any){
     console.log(row.id);
-    this.router.navigate(['/nurse/employee-details'])
+    
+   this.queryID= row.id;
+    
+    this.router.navigate(['/nurse/employee-details/{{this.queryID}}'])
     
   }
 

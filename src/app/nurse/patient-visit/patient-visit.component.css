@@ -1,0 +1,13 @@
+@media (max-width: 360px) { /*"xxx" the width of window*/
+    mat-form-field  {
+      width:100%;
+    }
+  }
+
+th.mat-header-cell{
+    background: #0055D2;
+    color: white;
+  }
+  .matTablabel {
+    color:#0055D2;
+  }
