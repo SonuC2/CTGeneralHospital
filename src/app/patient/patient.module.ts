@@ -23,6 +23,8 @@ import { DataSubmissionDialogComponent } from './data-submission-dialog/data-sub
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AlreadyEnteredDetailsComponent } from './already-entered-details/already-entered-details.component';
 import { GetMyDataComponent } from './get-my-data/get-my-data.component';
+import { MyCompliteDetailsComponent } from './my-complite-details/my-complite-details.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -36,7 +38,7 @@ const routes: Routes = [
   },
   {
     path: 'my-details',
-    component: MyDetailsComponent,
+    component: MyDetailsComponent,children:[{path:"complite-details",component:MyCompliteDetailsComponent}]
   },
   {
     path: 'already-entered-details',
@@ -55,6 +57,7 @@ const routes: Routes = [
     DataSubmissionDialogComponent,
     AlreadyEnteredDetailsComponent,
     GetMyDataComponent,
+    MyCompliteDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -65,6 +68,7 @@ const routes: Routes = [
     MatNativeDateModule,
     MatTableModule,
     ReactiveFormsModule,
+    FormsModule,
     // MatGridListModule,
     MatButtonModule,
     FormsModule,
@@ -76,6 +80,7 @@ const routes: Routes = [
     MatInputModule,
     MatCheckboxModule,
     FlexLayoutModule,
+    HttpClientModule,
     RouterModule.forChild(routes),
   ],
 })
