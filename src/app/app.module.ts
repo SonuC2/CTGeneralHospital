@@ -7,7 +7,8 @@ import { DefaultComponent } from './shared/default/default.component';
 import { DashboardComponent } from './shared/dashboard/dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
-import { NurseModule } from './nurse/nurse.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 const routes: Routes = [
   {
@@ -41,12 +42,9 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
-    RouterModule.forRoot(routes),
     SharedModule,
-    NurseModule,
-
-    
-
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent],
