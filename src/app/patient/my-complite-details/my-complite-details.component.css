@@ -1,0 +1,31 @@
+
+.head{
+    color: #0055D2;
+    text-align: center;
+}
+.but{
+  background-color:#0055D2 ;
+  color: white;
+}
+.justify{
+  display: flex;
+  justify-content: space-between;
+}
+.scroll-to-top {
+  position: fixed;
+  /* bottom: 15px;
+  right: 15px; */
+  /* opacity: 0; */
+  /* transition: all .2s ease-in-out; */
+ }
+ .show-scrollTop {
+  opacity: 1;
+  transition: all .2s ease-in-out;
+ }
+ 
+@media (max-width: 700px) {
+  .wid {
+    width: 50%;
+  }
+ 
+}

@@ -13,7 +13,7 @@ export class SidebarComponent  {
   isExpanded : boolean = true;
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
-  isPatient:boolean =false;
+  isPatient:boolean =true;
  
   showSubmenu: boolean = false;
   isShowing = false;
@@ -21,7 +21,7 @@ export class SidebarComponent  {
   showPatientSubMenu: boolean = false;
   showEmployeeSubMenu : boolean = false;
 
-  isNurse : boolean = true;
+  isNurse : boolean = false;
  
    constructor(private observer: BreakpointObserver) {}
  
