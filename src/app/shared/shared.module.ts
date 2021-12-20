@@ -18,6 +18,7 @@ import {MatListModule} from '@angular/material/list';
 // import { SideNavComponent } from './side-nav/side-nav.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatMenuModule} from '@angular/material/menu';
 // import { DashboardComponent } from './dashboard/dashboard.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -44,6 +45,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatListModule,
     MatToolbarModule,
     MatDividerModule,
+    MatMenuModule,
     FlexLayoutModule
   ]
 })

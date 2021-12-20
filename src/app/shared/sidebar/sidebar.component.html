@@ -7,7 +7,17 @@
             close
         </mat-icon> -->
   </button>
-  Responsive side navigation
+  CTGeneralHospital 
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon" [matMenuTriggerFor]="beforeMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #beforeMenu="matMenu" xPosition="before" class="profile">
+    <h4 mat-menu-item style="font-weight: bold;">Priyanka Gaykhe</h4>
+    <mat-label mat-menu-item>priyanka.gaykhe@gmail.com</mat-label>
+    <button mat-menu-item>Item 1</button>
+    <button mat-menu-item>Item 2</button>
+  </mat-menu>
 </mat-toolbar>
 <mat-sidenav-container *ngIf="isNurse">
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
@@ -40,10 +50,7 @@
         <mat-icon>person</mat-icon>
         <span>Register Patient</span>
       </button>
-      <!-- <button mat-button class="menu-button" >
-        <mat-icon>list</mat-icon>
-        <span>Patient Details</span>
-      </button> -->
+     
       <button mat-button class="menu-button" routerLink="/nurse/patient-visit">
         <mat-icon>person</mat-icon>
         <span>Add Patient Visit Details</span>
@@ -51,6 +58,10 @@
       <button mat-button class="menu-button">
         <mat-icon>person</mat-icon>
         <span>Patient Visit History</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="/nurse/patient-list">
+        <mat-icon>list</mat-icon>
+        <span>Patient list</span>
       </button>
     </div>
 
@@ -70,12 +81,12 @@
         </button> -->
     </div>
 
+    <mat-divider></mat-divider>
+
     <button mat-button class="menu-button">
       <mat-icon>info</mat-icon>
       <span>About</span>
     </button>
-
-    <mat-divider></mat-divider>
 
     <button mat-button class="menu-button">
       <mat-icon>help</mat-icon>

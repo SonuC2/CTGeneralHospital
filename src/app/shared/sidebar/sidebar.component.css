@@ -85,3 +85,26 @@ mat-divider {
   display: block;
   transform: scaleY(1);
 }
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+/* .profile{
+  width: 500px;
+} */
+
+/* ::ng-deep .mat-menu-content {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+} */
+
+.mat-menu-item{
+  /* line-height:350px; */
+  height:50px;
+  width: 250px;
+  /* padding: 3px; */
+  /* margin: 2px; */
+  /* text-align: center; */
+  
+}
