@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { map, Observable, startWith } from 'rxjs';
@@ -48,7 +48,18 @@ export class PatientVisitComponent implements OnInit {
 
   diagnosisCode :string[] =['A00','A00.1','B00'];
   diagnosisId="None";
-  constructor() {}
+  drugName :string[] = ['Axc','Tame D','XYZ'];
+  displayedColumsPrescription:string[] =['drugName','drugQuantity','drugtype','timing','actions']
+  dataSourcePrescription = new MatTableDataSource();
+  drugTiming !:FormGroup;
+  constructor(fb: FormBuilder) {
+    this.drugTiming = fb.group({
+      morning: false,
+      afternoon: false,
+      evening: false,
+      night:false,
+    });
+  }
 
   ngOnInit(): void {
     this.filteredOptions = this.myControl.valueChanges.pipe(

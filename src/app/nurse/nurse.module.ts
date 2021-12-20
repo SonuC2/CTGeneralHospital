@@ -19,8 +19,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { PatientDetailsComponent } from '../patient/patient-details/patient-details.component';
 import { PatientVisitComponent } from './patient-visit/patient-visit.component';
+import { PatientListComponent } from './patient-list/patient-list.component';
 const routes: Routes = [
   {
   path: "employee-list",
@@ -34,7 +36,11 @@ const routes: Routes = [
     {
       path: "patient-visit",
       component: PatientVisitComponent
-      },
+    },
+    {
+        path: "patient-list",
+        component: PatientListComponent
+    },
     // {
     //   path:"patient-details",
     //   component:PatientDetailsComponent
@@ -51,7 +57,8 @@ const routes: Routes = [
   declarations: [
     EmployeeDetailsComponent,
     EmployeeListComponent,
-    PatientVisitComponent
+    PatientVisitComponent,
+    PatientListComponent
   ],
   imports: [
     CommonModule,
@@ -72,6 +79,7 @@ const routes: Routes = [
     MatAutocompleteModule,
     MatTabsModule,
     MatSelectModule,
+    MatCheckboxModule,
     RouterModule.forChild(routes)
   ]
 })

@@ -41,12 +41,8 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
-    RouterModule.forRoot(routes),
     SharedModule,
-    NurseModule,
-
-    
-
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent],
