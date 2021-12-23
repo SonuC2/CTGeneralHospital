@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import {MatDialog} from '@angular/material/dialog'; 
+import { SavedialogComponent } from '../savedialog/savedialog.component';
 @Component({
   selector: 'app-patient-registration',
   templateUrl: './patient-registration.component.html',
@@ -7,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientRegistrationComponent implements OnInit {
   titleEmp: string[] = ['Mr.', 'Ms.', 'Dr.', 'Mrs.'];
-  constructor() { }
+  constructor(public dialog:MatDialog) { }
 
   ngOnInit(): void {
   }
   onSave(){
-    console.log("hi");
-  }
+    this.dialog.open(SavedialogComponent);
+}
 }

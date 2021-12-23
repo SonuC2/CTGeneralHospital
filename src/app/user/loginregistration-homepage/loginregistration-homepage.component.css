@@ -1,0 +1,146 @@
+.bgimg {
+  background-image: url("/assets/images/lending.jpg");
+  width: 100%;
+  height: 100vh;
+
+  background-size: cover;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  overflow-x: hidden;
+}
+mat-toolbar {
+  background-color: transparent;
+}
+
+.flexExpand {
+  flex: 1 1 auto;
+}
+.btnabout {
+  color: blue;
+}
+
+.h1 {
+  font-family: fantasy;
+  font-size: 4.5rem;
+  color: #2f4ba1;
+}
+.h5 {
+  font-family: fantasy;
+  font-size: 2.7rem;
+  color: #2f4ba1;
+}
+.link {
+  font-size: 15px;
+}
+
+.left {
+  height: 80vh;
+}
+.btnlog {
+  background-color: transparent;
+  color: blue;
+  height: 20px;
+  margin-left: 0px;
+}
+.right {
+  height: 80vh;
+}
+mat-toolbar {
+  height: 10vh;
+}
+.mat1 {
+  text-align: center;
+
+  width: 300px;
+  height: 330px;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+
+  align-self: center;
+  backdrop-filter: blur(7px);
+ 
+}
+.btn {
+  border-radius: 10px;
+  width: 200px;
+  background-color:#0d5be1 ;
+}
+mat-form-field {
+  display: block;
+}
+@media (max-width: 700px) {
+  .mat1 {
+    width: 240px;
+    height: 260px;
+  }
+  .left {
+    margin-top: 40px;
+  }
+  .h1 {
+    font-size: calc(2.3rem);
+    line-height: 8px;
+  }
+  .h5 {
+    font-size: calc(1.5rem);
+    line-height: 8px;
+  }
+  .img {
+    height: 28px;
+    width: 75px;
+  }
+  .btnabout {
+    width: 15px;
+  }
+}
+
+.mat2 {
+  /* width: 450px;*/
+  width: 65vh;
+  height: 58vh;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+
+  align-self: center;
+  backdrop-filter: blur(7px);
+}
+.sub1 {
+  width: 40vh;
+  height: 30vh;
+}
+.head {
+  color: #0055d2;
+  text-align: center;
+}
+
+.wid {
+  width: 32vh;
+}
+.date {
+  width: 49.4%;
+}
+
+.pad {
+  width: 49.4%;
+}
+
+@media (max-width: 700px) {
+  .pad {
+    width: 100%;
+  }
+  .wid {
+    width: 100%;
+  }
+  .mat2 {
+    width: 38vh;
+    height: 130vh;
+  }
+  .width {
+    width: 100%;
+  }
+  #firstN {
+    margin-top: 0pt;
+  }
+}

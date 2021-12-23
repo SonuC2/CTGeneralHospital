@@ -1,7 +1,23 @@
-.form-field{
-    width:49%;  
-  }
-  .radio-group{
-    margin-left: 10px;
-    margin-bottom: 40px;
-  }
+.head{
+  color: #0055D2;
+  text-align: center;
+}
+
+.wid{
+    width: 47vh;
+}
+.date{
+    width: 33vh;
+}
+
+.pad{width: 48%;
+   
+}
+
+@media (max-width:700px) {
+    .pad{
+        width: 100%;
+  
+    }
+   
+}
