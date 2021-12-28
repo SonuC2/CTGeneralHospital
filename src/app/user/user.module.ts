@@ -46,10 +46,10 @@ const routes: Routes = [
     component: AfterRegLendingPageComponent,
   },
  
-  /*  {
-            path: "sidebar",
-            component:SidebarComponent,
-            },*/
+   /*{
+            path: "dashboard",
+            component:Dashbo,
+            }*/
 ];
 
 @NgModule({
