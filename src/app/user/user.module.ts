@@ -25,6 +25,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { SharedModule } from '../shared/shared.module';
+import { AfterRegLendingPageComponent } from './after-reg-lending-page/after-reg-lending-page.component';
 
 const routes: Routes = [
   
@@ -40,6 +41,10 @@ const routes: Routes = [
     path: 'loginregistration-homepage',
     component: LoginregistrationHomepageComponent,
   },
+  {
+    path: 'afterreg-lendingpage',
+    component: AfterRegLendingPageComponent,
+  },
  
   /*  {
             path: "sidebar",
@@ -54,6 +59,7 @@ const routes: Routes = [
     DesignComponent,
     LoginregistrationHomepageComponent,
     SavedialogComponent,
+    AfterRegLendingPageComponent,
 
    
   ],
@@ -84,7 +90,7 @@ const routes: Routes = [
     DesignComponent,
     LoginregistrationHomepageComponent,
     SavedialogComponent,
-   
+   AfterRegLendingPageComponent
   ],
 })
 export class UserModule {}

@@ -1,0 +1,38 @@
+@media (max-width: 360px) { /*"xxx" the width of window*/
+    mat-form-field  {
+      width:100%;
+    }
+  }
+
+th.mat-header-cell{
+    background: #0055D2;
+    color: white;
+  }
+  .matTablabel {
+    color:#0055D2;
+  }
+
+  .fixedDiv{
+    position: relative;
+    /* max-width: 800px; */
+    /* height: 200vh; for scrolling demo */
+    margin: 0 auto;
+  }
+
+  .divButtonWrapper{
+    position: absolute;
+  right: 35px; /* button width plus margin */
+  /* top: 50%; */
+  }
+  .submitButton {
+    position: fixed;
+    top: 4rem;
+    /* bottom: 1rem; */
+    right: 0.5rem;
+  cursor: pointer;
+  
+  }
+
+  body{
+    overflow: auto;
+  }

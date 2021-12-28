@@ -2,7 +2,7 @@
   <section fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
     <mat-card fxLayoutAlign="center center">
       
-      <form>
+      <form  [formGroup]="form" (ngSubmit)="submitPassword()">
         <mat-card-content>
           <h2 style="color: #00ccff">Change password</h2>
 

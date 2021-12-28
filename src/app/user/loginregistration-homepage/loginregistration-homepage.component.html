@@ -48,7 +48,7 @@
             <h2 style="color: blue">Login</h2>
 
             <mat-form-field class="full-width-input">
-              <input matInput type="email" placeholder="email/username" />
+              <input matInput type="email" placeholder="email/username"required />
             </mat-form-field>
             <mat-form-field class="full-width-input">
               <input matInput type="password" placeholder="password" />
@@ -96,7 +96,7 @@
     >
       <mat-card class="mat2">
         <mat-card-content
-          ><form>
+          ><form  [formGroup]="form" (ngSubmit)="submitRegister()" >
             <h1 class="head">Registration</h1>
             
             <div fxLayout="row" fxLayout.xs="column" style="margin-top: 10px">
@@ -158,7 +158,8 @@
                   class="example-full-width wid"
                 >
                   <mat-label>Enter your email</mat-label>
-                  <input matInput placeholder="google@example.com" required />
+                  <input matInput  required />
+                 <!---<input matInput placeholder="google@example.com" required />-->
                 </mat-form-field>
               </div>
             </div>

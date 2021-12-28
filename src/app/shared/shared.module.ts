@@ -18,6 +18,7 @@ import {MatListModule} from '@angular/material/list';
 // import { SideNavComponent } from './side-nav/side-nav.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatMenuModule} from '@angular/material/menu';
 // import { DashboardComponent } from './dashboard/dashboard.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserModule } from '../user/user.module';
@@ -49,8 +50,8 @@ const routes: Routes = [
     MatListModule,
     MatToolbarModule,
     MatDividerModule,
-    FlexLayoutModule,UserModule,RouterModule.forChild(routes)
-  ],
- 
+    MatMenuModule,
+    FlexLayoutModule,UserModule
+  ]
 })
 export class SharedModule { }

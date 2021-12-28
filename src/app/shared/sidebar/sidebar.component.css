@@ -1,25 +1,23 @@
 mat-toolbar {
-    background: #0055D2;
-    color: white;
+  background: #0055d2;
+  color: white;
 }
 
 mat-sidenav {
-    margin: 16px;
-    width: 300px;
-    border-right: none;
-    /* nav bar blue color  */
-    /* background: #0055D2;
+  margin: 16px;
+  width: 300px;
+  border-right: none;
+  /* nav bar blue color  */
+  /* background: #0055D2;
     color: white; */
-    border-radius: 10px;
-    padding: 16px;
-    text-align: center;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
 }
-
 
 .content {
     height: calc(100vh - 98px);
     border-radius: 10px;
-
     margin: 16px;
     margin-left: 32px;
     /* width: 100%; */
@@ -30,59 +28,83 @@ mat-sidenav {
 
     font-size: 1rem;
     color: black;
-
 }
 
 mat-sidenav-container {
-    height: calc(100vh - 65px);
+  height: calc(100vh - 65px);
 }
 
 .menu-button {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    font-size: 0.8rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 0.8rem;
 
-    /* mat-icon {
+  /* mat-icon {
         margin-right: 8px;
     } */
 }
 
 .avatar {
-    margin-top: 16px;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+  margin-top: 16px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }
 
 .name {
-    margin-top: 8px;
-    font-weight: normal;
+  margin-top: 8px;
+  font-weight: normal;
 }
 
 .designation {
-    margin-top: 2px;
-    font-size: 0.7rem;
-    color: lightgrey;
+  margin-top: 2px;
+  font-size: 0.7rem;
+  color: lightgrey;
 }
 
 mat-divider {
-    margin-top: 16px;
-    margin-bottom: 16px;
-    background-color: rgba(255, 255, 255, 0.5);
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 /*  */
-.submenu, .submenu1 {
-    overflow-y: hidden;
-  display:none;
-    transition: transform 300ms ease;
-    transform: scaleY(0);
-    transform-origin: top;
-    padding-left: 30px;
-  }
-  .submenu.expanded, .submenu1.expanded {
-    display:block;
-    transform: scaleY(1);
-  }
+.submenu,
+.submenu1 {
+  overflow-y: hidden;
+  display: none;
+  transition: transform 300ms ease;
+  transform: scaleY(0);
+  transform-origin: top;
+  padding-left: 30px;
+}
+.submenu.expanded,
+.submenu1.expanded {
+  display: block;
+  transform: scaleY(1);
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+/* .profile{
+  width: 500px;
+} */
+
+/* ::ng-deep .mat-menu-content {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+} */
+
+.mat-menu-item{
+  /* line-height:350px; */
+  height:50px;
+  width: 250px;
+  /* padding: 3px; */
+  /* margin: 2px; */
+  /* text-align: center; */
+  
+}

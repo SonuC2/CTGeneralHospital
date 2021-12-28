@@ -7,10 +7,11 @@ import { Router } from '@angular/router';
   templateUrl: './design.component.html',
   styleUrls: ['./design.component.css']
 })
+
 export class DesignComponent implements OnInit {
  // isFormShown:boolean=false;
   constructor( private router: Router) { }
-
+  form!: any;
   ngOnInit(): void {
   }
 onChangepassword(){
@@ -18,4 +19,5 @@ onChangepassword(){
 // this.isFormShown=true;
  
 }
+submitPassword(){}
 }

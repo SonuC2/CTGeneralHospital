@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 export interface EmployeeData {
   id: number;
@@ -11,19 +11,20 @@ export interface EmployeeData {
   designation: string;
   speciality:string;
   userType: string;
+  status:boolean;
 }
 
 const ELEMENT_DATA: EmployeeData[] = [
-  {id: 1, firstName: 'Ashwini', lastName: 'Mishra', designation: 'MD',speciality:'Anesthesiologist',userType:'Doctor'},
-  {id: 2, firstName: 'Milind', lastName: 'Patil', designation: 'Sr. Nurse',speciality:'NA',userType:'Nurse'},
-  {id: 3, firstName: 'Bhushan', lastName: 'Gupta', designation: 'MD',speciality:'Dentist',userType:'Doctor'},
-  {id: 4, firstName: 'Parag', lastName: 'Gaikwad', designation: 'MD',speciality:'Dentist',userType:'Doctor'},
-  {id: 5, firstName: 'Mansi', lastName: 'Chaudhary', designation: 'MBBS',speciality:'Anesthesiologist',userType:'Doctor'},
-  {id: 6, firstName: 'Priyanka', lastName: 'Gaykhe', designation: 'MD',speciality:'Cardiologist',userType:'Doctor'},
-  {id: 7, firstName: 'Amol', lastName: 'Baykar', designation: 'MD',speciality:'Cardiologist',userType:'Doctor'},
-  {id: 8, firstName: 'Vivek', lastName: 'Gupta', designation: 'Nurse',speciality:'NA',userType:'Nurse'},
-  {id: 9, firstName: 'Simran', lastName: 'Mishra', designation: 'Nurse',speciality:'NA',userType:'Nurse'},
-  {id: 10, firstName: 'Aman', lastName: 'Goenka', designation: 'MD',speciality:'gynecologist',userType:'Doctor'},
+  {id: 1, firstName: 'Ashwini', lastName: 'Mishra', designation: 'MD',speciality:'Anesthesiologist',userType:'Doctor',status:true},
+  {id: 2, firstName: 'Milind', lastName: 'Patil', designation: 'Sr. Nurse',speciality:'NA',userType:'Nurse',status:true},
+  {id: 3, firstName: 'Bhushan', lastName: 'Gupta', designation: 'MD',speciality:'Dentist',userType:'Doctor',status:true},
+  {id: 4, firstName: 'Parag', lastName: 'Gaikwad', designation: 'MD',speciality:'Dentist',userType:'Doctor',status:false},
+  {id: 5, firstName: 'Mansi', lastName: 'Chaudhary', designation: 'MBBS',speciality:'Anesthesiologist',userType:'Doctor',status:true},
+  {id: 6, firstName: 'Priyanka', lastName: 'Gaykhe', designation: 'MD',speciality:'Cardiologist',userType:'Doctor',status:true},
+  {id: 7, firstName: 'Amol', lastName: 'Baykar', designation: 'MD',speciality:'Cardiologist',userType:'Doctor',status:true},
+  {id: 8, firstName: 'Vivek', lastName: 'Gupta', designation: 'Nurse',speciality:'NA',userType:'Nurse',status:true},
+  {id: 9, firstName: 'Simran', lastName: 'Mishra', designation: 'Nurse',speciality:'NA',userType:'Nurse',status:true},
+  {id: 10, firstName: 'Aman', lastName: 'Goenka', designation: 'MD',speciality:'gynecologist',userType:'Doctor',status:true},
 ];
 
 
@@ -36,14 +37,17 @@ export class EmployeeListComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'designation','speciality','userType'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
-
+id!:number;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-
-
-  constructor(private router: Router) { }
+  @Input() queryID =0;
+  isAdmin:boolean = false;
+  constructor(private router: Router,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    if(this.isAdmin === true){
+      this.displayedColumns = ['id', 'firstName', 'lastName', 'designation','speciality','userType','status'];
+    }
   }
 
   ngAfterViewInit() {
@@ -61,8 +65,11 @@ export class EmployeeListComponent implements OnInit {
   }
 
   getRecord(row:any){
-    console.log(row.id);
-    this.router.navigate(['/nurse/employee-details'])
+    console.log("Row id: " + row.id);
+    
+   this.queryID= row.id;
+    
+    this.router.navigate(['/nurse/employee-details/{{this.queryID}}'])
     
   }
 

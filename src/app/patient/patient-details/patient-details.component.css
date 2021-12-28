@@ -6,15 +6,7 @@
     margin-right: 25vh;
 } */
 
-/* .sub1{
-    display:flex;
-    justify-content: space-between;  
-}
-.sub2{
-    display:flex;
-    justify-content: space-between;
- 
-} */
+
 
 
 .head{
@@ -26,6 +18,9 @@
 .date{
     width: 33vh;
 }
+.w{
+    width: 40%;
+}
 
 @media (max-width:700px) {
     .pad{
@@ -33,3 +28,14 @@
     }
    
 }
+
+.datepicker { 
+    display: inherit;
+}
+
+/* @media (min-width:700px) {
+    .pad{
+        width: 100%;
+    }
+   
+} */

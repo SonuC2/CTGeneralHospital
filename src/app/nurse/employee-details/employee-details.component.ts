@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -11,10 +12,18 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./employee-details.component.css']
 })
 export class EmployeeDetailsComponent implements OnInit {
+  queryID:any;
+  
+  constructor(private route: ActivatedRoute,
+    private router: Router){}
   
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.route.params.subscribe((params) => {
+      console.log("Id from query"+params['queryID']);
+     
+    });
   }
+
 
 
 }
