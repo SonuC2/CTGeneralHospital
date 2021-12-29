@@ -46,7 +46,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatToolbarModule,
     MatDividerModule,
     MatMenuModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ]
 })
 export class SharedModule { }

@@ -7,6 +7,7 @@
             close
         </mat-icon> -->
   </button>
+  <!-- <span class="img-size"><img src="https://s3.amazonaws.com/spoke-profiles-prod-assets/avatars/210x210h/713df13dfaad508b7e6eb2570b28c5464b5d3c74.png" alt="CTGeneralHospital logo"></span> -->
   CTGeneralHospital 
   <span class="example-spacer"></span>
   <button mat-icon-button class="example-icon" [matMenuTriggerFor]="beforeMenu">
@@ -30,13 +31,13 @@
       <span *ngIf="isExpanded || isShowing">Appointments</span>
     </button>
     <div class="submenu" [ngClass]="{ expanded: showSubmenu }" *ngIf="isShowing || isExpanded">
-      <button mat-button class="menu-button">
+      <button mat-button class="menu-button" routerLink="scheduling/appointment-calendar">
         <mat-icon>schedule</mat-icon>
         <span>Schedule Appointment</span>
       </button>
-      <button mat-button class="menu-button">
+      <button mat-button class="menu-button" routerLink="scheduling/appointment-list">
         <mat-icon>schedule </mat-icon>
-        <span>Upcoming Appointment</span>
+        <span>Appointment list</span>
       </button>
     </div>
 
@@ -163,11 +164,11 @@
       *ngIf="isShowing || isExpanded"
     >
 
-      <button mat-button class="menu-button">
+      <button mat-button class="menu-button" routerLink="scheduling/appointment-calendar">
         <mat-icon>schedule</mat-icon>
         <span>Schedule Appointment</span>
       </button>
-      <button mat-button class="menu-button">
+      <button mat-button class="menu-button" routerLink="scheduling/appointment-list">
         <mat-icon>schedule </mat-icon>
         <span>Upcoming Appointment</span>
       </button>

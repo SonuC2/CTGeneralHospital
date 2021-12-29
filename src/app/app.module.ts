@@ -8,7 +8,7 @@ import { DashboardComponent } from './shared/dashboard/dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 
 const routes: Routes = [
   {
@@ -30,11 +30,15 @@ const routes: Routes = [
         loadChildren: () =>
           import('src/app/patient/patient.module').then((m) => m.PatientModule),
       },
+
+      {
+        path: 'scheduling',
+        loadChildren: () =>
+          import('src/app/scheduling/scheduling.module').then((m) => m.SchedulingModule),
+      },
     ],
   },
 ];
-
-
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,7 +48,8 @@ const routes: Routes = [
     RouterModule,
     SharedModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    ScheduleModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent],
