@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DefaultComponent } from './default/default.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
@@ -21,13 +21,18 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
 // import { DashboardComponent } from './dashboard/dashboard.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
-
+import { UserModule } from '../user/user.module';
+const routes: Routes = [
+  {
+  path: "sidebar",
+  component: SidebarComponent,
+  },]
 @NgModule({
   declarations: [
     SidebarComponent,
     DashboardComponent,
-    DefaultComponent
+    DefaultComponent,
+   
   ],
   imports: [
     CommonModule,
@@ -46,7 +51,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatToolbarModule,
     MatDividerModule,
     MatMenuModule,
+<<<<<<< HEAD
     FlexLayoutModule,
+=======
+    FlexLayoutModule,UserModule
+>>>>>>> ccaba1498b63d769a0448b97a3af7b1c92110228
   ]
 })
 export class SharedModule { }

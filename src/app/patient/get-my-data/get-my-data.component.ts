@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as XLXS from 'xlsx';
+//import * as XLXS from 'xlsx';
 
 
 @Component({
@@ -16,12 +16,12 @@ export class GetMyDataComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  getExcelData() {
+  getExcelData() {/*
     let element = document.getElementById('excel-id');
     const ws: XLXS.WorkSheet = XLXS.utils.table_to_sheet(element);
 
     const wb: XLXS.WorkBook = XLXS.utils.book_new();
     XLXS.utils.book_append_sheet(wb, ws, 'Sheet1');
     XLXS.writeFile(wb, this.fileName);
-  }
+  */ }
 }

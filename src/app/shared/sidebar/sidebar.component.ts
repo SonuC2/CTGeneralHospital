@@ -20,8 +20,13 @@ export class SidebarComponent  {
   showSubSubMenu: boolean = false;
   showPatientSubMenu: boolean = false;
   showEmployeeSubMenu : boolean = false;
+<<<<<<< HEAD
 
   isNurse : boolean = true;
+=======
+  showUserSubMenu : boolean = false;
+  isNurse : boolean = false;
+>>>>>>> ccaba1498b63d769a0448b97a3af7b1c92110228
  
    constructor(private observer: BreakpointObserver) {}
  
