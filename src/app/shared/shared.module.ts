@@ -51,7 +51,11 @@ const routes: Routes = [
     MatToolbarModule,
     MatDividerModule,
     MatMenuModule,
+<<<<<<< HEAD
+    FlexLayoutModule,
+=======
     FlexLayoutModule,UserModule
+>>>>>>> ccaba1498b63d769a0448b97a3af7b1c92110228
   ]
 })
 export class SharedModule { }

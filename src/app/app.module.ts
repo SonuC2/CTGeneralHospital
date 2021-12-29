@@ -8,8 +8,12 @@ import { DashboardComponent } from './shared/dashboard/dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+<<<<<<< HEAD
+import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
+=======
 import { LoginregistrationHomepageComponent } from './user/loginregistration-homepage/loginregistration-homepage.component';
 
+>>>>>>> ccaba1498b63d769a0448b97a3af7b1c92110228
 
 const routes: Routes = [
   {
@@ -43,6 +47,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('src/app/patient/patient.module').then((m) => m.PatientModule),
       },
+<<<<<<< HEAD
+
+      {
+        path: 'scheduling',
+        loadChildren: () =>
+          import('src/app/scheduling/scheduling.module').then((m) => m.SchedulingModule),
+=======
       /*my change*/
       {
         path: 'user',
@@ -53,6 +64,7 @@ const routes: Routes = [
         path: 'shared',
         loadChildren: () =>
           import('src/app/shared/shared.module').then((m) => m.SharedModule),
+>>>>>>> ccaba1498b63d769a0448b97a3af7b1c92110228
       },
     ],
   },
@@ -66,7 +78,8 @@ const routes: Routes = [
     RouterModule,
     SharedModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    ScheduleModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent],

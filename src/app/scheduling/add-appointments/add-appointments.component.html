@@ -1,0 +1,79 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="bounds">
+    <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+      <div fxFlex="100" class="sec1" fxFlex.xs="100">
+        <!-- <mat-card >
+          <mat-card-content> -->
+        <mat-form-field appearance="fill" class="pad wid">
+          <mat-label>Specialisation*</mat-label>
+          <mat-select formControlName="specialisation">
+            <mat-option *ngFor="let spe of specialisation" value="{{ spe }}">{{ spe }}</mat-option>
+          </mat-select>
+        </mat-form-field> &nbsp; &nbsp;
+
+        <mat-form-field appearance="fill" class="pad wid ">
+          <mat-label>Physician*</mat-label>
+          <mat-select formControlName="physician">
+            <mat-option *ngFor="let spe of physician" value="{{ spe }}">{{
+              spe
+              }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-expansion-panel>
+          <!-- // expension Header -->
+          <mat-expansion-panel-header style="background-color: #03a66a; width: 100%">
+            <mat-panel-title class="center"> Add appointment </mat-panel-title>
+          </mat-expansion-panel-header>
+          &nbsp; &nbsp; &nbsp;
+          <!-- // expension body -->
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Meeting Title</mat-label>
+            <input matInput formControlName="meetingTitle" required />
+          </mat-form-field>
+
+          <p>
+            <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Discription</mat-label>
+              <textarea matInput placeholder="Ex.patient Details-	Descriptive information "
+                formControlName="description"></textarea>
+            </mat-form-field>
+          </p>
+
+          <mat-form-field appearance="fill" class="pad date w">
+            <mat-label>Appointment date*</mat-label>
+            <input matInput min="now" [matDatepicker]="picker" formControlName="appointmentDate" required />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>&nbsp; &nbsp;
+
+          <mat-form-field appearance="fill" class="pad wid ">
+            <mat-label>Time slot*</mat-label>
+            <mat-select formControlName="appointmentTime">
+              <mat-option *ngFor="let spe of appointmentTime" value="{{ spe }}">{{
+                spe
+                }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!-- extra -->
+          <!-- <mat-form-field appearance="fill" class="pad wid " *ngIf="index === 1">
+            <mat-label>ReSchedule time*</mat-label>
+            <mat-select formControlName="appointmentTime">
+              <mat-option *ngFor="let spe of appointmentTime" value="{{ spe }}">{{
+                spe
+                }}</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+          <button mat-raised-button color="primary" style="background-color: #03a66a; width: 100%"
+            class="example-full-width" type="submit" mat-stroked-button>
+            Create Appointment
+          </button>
+        </mat-expansion-panel>
+
+
+        <!-- </mat-card-content>
+        </mat-card> -->
+      </div>
+    </div>
+  </div>
+</form>

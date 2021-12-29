@@ -3,6 +3,13 @@ mat-toolbar {
   color: white;
 }
 
+/* image logo */
+
+img{
+   size: 35px;
+}
+
+
 mat-sidenav {
   margin: 16px;
   width: 300px;
