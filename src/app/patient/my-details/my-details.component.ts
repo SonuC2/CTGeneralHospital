@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import * as XLXS from 'xlsx';
+//import * as XLXS from 'xlsx';
 export interface PeriodicElement {
   name: string;
   position?: number;
@@ -59,12 +59,12 @@ export class MyDetailsComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  getExcelData() {
+  getExcelData() {/*
     let element = document.getElementById('excel-id');
     const ws: XLXS.WorkSheet = XLXS.utils.table_to_sheet(element);
 
     const wb: XLXS.WorkBook = XLXS.utils.book_new();
     XLXS.utils.book_append_sheet(wb, ws, 'Sheet1');
-    XLXS.writeFile(wb, this.fileName);
+    XLXS.writeFile(wb, this.fileName);*/
   }
 }

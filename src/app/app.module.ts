@@ -8,17 +8,30 @@ import { DashboardComponent } from './shared/dashboard/dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginregistrationHomepageComponent } from './user/loginregistration-homepage/loginregistration-homepage.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: DefaultComponent,
+/*my changes defaultcomponent replace with login component*/
     children: [
+     
+    /* {
+        path: '',
+        component: LoginregistrationHomepageComponent,
+      },*/
       {
         path: '',
-        component: DashboardComponent,
+        component: LoginregistrationHomepageComponent
+        
       },
+     /* {
+        path: 'dashboard',
+        component: DashboardComponent,
+        
+      },*/
       {
         path: 'nurse',
         loadChildren: () =>
@@ -30,11 +43,20 @@ const routes: Routes = [
         loadChildren: () =>
           import('src/app/patient/patient.module').then((m) => m.PatientModule),
       },
+      /*my change*/
+      {
+        path: 'user',
+        loadChildren: () =>
+          import('src/app/user/user.module').then((m) => m.UserModule),
+      },
+      {
+        path: 'shared',
+        loadChildren: () =>
+          import('src/app/shared/shared.module').then((m) => m.SharedModule),
+      },
     ],
   },
 ];
-
-
 
 @NgModule({
   declarations: [AppComponent],

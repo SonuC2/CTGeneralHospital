@@ -20,7 +20,7 @@ export class SidebarComponent  {
   showSubSubMenu: boolean = false;
   showPatientSubMenu: boolean = false;
   showEmployeeSubMenu : boolean = false;
-
+  showUserSubMenu : boolean = false;
   isNurse : boolean = false;
  
    constructor(private observer: BreakpointObserver) {}
