@@ -49,5 +49,8 @@ export class AddAppointmentsComponent implements OnInit {
     this.service.addAppointment(this.form.value).subscribe();
   }
 
+  editForm(){
+    this.index = 1;
+  }
 
 }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Appointments } from '../entities/appointments';
 
 @Injectable({
@@ -13,4 +14,11 @@ export class SchedulingService {
   addAppointment(ap:Appointments){
     return this.httpClient.post("http://localhost:8080/appointment/addAppointment",ap);
   }
+
+  getAllAppointmentList(): Observable<Appointments[]> {
+
+    return this.httpClient.get<Appointments[]>('http://localhost:8080/appointment/getAllAppointments');
+
+  }
+  
 }

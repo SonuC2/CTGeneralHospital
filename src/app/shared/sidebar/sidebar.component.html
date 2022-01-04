@@ -4,12 +4,11 @@
   <button mat-icon-button (click)="sidenav.toggle()">
     <mat-icon> menu </mat-icon>
     <!-- <mat-icon >
-            closeg
+            close
         </mat-icon> -->
   </button>
-  <!-- <span class="img-size"><img src="https://s3.amazonaws.com/spoke-profiles-prod-assets/avatars/210x210h/713df13dfaad508b7e6eb2570b28c5464b5d3c74.png" alt="CTGeneralHospital logo"></span> -->
   CTGeneralHospital 
- <!-- <span class="example-spacer"></span>
+  <span class="example-spacer"></span>
   <button mat-icon-button class="example-icon" [matMenuTriggerFor]="beforeMenu">
     <mat-icon>account_circle</mat-icon>
   </button>
@@ -37,7 +36,7 @@
       </button>
       <button mat-button class="menu-button" routerLink="scheduling/appointment-list">
         <mat-icon>schedule </mat-icon>
-        <span>Appointment list</span>
+        <span>Appoinstment list</span>
       </button>
     </div>
 
@@ -75,18 +74,12 @@
       <button mat-button class="menu-button" routerLink="nurse/employee-list">
         <mat-icon>list</mat-icon>
         <span>Employee Details</span>
-      </button>-->
+      </button>
       <!-- <button mat-button class="menu-button">
           <mat-icon>person</mat-icon>
           <span >Patient Visit</span>
         </button> -->
-    <!--</div>-->
-<!--my change second-->
-<!--
-<button mat-button class="menu-button">
-  <mat-icon>person</mat-icon>
-  <span>user management</span>
-</button>
+    </div>
 
     <mat-divider></mat-divider>
 
@@ -106,10 +99,10 @@
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
-</mat-sidenav-container>-->
+</mat-sidenav-container>
 
 <!-- For patient -->
-<!--
+
 <mat-sidenav-container *ngIf="isPatient">
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
     <button mat-button class="menu-button">
@@ -157,9 +150,9 @@
       <button mat-button class="menu-button" routerLink="patient/get-my-data">
         <mat-icon>download</mat-icon>
         <span>Download My Data</span>
-      </button>-->
-    <!--</div>-->
-    <!--<button mat-button class="menu-button" (click)="showSubmenu = !showSubmenu" (mouseenter)="mouseenter()"
+      </button>
+    </div>
+    <button mat-button class="menu-button" (click)="showSubmenu = !showSubmenu" (mouseenter)="mouseenter()"
       (mouseleave)="mouseleave()">
       <mat-icon>date_range</mat-icon>
       <span *ngIf="isExpanded || isShowing">Appointments</span>
@@ -197,23 +190,23 @@
     >
       <button
         mat-button
-        class="menu-button">
+        class="menu-button"
+        
+      >
+        <mat-icon>password</mat-icon>
+        <span>Change Password</span>
+      </button>
 
-   
+
+    </div>
     <mat-divider></mat-divider>
 
+    <button mat-button class="menu-button">
       <mat-icon>info</mat-icon>
       <span>About</span>
-    </button>-->
-    <!--my change-->
-    
-    
-  
+    </button>
 
-
-    
-
-    <!--<button mat-button class="menu-button">
+    <button mat-button class="menu-button">
       <mat-icon>help</mat-icon>
       <span>Help</span>
     </button>
@@ -224,4 +217,4 @@
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
-</mat-sidenav-container>-->
+</mat-sidenav-container>
