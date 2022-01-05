@@ -1,0 +1,319 @@
+<form [formGroup]="form" (ngSubmit)="register()">
+    <div class="bounds">
+      <div
+        class="content"
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxFlexFill
+        style="background-color: #bad2f7"
+      >
+        <div fxFlex="40" class="sec1" fxFlex.xs="55">
+          <mat-card>
+            <mat-card-content>
+              <h1 class="head">Demographic Details</h1>
+              <mat-form-field appearance="fill" class="pad w">
+                <mat-label>First Name*</mat-label>
+                <input
+                  matInput
+                  
+                  required
+                  formControlName="firstName"
+                /> </mat-form-field
+              >&nbsp; &nbsp;
+              <mat-form-field appearance="fill" class="pad w">
+                <mat-label>Last Name*</mat-label>
+                <input matInput formControlName="lastName" required/>
+              </mat-form-field>
+  
+              <mat-form-field appearance="fill" class="pad date w">
+                <mat-label>Choose a date*</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker"
+                  formControlName="dateOfBirth"
+                  required
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker> </mat-form-field
+              >&nbsp; &nbsp;
+              <mat-form-field appearance="fill" class="pad w">
+                <mat-label>Mobile No*</mat-label>
+                <input matInput formControlName="mobileNo" required/> </mat-form-field
+              ><br />
+              <div>
+                <mat-radio-group aria-label="Select an option" formControlName="gender">
+                  <mat-label>Gender :</mat-label>&nbsp;
+  
+                  <mat-radio-button value="Male">Male</mat-radio-button>&nbsp; &nbsp;
+                  <mat-radio-button value="Female">Female</mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <br />
+              <mat-form-field appearance="fill" class="pad w">
+                <mat-label>Race</mat-label>
+                <input matInput formControlName="race" required /> </mat-form-field
+              >&nbsp; &nbsp;
+              <mat-form-field appearance="fill" class="pad w">
+                <mat-label>Ethnicity</mat-label>
+                <input matInput formControlName="ethnicity" required />
+              </mat-form-field>
+              <div class="example-container">
+                <mat-form-field
+                  appearance="fill"
+                  class="example-full-width wid pad"
+                >
+                  <mat-label>Enter your email</mat-label>
+                  <input matInput placeholder="pat@example.com" required formControlName="email" />
+                </mat-form-field>
+              </div>
+              <div class="example-container">
+                <mat-form-field appearance="fill">
+                  <mat-label>Known Languages</mat-label>
+                  <mat-select formControlName="language" multiple>
+                    <mat-select-trigger>
+                      {{form.get('language').value ? form.get('language').value[0] : ''}}
+                      <span *ngIf="form.get('language').value?.length > 1" class="example-additional-selection">
+                        (+{{form.get('language').value.length - 1}} {{form.get('language').value.length === 2 ? 'other' : 'others'}})
+                      </span>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let language of languageList" [value]="language">{{language}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+  
+              <p>
+                <mat-form-field class="example-full-width wid" appearance="fill">
+                  <mat-label>Address</mat-label>
+                  <textarea matInput placeholder="Ex. 100 Main St" formControlName="address"></textarea>
+                </mat-form-field>
+              </p>
+              <h1 class="head">Allergies</h1>
+              <div>
+                <mat-radio-group aria-label="Select an option">
+                  <mat-label>Patient has any known allergies? :</mat-label>
+  
+                  <mat-radio-button
+                    value="1"
+                    (click)="allergyFalse($event)"
+                    #event
+                    >Yes</mat-radio-button
+                  >&nbsp; &nbsp;
+                  <mat-radio-button value="2" (click)="allergyTrue($event)"
+                    >No</mat-radio-button
+                  >
+                </mat-radio-group>
+              </div>
+              <br />
+  
+              <div [hidden]="hideAllergy">
+                <div formArrayName="allergy">
+                  <div
+                    *ngFor="let data of allegyArray.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <h1 class="head">Allergy No: {{ i + 1 }}</h1>
+                    <mat-form-field appearance="fill" class="pad w">
+                      <mat-label>AllergyId*</mat-label>
+                      <mat-select formControlName="allergyId">
+                        <mat-option 
+                        *ngFor="let allergydata of allergylist" value="{{allergydata}}"
+                        >{{allergydata}}</mat-option>
+                        
+                      </mat-select> </mat-form-field
+                    >&nbsp; &nbsp;
+                    <mat-form-field
+                      appearance="fill"
+                      class="example-full-width pad w"
+                    >
+                      <mat-label>Allergy Type</mat-label>
+                      <input formControlName="allergyType" matInput />
+                    </mat-form-field>
+  
+                    <mat-form-field
+                      appearance="fill"
+                      class="example-full-width pad w"
+                    >
+                      <mat-label>Allergy Name</mat-label>
+                      <input
+                        formControlName="allergyName"
+                        matInput /></mat-form-field
+                    >&nbsp; &nbsp;
+  
+                    <mat-form-field
+                      appearance="fill"
+                      class="example-full-width pad w"
+                    >
+                      <mat-label>Allergy Description</mat-label>
+                      <input matInput formControlName="allergyDescription" />
+                    </mat-form-field>
+                    <mat-form-field
+                      appearance="fill"
+                      class="example-full-width wid"
+                    >
+                      <mat-label>Allergy clinical information</mat-label>
+                      <input matInput formControlName="clinicalInformation" />
+                    </mat-form-field>
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      type="button"
+                      style="background-color: #03a66a; margin: 5px"
+                      (click)="pushAllergy()"
+                    >
+                      <mat-icon>add</mat-icon>
+                    </button>
+                    <button
+                      mat-raised-button
+                      color="primary"
+                      type="button"
+                      style="background-color: #03a66a; margin: 5px"
+                      (click)="removeAllergy(i)"
+                    >
+                      <mat-icon>remove</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="40" class="sec2" fxFlex.xs="40">
+          <mat-card>
+            <mat-card-content>
+              <h1 class="head">Emergency Contact Information</h1>
+              <div formArrayName="emergencyContactDetails">
+                <div
+                  *ngFor="let data of emergencyArray.controls; let i = index"
+                  [formGroupName]="i"
+                >
+                <h1 class="head">contact: {{i+1}}</h1>
+              <mat-form-field appearance="fill" class="pad w">
+                <mat-label>First Name*</mat-label>
+                <input matInput formControlName="firstName"/> </mat-form-field
+              >&nbsp; &nbsp;
+              <mat-form-field appearance="fill" class="pad w">
+                <mat-label>Last Name*</mat-label>
+                <input matInput formControlName="lastName"/>
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="pad w">
+                <mat-label>Relationship*</mat-label>
+                <mat-select formControlName="relationship">
+                  <mat-option 
+                  *ngFor="let relationship of list" value="{{relationship}}"
+                  >{{relationship}}</mat-option>
+                  
+                </mat-select> </mat-form-field
+              >&nbsp; &nbsp;
+              <mat-form-field appearance="fill" class="pad w">
+                <mat-label>Mobile No*</mat-label>
+                <input matInput formControlName="mobileNo"/>
+              </mat-form-field>
+              <div class="example-container">
+                <mat-form-field appearance="fill" class="example-full-width wid">
+                  <mat-label>Enter your email</mat-label>
+                  <input matInput placeholder="pat@example.com" required formControlName="email"/>
+                </mat-form-field>
+              </div>
+              <mat-checkbox class="example-margin"
+                >Same as per patient</mat-checkbox
+              >
+  
+              <p>
+                <mat-form-field class="example-full-width wid" appearance="fill">
+                  <mat-label>Address</mat-label>
+                  <textarea matInput placeholder="Ex. 100 Main St" formControlName="address"></textarea>
+                </mat-form-field>
+              </p>
+              <div>
+                <mat-radio-group aria-label="Select an option" formControlName="access">
+                  <mat-label>Do you need to access patient portal? :</mat-label>
+  
+                  <mat-radio-button value="Yes">Yes</mat-radio-button>&nbsp; &nbsp;
+                  <mat-radio-button value="No">No</mat-radio-button>
+                </mat-radio-group>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="button"
+                  style="background-color: #03a66a; margin: 5px"
+                  (click)="pushEmergency()"
+                >
+                  <mat-icon>add</mat-icon>
+                </button>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="button"
+                  style="background-color: #03a66a; margin: 5px"
+                  (click)="removeEmergency(i)"
+                >
+                  <mat-icon>remove</mat-icon>
+                </button>
+              </div>
+                </div>
+              </div>
+              <br />
+              <div [hidden]="isRegister">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  style="background-color: #03a66a; width: 50vh"
+                  class="example-full-width"
+                  type="submit"
+                  mat-stroked-button
+                  
+                >
+                  Update
+                </button>
+              </div>
+              <div [hidden]="isUpdate">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  style="background-color: #03a66a; width: 50vh"
+                  class="example-full-width"
+                  type="button"
+                  (click)="update()"
+                  mat-stroked-button
+                >
+                  Update
+                </button>
+              </div>
+              <div [hidden]="isEdit">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="button"
+                  style="background-color: #8ca19a; width: 50vh"
+                  class="example-full-width"
+                  (click)="EditData()"
+                  mat-stroked-button
+                >
+                  Edit
+                </button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div fxFlex="20" class="sec1" fxFlex.xs="55">
+          <mat-card
+            style="background-color: rgb(176, 201, 202); height: fit-content"
+            ><h1 class="head" style="text-align: center">Inbox</h1>
+            <mat-card-content
+              >Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+              facilis soluta beatae, commodi sunt ipsa aut molestias perspiciatis
+              voluptatibus amet ex officiis ipsam doloribus id reiciendis quas est
+              necessitatibus natus aliquam. Suscipit quis voluptates deserunt
+              eligendi libero aspernatur atque eaque quam delectus cupiditate.
+              Aspernatur perferendis odit hic voluptates asperiores
+              aliquam!</mat-card-content
+            ></mat-card
+          >
+        </div>
+      </div>
+    </div>
+  </form>
+  

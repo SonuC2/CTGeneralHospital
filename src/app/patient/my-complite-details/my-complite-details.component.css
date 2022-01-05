@@ -3,6 +3,18 @@
     color: #0055D2;
     text-align: center;
 }
+.sec{
+  background-color:#0055D2;
+  border-radius: 4px;
+  text-align: center;
+  color: white;
+  height: 30px;
+  
+  
+}
+.sec:hover{
+  background-color: blueviolet;
+}
 .but{
   background-color:#0055D2 ;
   color: white;
@@ -22,7 +34,10 @@
   opacity: 1;
   transition: all .2s ease-in-out;
  }
- 
+ table {
+  width: 40%;
+}
+
 @media (max-width: 700px) {
   .wid {
     width: 50%;
