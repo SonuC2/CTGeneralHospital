@@ -1,19 +1,21 @@
 import { Allergy } from "./allergy";
 import { EmergencyInfo } from "./emergency-info";
+import { UserRole } from "./user-role";
 
 export class Patient {
 
-    private patientId!:number;
-    private firstName!:string;
-    private lastName!:string;
-    private mobileNo!:number;
-    private gender!:string;
-    private race!:string;
-    private ethnicity!:string;
-    private email!:string;
-    private language!:string[];
-    private address!:string;
-    private allergy!:Allergy[];
-    private emergencyContactDetails!:EmergencyInfo[];
-
+     patientId!:number;
+     firstName!:string;
+     lastName!:string;
+     mobileNo!:number;
+     gender!:string;
+     race!:string;
+     ethnicity!:string;
+     email!:string;
+     language!:string[];
+     address!:string;
+     allergy!:Allergy[];
+     emergencyContactDetails!:EmergencyInfo[];
+     userRole!: UserRole;
+     dateOfBirth!:Date;
 }

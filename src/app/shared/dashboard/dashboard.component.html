@@ -1,28 +1,22 @@
-<div class="Container" >
-    <!-- <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
-      <mat-card fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)" class="mat-elevation-z4">
-        <mat-card-title>Register Patient</mat-card-title>
-      </mat-card>
-      
-      <mat-card fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)" class="mat-elevation-z4">
-        <mat-card-title>Patient Details</mat-card-title>
-        </mat-card>
-    
-      <mat-card fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(33%-10px)" fxFlex.gt-md="0 1 calc(25%-10px)" class="mat-elevation-z4">
-        <mat-card-title>Scheduler</mat-card-title>
-        </mat-card>
-    
-    </div> -->
+
   <!-- Row for inbox and upcoming appointments -->
-    <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10" id="dashboardSubsection">
-      <mat-card fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(40%-10px)" fxFlex.gt-md="0 1 calc(40%-10px)" class="mat-elevation-z4">
-        <mat-card-title>Inbox</mat-card-title>
+  <div class="main" fxLayout="row wrap">
+    <div class="sub1" fxFlex.gt-sm="50" fxFlex.gt-lg="50" fxFlex="100" style="padding: 10px;">
+      <mat-card >
+        <mat-card-title></mat-card-title>
+        <mat-card-content >
+          <!-- <ng-container *ngComponentOutlet="inboxComponent"></ng-container> -->
+          <app-inbox></app-inbox>
+        </mat-card-content>
        </mat-card>
-      
-      <mat-card fxFlex.sm="0 1 calc(50%-10px)" fxFlex.md="0 1 calc(40%-10px)" fxFlex.gt-md="0 1 calc(40%-10px)" class="mat-elevation-z4" style="align-self:stretch;">
+    </div>
+    <div class="sub1" fxFlex.gt-sm="50" fxFlex.gt-lg="50" fxFlex="100" style="padding: 10px;">
+      <mat-card>
         <mat-card-title>Upcoming appointment</mat-card-title>
        </mat-card>
     
     </div>
-  </div>
+    </div>
+  
+  <router-outlet></router-outlet>
   

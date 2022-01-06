@@ -23,6 +23,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { PatientDetailsComponent } from '../patient/patient-details/patient-details.component';
 import { PatientVisitComponent } from './patient-visit/patient-visit.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { EditPatientComponent } from './edit-patient/edit-patient.component';
 const routes: Routes = [
   {
   path: "employee-list",
@@ -31,7 +33,8 @@ const routes: Routes = [
   },
   {
     path: "employee-details/:id",
-    component: EmployeeDetailsComponent
+    component: EmployeeDetailsComponent,
+    // data:{id: 1}
     },
     {
       path: "patient-visit",
@@ -41,6 +44,11 @@ const routes: Routes = [
         path: "patient-list",
         component: PatientListComponent
     },
+    {
+      path: "edit-patient-details/:id",
+      component: PatientVisitComponent,
+      // data:{id: 1}
+      },
     // {
     //   path:"patient-details",
     //   component:PatientDetailsComponent
@@ -50,6 +58,11 @@ const routes: Routes = [
       loadChildren: () =>
         import('src/app/patient/patient.module').then((m) => m.PatientModule),
     },
+    {
+      path: 'inbox',
+      loadChildren: () =>
+        import('src/app/inbox/inbox.module').then((m) => m.InboxModule),
+    },
   ]
 
 
@@ -58,7 +71,8 @@ const routes: Routes = [
     EmployeeDetailsComponent,
     EmployeeListComponent,
     PatientVisitComponent,
-    PatientListComponent
+    PatientListComponent,
+    EditPatientComponent
   ],
   imports: [
     CommonModule,
@@ -80,6 +94,7 @@ const routes: Routes = [
     MatTabsModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatDialogModule,
     RouterModule.forChild(routes)
   ]
 })

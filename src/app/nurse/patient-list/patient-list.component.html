@@ -30,9 +30,9 @@
           </ng-container>
   
           <!-- Designation Column -->
-          <ng-container matColumnDef="contactNo">
+          <ng-container matColumnDef="mobileNo">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact No. </th>
-            <td mat-cell *matCellDef="let row"> {{row.contactNo}} </td>
+            <td mat-cell *matCellDef="let row"> {{row.mobileNo}} </td>
           </ng-container>
   
          
@@ -47,7 +47,7 @@
             <td mat-cell *matCellDef="let row">
                 <button mat-icon-button matTooltip="Click to Edit"
                     class="iconbutton" color="primary">
-                    <mat-icon aria-label="Edit">edit</mat-icon>
+                    <mat-icon aria-label="Edit" (click) = "openDialog(row.patientId)">edit</mat-icon>
                 </button>
             </td>
         </ng-container>

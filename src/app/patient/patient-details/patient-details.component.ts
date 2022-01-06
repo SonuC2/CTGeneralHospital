@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { UserRole } from 'src/app/entities/user-role';
 import { PatientService } from 'src/app/services/patient.service';
 
 @Component({
@@ -41,6 +42,9 @@ export class PatientDetailsComponent implements OnInit {
       address: [''],
       allergy: this.fb.array([this.addAllergy()]),
       emergencyContactDetails: this.fb.array([this.addEmergencyInfo()]),
+      userRole : this.fb.group({
+        userRoleId : 3
+      })
     });
   }
   // timepass()
@@ -115,7 +119,7 @@ export class PatientDetailsComponent implements OnInit {
     }
   }
   register() {
-    console.log(this.form.value);
+    console.log("form: ",this.form.value);
     this.patientService.submitPatientDetails(this.form.value).subscribe();
     
     this.form.reset();

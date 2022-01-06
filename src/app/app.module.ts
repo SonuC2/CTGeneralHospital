@@ -30,6 +30,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('src/app/patient/patient.module').then((m) => m.PatientModule),
       },
+
+      {
+        path: 'inbox',
+        loadChildren: () =>
+          import('./inbox/inbox.module').then((m) => m.InboxModule),
+      },
+
     ],
   },
 ];
