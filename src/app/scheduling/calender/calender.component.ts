@@ -21,7 +21,14 @@ export class CalenderComponent implements OnInit {
   constructor() {}
 
   schedule!:Appointments[];
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+     
+
+  }
+
+
+
 
   //
   // public selectedDate: Date = new Date(2021, 12, 24);

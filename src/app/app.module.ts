@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultComponent } from './shared/default/default.component';
@@ -8,7 +7,6 @@ import { DashboardComponent } from './shared/dashboard/dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 
 const routes: Routes = [
   {
@@ -52,7 +50,7 @@ const routes: Routes = [
     RouterModule,
     SharedModule,
     HttpClientModule,
-    ScheduleModule,
+
     RouterModule.forRoot(routes),
   ],
   providers: [],

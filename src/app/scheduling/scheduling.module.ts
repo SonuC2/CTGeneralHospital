@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 // import {MatGridListModule} from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -24,6 +26,7 @@ import { CommonModule } from '@angular/common';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AddAppointmentsComponent } from './add-appointments/add-appointments.component';
+import { EditAppointmentComponent } from './edit-appointment/edit-appointment.component';
 
 const routes: Routes = [
   {
@@ -38,10 +41,20 @@ const routes: Routes = [
     path: 'appointment-list',
     component: AppointmentListComponent,
   },
+  {
+    path: 'edit-appointment/:index',
+    component: EditAppointmentComponent,
+  },
 ];
 
 @NgModule({
-  declarations: [CalenderComponent, CalenderAddAppointmentComponent,AddAppointmentsComponent],
+  declarations: [
+    CalenderComponent,
+    CalenderAddAppointmentComponent,
+    AddAppointmentsComponent,
+    AppointmentListComponent,
+    EditAppointmentComponent,
+  ],
   imports: [
     CommonModule,
     ScheduleModule,
@@ -63,6 +76,8 @@ const routes: Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     HttpClientModule,
+    MatDividerModule,
+    MatProgressBarModule,
     RouterModule.forChild(routes),
   ],
 })
