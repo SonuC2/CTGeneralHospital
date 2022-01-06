@@ -32,6 +32,11 @@ const routes: Routes = [
       },
 
       {
+        path: 'inbox',
+        loadChildren: () =>
+          import('./inbox/inbox.module').then((m) => m.InboxModule),
+      },
+      {
         path: 'scheduling',
         loadChildren: () =>
           import('src/app/scheduling/scheduling.module').then(
@@ -49,7 +54,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule,
     SharedModule,
-   // ScheduleModule,
+    // ScheduleModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
   ],

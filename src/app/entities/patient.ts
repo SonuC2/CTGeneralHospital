@@ -1,5 +1,6 @@
 import { Allergy } from "./allergy";
 import { EmergencyInfo } from "./emergency-info";
+import { UserRole } from "./user-role";
 
 export class Patient {
 

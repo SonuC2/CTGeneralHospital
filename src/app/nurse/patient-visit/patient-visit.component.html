@@ -1,10 +1,3 @@
-<p>patient-visit works!</p>
-<div>
-    
-    
-</div>
-
-
 
 <div>
     
@@ -14,13 +7,13 @@
                 <mat-card-content>
                     <mat-tab-group mat-stretch-tabs class="example-stretched-tabs ">
                         <mat-tab label="Patient details" style="color: #0055D2;">
-                            <form class="example-form">
+                            <form class="example-form" [formGroup]="personalDetailsForm">
                                 <div fxLayout="row wrap">
                                     <div fxFlex.gt-sm="30" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                                         <mat-form-field class="example-full-width" appearance="fill" style="width:100%">
                                             <mat-label>Patient ID</mat-label>
                                             <input type="text" placeholder="Pick one" aria-label="Patient ID" matInput
-                                                [formControl]="myControl" [matAutocomplete]="auto">
+                                                [formControl]="myControl" [matAutocomplete]="auto"  formControlName="patientId" [readonly] = "isReadOnly">
                                             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                                                 <mat-option *ngFor="let option of filteredOptions | async"
                                                     [value]="option">
@@ -32,13 +25,13 @@
                                     <div fxFlex.gt-sm="30" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                                         <mat-form-field appearance="fill" class="example-full-width" style="width:100%">
                                             <mat-label>First Name*</mat-label>
-                                            <input matInput />
+                                            <input matInput  formControlName="firstName" [readonly] = "isReadOnly"/>
                                         </mat-form-field>
                                     </div>
                                     <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
                                         <mat-form-field appearance="fill" class="example-full-width" style="width:100%">
                                             <mat-label>Last Name*</mat-label>
-                                            <input matInput />
+                                            <input matInput  formControlName="lastName" [readonly] = "isReadOnly" />
                                         </mat-form-field>
                                     </div>
                                 </div>
@@ -49,7 +42,7 @@
                                         <mat-form-field appearance="fill" class="example-full-width"
                                             style="width: 100%;">
                                             <mat-label>Choose a DOB*</mat-label>
-                                            <input matInput [matDatepicker]="picker">
+                                            <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" [readonly] = "isReadOnly">
                                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                             <mat-datepicker #picker></mat-datepicker>
                                         </mat-form-field>
@@ -59,15 +52,15 @@
                                         <mat-form-field appearance="fill" class="example-full-width"
                                             style="width: 100%;">
                                             <mat-label>Mobile No*</mat-label>
-                                            <input matInput />
+                                            <input matInput formControlName="mobileNo" [readonly] = "isReadOnly" />
                                         </mat-form-field>
                                     </div>
                                     <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
                                         <mat-radio-group aria-label="Select an option" class="example-full-width"
-                                            style="width: 100%;">
+                                            style="width: 100%;" formControlName="gender" >
                                             <mat-label>Gender : </mat-label>
-                                            <mat-radio-button value="1">Male</mat-radio-button> &nbsp;
-                                            <mat-radio-button value="2">Female</mat-radio-button>
+                                            <mat-radio-button value="Male">Male</mat-radio-button> &nbsp;
+                                            <mat-radio-button value="Female">Female</mat-radio-button>
                                         </mat-radio-group>
                                     </div>
                                 </div>
@@ -78,19 +71,24 @@
                                         <mat-form-field appearance="fill" class="example-full-width"
                                             style="width: 100%;">
                                             <mat-label>Enter your email</mat-label>
-                                            <input matInput placeholder="pat@example.com" required />
+                                            <input matInput placeholder="pat@example.com" required formControlName="email" [readonly] = "isReadOnly"/>
                                         </mat-form-field>
                                     </div>
                                     <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
                                         <mat-form-field class="example-full-width" appearance="fill"
                                             style="width: 100%;">
                                             <mat-label>Address</mat-label>
-                                            <input matInput />
+                                            <input matInput formControlName="address" [readonly] = "isReadOnly"/>
                                         </mat-form-field>
                                     </div>
-                                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
+                                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px" [hidden] = "isEditButtonHide">
                                         <button mat-raised-button color="primary"
-                                            style="background-color: #03A66A;width: 30vh">Edit</button>
+                                            style="background-color: #03A66A;width: 30vh" (click) = "clickEdit()">Edit</button>
+                                    </div>
+
+                                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px" [hidden] = "isUpdateButtonHide">
+                                        <button mat-raised-button color="primary"
+                                            style="background-color: #03A66A;width: 30vh" (click)="clickUpdate()" >Update</button>
                                     </div>
                                 </div>
                             </form>
