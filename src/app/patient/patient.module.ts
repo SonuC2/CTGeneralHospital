@@ -49,7 +49,13 @@ const routes: Routes = [
     path: 'my-details',
     component: MyDetailsComponent,children:[{path:"complite-details",component:MyCompliteDetailsComponent}]
   },
-  
+  // {
+  //   path: 'scheduling',
+  //   loadChildren: () =>
+  //     import('src/app/scheduling/scheduling.module').then(
+  //       (m) => m.SchedulingModule
+  //     ),
+  // },
   {
     path: 'get-my-data',
     component: GetMyDataComponent,

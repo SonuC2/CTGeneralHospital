@@ -1,0 +1,70 @@
+
+      
+           
+<div class="main"fxLayout="row wrap" >
+  <div
+    class="sub1"
+   fxFlex.gt-sm="50"
+    fxFlex.gt-sm="30"
+    style="padding: 10px;margin: auto;"
+  >
+    <mat-card>
+      <mat-card-content>
+        <h1 class="head">Registration</h1>
+        <mat-radio-group aria-label="Select an option">
+          <mat-label>Title :</mat-label>&nbsp; &nbsp;
+          <div>
+            <mat-radio-button value="1">Mr.</mat-radio-button>
+            <mat-radio-button value="2">Ms.</mat-radio-button>
+            <mat-radio-button value="3">Mrs.</mat-radio-button>
+            <mat-radio-button value="4">Dr </mat-radio-button>
+          </div> </mat-radio-group
+        >&nbsp; &nbsp;<br />
+        <mat-form-field appearance="fill" class="pad">
+          <mat-label>First Name*</mat-label>
+          <input matInput /> </mat-form-field
+        >&nbsp; &nbsp;
+        <mat-form-field appearance="fill" class="pad">
+          <mat-label>Last Name*</mat-label>
+          <input matInput /> </mat-form-field
+        >&nbsp; &nbsp;<br />
+        <mat-form-field appearance="fill" class="pad date">
+          <mat-label>DOB</mat-label>
+          <input matInput [matDatepicker]="picker" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker> </mat-form-field
+        >&nbsp; &nbsp;
+        <mat-form-field appearance="fill" class="pad">
+          <mat-label>Contact number</mat-label>
+          <input matInput /> </mat-form-field
+        >&nbsp; &nbsp;<br />
+        <mat-form-field appearance="fill" class="pad">
+          <mat-label>password</mat-label>
+          <input type="password" matInput /> </mat-form-field
+        >&nbsp; &nbsp;
+        <mat-form-field appearance="fill" class="pad">
+          <mat-label>Confirm password</mat-label>
+          <input type="password" matInput /> </mat-form-field
+        >&nbsp; &nbsp;<br />
+        <div class="example-container">
+          <mat-form-field appearance="fill" class="example-full-width wid">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" required />
+          </mat-form-field>
+        </div>
+        <button
+          mat-raised-button
+          (click)="onSave()"
+          color="primary"
+          style="background-color: #03a66a; width: 47vh"
+          class="example-full-width"
+        >
+         register
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

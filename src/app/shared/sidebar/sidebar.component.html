@@ -30,7 +30,7 @@
       <span *ngIf="isExpanded || isShowing">Appointments</span>
     </button>
     <div class="submenu" [ngClass]="{ expanded: showSubmenu }" *ngIf="isShowing || isExpanded">
-      <button mat-button class="menu-button">
+      <button mat-button class="menu-button" routerLink="scheduling/appointment-calendar">
         <mat-icon>schedule</mat-icon>
         <span>Schedule Appointment</span>
       </button>
@@ -163,7 +163,7 @@
       *ngIf="isShowing || isExpanded"
     >
 
-      <button mat-button class="menu-button">
+      <button mat-button class="menu-button" routerLink="scheduling/appointment-calendar">
         <mat-icon>schedule</mat-icon>
         <span>Schedule Appointment</span>
       </button>
