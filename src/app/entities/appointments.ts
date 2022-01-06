@@ -1,3 +1,4 @@
+import { Time } from "@angular/common";
 
 
 export class Appointments {
@@ -6,5 +7,9 @@ export class Appointments {
   physician!: string;
   meetingTitle!: string;
   description!: string;
-  appointmentDate!: Date;
+  appointmentDate!:String;
+  reason!:String;
+  rescheduleDate!:Date;
+  rescheduleTime!:Time;
+  appointmentStatus!:String;
 }

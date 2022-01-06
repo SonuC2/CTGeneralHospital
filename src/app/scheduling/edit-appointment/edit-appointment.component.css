@@ -10,11 +10,10 @@
 .w {
   width:45vh;
 }
-
-.half-width{
-  width:fit-content;
+.half-width {
+  width: fit-content;
 }
-.full-width{
+.full-width {
   width: 100%;
 }
 
@@ -38,17 +37,17 @@
 }
 
 /* @media (min-width:700px) {
-    .pad{
-        width: 100%;
-    }
-   
-} */
-  .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
-  }
+      .pad{
+          width: 100%;
+      }
+     
+  } */
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .example-action-buttons {
   padding-bottom: 20px;
