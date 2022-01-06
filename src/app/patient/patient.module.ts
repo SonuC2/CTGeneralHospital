@@ -21,10 +21,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DataSubmissionDialogComponent } from './data-submission-dialog/data-submission-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AlreadyEnteredDetailsComponent } from './already-entered-details/already-entered-details.component';
 import { GetMyDataComponent } from './get-my-data/get-my-data.component';
 import { MyCompliteDetailsComponent } from './my-complite-details/my-complite-details.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EditPatientDetialsComponent } from './edit-patient-detials/edit-patient-detials.component';
+import { SuccessfullySubmittedPatienDatailsComponent } from './successfully-submitted-patien-datails/successfully-submitted-patien-datails.component';
 
 const routes: Routes = [
   {
@@ -37,16 +38,24 @@ const routes: Routes = [
     component: PatientDetailsComponent,
   },
   {
-    path: 'my-details',
-    component: MyDetailsComponent,
-    children: [
-      { path: 'complite-details', component: MyCompliteDetailsComponent },
-    ],
+    path: 'successfully-submitted-patien-datails',
+    component: SuccessfullySubmittedPatienDatailsComponent,
   },
   {
-    path: 'already-entered-details',
-    component: AlreadyEnteredDetailsComponent,
+    path: 'edit-patient-details',
+    component: EditPatientDetialsComponent,
   },
+  {
+    path: 'my-details',
+    component: MyDetailsComponent,children:[{path:"complite-details",component:MyCompliteDetailsComponent}]
+  },
+  // {
+  //   path: 'scheduling',
+  //   loadChildren: () =>
+  //     import('src/app/scheduling/scheduling.module').then(
+  //       (m) => m.SchedulingModule
+  //     ),
+  // },
   {
     path: 'get-my-data',
     component: GetMyDataComponent,
@@ -58,9 +67,10 @@ const routes: Routes = [
     PatientDetailsComponent,
     MyDetailsComponent,
     DataSubmissionDialogComponent,
-    AlreadyEnteredDetailsComponent,
     GetMyDataComponent,
     MyCompliteDetailsComponent,
+    EditPatientDetialsComponent,
+    SuccessfullySubmittedPatienDatailsComponent,
   ],
   imports: [
     CommonModule,

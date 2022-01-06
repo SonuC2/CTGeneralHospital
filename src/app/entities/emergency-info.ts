@@ -1,10 +1,10 @@
 export class EmergencyInfo {
 
-    private firstName!:string;
-    private lastName!:string;
-    private ralationship!:string;
-    private mobileNo!:number;
-    private email!:string;
-    private address!:string;
-    private access!:string;
+ firstName!:string;
+ lastName!:string;
+ ralationship!:string;
+ mobileNo!:number;
+ email!:string;
+ address!:string;
+ access!:string;
 }

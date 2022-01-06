@@ -1,8 +1,8 @@
 export class Allergy {
 
-    private allergyId!:string;
-    private allergyType!:string;
-    private allergyName!:string;
-    private allergyDescription!:string;
-    private clinicalInformation!:string;
+ allergyId!:string;
+ allergyType!:string;
+ allergyName!:string;
+ allergyDescription!:string;
+ clinicalInformation!:string;
 }

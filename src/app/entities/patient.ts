@@ -3,17 +3,18 @@ import { EmergencyInfo } from "./emergency-info";
 
 export class Patient {
 
-    private patientId!:number;
-    private firstName!:string;
-    private lastName!:string;
-    private mobileNo!:number;
-    private gender!:string;
-    private race!:string;
-    private ethnicity!:string;
-    private email!:string;
-    private language!:string[];
-    private address!:string;
-    private allergy!:Allergy[];
-    private emergencyContactDetails!:EmergencyInfo[];
+ patientId!:number;
+ firstName!:string;
+ lastName!:string;
+ dateOfBirth!:string;
+ mobileNo!:number;
+ gender!:string;
+ race!:string;
+ ethnicity!:string;
+ email!:string;
+ language!:string[];
+ address!:string;
+ allergy!:Allergy[];
+ emergencyContactDetails!:EmergencyInfo;
 
 }

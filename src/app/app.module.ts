@@ -49,8 +49,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule,
     SharedModule,
+   // ScheduleModule,
     HttpClientModule,
-
     RouterModule.forRoot(routes),
   ],
   providers: [],
