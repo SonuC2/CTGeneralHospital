@@ -1,0 +1,41 @@
+
+/* .main{
+    display:flex;
+    justify-content: space-between;
+    margin-left: 40vh;
+    margin-right: 25vh;
+} */
+
+
+
+
+.head{
+    color: #0055D2;
+}
+.wid{
+    width: 50vh;
+}
+.date{
+    width: 33vh;
+}
+.w{
+    width: 40%;
+}
+
+@media (max-width:700px) {
+    .pad{
+        width: 100%;
+    }
+   
+}
+
+.datepicker { 
+    display: inherit;
+}
+
+/* @media (min-width:700px) {
+    .pad{
+        width: 100%;
+    }
+   
+} */

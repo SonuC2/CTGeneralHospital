@@ -4,34 +4,82 @@ import { Observable } from 'rxjs';
 import { Patient } from '../entities/patient';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PatientService {
+  PatientData!: Patient;
+  downloadPatinet!: Patient;
+  firstName!: string;
+  lastName!: string;
+  constructor(private _httpClient: HttpClient) {}
 
-  constructor(private _httpClient:HttpClient) { }
-
-  submitPatientDetails(data:Patient):Observable<Patient>
-  {
-    return this._httpClient.post<Patient>("http://localhost:8080/patientDetails/submitDetails",data);
+  setPatientIdFromTs(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    console.log(
+      'data form service of patient ' + this.firstName + ' ' + this.lastName
+    );
+  }
+  getFirstName() {
+    return this.firstName;
+  }
+  getLastName() {
+    return this.lastName;
+  }
+  getByFirstNameAndLastName(
+    firstName: string,
+    lastName: string
+  ): Observable<Patient> {
+    return this._httpClient.get<Patient>(
+      'http://localhost:9093/patientDetails/patient' +
+        '/' +
+        firstName +
+        '/' +
+        lastName
+    );
   }
 
-  getAllPatientList():Observable<Patient[]>
-  {
-    return this._httpClient.get<Patient[]>("http://localhost:8080/patientDetails/getalldata");
+  submitPatientDetails(data: Patient): Observable<Patient> {
+    return this._httpClient.post<Patient>(
+      'http://localhost:9093/patientDetails/patient',
+      data
+    );
   }
 
-  getPatientById(id: number):Observable<Patient>
-  {
-  //   const params = new HttpParams()
-  // .set('id', id)
-  let url = "http://localhost:8080/patientDetails/getDataById/" + id;
-    // return this.httpClient.get<Employee>("http://localhost:8080/employee/getById/",{params});
-    return this._httpClient.get<Patient>(url);
+  getAllPatientDetails(id: number): Observable<Patient> {
+    return this._httpClient.get<Patient>(
+      'http://localhost:9093/patientDetails/patient' + '/' + id
+    );
   }
 
-  updatePatientDetails(data:Patient):Observable<Patient>
-  {
-    return this._httpClient.put<Patient>("http://localhost:8080/patientDetails/update",data);
+  getPatientDataByEmail(email: string): Observable<Patient> {
+    return this._httpClient.get<Patient>(
+      'http://localhost:9093/patientDetails/patient' + '/' + email
+    );
   }
 
+  getPatientIdByFirstNameLastNameAndEmail(
+    patient: Patient
+  ): Observable<number> {
+    return this._httpClient.get<number>(
+      'http://localhost:9093/patientDetails/patient' +
+        '/' +
+        patient.firstName +
+        '/' +
+        patient.lastName +
+        '/' +
+        patient.email
+    );
+  }
+
+  updatePatientById(patient: Patient, id: number): Observable<Patient> {
+    return this._httpClient.put<Patient>(
+      'http://localhost:9093/patientDetails/patient' + '/' + id,
+      patient
+    );
+  }
+
+  getAllPatientList():Observable<Patient[]>{
+    return this._httpClient.get<Patient[]>('http://localhost:9093/patientDetails/patients' );
+  }
 }

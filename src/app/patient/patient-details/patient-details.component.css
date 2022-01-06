@@ -22,6 +22,17 @@
     width: 40%;
 }
 
+.middle{
+    background-color: grey;
+    text-align: center;
+    height: 100vh;
+    padding-top: 40vh;
+    color: white;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+
 @media (max-width:700px) {
     .pad{
         width: 100%;

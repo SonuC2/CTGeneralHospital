@@ -1,0 +1,10 @@
+.mat-height{
+    height:82vh;
+}
+.mat-height-2{
+    height: 22.5vh;
+}
+
+.content{
+    height: inherit;
+}
