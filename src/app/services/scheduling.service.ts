@@ -20,5 +20,13 @@ export class SchedulingService {
     return this.httpClient.get<Appointments[]>('http://localhost:8080/appointment/getAllAppointments');
 
   }
+
+  updateAppointment(appointment:Appointments,appointmentId:number):Observable<Appointments>{
+      return this.httpClient.put<Appointments>('http://localhost:8080/appointment/updateAppointmentById/'+ appointmentId,appointment);
+  }
+
+  deleteAppointmentById(appointmentId:number){
+    return this.httpClient.delete('http://localhost:8080/appointment/deleteAppointmentById/'+ appointmentId)
+  }
   
 }
