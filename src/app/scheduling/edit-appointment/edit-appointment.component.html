@@ -60,8 +60,8 @@
 
                                 <mat-form-field appearance="fill" class="pad date w">
                                     <mat-label>Appointment date*</mat-label>
-                                    <input matInput [matDatepicker]="picker" formControlName="appointmentDate" required
-                                        [readonly]="true" />
+                                    <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="appointmentDate" required
+                                        [readonly]="true"  />
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>&nbsp; &nbsp;&nbsp;
@@ -92,7 +92,7 @@
                                 &nbsp; &nbsp; &nbsp;
                                 <mat-form-field appearance="fill" class="pad date w">
                                     <mat-label>Appointment date*</mat-label>
-                                    <input matInput [matDatepicker]="picker1" formControlName="rescheduleDate"
+                                    <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker1" formControlName="rescheduleDate"
                                         required />
                                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                     <mat-datepicker #picker1></mat-datepicker>

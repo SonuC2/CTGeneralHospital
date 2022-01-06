@@ -1,9 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-} from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Appointments } from 'src/app/entities/appointments';
@@ -18,11 +15,16 @@ export class AddAppointmentsComponent implements OnInit {
   hideAddAppointment = true;
   index: number = -1;
   form!: FormGroup;
-  appointmentData: Appointments[]=[];
-  appointmentTest:any;
+  appointmentData: Appointments[] = [];
+  appointmentTest: any;
 
-  constructor(private fb: FormBuilder,private service:SchedulingService ,
-    private route:Router, private router: ActivatedRoute, private location:Location) {}
+  constructor(
+    private fb: FormBuilder,
+    private service: SchedulingService,
+    private route: Router,
+    private router: ActivatedRoute,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -32,11 +34,10 @@ export class AddAppointmentsComponent implements OnInit {
       description: [],
       appointmentDate: [],
       appointmentTime: [],
-      appointmentStatus:[]
+      appointmentStatus: ['Booked'],
     });
     // this.appointmentTest=this.router.snapshot.paramMap.get("index");
     // console.log(this.appointmentTest)
-    
   }
 
   @ViewChild(MatAccordion) accordion!: MatAccordion;
@@ -49,15 +50,27 @@ export class AddAppointmentsComponent implements OnInit {
     'Anesthesiologists',
     'Gynecologists',
   ];
-  physician: string[] = ['Dr.John', 'Dr Bhushan', 'Dr. Sonu', 'Dr. Auguston','Dr.Parag','Dr. Priyanka','Dr.Mansi'];
+  physician: string[] = [
+    'Dr.John',
+    'Dr Bhushan',
+    'Dr. Sonu',
+    'Dr. Auguston',
+    'Dr.Parag',
+    'Dr. Priyanka',
+    'Dr.Mansi',
+  ];
   appointmentTime: string[] = ['9am - 10am', '12pm - 1pm', '3pm-4pm'];
-  
+
   onSubmit() {
     console.log(this.form.value);
+    this.form.get('appointmentStatus')?.setValue('Booked');
     this.service.addAppointment(this.form.value).subscribe();
-    this.form.get("appointmentStatus")?.setValue("Booked");
   }
 
-  
-  
+  //date picker filter
+  myFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0;
+  };
 }

@@ -36,6 +36,11 @@
         <td mat-cell *matCellDef="let element">{{ element.appointmentDate }}</td>
     </ng-container>
 
+    <ng-container matColumnDef="appointmentStatus">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element">{{ element.appointmentStatus }}</td>
+    </ng-container>
+
     <ng-container matColumnDef="appointmentTime">
         <th mat-header-cell *matHeaderCellDef>Time</th>
         <td mat-cell *matCellDef="let element">{{ element.appointmentTime }}</td>

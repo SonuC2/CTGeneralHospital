@@ -49,7 +49,7 @@ export class AppointmentListComponent implements OnInit {
 
   }
 
-  displayedColumns: string[] = ['meetingTitle', 'physician', 'specialisation', 'appointmentDate','appointmentTime','action'];
+  displayedColumns: string[] = ['meetingTitle', 'physician', 'specialisation', 'appointmentDate','appointmentTime','appointmentStatus','action'];
  
 
   applyFilter(event: Event) {
