@@ -43,6 +43,11 @@ const routes: Routes = [
             (m) => m.SchedulingModule
           ),
       },
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('src/app/admin/admin.module').then((m) => m.AdminModule),
+      },
     ],
   },
 ];

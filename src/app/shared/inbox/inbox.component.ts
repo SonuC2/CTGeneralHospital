@@ -12,6 +12,9 @@ import { Inbox } from 'src/app/entities/inbox';
 import { InboxService } from 'src/app/services/inbox.service';
 import { ReplyNoteDialogComponent } from '../reply-note-dialog/reply-note-dialog.component';
 
+export interface DialogData {
+  animal: 'panda' | 'unicorn' | 'lion';
+}
 
 @Component({
   selector: 'app-inbox',
@@ -160,6 +163,8 @@ export class InboxComponent implements OnInit {
       this.sentNotes = sentNotes;
       this.dataSourceSent.data = this.sentNotes
       console.log("Data source : " , this.dataSourceSent.data);     
+     // console.log("message:" );
+      
     })
       
     }
@@ -182,17 +187,30 @@ export class InboxComponent implements OnInit {
   sendReplyFromSentNotes(row:any){
     console.log("Row data from sent notes: ", row);
 
-    const dialogRef = this.dialog.open(ReplyNoteDialogComponent, {
-      width: '250px',
-      data: {name: "Priyanka"},
+    //  this.openDialog();
+     const dialogRef = this.dialog.open(ReplyNoteDialogComponent,{
+      width: '500px',
+      data: {
+        receiverId: row.receiverId,
+        receiverName : row.receiverName,
+        receiverSpecialisation : row.receiverSpecialisation,
+        senderId:row.senderId,
+        senderName: row.senderName,
+        senderSpecialisation : row.senderSpecialisation
+      },
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.animal = result;
+      console.log(`Dialog result: ${result}`);
     });
+  }
 
-
+  openDialog(){
+    const dialogRef = this.dialog.open(ReplyNoteDialogComponent);
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }
