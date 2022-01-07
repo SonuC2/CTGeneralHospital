@@ -1,1 +1,69 @@
-<p>reply-note-dialog works!</p>
+<h2 mat-dialog-title>Install Angular</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="sub1" fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+        <form class="example-form" [formGroup]="sendNoteForm" (ngSubmit)="sendNote(sendNoteForm)">
+          <div fxLayout="row wrap">
+            <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <mat-label>Receiver Name</mat-label>
+                    <input matInput formControlName="receiverSpecialisation" value="{{data.receiverName}}"/>
+                    <!-- <input matInput data-ng-model="employees.specialisation" formControlName="receiverSpecialisation" /> -->
+                  </mat-form-field>
+            </div>
+            <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+              <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                <mat-label>Designation</mat-label>
+                <input matInput formControlName="receiverSpecialisation" value="{{data.receiverSpecialisation}}"/>
+                <!-- <input matInput data-ng-model="employees.specialisation" formControlName="receiverSpecialisation" /> -->
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- second row -->
+          <div fxLayout="row wrap">
+            <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+              <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                <mat-label>Message</mat-label>
+                <textarea matInput formControlName="messege" placeholder="Type message here"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div fxLayout="row wrap">
+            <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+              <mat-radio-group aria-label="Select an option" class="example-full-width" style="width: 100%"
+                formControlName="urgencyLevel">
+                <mat-label>Urgency : </mat-label>
+                <mat-radio-button value="Urgent">Urgent</mat-radio-button>
+                &nbsp;
+                <mat-radio-button value="NotUrgent" selected>Not Urgent</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+          <div fxLayout="row wrap">
+            <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+              <button mat-raised-button color="primary" style="background-color: #03a66a; width: 100%">
+                Send
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+ <!-- My favorite animal is:
+  <ul>
+    <li>
+      <span *ngIf="data.animal === 'panda'">&#10003;</span> Panda
+    </li>
+    <li>
+      <span *ngIf="data.animal === 'unicorn'">&#10003;</span> Unicorn
+    </li>
+    <li>
+      <span *ngIf="data.animal === 'lion'">&#10003;</span> Lion
+    </li>
+  </ul> -->
+  <!-- <p>{{data.receiverName}}</p> -->
+</mat-dialog-content>
+<mat-dialog-actions align ="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions>
