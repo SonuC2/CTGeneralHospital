@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Allergy } from '../entities/allergy';
 import { Patient } from '../entities/patient';
 
 @Injectable({
@@ -52,6 +53,11 @@ export class PatientService {
     
     return this._httpClient.get<number>("http://localhost:9093/patientDetails/patient"+"/"+patient.firstName+"/"+patient.lastName+"/"+patient.email);
     
+  }
+
+  getPatientDataByFirstNameAndEmail(patient:Patient):Observable<Allergy[]>
+  {
+    return this._httpClient.get<Allergy[]>("http://localhost:9093/patientDetails/allergies"+"/"+patient.firstName+"/"+patient.email)
   }
 
   updatePatientById(patient:Patient,id:number):Observable<Patient>

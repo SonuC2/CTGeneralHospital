@@ -14,6 +14,7 @@ export class Patient {
  email!:string;
  language!:string[];
  address!:string;
+ status!:string;
  allergy!:Allergy[];
  emergencyContactDetails!:EmergencyInfo;
 

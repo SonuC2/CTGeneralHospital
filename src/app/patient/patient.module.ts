@@ -26,6 +26,7 @@ import { MyCompliteDetailsComponent } from './my-complite-details/my-complite-de
 import { HttpClientModule } from '@angular/common/http';
 import { EditPatientDetialsComponent } from './edit-patient-detials/edit-patient-detials.component';
 import { SuccessfullySubmittedPatienDatailsComponent } from './successfully-submitted-patien-datails/successfully-submitted-patien-datails.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 const routes: Routes = [
   {
@@ -81,6 +82,7 @@ const routes: Routes = [
     MatNativeDateModule,
     MatTableModule,
     ReactiveFormsModule,
+    MatDividerModule,
     FormsModule,
     // MatGridListModule,
     MatButtonModule,
