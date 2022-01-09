@@ -1,4 +1,6 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Patient } from 'src/app/entities/patient';
 import { PatientService } from 'src/app/services/patient.service';
 import * as XLXS from 'xlsx';
@@ -16,13 +18,15 @@ export class GetMyDataComponent implements OnInit {
   firstName!:string;
   lastName!:string;
   abc!:string;
+  
   list:string[]=["Bhushan","sonu","Priyanka","Mansi","Parag"];
-  constructor(private patientService:PatientService) { }
+  constructor(private patientService:PatientService,private location:Location
+    ,private  router:Router) { }
 
   ngOnInit(): void {
   
    
-    
+    this.getDataFromMydetails();
   }
   getExcelData() {
     // this.firstName=this.patientService.getFirstName();
@@ -38,5 +42,12 @@ export class GetMyDataComponent implements OnInit {
     const wb: XLXS.WorkBook = XLXS.utils.book_new();
     XLXS.utils.book_append_sheet(wb, ws, 'Sheet1');
     XLXS.writeFile(wb, this.fileName);
+    // this.router.navigate(['/patient/my-details'])
+   }
+   getDataFromMydetails()
+   {
+     let data:any=this.location.getState();
+     this.patientData=data;
+
    }
 }

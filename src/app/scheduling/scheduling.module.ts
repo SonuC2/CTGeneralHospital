@@ -57,7 +57,6 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-
     MatButtonModule,
     MatCardModule,
     FlexLayoutModule,

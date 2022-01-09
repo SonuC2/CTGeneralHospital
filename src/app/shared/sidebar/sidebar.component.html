@@ -44,24 +44,49 @@
       <mat-icon>date_range</mat-icon>
       <span *ngIf="isExpanded || isShowing">Appointments</span>
     </button>
-    <div class="submenu" [ngClass]="{ expanded: showSubmenu }" *ngIf="isShowing || isExpanded">
-      <button mat-button class="menu-button" routerLink="scheduling/appointment-calendar">
+    <div
+      class="submenu"
+      [ngClass]="{ expanded: showSubmenu }"
+      *ngIf="isShowing || isExpanded"
+    >
+      <button
+        mat-button
+        class="menu-button"
+        routerLink="scheduling/appointment-calendar"
+      >
         <mat-icon>schedule</mat-icon>
         <span>Schedule Appointment</span>
       </button>
-      <button mat-button class="menu-button" routerLink="scheduling/appointment-list">
+      <button
+        mat-button
+        class="menu-button"
+        routerLink="scheduling/appointment-list"
+      >
         <mat-icon>schedule </mat-icon>
         <span>Appointment list</span>
       </button>
     </div>
 
-    <button mat-button class="menu-button" (click)="showPatientSubMenu = !showPatientSubMenu"
-      (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+    <button
+      mat-button
+      class="menu-button"
+      (click)="showPatientSubMenu = !showPatientSubMenu"
+      (mouseenter)="mouseenter()"
+      (mouseleave)="mouseleave()"
+    >
       <mat-icon>person</mat-icon>
       <span *ngIf="isExpanded || isShowing">Patient</span>
     </button>
-    <div class="submenu" [ngClass]="{ expanded: showPatientSubMenu }" *ngIf="isShowing || isExpanded">
-      <button mat-button class="menu-button" routerLink="nurse/patient/patient-details">
+    <div
+      class="submenu"
+      [ngClass]="{ expanded: showPatientSubMenu }"
+      *ngIf="isShowing || isExpanded"
+    >
+      <button
+        mat-button
+        class="menu-button"
+        routerLink="nurse/patient/patient-details"
+      >
         <mat-icon>person</mat-icon>
         <span>Register Patient</span>
       </button>
@@ -80,12 +105,21 @@
       </button>
     </div>
 
-    <button mat-button class="menu-button" (click)="showEmployeeSubMenu = !showEmployeeSubMenu"
-      (mouseenter)="mouseenter()" (mouseleave)="mouseleave()">
+    <button
+      mat-button
+      class="menu-button"
+      (click)="showEmployeeSubMenu = !showEmployeeSubMenu"
+      (mouseenter)="mouseenter()"
+      (mouseleave)="mouseleave()"
+    >
       <mat-icon>person</mat-icon>
       <span *ngIf="isExpanded || isShowing">Employee</span>
     </button>
-    <div class="submenu" [ngClass]="{ expanded: showEmployeeSubMenu }" *ngIf="isShowing || isExpanded">
+    <div
+      class="submenu"
+      [ngClass]="{ expanded: showEmployeeSubMenu }"
+      *ngIf="isShowing || isExpanded"
+    >
       <button mat-button class="menu-button" routerLink="nurse/employee-list">
         <mat-icon>list</mat-icon>
         <span>Employee Details</span>
@@ -139,42 +173,69 @@
       <mat-icon>person</mat-icon>
       <span *ngIf="isExpanded || isShowing">Patient</span>
     </button>
-    <div class="submenu" [ngClass]="{ expanded: showPatientSubMenu }" *ngIf="isShowing || isExpanded">
-      <button mat-button class="menu-button" routerLink="patient/patient-details">
+    <div
+      class="submenu"
+      [ngClass]="{ expanded: showPatientSubMenu }"
+      *ngIf="isShowing || isExpanded"
+    >
+      <button
+        mat-button
+        class="menu-button"
+        routerLink="patient/patient-details"
+        [disabled]="enterDetails"
+        (click)="hideLink()"
+      >
         <mat-icon>person</mat-icon>
         <span>Enter your Details</span>
       </button>
-      <button mat-button class="menu-button" routerLink="patient/my-details">
+
+      <button
+        mat-button
+        class="menu-button"
+        routerLink="patient/my-details"
+        [disabled]="viewDetails"
+      >
         <mat-icon>list</mat-icon>
         <span>My Details</span>
       </button>
 
-
-      <button mat-button class="menu-button">
-        <mat-icon>person</mat-icon>
-        <span>My Visits</span>
-      </button>
-      <button mat-button class="menu-button">
+      <button mat-button class="menu-button"
+      [disabled]="MyVisitHistory"
+      >
         <mat-icon>person</mat-icon>
         <span>My visit history</span>
       </button>
-      <button mat-button class="menu-button" routerLink="patient/get-my-data">
-        <mat-icon>download</mat-icon>
-        <span>Download My Data</span>
-      </button>
+      
     </div>
-    <button mat-button class="menu-button" (click)="showSubmenu = !showSubmenu" (mouseenter)="mouseenter()"
-      (mouseleave)="mouseleave()">
+    <button
+      mat-button
+      class="menu-button"
+      (click)="showSubmenu = !showSubmenu"
+      (mouseenter)="mouseenter()"
+      (mouseleave)="mouseleave()"
+      [disabled]="appointment"
+    >
       <mat-icon>date_range</mat-icon>
       <span *ngIf="isExpanded || isShowing">Appointments</span>
     </button>
-    <div class="submenu" [ngClass]="{ expanded: showSubmenu }" *ngIf="isShowing || isExpanded">
-
-      <button mat-button class="menu-button" routerLink="scheduling/appointment-calendar">
+    <div
+      class="submenu"
+      [ngClass]="{ expanded: showSubmenu }"
+      *ngIf="isShowing || isExpanded"
+    >
+      <button
+        mat-button
+        class="menu-button"
+        routerLink="scheduling/appointment-calendar"
+      >
         <mat-icon>schedule</mat-icon>
         <span>Schedule Appointment</span>
       </button>
-      <button mat-button class="menu-button" routerLink="scheduling/appointment-list">
+      <button
+        mat-button
+        class="menu-button"
+        routerLink="scheduling/appointment-list"
+      >
         <mat-icon>schedule </mat-icon>
         <span>Upcoming Appointment</span>
       </button>
@@ -185,13 +246,15 @@
       <mat-icon>settings</mat-icon>
       <span *ngIf="isExpanded || isShowing">Settings</span>
     </button>
-    <div class="submenu" [ngClass]="{ expanded: showEmployeeSubMenu }" *ngIf="isShowing || isExpanded">
+    <div
+      class="submenu"
+      [ngClass]="{ expanded: showEmployeeSubMenu }"
+      *ngIf="isShowing || isExpanded"
+    >
       <button mat-button class="menu-button">
         <mat-icon>password</mat-icon>
         <span>Change Password</span>
       </button>
-
-
     </div>
     <mat-divider></mat-divider>
 
@@ -199,8 +262,6 @@
       <mat-icon>info</mat-icon>
       <span>About</span>
     </button>
-
-
 
     <button mat-button class="menu-button">
       <mat-icon>help</mat-icon>
@@ -253,7 +314,11 @@
       <mat-icon>person</mat-icon>
       <span *ngIf="isExpanded || isShowing">Hospital Users</span>
     </button>
-    <div class="submenu" [ngClass]="{ expanded: showSubmenu }" *ngIf="isShowing || isExpanded">
+    <div
+      class="submenu"
+      [ngClass]="{ expanded: showSubmenu }"
+      *ngIf="isShowing || isExpanded"
+    >
       <button mat-button class="menu-button" routerLink="/admin/register-user">
         <mat-icon>person</mat-icon>
         <span>Register User</span>
