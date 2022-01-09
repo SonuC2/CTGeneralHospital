@@ -28,6 +28,7 @@ import { EditPatientDetialsComponent } from './edit-patient-detials/edit-patient
 import { SuccessfullySubmittedPatienDatailsComponent } from './successfully-submitted-patien-datails/successfully-submitted-patien-datails.component';
 import {MatDividerModule} from '@angular/material/divider';
 
+
 const routes: Routes = [
   {
     path: '',

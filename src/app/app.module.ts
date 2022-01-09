@@ -32,11 +32,21 @@ const routes: Routes = [
       },
 
       {
+        path: 'inbox',
+        loadChildren: () =>
+          import('./inbox/inbox.module').then((m) => m.InboxModule),
+      },
+      {
         path: 'scheduling',
         loadChildren: () =>
           import('src/app/scheduling/scheduling.module').then(
             (m) => m.SchedulingModule
           ),
+      },
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('src/app/admin/admin.module').then((m) => m.AdminModule),
       },
     ],
   },
@@ -49,7 +59,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule,
     SharedModule,
-   // ScheduleModule,
+    // ScheduleModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
   ],

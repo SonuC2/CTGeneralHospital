@@ -1,6 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,6 +15,7 @@ export class SidebarComponent  {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   isPatient:boolean =true;
+  isAdmin:boolean = false;
  
   showSubmenu: boolean = false;
   isShowing = false;
@@ -22,8 +24,13 @@ export class SidebarComponent  {
   showEmployeeSubMenu : boolean = false;
 
   isNurse : boolean = false;
+  enterDetails:boolean=false;
+  viewDetails:boolean=true;
+  MyVisitHistory:boolean=true;
+  downloadMydata:boolean=true;
+  appointment:boolean=true;
  
-   constructor(private observer: BreakpointObserver) {}
+   constructor(private observer: BreakpointObserver,private router:Router) {}
  
    ngAfterViewInit() {
      this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
@@ -35,6 +42,15 @@ export class SidebarComponent  {
          this.sidenav.open();
        }
      });
+   }
+
+   hideLink(){
+     this.enterDetails=true;
+     this.viewDetails=false;
+     this.MyVisitHistory=false;
+     this.downloadMydata=false;
+      this.appointment=false;
+     
    }
    mouseenter() {
     if (!this.isExpanded) {

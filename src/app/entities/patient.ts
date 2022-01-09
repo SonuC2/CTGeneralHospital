@@ -1,5 +1,6 @@
 import { Allergy } from "./allergy";
 import { EmergencyInfo } from "./emergency-info";
+import { UserRole } from "./user-role";
 
 export class Patient {
 
@@ -15,6 +16,7 @@ export class Patient {
  language!:string[];
  address!:string;
  status!:string;
+ userRole!:UserRole;
  allergy!:Allergy[];
  emergencyContactDetails!:EmergencyInfo;
 

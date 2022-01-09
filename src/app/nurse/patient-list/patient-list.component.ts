@@ -3,6 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Patient } from 'src/app/entities/patient';
+import { PatientService } from 'src/app/services/patient.service';
 
 export interface PatientData {
   patientId: number;
@@ -31,14 +33,21 @@ const ELEMENT_DATA: PatientData[] = [
   styleUrls: ['./patient-list.component.css']
 })
 export class PatientListComponent implements OnInit {
-  displayedColumns: string[] = ['patientId', 'firstName', 'lastName', 'contactNo','email','actions'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  patient : Patient[] = [];
+  displayedColumns: string[] = ['patientId', 'firstName', 'lastName', 'mobileNo','email','actions'];
+  dataSource = new MatTableDataSource<Patient>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private router: Router,private route: ActivatedRoute) { }
+  constructor(private router: Router,private route: ActivatedRoute,private patientService : PatientService) { }
 
   ngOnInit(): void {
+    this.patientService.getAllPatientList().subscribe(patients => {
+      this.patient = patients;
+      this.dataSource.data = this.patient;
+      console.log("patient List: " , this.dataSource.data);
+      
+    })
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -61,6 +70,12 @@ export class PatientListComponent implements OnInit {
     
     // this.router.navigate(['/nurse/employee-details/{{this.queryID}}'])
     
+  }
+  openDialog(row:any){
+    console.log("patient id " + row.patientId);
+    this.router.navigate(['/nurse/edit-patient-details/',row])
+    
+
   }
 
 }

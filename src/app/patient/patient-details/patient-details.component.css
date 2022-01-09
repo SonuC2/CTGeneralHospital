@@ -33,11 +33,13 @@ table {
     color: white;
   }
   .backer{
-    background-color: cornflowerblue;
+    background-color: #DAD8D8;
+    border-radius: 4px;
   }
 
   .textc{
       color: white;
+      font-family: sans-serif;
   }
 
 

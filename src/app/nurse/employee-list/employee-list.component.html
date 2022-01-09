@@ -12,9 +12,9 @@
       <table mat-table [dataSource]="dataSource" matSort style="width: 100%;height:100%">
 
         <!-- ID Column -->
-        <ng-container matColumnDef="id">
+        <ng-container matColumnDef="employeeId">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.employeeId}} </td>
         </ng-container>
 
         <!-- first Name Column -->
@@ -29,22 +29,28 @@
           <td mat-cell *matCellDef="let row"> {{row.lastName}} </td>
         </ng-container>
 
-        <!-- Designation Column -->
-        <ng-container matColumnDef="designation">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Designation </th>
-          <td mat-cell *matCellDef="let row"> {{row.designation}} </td>
+        <!-- Contact no Column -->
+        <ng-container matColumnDef="mobileNO">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile No </th>
+          <td mat-cell *matCellDef="let row"> {{row.mobileNO}} </td>
         </ng-container>
 
-        <!-- speciality Column -->
-        <ng-container matColumnDef="speciality">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Speciality </th>
-          <td mat-cell *matCellDef="let row"> {{row.speciality}} </td>
+        <!-- email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let row"> {{row.email}} </td>
         </ng-container>
 
-        <!-- user type Column -->
-        <ng-container matColumnDef="userType">
+        <!-- specialisation Column -->
+        <ng-container matColumnDef="specialisation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> specialisation </th>
+          <td mat-cell *matCellDef="let row"> {{row.specialisation}} </td>
+        </ng-container>
+
+        <!-- userRole Column -->
+        <ng-container matColumnDef="roleType">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
-          <td mat-cell *matCellDef="let row"> {{row.userType}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.userRole.roleType}} </td>
         </ng-container>
 
         <ng-container matColumnDef="status">
@@ -53,7 +59,7 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row)"
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row.employeeId)"
           class="example-element-row"></tr>
 
         <!-- Row shown when there is no matching data. -->
