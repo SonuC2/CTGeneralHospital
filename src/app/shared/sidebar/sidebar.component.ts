@@ -14,9 +14,9 @@ export class SidebarComponent  {
   isExpanded : boolean = true;
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
-  isPatient:boolean =true;
+  isPatient:boolean =false;
   isAdmin:boolean = false;
- 
+  isPhysician:boolean=true;
   showSubmenu: boolean = false;
   isShowing = false;
   showSubSubMenu: boolean = false;

@@ -17,6 +17,9 @@ export class AddAppointmentsComponent implements OnInit {
   form!: FormGroup;
   appointmentData: Appointments[] = [];
   appointmentTest: any;
+  isNurse:boolean=false;
+  isPatient:boolean=false;
+  isPhysician:boolean=true;
 
   constructor(
     private fb: FormBuilder,
@@ -59,12 +62,14 @@ export class AddAppointmentsComponent implements OnInit {
     'Dr. Priyanka',
     'Dr.Mansi',
   ];
+  patient:String[]=['Alex Hanry','Fader J','Rocky RRR','Alu Arjun','Ram Charan','NTR King',];
   appointmentTime: string[] = ['9am - 10am', '12pm - 1pm', '3pm-4pm'];
 
   onSubmit() {
     console.log(this.form.value);
-    this.form.get('appointmentStatus')?.setValue('Booked');
+    this.form.get('appointmentStatus')?.setValue('Requested');
     this.service.addAppointment(this.form.value).subscribe();
+    this.route.navigate(["/scheduling/appointment-list"]);
   }
 
   //date picker filter

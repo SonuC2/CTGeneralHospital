@@ -4,25 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Appointments } from 'src/app/entities/appointments';
 import { SchedulingService } from 'src/app/services/scheduling.service';
 
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
-
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-//   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-//   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-//   {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-//   {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-//   {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-//   {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-//   {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-//   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-//   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-// ];
 @Component({
   selector: 'app-appointment-list',
   templateUrl: './appointment-list.component.html',
@@ -31,7 +12,6 @@ import { SchedulingService } from 'src/app/services/scheduling.service';
 export class AppointmentListComponent implements OnInit {
   appointmentData: Appointments[] = [];
   dataSource = new MatTableDataSource<Appointments>();
-  @Input() appointmentid = 0;
 
   constructor(
     private schedulingService: SchedulingService,
@@ -69,8 +49,11 @@ export class AppointmentListComponent implements OnInit {
   //  this.router.navigate(['/scheduling/edit-appointment/',row])
   // }
 
-  deleteById() {
-    console.log(this.appointmentid);
-    this.schedulingService.deleteAppointmentById(this.appointmentid);
+  deleteById(appointmentId: number) {
+    console.log(appointmentId);
+
+    this.schedulingService.deleteAppointmentById(appointmentId).subscribe();
+    this.router.navigate(['scheduling/appointment-list']);
+    window.location.reload();
   }
 }

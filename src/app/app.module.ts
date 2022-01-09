@@ -15,22 +15,23 @@ const routes: Routes = [
     children: [
       {
         path: '',
-
         component: DashboardComponent,
       },
       {
         path: 'nurse',
-
         loadChildren: () =>
           import('./nurse/nurse.module').then((m) => m.NurseModule),
       },
       {
+        path: 'doctor',
+        loadChildren: () =>
+          import('./doctor/doctor.module').then((m) => m.DoctorModule),
+      },
+      {
         path: 'patient',
-
         loadChildren: () =>
           import('src/app/patient/patient.module').then((m) => m.PatientModule),
       },
-
       {
         path: 'inbox',
         loadChildren: () =>
