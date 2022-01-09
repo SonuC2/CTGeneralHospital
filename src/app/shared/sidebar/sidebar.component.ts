@@ -15,14 +15,14 @@ export class SidebarComponent  {
   sidenav!: MatSidenav;
   isPatient:boolean =false;
   isAdmin:boolean = false;
- 
+  isPhysician:boolean=true;
   showSubmenu: boolean = false;
   isShowing = false;
   showSubSubMenu: boolean = false;
   showPatientSubMenu: boolean = false;
   showEmployeeSubMenu : boolean = false;
 
-  isNurse : boolean = true;
+  isNurse : boolean = false;
  
    constructor(private observer: BreakpointObserver) {}
  
