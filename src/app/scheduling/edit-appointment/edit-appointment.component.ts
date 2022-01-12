@@ -84,7 +84,6 @@ export class EditAppointmentComponent implements OnInit {
     this.service
       .updateAppointment(this.form.value, this.appointmentId)
       .subscribe();
-      this.route.navigate(["/scheduling/appointment-list"]);
   }
 
   getAppointmentData() {

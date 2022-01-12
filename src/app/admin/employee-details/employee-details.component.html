@@ -1,0 +1,109 @@
+<div fxLayout.xs="column" fxLayout="row wrap" fxLayoutGap="10px" ngClass.gt-xs="ml-10">
+
+  <div fxFlex.gt-sm="100" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
+    <h1 style="color: #0055D2;">Employee Details</h1>
+
+    <div style="text-align: right;">
+      <button mat-raised-button color="primary" style="background-color: #2949d8; width: 20%;"
+        class="example-full-width" routerLink="/admin/register-user" mat-stroked-button>
+        Register User
+      </button>
+    </div>
+
+
+    <mat-form-field appearance="standard" style="width: 100%;">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort style="width: 100%;height:100%">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="employeeId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let row"> {{row.employeeId}} </td>
+        </ng-container>
+
+        <!-- first Name Column -->
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.firstName}} </td>
+        </ng-container>
+
+        <!-- last Name Column -->
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+          <td mat-cell *matCellDef="let row"> {{row.lastName}} </td>
+        </ng-container>
+
+        <!-- Contact no Column -->
+        <ng-container matColumnDef="mobileNO">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile No </th>
+          <td mat-cell *matCellDef="let row"> {{row.mobileNO}} </td>
+        </ng-container>
+
+        <!-- email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+        </ng-container>
+
+        <!-- specialisation Column -->
+        <ng-container matColumnDef="specialisation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> specialisation </th>
+          <td mat-cell *matCellDef="let row"> {{row.specialisation}} </td>
+        </ng-container>
+
+        <!-- userRole Column -->
+        <ng-container matColumnDef="roleType">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+          <td mat-cell *matCellDef="let row"> {{row.userRole.roleType}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-raised-button color="primary" *ngIf="row.status=='active'"
+              style="background-color: #03a66a; width: 30%; font-size: 12px;" class="example-full-width" type="submit"
+              mat-stroked-button>
+              Active
+            </button>
+            &nbsp;
+            <button mat-raised-button color="primary" *ngIf="row.status=='inactive'"
+              style="background-color: #f52323; width: 70%; font-size: 12px;" class="example-full-width" type="submit"
+              mat-stroked-button>
+              Inactive
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+          <td mat-cell *matCellDef="let row">
+            
+            <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary">
+              <mat-icon aria-label="Edit" [state]="row" routerLink="/admin/edit-user/{{ row.employeeId }}">edit
+              </mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="example-element-row"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+    </div>
+
+  </div>
+</div>
+
+<!-- <router-outlet></router-outlet> -->
+
+<!-- </div> -->

@@ -1,0 +1,223 @@
+<div>
+    <form class="example-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="main" fxLayout="row wrap">
+        <div class="sub1" fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+          <mat-card>
+            <mat-card-header>
+              <h1 style="color: #0055d2">User Registration</h1>
+            </mat-card-header>
+            <mat-card-content>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <!-- <div formGroupName="userRole"> -->
+                    <mat-label>Select Role</mat-label>
+                    <mat-select formControlName="userRole">
+                      <mat-option value="physician">Physician</mat-option>
+                      <mat-option value="nurse">Nurse</mat-option>
+                      <mat-option value="admin">Admin</mat-option>
+                    </mat-select>
+                    <!-- </div> -->
+                  </mat-form-field>
+                  <p *ngIf="form.controls['userRole']?.errors?.['required'] && form.controls['userRole'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+                <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <mat-label>EmployeeId</mat-label>
+                    <input matInput formControlName="employeeId" placeholder="Enter employee id" required />
+                  </mat-form-field>
+                  <p *ngIf="form.controls['employeeId']?.errors?.['required'] && form.controls['employeeId'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="20" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <mat-label>Title</mat-label>
+                    <mat-select formControlName="title" required>
+                      <mat-option value="mr.">Mr.</mat-option>
+                      <mat-option value="ms.">Ms.</mat-option>
+                      <mat-option value="mrs.">Mrs.</mat-option>
+                      <mat-option value="dr.">Dr.</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <p *ngIf="form.controls['title']?.errors?.['required'] && form.controls['title'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+                <div fxFlex.gt-sm="40" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="firstName" placeholder="Enter first name" required />
+                  </mat-form-field>
+                  <p *ngIf="form.controls['firstName']?.errors?.['minlength'] && form.controls['firstName'].touched"
+                    style="color: red">
+                    Need
+                    {{ form.controls['firstName']?.errors?.['minlength'].requiredLength -
+                    form.controls['firstName']?.errors?.['minlength'].actualLength }}
+                    more characters.
+                  </p>
+                  <p *ngIf="form.controls['firstName']?.errors?.['required'] && form.controls['firstName'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+                <div fxFlex.gt-sm="40" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastName" placeholder="Enter last name" required />
+                  </mat-form-field>
+                  <p *ngIf="form.controls['lastName']?.errors?.['minlength'] && form.controls['lastName'].touched"
+                    style="color: red">
+                    Need
+                    {{ form.controls['lastName']?.errors?.['minlength'].requiredLength -
+                    form.controls['lastName']?.errors?.['minlength'].actualLength }}
+                    more characters.
+                  </p>
+                  <p *ngIf="form.controls['lastName']?.errors?.['required'] && form.controls['lastName'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <mat-label>Email address</mat-label>
+                    <input matInput formControlName="email" placeholder="Enter email address" required />
+                  </mat-form-field>
+                  <p *ngIf="form.controls['email']?.errors?.['required'] && form.controls['email'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+                <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <mat-label>dateOfBirth</mat-label>
+                    <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1"
+                      placeholder="Select date of birth" required />
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+                  <p *ngIf="form.controls['dateOfBirth']?.errors?.['required'] && form.controls['dateOfBirth'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <mat-label>Date of joining</mat-label>
+                    <input matInput formControlName="dateOfJoining" [matDatepicker]="picker" />
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <p *ngIf="form.controls['dateOfJoining']?.errors?.['required'] && form.controls['dateOfJoining'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+                <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="status" required>
+                      <mat-option value="active">Active</mat-option>
+                      <mat-option value="blocked">Blocked</mat-option>
+                      <mat-option value="inactive">Inactive </mat-option>
+                      <mat-option value="unblock">Unblock </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <p *ngIf="form.controls['status']?.errors?.['required'] && form.controls['status'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <mat-label>mobileNO</mat-label>
+                    <input matInput formControlName="mobileNO" placeholder="Enter mobileNO" required />
+                  </mat-form-field>
+                  <p *ngIf="form.controls['mobileNO']?.errors?.['required'] && form.controls['mobileNO'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+                <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <!-- <mat-form-field appearance="fill" class="example-full-width" style="width: 100%"> -->
+                  <mat-label>Gender :</mat-label>
+                  <mat-radio-group formControlName="gender" required>
+                    <mat-radio-button value="male">Male</mat-radio-button>
+                    <mat-radio-button value="female">Female</mat-radio-button>
+                  </mat-radio-group>
+                  <!-- </mat-form-field> -->
+                  <p *ngIf="form.controls['gender']?.errors?.['required'] && form.controls['gender'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+              </div>
+  
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <mat-label>Qualification</mat-label>
+                    <input matInput formControlName="qualification" placeholder="Enter qualification" required />
+                  </mat-form-field>
+                  <p *ngIf="form.controls['qualification']?.errors?.['required'] && form.controls['qualification'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+                <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <mat-label>Specialisation*</mat-label>
+                    <mat-select formControlName="specialisation">
+                      <mat-option *ngFor="let spe of specialisation" value="{{ spe }}">{{
+                        spe
+                        }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  &nbsp; &nbsp;
+                  <p *ngIf="form.controls['specialisation']?.errors?.['required'] && form.controls['specialisation'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+              </div>
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                  <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                    <mat-label>Address</mat-label>
+                    <textarea matInput formControlName="address" placeholder="Enter address" required></textarea>
+                  </mat-form-field>
+                  <p *ngIf="form.controls['address']?.errors?.['required'] && form.controls['address'].touched"
+                    style="color: red">
+                    This field is required
+                  </p>
+                </div>
+              </div>
+  
+              <!-- Last row -->
+              <div fxLayout="row wrap">
+                <div fxFlex.gt-sm="50" fxFlex.gt-lg="50" fxFlex="100" style="padding: 10px">
+                  <button [disabled]="!form.valid" *ngIf="index === -1" type="submit" mat-raised-button color="primary"
+                    style="background-color: #03a66a; width: 30vh">
+                    Update
+                  </button>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </form>
+  </div>

@@ -6,7 +6,7 @@
     <div fxFlex="100" class="sec1" fxFlex.xs="55" style="padding-top: 40vh">
       <div style="text-align: center" class="head">
         <h1>Click here to get your data</h1>
-        <button mat-stroked-button class="btn" (click)="getExcelData()" routerLink="/patient/my-details" [state]="patientData">
+        <button mat-stroked-button class="btn" (click)="getExcelData()">
           Download<mat-icon aria-hidden="false" aria-label="Example home icon"
             >download</mat-icon
           >
@@ -16,48 +16,8 @@
   </div>
 </div >
 <div [hidden]="hid"><table id="excel-id">
-  <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Date Of Birth</th>
-      <th>Mobile No</th>
-      <th>Gender</th>
-      <th>Race</th>
-      <th>Ethnicity</th>
-      <th>Languages</th>
-      <th>Address</th>
-      <th>EM-firstName</th>
-      <th>EM-last Name</th>
-      <th>EM-Relationship</th>
-      <th>EM-Mobile No</th>
-    
-      
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{patientData?.firstName}}</td>
-      <td>{{patientData?.lastName}}</td>
-      <td>{{patientData?.dateOfBirth}}</td>
-      <td>{{patientData?.mobileNo}}</td>
-      <td>{{patientData?.gender}}</td>
-      <td>{{patientData?.race}}</td>
-      <td>{{patientData?.ethnicity}}</td>
-      <td>{{patientData?.language}}</td>
-      <td>{{patientData?.address}}</td>
-      
-    </tr>
-  </tbody>
-  <thead>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    
-  </thead>
+  <tr *ngFor="let a of list">
+    <td>{{a}}</td>
+  </tr>
 </table>
 </div>
