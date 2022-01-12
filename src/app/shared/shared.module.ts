@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+// import { DashboardComponent } from './dashboard/dashboard.component';
 import { DefaultComponent } from './default/default.component';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -31,6 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReplyNoteDialogComponent } from './reply-note-dialog/reply-note-dialog.component';
 import { UserModule } from '../user/user.module';
+// import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
   {
     path: 'sidebar',
@@ -40,7 +41,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     SidebarComponent,
-    DashboardComponent,
+    // DashboardComponent,
     DefaultComponent,
     InboxComponent,
     ReplyNoteDialogComponent,
@@ -48,7 +49,6 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule,
-
     MatFormFieldModule,
     MatCardModule,
     MatSidenavModule,

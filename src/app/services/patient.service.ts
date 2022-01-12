@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Allergy } from '../entities/allergy';
 import { Patient } from '../entities/patient';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PatientService {
+  getAllApprovePatientList() {
+    throw new Error('Method not implemented.');
+  }
   PatientData!: Patient;
   downloadPatinet!: Patient;
   firstName!: string;
@@ -59,16 +61,6 @@ export class PatientService {
     );
   }
 
-
-  getPatientDataByFirstNameAndEmail(patient:Patient):Observable<Allergy[]>
-  {
-    return this._httpClient.get<Allergy[]>("http://localhost:9093/patientDetails/allergies"+"/"+patient.firstName+"/"+patient.email)
-  }
-
-  updatePatientById(patient:Patient,id:number):Observable<Patient>
-  {
-    return this._httpClient.put<Patient>("http://localhost:9093/patientDetails/patient"+"/"+id,patient);
-  }
   getPatientIdByFirstNameLastNameAndEmail(
     patient: Patient
   ): Observable<number> {
@@ -81,17 +73,16 @@ export class PatientService {
         '/' +
         patient.email
     );
-
   }
 
- 
+  updatePatientById(patient: Patient, id: number): Observable<Patient> {
+    return this._httpClient.put<Patient>(
+      'http://localhost:9093/patientDetails/patient' + '/' + id,
+      patient
+    );
+  }
 
   getAllPatientList():Observable<Patient[]>{
     return this._httpClient.get<Patient[]>('http://localhost:9093/patientDetails/patients' );
-  }
-  getPatientDetails(): Observable<Patient> {
-    return this._httpClient.get<Patient>(
-      'http://localhost:9093/patientDetails/patient'
-    );
   }
 }

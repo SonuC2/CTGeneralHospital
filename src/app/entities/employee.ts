@@ -1,6 +1,5 @@
 import { UserRole } from "./user-role";
 export class Employee {
-
      employeeId !: number;
 	 title!:string;
 	 firstName!:string;

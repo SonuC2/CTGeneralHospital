@@ -1,33 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Allergy } from 'src/app/entities/allergy';
 import { Patient } from 'src/app/entities/patient';
 import { PatientService } from 'src/app/services/patient.service';
-import { MatTableDataSource } from '@angular/material/table';
-
-// export interface staticAllergyData {
-//   allergyIds: string;
-//   allergyTypes: string;
-//   allergyNames: string;
-//   allergyDescriptions: string;
-//   allergyClinicalInfo:string;
-// }
-
-// const ELEMENT_DATA: staticAllergyData[] = [
-//   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-//   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-//   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-//   {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-//   {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-//   {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-//   {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-//   {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-//   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-//   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-// ];
 
 @Component({
   selector: 'app-patient-details',
@@ -35,24 +12,6 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./patient-details.component.css'],
 })
 export class PatientDetailsComponent implements OnInit {
-  PatientDataForTable: Allergy[] = [];
-  dataSource = new MatTableDataSource<Allergy>();
-
-  today = new Date();
-
-  displayedColumns: string[] = [
-    'AllergyId',
-    'AllergyType',
-    'AllergyName',
-    'AllergyDescription',
-    'ClinicalInformation',
-  ];
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
   hideAllergy = true;
   isRegister = false;
   isUpdate = true;
@@ -68,7 +27,6 @@ export class PatientDetailsComponent implements OnInit {
   updateId!: number;
   paddress: string = '';
   eaddress: string = '';
-
   constructor(
     public dialog: MatDialog,
     private _snackbar: MatSnackBar,
@@ -95,15 +53,11 @@ export class PatientDetailsComponent implements OnInit {
       email: [''],
       language: [''],
       address: [''],
-      status: ['pending'],
-      userRole: this.fb.group({
-        roleType: ['patient'],
-      }),
       allergy: this.fb.array([this.addAllergy()]),
       emergencyContactDetails: this.fb.group({
         firstName: [''],
         lastName: [''],
-        ralationship: [''],
+        relationship: [''],
         mobileNo: [''],
         email: [''],
         address: [''],
@@ -117,103 +71,7 @@ export class PatientDetailsComponent implements OnInit {
   // }
   list: string[] = ['Father', 'Mother', 'Son', 'Daughter', 'Other'];
   allergylist: string[] = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO'];
-  races: string[] = [
-    'American Indian',
-    'Asian',
-    'Black',
-    'Latino',
-    'Other Pacific Islander',
-    'White',
-  ];
-  ethnicities: string[] = [
-    'Abazins',
-    'Afemai',
-    'Afrikaners',
-    'Aja',
-    'Bambara',
-    'Banda',
-    'Copts',
-    'Garos',
-    'Hazaras',
-    'Isoko',
-    'Japanese',
-  ];
-  allergyI: string[] = [
-    'Bos d 2.0101',
-    'Bos d 3.0101',
-    'Can f 1.0101',
-    'Can f 2',
-    'Can f 2.0101',
-    'Can f 3',
-    'Can f 3.0101',
-    'Can f 4.0101',
-    'Can f 5.0101',
-    'Can f 6.0101',
-    'Can f 7.0101',
-    'Cav p 1.0101',
-    'Cav p 1.0102',
-    'Cav p 2.0101',
-    'Cav p 3.0101',
-    'Equ c 1.0101',
-    'Equ c 2.0101',
-    'Equ c 2.0102',
-    'Pen c 30.0101',
-    'Pen c 32.0101',
-    'Pen ch 13.0101',
-    'Pen ch 18.0101',
-    'Pen ch 20.0101',
-    'Pen ch 35.0101',
-    'Pen cr 26.0101',
-    'Pen o 18.0101',
-    'Rho m 1.0101',
-    'Rho m 2.0101',
-    'Sch c 1.0101',
-    'Sta 3.0101',
-    'NA-12',
-    'NA-13',
-    'NA-14',
-  ];
-  allergyT: string[] = [
-    'Animal',
-    'Fungi',
-    'Insect',
-    'Mite',
-    'Plant',
-    'Bacteria skin',
-    'Parasite',
-    'Drug',
-    'Food',
-    'Venom or Salivary',
-  ];
-  allergyN: string[] = [
-    'Juniper',
-    'Red cedar',
 
-    'summer cypress',
-
-    'Privet',
-    'Perennial ryegrass',
-    'Annual mercury grass',
-    'Olive tree',
-    'Rice',
-    'European hop hornbeam',
-    'Parthenium hysterophorus',
-    'Weed',
-    'Bahia grass',
-    'Canary grass',
-    'Common timothy',
-    'Date palm',
-
-    'Common timothy',
-    'Siberian hamster',
-    'London plane tree',
-
-    'Narrow-leaved plantain',
-
-    'oriental plane',
-    'Kentucky bluegrass',
-    'mesquite',
-  ];
   toppings = new FormControl();
 
   languageList: string[] = [
@@ -282,12 +140,16 @@ export class PatientDetailsComponent implements OnInit {
     }
   }
 
-  autoFilAddress() {
+  filladdress(e: any) {
     console.log('checkbox');
 
-    var checkBox = document.getElementById('checkBox');
+    if (e.target.checked == true) {
+      this.paddress = this.eaddress;
+    } else e.target.checked == false;
+    {
+      this.eaddress = '';
+    }
   }
-
   submitDetails() {
     console.log(this.form.value);
     this.patientData = this.form.value;
@@ -297,7 +159,7 @@ export class PatientDetailsComponent implements OnInit {
     //   this.form.get('firstName').value,
     //   this.form.get('lastName').value
     // );
-
+    this.firstName = this.form.get('firstName').value;
     this.section1 = true;
     this.section2 = false;
     this.patientData = this.form.value;
@@ -314,14 +176,7 @@ export class PatientDetailsComponent implements OnInit {
     // console.log(this.form.value)
     //recent end
     console.log('registered');
-    this.patientService
-      .getPatientDataByFirstNameAndEmail(this.form.value)
-      .subscribe((allergy) => {
-        this.PatientDataForTable = allergy;
-        console.log('welocome to allergy mapping');
-        this.dataSource.data = this.PatientDataForTable;
-        console.log('Data source : ', this.dataSource.data);
-      });
+    this.form.reset();
   }
   update() {
     console.log('update');
@@ -349,7 +204,7 @@ export class PatientDetailsComponent implements OnInit {
       .setValue(this.patientData.emergencyContactDetails.lastName);
     this.form
       .get('emergencyContactDetails')
-      .get('ralationship')
+      .get('relationship')
       .setValue(this.patientData.emergencyContactDetails.ralationship);
     this.form
       .get('emergencyContactDetails')
@@ -392,13 +247,5 @@ export class PatientDetailsComponent implements OnInit {
           .updatePatientById(this.form.value, updateId)
           .subscribe();
       });
-  }
-  chackBox() {
-    console.log('checkbox');
-    this.paddress = this.form.get('address').value;
-    this.form
-      .get('emergencyContactDetails')
-      .get('address')
-      .setValue(this.paddress);
   }
 }
