@@ -24,6 +24,10 @@ export class SidebarComponent  {
   showEmployeeSubMenu : boolean = false;
 
   isNurse : boolean = false;
+
+
+
+  // disabled link
   enterDetails:boolean=false;
   viewDetails:boolean=true;
   MyVisitHistory:boolean=true;

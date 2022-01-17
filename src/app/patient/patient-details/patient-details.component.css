@@ -5,7 +5,21 @@
     margin-left: 40vh;
     margin-right: 25vh;
 } */
-
+.example-button {
+    margin-top: 16px;
+  }
+  .success{
+    background-color: cornflowerblue;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    height: 100vh;
+    font-size: 50px;
+    padding-top: 45vh;
+    border-radius: 5px;
+  }
+  .example-tooltip-red {
+    background: #b71c1c;
+  }
 table {
     width: 100%;
   }

@@ -90,8 +90,28 @@ export class MyDetailsComponent implements OnInit {
       
        let d:any=this.location.getState();
        this.patientData=d;
+       this.patientService.getPatientDetailsById(1).subscribe(d=>
+        {
+          this.patientData=d;
+          this.PatientDataForTable = d.allergy;
+        console.log('welocome to allergy mapping');
+        this.dataSource.data = this.PatientDataForTable;
+        })
        
       this.getDataPatientDetails();
+      
+
+      this.patientData= this.patientService.sendDataToPatientDetailsTs();
+      console.log( "this is from patientDetailsTs "+this.patientData.firstName);
+      this.patientService
+      .getPatientDataByFirstNameAndEmail(this.patientData)
+      .subscribe((allergy) => {
+        this.PatientDataForTable = allergy;
+        console.log('welocome to allergy mapping');
+        this.dataSource.data = this.PatientDataForTable;
+        console.log('Data source : ', this.dataSource.data);
+      });
+      
     }
     // timepass()
     // {

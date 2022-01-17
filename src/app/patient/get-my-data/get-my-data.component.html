@@ -27,12 +27,7 @@
       <th>Ethnicity</th>
       <th>Languages</th>
       <th>Address</th>
-      <th>EM-firstName</th>
-      <th>EM-last Name</th>
-      <th>EM-Relationship</th>
-      <th>EM-Mobile No</th>
-    
-      
+     
     </tr>
   </thead>
   <tbody>
@@ -49,15 +44,59 @@
       
     </tr>
   </tbody>
+  <tr></tr>
+  <tr></tr>
+  <tr><td></td><td></td><td>Emergency Contact Information</td></tr>
+  <tr></tr>
   <thead>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    
+    <tr>
+    <th>first Name</th>
+    <th>Last Name</th>
+    <th>Relationship</th>
+    <th>Mobile No</th>
+    <th>Email</th>
+    <th>address</th>
+    <th>access</th>
+  </tr>
   </thead>
+  <tbody>
+    <tr>
+      <td>{{patientData?.emergencyContactDetails?.firstName}}</td>
+      <td>{{patientData?.emergencyContactDetails?.lastName}}</td>
+      <td>{{patientData?.emergencyContactDetails?.ralationship}}</td>
+      <td>{{patientData?.emergencyContactDetails?.mobileNo}}</td>
+      <td>{{patientData?.emergencyContactDetails?.email}}</td>
+      <td>{{patientData?.emergencyContactDetails?.address}}</td>
+      <td>{{patientData?.emergencyContactDetails?.access}}</td>
+      
+    </tr>
+  </tbody>
+  <tr></tr>
+  <tr></tr>
+  <tr><td></td><td></td><td></td><td>Allergies</td></tr>
+  <tr></tr>
+  <thead>
+<tr >
+  <th>Allergy Id</th>
+  <th>Allergy Type</th>
+  <th>Allergy Name</th>
+  <th>Allergy Description</th>
+  <th>Allergy ClinicalInformation</th>
+  
+</tr>
+
+  </thead>
+  <tbody>
+
+<tr *ngFor="let allergy of patientData?.allergy">
+  <td>{{allergy?.allergyId}}</td>
+  <td>{{allergy?.allergyType}}</td>
+  <td>{{allergy?.allergyName}}</td>
+  <td>{{allergy?.allergyDescription}}</td>
+  <td>{{allergy?.clinicalInformation}}</td>
+
+</tr>
+
+  </tbody>
 </table>
 </div>

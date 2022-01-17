@@ -5,11 +5,11 @@
       <div fxFlex="44" class="sec1" fxFlex.xs="55">
         <h1 style="color: white" class="heading" (click)="getfirstData()">My Demographic Details</h1>
         <br />
-        First Name &nbsp;&nbsp; : &nbsp;<span class="textc">
-          {{ patientData?.firstName }}</span
+         Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;<span class="textc">
+          {{ patientData?.firstName }}&nbsp;&nbsp;{{ patientData?.lastName }}</span
         ><br />
-        Last Name &nbsp;&nbsp;&nbsp;:&nbsp;
-        <span class="textc">{{ patientData?.lastName }} </span><br />
+        <!-- Last Name &nbsp;&nbsp;&nbsp;:&nbsp;
+        <span class="textc">{{ patientData?.lastName }} </span><br /> -->
         Date Of Birth &nbsp;:&nbsp;
         <span class="textc">{{ patientData?.dateOfBirth | date:'mediumDate'}} </span><br />
         Mobile NO &nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;<span class="textc"
@@ -31,14 +31,14 @@
         <h1 style="color: white" class="heading">My Emergency Contact</h1>
         <br />
         <table>
-          First Name&nbsp;&nbsp; : &nbsp;<span class="textc">{{
+          Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;<span class="textc">{{
             patientData?.emergencyContactDetails?.firstName
-          }}</span>
+          }}&nbsp;&nbsp;{{ patientData?.emergencyContactDetails?.lastName }}</span>
           <br />
-          Last Name&nbsp;&nbsp;&nbsp;:&nbsp;
+          <!-- Last Name&nbsp;&nbsp;&nbsp;:&nbsp;
           <span class="textc"
             >{{ patientData?.emergencyContactDetails?.lastName }} </span
-          ><br />
+          ><br /> -->
           Relationship :&nbsp;<span class="textc">{{
             patientData?.emergencyContactDetails?.ralationship
           }}</span>
@@ -268,6 +268,7 @@
                   <mat-option
                     *ngFor="let ethnicity of ethnicities"
                     value="{{ ethnicity }}"
+                    
                     >{{ ethnicity }}</mat-option
                   >
                 </mat-select>

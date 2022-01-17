@@ -63,8 +63,9 @@ export class AddAppointmentsComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value);
-    this.form.get('appointmentStatus')?.setValue('Booked');
+    this.form.get('appointmentStatus')?.setValue('Requested');
     this.service.addAppointment(this.form.value).subscribe();
+    this.route.navigate(["/scheduling/appointment-list"]);
   }
 
   //date picker filter

@@ -12,8 +12,29 @@ export class PatientService {
   downloadPatinet!: Patient;
   firstName!: string;
   lastName!: string;
+  pid!:number;
+  pFirstName!:string;
+  pLastName!:string;
+  pemail!:string;
+  patientDataFromPatientDetails!:Patient;
+  trueFromMyDetails!:boolean;
+  falseFromMyDetails!:boolean;
   constructor(private _httpClient: HttpClient) {}
 
+  
+  getHerePatientDataFromPatientDetails(patientData:Patient)
+  {
+    console.log(patientData.email+" from patient service");
+    this.pFirstName=patientData.firstName;
+    this.pLastName=patientData.lastName;
+    this.pemail=patientData.email;
+    
+     return this.patientDataFromPatientDetails=patientData;
+  }
+  sendDataToPatientDetailsTs()
+  {
+    return this.patientDataFromPatientDetails;
+  }
   setPatientIdFromTs(firstName: string, lastName: string) {
     this.firstName = firstName;
     this.lastName = lastName;
@@ -93,5 +114,18 @@ export class PatientService {
     return this._httpClient.get<Patient>(
       'http://localhost:9093/patientDetails/patient'
     );
+  }
+
+  checkPatientDetailsById(id:any):Observable<boolean>
+  {
+    return this._httpClient.get<boolean>(
+      'http://localhost:9093/patientDetails/checkPatientDetailsById'+"/"+id
+    ); 
+  }
+  getPatientDetailsById(id:any):Observable<Patient>
+  {
+    return this._httpClient.get<Patient>(
+      'http://localhost:9093/patientDetails/PatientById'+"/"+id
+    ); 
   }
 }

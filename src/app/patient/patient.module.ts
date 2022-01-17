@@ -27,13 +27,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditPatientDetialsComponent } from './edit-patient-detials/edit-patient-detials.component';
 import { SuccessfullySubmittedPatienDatailsComponent } from './successfully-submitted-patien-datails/successfully-submitted-patien-datails.component';
 import {MatDividerModule} from '@angular/material/divider';
+import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'patient-details',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
+  },
+  {
+    path:'dashboard',component:PatientDashboardComponent
   },
   {
     path: 'patient-details',
@@ -73,10 +79,13 @@ const routes: Routes = [
     MyCompliteDetailsComponent,
     EditPatientDetialsComponent,
     SuccessfullySubmittedPatienDatailsComponent,
+    PatientDashboardComponent,
   ],
   imports: [
     CommonModule,
+    MatTooltipModule,
     MatCardModule,
+    MatStepperModule,
     MatDialogModule,
     MatSnackBarModule,
     MatDatepickerModule,

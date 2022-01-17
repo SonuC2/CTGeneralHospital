@@ -154,7 +154,7 @@
                     <h1 class="head">Allergy No: {{ i + 1 }}</h1>
                     <mat-form-field appearance="fill" class="pad w">
                       <mat-label>AllergyId*</mat-label>
-                      <mat-select formControlName="allergyId">
+                      <mat-select formControlName="allergyId" (ngModelChange)="onChange($event)">
                         <mat-option
                           *ngFor="let allergydata of allergyI"
                           value="{{ allergydata }}"
@@ -168,10 +168,11 @@
                     >
                       <mat-label>Allergy Type</mat-label>
 
-                      <mat-select formControlName="allergyType">
+                      <mat-select formControlName="allergyType" >
                         <mat-option
                           *ngFor="let allergyType of allergyT"
                           value="{{ allergyType }}"
+                          
                           >{{ allergyType }}</mat-option
                         >
                       </mat-select>
@@ -212,6 +213,7 @@
                       type="button"
                       style="background-color: #03a66a; margin: 5px"
                       (click)="pushAllergy()"
+                      
                     >
                       <mat-icon>add</mat-icon>
                     </button>
@@ -319,10 +321,12 @@
                   style="background-color: #03a66a; width: 50vh"
                   class="example-full-width"
                   type="button"
+                  matTooltip="Click here to submit patientDetails"
                   mat-stroked-button
+                  class="example-button"
+                  matTooltipClass="example-tooltip-red"
                   (click)="submitDetails()"
-                  routerLink="/patient/my-details"
-                  [state]="form.value"
+                 
                 >
                   Submit
                 </button>
@@ -330,24 +334,10 @@
             </mat-card-content>
           </mat-card>
         </div>
-        <!-- <div fxFlex="20" class="sec1" fxFlex.xs="55">
-          <mat-card
-            style="background-color: rgb(176, 201, 202); height: fit-content"
-            ><h1 class="head" style="text-align: center">Inbox</h1>
-            <mat-card-content
-              >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Voluptate facilis soluta beatae, commodi sunt ipsa aut molestias
-              perspiciatis voluptatibus amet ex officiis ipsam doloribus id
-              reiciendis quas est necessitatibus natus aliquam. Suscipit quis
-              voluptates deserunt eligendi libero aspernatur atque eaque quam
-              delectus cupiditate. Aspernatur perferendis odit hic voluptates
-              asperiores aliquam!</mat-card-content
-            ></mat-card
-          >
-        </div> -->
+        
       </div>
     </div>
   </form>
 </div>
-
+<div [hidden]="section4" class="success">You have successfully submitted your details</div>
 <router-outlet></router-outlet>

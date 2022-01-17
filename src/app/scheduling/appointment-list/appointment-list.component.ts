@@ -69,8 +69,9 @@ export class AppointmentListComponent implements OnInit {
   //  this.router.navigate(['/scheduling/edit-appointment/',row])
   // }
 
-  deleteById() {
+  deleteById(id:number) {
     console.log(this.appointmentid);
-    this.schedulingService.deleteAppointmentById(this.appointmentid);
+    this.schedulingService.deleteAppointmentById(id).subscribe();
+    window.location.reload();
   }
 }
