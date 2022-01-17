@@ -82,6 +82,7 @@ export class AddAppointmentsComponent implements OnInit {
     // this.form.get('employeeName')?.setValue('Dr. John Auguston');
     this.form.get('appointmentStatus')?.setValue('Requested');
     this.service.addAppointment(this.form.value).subscribe();
+    this.route.navigate(["/scheduling/appointment-list"]);
   }
 
   //date picker filter

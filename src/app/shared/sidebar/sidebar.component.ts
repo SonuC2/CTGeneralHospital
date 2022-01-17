@@ -14,8 +14,8 @@ export class SidebarComponent {
   isExpanded: boolean = true;
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
-  isPatient: boolean = false;
-  isPhysician: boolean = true;
+  isPatient: boolean = true;
+  isPhysician: boolean = false;
 
   showSubmenu: boolean = false;
   isShowing = false;
@@ -24,10 +24,13 @@ export class SidebarComponent {
   showEmployeeSubMenu : boolean = false;
   showPhysicianSubMenu : boolean = false;
 
-  
+
+
+
+  // disabled link
   enterDetails:boolean=false;
-  viewDetails:boolean=true;
-  MyVisitHistory:boolean=true;
+  viewDetails:boolean=false;
+  MyVisitHistory:boolean=false;
   downloadMydata:boolean=true;
   appointment:boolean=true;
 
