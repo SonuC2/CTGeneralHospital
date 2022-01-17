@@ -344,7 +344,82 @@
     </button>
   </mat-sidenav>
 
-  <mat-sidenav-content >
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<!-- For Doctor  -->
+
+<mat-sidenav-container *ngIf="isPhysician">
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <button mat-button class="menu-button">
+      <mat-icon>home</mat-icon>
+      <span style="padding-left: 5px;">DashBoard</span>
+    </button>
+    <button mat-button class="menu-button" (click)="showPatientSubMenu = !showPatientSubMenu" (mouseenter)="mouseenter()"
+      (mouseleave)="mouseleave()">
+      <mat-icon>person</mat-icon>
+      <span *ngIf="isExpanded || isShowing" style="padding-left: 5px;">Patient</span>
+    </button>
+    <div class="submenu" [ngClass]="{ expanded: showPatientSubMenu }" *ngIf="isShowing || isExpanded">
+      <button mat-button class="menu-button" routerLink="nurse/patient-visit">
+        <mat-icon>add</mat-icon>
+        <span style="padding-left: 5px;">Add Patient Visit</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="nurse/patient-visit">
+        <mat-icon>restore</mat-icon>
+        <span style="padding-left: 5px;">Patient Visit History</span>
+      </button>
+    </div>
+
+    <button mat-button class="menu-button" routerLink="doctor/timeslot">
+      <mat-icon>event</mat-icon>
+      <span style="padding-left: 5px;">Time-Slot</span>
+    </button>
+
+    <button mat-button class="menu-button" (click)="showSubmenu = !showSubmenu" (mouseenter)="mouseenter()"
+      (mouseleave)="mouseleave()">
+      <mat-icon>date_range</mat-icon>
+      <span *ngIf="isExpanded || isShowing" style="padding-left: 5px;">Appointments</span>
+    </button>
+    <div class="submenu" [ngClass]="{ expanded: showSubmenu }" *ngIf="isShowing || isExpanded">
+      <button mat-button class="menu-button" routerLink="scheduling/appointment-calendar">
+        <mat-icon>add</mat-icon>
+        <span style="padding-left: 5px;">Schedule Appointment</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="scheduling/appointment-list">
+        <mat-icon>list </mat-icon>
+        <span style="padding-left: 5px;">Appointment list</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="doctor/requested-appointment-list">
+        <mat-icon>assignment_turned_in </mat-icon>
+        <span style="padding-left: 5px;">Approve Appointment</span>
+      </button>
+    </div>
+
+
+    <button mat-button class="menu-button" routerLink="/">
+      <mat-icon>textsms</mat-icon>
+      <span style="padding-left: 5px;"> Inbox</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button">
+      <mat-icon>info</mat-icon>
+      <span style="padding-left: 5px;">About</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>help_outline</mat-icon>
+      <span style="padding-left: 5px;">Help</span>
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
     <div class="content">
       <router-outlet></router-outlet>
     </div>

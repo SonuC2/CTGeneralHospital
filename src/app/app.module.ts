@@ -32,6 +32,11 @@ const routes: Routes = [
           import('./inbox/inbox.module').then((m) => m.InboxModule),
       },
       {
+        path: 'doctor',
+        loadChildren: () =>
+          import('./doctor/doctor.module').then((m) => m.DoctorModule),
+      },
+      {
         path: 'scheduling',
         loadChildren: () =>
           import('src/app/scheduling/scheduling.module').then(

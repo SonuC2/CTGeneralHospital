@@ -8,25 +8,29 @@ import { Appointments } from '../entities/appointments';
 })
 export class SchedulingService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private _httpClient:HttpClient) { }
 
 
   addAppointment(ap:Appointments){
-    return this.httpClient.post("http://localhost:8080/appointment/addAppointment",ap);
+    return this._httpClient.post("http://localhost:8080/appointment",ap);
   }
 
   getAllAppointmentList(): Observable<Appointments[]> {
-
-    return this.httpClient.get<Appointments[]>('http://localhost:8080/appointment/getAllAppointments');
+    return this._httpClient.get<Appointments[]>('http://localhost:8080/getBookedAndRescheduleAppointment');
 
   }
 
-  updateAppointment(appointment:Appointments,appointmentId:number):Observable<Appointments>{
-      return this.httpClient.put<Appointments>('http://localhost:8080/appointment/updateAppointmentById/'+ appointmentId,appointment);
+  updateAppointment(appointment:Appointments):Observable<Appointments>{
+      return this._httpClient.patch<Appointments>('http://localhost:8080/appointment/',appointment);
+      
   }
 
-  deleteAppointmentById(appointmentId:number){
-    return this.httpClient.delete('http://localhost:8080/appointment/deleteAppointmentById/'+ appointmentId)
+  // cancelAppointmentById(appointmentId:number){
+  //   return this._httpClient.delete('http://localhost:8080/appointment/deleteAppointmentById/'+ appointmentId);
+  // }
+
+  cancelAppointment(appointment: Appointments): Observable<Appointments[]>{
+    return this._httpClient.patch<Appointments[]>('http://localhost:8080/cancelAppointment/',appointment);
   }
   
 }

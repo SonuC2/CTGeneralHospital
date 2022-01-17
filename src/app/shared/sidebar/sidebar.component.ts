@@ -9,18 +9,27 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class SidebarComponent {
   isNurse: boolean = false;
-  isAdmin: boolean = true;
+  isAdmin: boolean = false;
   title = 'CTGeneralHospital';
   isExpanded: boolean = true;
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   isPatient: boolean = false;
+  isPhysician: boolean = true;
 
   showSubmenu: boolean = false;
   isShowing = false;
   showSubSubMenu: boolean = false;
   showPatientSubMenu: boolean = false;
-  showEmployeeSubMenu: boolean = false;
+  showEmployeeSubMenu : boolean = false;
+  showPhysicianSubMenu : boolean = false;
+
+  
+  enterDetails:boolean=false;
+  viewDetails:boolean=true;
+  MyVisitHistory:boolean=true;
+  downloadMydata:boolean=true;
+  appointment:boolean=true;
 
   constructor(private observer: BreakpointObserver) {}
   
