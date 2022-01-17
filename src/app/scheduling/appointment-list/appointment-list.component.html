@@ -19,9 +19,9 @@
     </ng-container>
 
     <!-- physician Column -->
-    <ng-container matColumnDef="physician">
+    <ng-container matColumnDef="employeeName">
         <th mat-header-cell *matHeaderCellDef>Physician</th>
-        <td mat-cell *matCellDef="let element">{{ element.physician }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.employeeName }}</td>
     </ng-container>
 
     <!-- specialisation Column -->
@@ -33,17 +33,33 @@
     <!-- Symbol Column -->
     <ng-container matColumnDef="appointmentDate">
         <th mat-header-cell *matHeaderCellDef>Date</th>
-        <td mat-cell *matCellDef="let element">{{ element.appointmentDate }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.appointmentDate |date }}</td>
     </ng-container>
 
     <ng-container matColumnDef="appointmentStatus">
         <th mat-header-cell *matHeaderCellDef>Status</th>
-        <td mat-cell *matCellDef="let element">{{ element.appointmentStatus }}</td>
+        <td mat-cell *matCellDef="let element">
+            <!-- {{ element.appointmentStatus }} -->
+            <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection" style="size: 2px;">
+                <mat-chip focus *ngIf="element.appointmentStatus =='Booked'"
+                    style="background-color: #03a66a;width: 9vh; color: white;font-weight: lighter;font-size: 12px;">
+                    <div style="text-align: center; position: relative;">{{ element.appointmentStatus }}</div>
+                </mat-chip>
+                <mat-chip *ngIf="element.appointmentStatus =='Requested'"
+                    style="background-color:rgb(233, 193, 18);width: 11vh;color: white; font-weight:lighter;font-size: 12px;">
+                    {{ element.appointmentStatus }}
+                </mat-chip>
+                <mat-chip *ngIf="element.appointmentStatus =='Rescheduled'"
+                style="background-color:rgb(233, 193, 18);width: 11vh;color: white; font-weight:lighter;font-size: 12px;">
+                {{ element.appointmentStatus }}
+            </mat-chip>
+            </mat-chip-list>
+        </td>
     </ng-container>
 
-    <ng-container matColumnDef="appointmentTime">
+    <ng-container matColumnDef="timeSlot">
         <th mat-header-cell *matHeaderCellDef>Time</th>
-        <td mat-cell *matCellDef="let element">{{ element.appointmentTime }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.timeSlot }}</td>
     </ng-container>
 
     <ng-container matColumnDef="action">
@@ -51,12 +67,12 @@
         <td mat-cell *matCellDef="let element">
             <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary">
                 <mat-icon aria-label="Edit" [state]=" element"
-                    routerLink="/scheduling/edit-appointment/{{ element.appointmentId }}">edit</mat-icon>
+                    routerLink="/scheduling/edit-appointment/{{ element}}">edit</mat-icon>
                 <!-- <mat-icon aria-label="Edit" (click)="navigateToUpdate(element.appointmentId)" >edit</mat-icon> -->
             </button>
 
-            <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="deleteById(element.appointmentId)">
-                <mat-icon aria-label="Delete">delete</mat-icon>
+            <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="cancelAppointment(element)">
+                <mat-icon aria-label="Delete">cancel</mat-icon>
             </button>
         </td>
     </ng-container>

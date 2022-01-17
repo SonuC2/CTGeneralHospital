@@ -3,21 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultComponent } from './shared/default/default.component';
-import { DashboardComponent } from './shared/dashboard/dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+
 
 const routes: Routes = [
   {
     path: '',
     component: DefaultComponent,
     children: [
-      {
-        path: '',
-
-        component: DashboardComponent,
-      },
       {
         path: 'nurse',
 
@@ -37,6 +32,11 @@ const routes: Routes = [
           import('./inbox/inbox.module').then((m) => m.InboxModule),
       },
       {
+        path: 'doctor',
+        loadChildren: () =>
+          import('./doctor/doctor.module').then((m) => m.DoctorModule),
+      },
+      {
         path: 'scheduling',
         loadChildren: () =>
           import('src/app/scheduling/scheduling.module').then(
@@ -46,7 +46,7 @@ const routes: Routes = [
       {
         path: 'admin',
         loadChildren: () =>
-          import('src/app/admin/admin.module').then((m) => m.AdminModule),
+          import('./admin/admin.module').then((m) => m.AdminModule),
       },
     ],
   },
@@ -59,7 +59,6 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule,
     SharedModule,
-    // ScheduleModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
   ],

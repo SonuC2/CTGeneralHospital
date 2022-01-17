@@ -5,6 +5,7 @@
     margin-left: 40vh;
     margin-right: 25vh;
 } */
+<<<<<<< HEAD
 .example-button {
     margin-top: 16px;
   }
@@ -27,34 +28,10 @@ table {
     font-size: 14px;
     width: 100%;
   }
+=======
 
-  .center-text-size{
-    font-size: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+>>>>>>> 49e9d25695101710d8dd0ad8fbc2ff76d7e2c1b9
 
-  th{
-    background-color: #0055d2;
-    font-weight:unset;
-    font-size: 12px;
-    color: white;
-  }
-  .backer{
-    background-color: #DAD8D8;
-    border-radius: 4px;
-  }
-
-  .textc{
-      color: white;
-      font-family: sans-serif;
-  }
 
 
 .head{

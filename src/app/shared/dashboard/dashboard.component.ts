@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { InboxModule } from 'src/app/inbox/inbox.module';
-import { NotesComponent } from 'src/app/inbox/notes/notes.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,14 +7,9 @@ import { NotesComponent } from 'src/app/inbox/notes/notes.component';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private router: Router,private route: ActivatedRoute) { }
- 
-  inboxComponent!: NotesComponent;
-  ngOnInit(): void {
-  }
+  constructor() { }
 
-  loadInbox(){
-    this.router.navigate(['"nurse/inbox/inbox'])
+  ngOnInit(): void {
   }
 
 }

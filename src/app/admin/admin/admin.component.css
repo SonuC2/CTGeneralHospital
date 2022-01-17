@@ -1,0 +1,16 @@
+tr.example-element-row:hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:active {
+  background: #efefef;
+}
+th {
+  background: #0055d2;
+  color: white;
+}
+
+table {
+  border: none;
+  border-radius: 10px;
+}

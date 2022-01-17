@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Appointments } from 'src/app/entities/appointments';
 import { SchedulingService } from 'src/app/services/scheduling.service';
 
 @Component({
@@ -13,7 +14,7 @@ import { SchedulingService } from 'src/app/services/scheduling.service';
 export class EditAppointmentComponent implements OnInit {
   form!: FormGroup;
   appointmentId!: any;
-  appointmentStatus: String = 'Rescheduled';
+  // appointmentStatus: String = 'Rescheduled';
 
   constructor(
     private fb: FormBuilder,
@@ -25,15 +26,18 @@ export class EditAppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      specialisation: [],
-      physician: [],
       meetingTitle: [],
       description: [],
+      specialisation: [],
+      employeeId: [],
+      employeeName: [],
       appointmentDate: [],
-      appointmentTime: [],
+      timeSlot: [],
       reason: [],
       rescheduleDate: [],
-      rescheduleTime: [],
+      rescheduleTimeSlot: [],
+      patientId: [],
+      patientName: [],
       appointmentStatus: [],
     });
     // this.appointmentTest=this.router.snapshot.paramMap.get("index");
@@ -52,7 +56,7 @@ export class EditAppointmentComponent implements OnInit {
     'Anesthesiologists',
     'Gynecologists',
   ];
-  physician: string[] = [
+  employeeName: string[] = [
     'Dr.John',
     'Dr Bhushan',
     'Dr. Sonu',
@@ -61,41 +65,35 @@ export class EditAppointmentComponent implements OnInit {
     'Dr. Priyanka',
     'Dr.Mansi',
   ];
-  appointmentTime: string[] = ['9am - 10am', '12pm - 1pm', '3pm-4pm'];
-  rescheduleTime: string[] = [
-    '10am - 11am',
-    '10.30pm - 11pm',
-    '3pm-4pm',
-    '9am - 10am',
-    '12pm - 1pm',
-  ];
+  timeSlot: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  rescheduleTimeSlot:number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-     //date picker filter
+  //date picker filter
   myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
-     // Prevent Saturday  from being selected.
-    return day !== 0 ;
+    // Prevent Saturday  from being selected.
+    return day !== 0;
   };
 
   onSubmit() {
-    console.log(this.form.value);
-    console.log(this.form.get('id')?.value);
+    let ob = this.form.value;
+    // console.log(this.form.get('appointmentId')?.value);
+    console.log(this.appointmentId)
     this.form.get('appointmentStatus')?.setValue('Rescheduled');
-    this.service
-      .updateAppointment(this.form.value, this.appointmentId)
-      .subscribe();
-      this.route.navigate(["/scheduling/appointment-list"]);
+    console.log(this.form.value);
+    this.service.updateAppointment( ob).subscribe();
+    this.route.navigate(['/scheduling/appointment-list']);
   }
 
   getAppointmentData() {
-    let data: any = this.location.getState();
-    console.log(data);
+    let data: any= this.location.getState();
+    console.log("edit list"+data.timeSlot);
     this.form.get('specialisation')?.setValue(data.specialisation);
-    this.form.get('physician')?.setValue(data.physician);
+    this.form.get('employeeName')?.setValue(data.employeeName);
     this.form.get('meetingTitle')?.setValue(data.meetingTitle);
     this.form.get('description')?.setValue(data.description);
     this.form.get('appointmentDate')?.setValue(data.appointmentDate);
-    this.form.get('appointmentTime')?.setValue(data.appointmentTime);
+    this.form.get('timeSlot')?.setValue(data.timeSlot);
     this.form.get('appointmentStatus')?.setValue(data.appointmentStatus);
   }
 }

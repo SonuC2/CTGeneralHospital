@@ -8,6 +8,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 
 
 
+// let ELEMENT_DATA: EmployeeData[] = [];
 
 @Component({
   selector: 'app-employee-list',
@@ -15,8 +16,14 @@ import { EmployeeService } from 'src/app/services/employee.service';
   styleUrls: ['./employee-list.component.css']
 })
 export class EmployeeListComponent implements OnInit {
-
-  private employees: Employee[] = [];
+  isChecked: boolean = true;
+  color = 'primary';
+  checked = true;
+  // selected = true;
+  checked1: boolean = false;
+  checked2: boolean = true;
+  disabled = false;
+  employees: Employee[] = [];
 
   displayedColumns: string[] = ['employeeId', 'firstName', 'lastName','mobileNO', 'email','specialisation','roleType'];
   // dataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -66,8 +73,5 @@ id!:number;
     this.router.navigate(['/nurse/employee-details/',row])
     
   }
-
   
-
-
 }

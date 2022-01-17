@@ -92,7 +92,6 @@ const routes: Routes = [
     MatNativeDateModule,
     MatTableModule,
     ReactiveFormsModule,
-    MatDividerModule,
     FormsModule,
     // MatGridListModule,
     MatButtonModule,

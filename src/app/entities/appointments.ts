@@ -2,14 +2,19 @@ import { Time } from "@angular/common";
 
 
 export class Appointments {
-  appointmentTime!: string;
-  specialisation!: string;
-  physician!: string;
+  
   meetingTitle!: string;
   description!: string;
-  appointmentDate!:String;
+  specialisation!: string;
+  employeeId!:number;
+  employeeName!:String;
+  appointmentDate!:Date;
+  timeSlot!: number;
   reason!:String;
   rescheduleDate!:Date;
-  rescheduleTime!:Time;
+  rescheduleTimeSlot!:number;
+  patientId!:number;
+  patientName!:String;
   appointmentStatus!:String;
+
 }
