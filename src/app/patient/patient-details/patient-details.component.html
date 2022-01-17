@@ -1,14 +1,8 @@
 <div [hidden]="section1">
-  <form [formGroup]="form" (ngSubmit)="submitDetails()">
+  <form [formGroup]="form">
     <div class="bounds">
-      <div
-        class="content"
-        fxLayout="row"
-        fxLayout.xs="column"
-        fxFlexFill
-        style="background-color: #bad2f7"
-      >
-        <div fxFlex="40" class="sec1" fxFlex.xs="55">
+      <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <div fxFlex="50" class="sec1" fxFlex.xs="55">
           <mat-card>
             <mat-card-content>
               <h1 class="head">Demographic Details</h1>
@@ -27,6 +21,7 @@
                   matInput
                   [matDatepicker]="picker"
                   formControlName="dateOfBirth"
+                  [max]="today"
                 />
                 <mat-datepicker-toggle
                   matSuffix
@@ -53,11 +48,23 @@
               <br />
               <mat-form-field appearance="fill" class="pad w">
                 <mat-label>Race</mat-label>
-                <input matInput formControlName="race" /> </mat-form-field
+                <!-- <input matInput formControlName="race" /> -->
+                <mat-select formControlName="race">
+                  <mat-option *ngFor="let race of races" value="{{ race }}">{{
+                    race
+                  }}</mat-option>
+                </mat-select> </mat-form-field
               >&nbsp; &nbsp;
               <mat-form-field appearance="fill" class="pad w">
                 <mat-label>Ethnicity</mat-label>
-                <input matInput formControlName="ethnicity" />
+                <!-- <input matInput formControlName="ethnicity" /> -->
+                <mat-select formControlName="ethnicity">
+                  <mat-option
+                    *ngFor="let ethnicity of ethnicities"
+                    value="{{ ethnicity }}"
+                    >{{ ethnicity }}</mat-option
+                  >
+                </mat-select>
               </mat-form-field>
               <div class="example-container">
                 <mat-form-field
@@ -113,6 +120,7 @@
                     matInput
                     placeholder="Ex. 100 Main St"
                     formControlName="address"
+                    [(ngModel)]="paddress"
                   ></textarea>
                 </mat-form-field>
               </p>
@@ -148,7 +156,7 @@
                       <mat-label>AllergyId*</mat-label>
                       <mat-select formControlName="allergyId" (ngModelChange)="onChange($event)">
                         <mat-option
-                          *ngFor="let allergydata of allergylist"
+                          *ngFor="let allergydata of allergyI"
                           value="{{ allergydata }}"
                           >{{ allergydata }}</mat-option
                         >
@@ -175,9 +183,14 @@
                       class="example-full-width pad w"
                     >
                       <mat-label>Allergy Name</mat-label>
-                      <input
-                        formControlName="allergyName"
-                        matInput /></mat-form-field
+
+                      <mat-select formControlName="allergyName">
+                        <mat-option
+                          *ngFor="let allergyName of allergyN"
+                          value="{{ allergyName }}"
+                          >{{ allergyName }}</mat-option
+                        >
+                      </mat-select> </mat-form-field
                     >&nbsp; &nbsp;
 
                     <mat-form-field
@@ -219,7 +232,7 @@
             </mat-card-content>
           </mat-card>
         </div>
-        <div fxFlex="40" class="sec2" fxFlex.xs="40">
+        <div fxFlex="50" class="sec2" fxFlex.xs="40">
           <mat-card>
             <mat-card-content>
               <h1 class="head">Emergency Contact Information</h1>
@@ -237,11 +250,11 @@
                 </mat-form-field>
                 <mat-form-field appearance="fill" class="pad w">
                   <mat-label>Relationship*</mat-label>
-                  <mat-select formControlName="relationship">
+                  <mat-select formControlName="ralationship">
                     <mat-option
-                      *ngFor="let relationship of list"
-                      value="{{ relationship }}"
-                      >{{ relationship }}</mat-option
+                      *ngFor="let ralationship of list"
+                      value="{{ ralationship }}"
+                      >{{ ralationship }}</mat-option
                     >
                   </mat-select> </mat-form-field
                 >&nbsp; &nbsp;
@@ -263,7 +276,10 @@
                     />
                   </mat-form-field>
                 </div>
-                <mat-checkbox class="example-margin"
+                <mat-checkbox
+                  class="example-margin"
+                  id="checkBox"
+                  (click)="chackBox()"
                   >Same as per patient</mat-checkbox
                 >
 
@@ -277,6 +293,7 @@
                       matInput
                       placeholder="Ex. 100 Main St"
                       formControlName="address"
+                      [(ngModel)]="eaddress"
                     ></textarea>
                   </mat-form-field>
                 </p>

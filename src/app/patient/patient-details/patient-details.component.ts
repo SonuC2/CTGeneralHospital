@@ -128,7 +128,7 @@ export class PatientDetailsComponent implements OnInit {
         access: [''],
       }),
     });
-    this.patientService.checkPatientDetailsById(1).subscribe(data=>
+    this.patientService.checkPatientDetailsById(2).subscribe(data=>
       {
         this.varifyNew=data;
    if(data===true)
