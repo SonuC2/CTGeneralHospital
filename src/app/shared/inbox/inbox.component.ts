@@ -12,9 +12,6 @@ import { Inbox } from 'src/app/entities/inbox';
 import { InboxService } from 'src/app/services/inbox.service';
 import { ReplyNoteDialogComponent } from '../reply-note-dialog/reply-note-dialog.component';
 
-export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion';
-}
 
 @Component({
   selector: 'app-inbox',
@@ -167,17 +164,18 @@ export class InboxComponent implements OnInit {
     console.log(event);
     console.log(event.tab.textLabel);
 
-    if (event.index === 1) {
-      console.log('sent notes tab clicked');
+    if(event.index === 1){
+      console.log("sent notes tab clicked");
 
-      console.log('sender id: ', this.senderId);
-
-      this.inboxService.getAllSentNote(this.senderId).subscribe((sentNotes) => {
-        this.sentNotes = sentNotes;
-        this.dataSourceSent.data = this.sentNotes;
-        console.log('Data source : ', this.dataSourceSent.data);
-        // console.log("message:" );
-      });
+   
+    console.log("sender id: ", this.senderId);
+    
+    this.inboxService.getAllSentNote(this.senderId).subscribe(sentNotes =>{
+      this.sentNotes = sentNotes;
+      this.dataSourceSent.data = this.sentNotes
+      console.log("Data source : " , this.dataSourceSent.data);     
+    })
+      
     }
 
     if (event.index === 2) {
@@ -199,29 +197,16 @@ export class InboxComponent implements OnInit {
   sendReplyFromSentNotes(row: any) {
     console.log('Row data from sent notes: ', row);
 
-    //  this.openDialog();
     const dialogRef = this.dialog.open(ReplyNoteDialogComponent, {
-      width: '500px',
-      data: {
-        receiverId: row.receiverId,
-        receiverName: row.receiverName,
-        receiverSpecialisation: row.receiverSpecialisation,
-        senderId: row.senderId,
-        senderName: row.senderName,
-        senderSpecialisation: row.senderSpecialisation,
-      },
+      width: '250px',
+      data: {name: "Priyanka"},
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
     });
-  }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(ReplyNoteDialogComponent);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 }

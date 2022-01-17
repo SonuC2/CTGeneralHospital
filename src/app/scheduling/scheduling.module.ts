@@ -9,7 +9,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
+import {MatDividerModule} from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -58,6 +58,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    
     MatButtonModule,
     MatCardModule,
     FlexLayoutModule,

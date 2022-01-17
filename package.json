@@ -24,6 +24,8 @@
     "@angular/router": "~13.0.0",
     "@syncfusion/ej2-angular-schedule": "^19.4.41",
     "@syncfusion/ej2-schedule": "^19.4.41",
+    "chart.js": "^3.7.0",
+    "ng2-charts": "^3.0.6",
     "primeicons": "^5.0.0",
     "primeng": "^13.0.4",
     "rxjs": "~7.4.0",

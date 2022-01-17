@@ -1,7 +1,6 @@
 import { UserRole } from "./user-role";
 export class Employee {
-
-     employeeId!: number;
+     employeeId !: number;
 	 title!:string;
 	 firstName!:string;
 	 lastName!:string;
@@ -14,5 +13,6 @@ export class Employee {
 	 qualification!:string;
 	 specialisation!:string;
      status!:string;
+     blockStatus!:string;
      userRole!:UserRole;
 }

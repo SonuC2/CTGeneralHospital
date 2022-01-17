@@ -1,10 +1,10 @@
 <div class="center">
   <mat-card-header>
-    <mat-card-title style="color: #03a66a;">Add Appointment Details</mat-card-title>
-    <mat-card-subtitle class="center-text-size">Fill all required field</mat-card-subtitle>
+      <mat-card-title style="color: #03a66a;">Add Appointment Details</mat-card-title>
+      <mat-card-subtitle class="center-text-size">Fill all required field</mat-card-subtitle>
   </mat-card-header>
 </div>
-<mat-progress-bar></mat-progress-bar>
+<mat-progress-bar ></mat-progress-bar>
 &nbsp;
 <!--  for patient -->
 
@@ -235,8 +235,7 @@
 
           <mat-form-field appearance="fill" class="pad date w">
             <mat-label>Appointment date*</mat-label>
-            <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="appointmentDate"
-              required />
+            <input matInput  [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="appointmentDate" required />
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>&nbsp; &nbsp;

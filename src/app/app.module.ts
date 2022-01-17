@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultComponent } from './shared/default/default.component';
-import { DashboardComponent } from './shared/dashboard/dashboard.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,28 +14,27 @@ const routes: Routes = [
     component: DefaultComponent,
     children: [
       {
-        path: '',
-        component: DashboardComponent,
-      },
-      {
         path: 'nurse',
+
         loadChildren: () =>
           import('./nurse/nurse.module').then((m) => m.NurseModule),
+      },
+      {
+        path: 'patient',
+
+        loadChildren: () =>
+          import('src/app/patient/patient.module').then((m) => m.PatientModule),
+      },
+
+      {
+        path: 'inbox',
+        loadChildren: () =>
+          import('./inbox/inbox.module').then((m) => m.InboxModule),
       },
       {
         path: 'doctor',
         loadChildren: () =>
           import('./doctor/doctor.module').then((m) => m.DoctorModule),
-      },
-      {
-        path: 'patient',
-        loadChildren: () =>
-          import('src/app/patient/patient.module').then((m) => m.PatientModule),
-      },
-      {
-        path: 'inbox',
-        loadChildren: () =>
-          import('./inbox/inbox.module').then((m) => m.InboxModule),
       },
       {
         path: 'scheduling',
@@ -48,7 +46,7 @@ const routes: Routes = [
       {
         path: 'admin',
         loadChildren: () =>
-          import('src/app/admin/admin.module').then((m) => m.AdminModule),
+          import('./admin/admin.module').then((m) => m.AdminModule),
       },
     ],
   },
@@ -61,7 +59,6 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule,
     SharedModule,
-    // ScheduleModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
   ],
