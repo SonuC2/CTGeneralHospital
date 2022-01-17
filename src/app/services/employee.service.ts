@@ -23,4 +23,8 @@ export class EmployeeService {
     // return this.httpClient.get<Employee>("http://localhost:8080/employee/getById/",{params});
     return this.httpClient.get<Employee>(url);
   }
+
+  getEmployeeDetailsByUserId(userId:number):Observable<Employee>{
+    return this.httpClient.get<Employee>('http://localhost:9004/employee/employee-details/'+ userId );
+  }
 }

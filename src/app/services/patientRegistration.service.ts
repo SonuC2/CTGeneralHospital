@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PatientRegistration } from '../entities/patientRegistration';
+import { PatientRegistration } from '../entities/patient-registration';
+// import { PatientRegistration } from '../entities/patientRegistration';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,19 @@ export class PatientRegistrationService {
 
   submitPatientRegDetails(data:PatientRegistration):Observable<PatientRegistration>
   {
-    return this._httpClient.post<PatientRegistration>("http://localhost:7070/savePatientReg",data);
+    return this._httpClient.post<PatientRegistration>("http://localhost:9004/register-patient",data);
+  }
+
+  registerPatient(data:PatientRegistration):Observable<PatientRegistration>{
+    return this._httpClient.post<PatientRegistration>("http://localhost:9004/register-patient",data);
+  }
+
+  getAllPatientList():Observable<PatientRegistration[]>{
+    return this._httpClient.get<PatientRegistration[]>('http://localhost:9004/register-patient' );
+  }
+
+  getPatientDetailsByUserId(userId:number):Observable<PatientRegistration>{
+    return this._httpClient.get<PatientRegistration>('http://localhost:9004/register-patient/patient-detaild/'+ userId );
   }
 
 }

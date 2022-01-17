@@ -25,7 +25,17 @@ import { PatientVisitComponent } from './patient-visit/patient-visit.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EditPatientComponent } from './edit-patient/edit-patient.component';
+import { NurseDashboardComponent } from './nurse-dashboard/nurse-dashboard.component';
+import { InboxComponent } from './inbox/inbox.component';
+import { ReplyNoteDialogComponent } from './reply-note-dialog/reply-note-dialog.component';
+import { RegisterPatientComponent } from './register-patient/register-patient.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 const routes: Routes = [
+  {
+    path: "",
+    component: NurseDashboardComponent,
+    
+    },
   {
   path: "employee-list",
   component: EmployeeListComponent,
@@ -49,19 +59,29 @@ const routes: Routes = [
       component: PatientVisitComponent,
       // data:{id: 1}
       },
+      {
+        path: "register-patient",
+        component: RegisterPatientComponent,
+        // data:{id: 1}
+        },
     // {
     //   path:"patient-details",
     //   component:PatientDetailsComponent
     // },
+    {
+      path: "notes",
+      component: InboxComponent,
+      // data:{id: 1}
+      },
     {
       path: 'patient',
       loadChildren: () =>
         import('src/app/patient/patient.module').then((m) => m.PatientModule),
     },
     {
-      path: 'inbox',
+      path: 'shared',
       loadChildren: () =>
-        import('src/app/inbox/inbox.module').then((m) => m.InboxModule),
+        import('src/app/shared/shared.module').then((m) => m.SharedModule),
     },
   ]
 
@@ -72,7 +92,11 @@ const routes: Routes = [
     EmployeeListComponent,
     PatientVisitComponent,
     PatientListComponent,
-    EditPatientComponent
+    EditPatientComponent,
+    NurseDashboardComponent,
+    InboxComponent,
+    ReplyNoteDialogComponent,
+    RegisterPatientComponent
   ],
   imports: [
     CommonModule,
@@ -95,6 +119,7 @@ const routes: Routes = [
     MatSelectModule,
     MatCheckboxModule,
     MatDialogModule,
+    MatProgressBarModule,
     RouterModule.forChild(routes)
   ]
 })

@@ -26,8 +26,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { SharedModule } from '../shared/shared.module';
 import { AfterRegLendingPageComponent } from './after-reg-lending-page/after-reg-lending-page.component';
+import { DefaultComponent } from './default/default.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: DefaultComponent,
+  },
   
   {
     path: 'patient-registration',
@@ -45,6 +50,12 @@ const routes: Routes = [
     path: 'afterreg-lendingpage',
     component: AfterRegLendingPageComponent,
   },
+  { path: 'shared/', redirectTo: '/shared', pathMatch: 'full' },
+  {
+    path: 'shared',
+    loadChildren: () =>
+      import('src/app/shared/shared.module').then((m) => m.SharedModule),
+  },
  
    /*{
             path: "dashboard",
@@ -60,6 +71,7 @@ const routes: Routes = [
     LoginregistrationHomepageComponent,
     SavedialogComponent,
     AfterRegLendingPageComponent,
+    DefaultComponent,
 
    
   ],

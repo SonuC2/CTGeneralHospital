@@ -56,6 +56,7 @@ const routes: Routes = [
     EditAppointmentComponent,
   ],
   imports: [
+    // ScheduleModule,
     CommonModule,
     
     MatButtonModule,
@@ -78,6 +79,7 @@ const routes: Routes = [
     HttpClientModule,
     MatDividerModule,
     MatProgressBarModule,
+    // ScheduleModule,
     RouterModule.forChild(routes),
   ],
 })

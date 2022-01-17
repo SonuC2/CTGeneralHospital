@@ -23,9 +23,27 @@ export class SidebarComponent  {
   showEmployeeSubMenu : boolean = false;
 
   isNurse : boolean = true;
+  userDetail !:any;
+  userObject!:any;
  
-   constructor(private observer: BreakpointObserver) {}
+   constructor(private observer: BreakpointObserver) {
+    // console.log("From sidebar sessionstorage: " , sessionStorage['get']('userDetails'))
+   }
  
+   ngOnInit(): void {
+     console.log("From sidebar sessionstorage: " , sessionStorage.getItem('userDetails'))
+    this.userDetail = JSON.parse(sessionStorage.getItem('userDetails') || '{}');
+   // this.userObject =JSON.parse(sessionStorage.getItem('userDetails'));
+    if(this.userDetail.userRoleId.roleType === "Nurse"){
+      this.isNurse =true;
+      this.isPatient = false;
+    }
+    if(this.userDetail.userRoleId.roleType === "Patient"){
+      this.isNurse =false;
+      this.isPatient = true;
+    }
+   }
+   
    ngAfterViewInit() {
      this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
        if (res.matches) {

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Patient } from 'src/app/entities/patient';
+import { PatientRegistration } from 'src/app/entities/patient-registration';
 import { PatientService } from 'src/app/services/patient.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class PatientDetailsComponent implements OnInit {
   updateId!: number;
   paddress: string = '';
   eaddress: string = '';
+  patientDetailsFromLogin!:PatientRegistration;
   constructor(
     public dialog: MatDialog,
     private _snackbar: MatSnackBar,
@@ -42,6 +44,10 @@ export class PatientDetailsComponent implements OnInit {
   firstName: string = '';
   lastName!: string;
   ngOnInit(): void {
+
+    this.patientDetailsFromLogin = JSON.parse(sessionStorage.getItem('patientDetails') || '{}');
+    console.log("PAtient Details from login: ", this.patientDetailsFromLogin);
+    
     this.form = this.fb.group({
       firstName: [''],
       lastName: [''],
