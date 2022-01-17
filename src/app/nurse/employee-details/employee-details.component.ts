@@ -46,4 +46,8 @@ export class EmployeeDetailsComponent implements OnInit {
       
     }) 
   }
+
+  navigateToEmployeeList(){
+    this.router.navigate(['/nurse/employee-list'])
+  }
 }

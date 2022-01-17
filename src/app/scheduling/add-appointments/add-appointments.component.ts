@@ -20,8 +20,8 @@ export class AddAppointmentsComponent implements OnInit {
   appointmentData: Appointments[] = [];
   appointmentTest: any;
   isNurse:boolean=false;
-  isPatient:boolean=true;
-  isPhysician:boolean=false;
+  isPatient:boolean=false;
+  isPhysician:boolean=true;
   timeSlotData:Timeslot[]=[];
 
   constructor(

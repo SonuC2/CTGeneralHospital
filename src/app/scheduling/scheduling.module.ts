@@ -57,6 +57,7 @@ const routes: Routes = [
     EditAppointmentComponent,
   ],
   imports: [
+    // ScheduleModule,
     CommonModule,
     
     MatButtonModule,

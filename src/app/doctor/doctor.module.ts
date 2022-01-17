@@ -30,6 +30,10 @@ import { EditTimeslotComponent } from './edit-timeslot/edit-timeslot.component';
 const routes: Routes = [
   {
     path: '',
+    component: DoctorsDashboardComponent,
+  },
+  {
+    path: '',
     redirectTo: 'doctors-dashboard',
     pathMatch: 'full',
   },
@@ -48,6 +52,12 @@ const routes: Routes = [
   {
     path: 'timeslot-list',
     component: TimeslotListComponent,
+  },
+  {
+    path: 'nurse',
+
+    loadChildren: () =>
+      import('src/app/nurse/nurse.module').then((m) => m.NurseModule),
   },
 ]
 

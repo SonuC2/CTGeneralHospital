@@ -6,6 +6,8 @@ import { DefaultComponent } from './shared/default/default.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+// import { UserModule } from 'src/app/user/user.module';
+import { UserModule } from './user/user.module';
 
 
 const routes: Routes = [
@@ -27,9 +29,9 @@ const routes: Routes = [
       },
 
       {
-        path: 'inbox',
+        path: 'shared',
         loadChildren: () =>
-          import('./inbox/inbox.module').then((m) => m.InboxModule),
+          import('./shared/shared.module').then((m) => m.SharedModule),
       },
       {
         path: 'doctor',
@@ -48,6 +50,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./admin/admin.module').then((m) => m.AdminModule),
       },
+      {
+        path: 'user',
+        loadChildren: () =>
+          import('src/app/user/user.module').then((m) => m.UserModule),
+      },
     ],
   },
 ];
@@ -58,7 +65,8 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
-    SharedModule,
+    // SharedModule,
+    UserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
   ],

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar/sidebar.component';
 // import { DashboardComponent } from './dashboard/dashboard.component';
@@ -34,9 +34,59 @@ import { UserModule } from '../user/user.module';
 // import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
   {
+    path: '',
+    component: DefaultComponent,
+  },
+  {
     path: 'sidebar',
     component: SidebarComponent,
+    // children : [{
+    //   path:'patient/patient-details',
+    //   component: PatientDetailsComponent
+    // }]
+    children:[
+      {
+        path: 'patient',
+        loadChildren: () =>
+          import('src/app/patient/patient.module').then((m) => m.PatientModule),
+      },
+      {
+        path: 'nurse',
+
+        loadChildren: () =>
+          import('src/app/nurse/nurse.module').then((m) => m.NurseModule),
+      },
+      {
+        path: 'scheduling',
+        loadChildren: () =>
+          import('src/app/scheduling/scheduling.module').then(
+            (m) => m.SchedulingModule
+          ),
+      },
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('src/app/admin/admin.module').then((m) => m.AdminModule),
+      },
+      {
+        path: 'doctor',
+
+        loadChildren: () =>
+          import('src/app/doctor/doctor.module').then((m) => m.DoctorModule),
+      },
+    ]
   },
+  
+  {
+    path: 'inbox',
+    component: InboxComponent,
+  },
+  {
+    path: 'nurse',
+    loadChildren: () =>
+      import('src/app/nurse/nurse.module').then((m) => m.NurseModule),
+  },
+  
 ];
 @NgModule({
   declarations: [
@@ -71,6 +121,7 @@ const routes: Routes = [
     MatSelectModule,
     MatDialogModule,
     MatRadioModule,
+    RouterModule.forChild(routes)
   ],
 })
 export class SharedModule {}
