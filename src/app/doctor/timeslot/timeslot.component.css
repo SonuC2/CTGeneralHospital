@@ -1,7 +1,7 @@
 .head {
     color: #0055d2;
   }
-  .wid {
+  /* .wid {
     width: 50vh;
   }
   .date {
@@ -9,7 +9,7 @@
   }
   .w {
     width:45vh;
-  }
+  } */
   
   .half-width{
     width:fit-content;

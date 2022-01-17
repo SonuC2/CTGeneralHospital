@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 // import {MatGridListModule} from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatChipsModule} from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -23,6 +24,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { DoctorsDashboardComponent } from './doctors-dashboard/doctors-dashboard.component';
+import { RequestedAppointmentComponent } from './requested-appointment/requested-appointment.component';
+import { EditTimeslotComponent } from './edit-timeslot/edit-timeslot.component';
 
 const routes: Routes = [
   {
@@ -33,6 +36,10 @@ const routes: Routes = [
   {
     path: 'doctors-dashboard',
     component: DoctorsDashboardComponent,
+  },
+  {
+    path: 'requested-appointment-list',
+    component:RequestedAppointmentComponent,
   },
   {
     path: 'timeslot',
@@ -48,7 +55,9 @@ const routes: Routes = [
   declarations: [
     
     TimeslotComponent,
-    TimeslotListComponent
+    TimeslotListComponent,
+    RequestedAppointmentComponent,
+    EditTimeslotComponent
   ],
   imports: [
     CommonModule,
@@ -71,6 +80,7 @@ const routes: Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressBarModule,
+    MatChipsModule,
     RouterModule.forChild(routes)
   ]
 })

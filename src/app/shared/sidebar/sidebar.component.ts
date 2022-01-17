@@ -22,6 +22,7 @@ export class SidebarComponent  {
   showSubSubMenu: boolean = false;
   showPatientSubMenu: boolean = false;
   showEmployeeSubMenu : boolean = false;
+  showPhysicianSubMenu : boolean = false;
 
   isNurse : boolean = false;
   enterDetails:boolean=false;

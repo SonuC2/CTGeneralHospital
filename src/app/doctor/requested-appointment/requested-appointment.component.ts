@@ -1,35 +1,38 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Appointments } from 'src/app/entities/appointments';
-import { SchedulingService } from 'src/app/services/scheduling.service';
+import { DoctorService } from 'src/app/services/doctor.service';
 
 @Component({
-  selector: 'app-appointment-list',
-  templateUrl: './appointment-list.component.html',
-  styleUrls: ['./appointment-list.component.css'],
+  selector: 'app-requested-appointment',
+  templateUrl: './requested-appointment.component.html',
+  styleUrls: ['./requested-appointment.component.css'],
 })
-export class AppointmentListComponent implements OnInit {
+export class RequestedAppointmentComponent implements OnInit {
   appointmentData: Appointments[] = [];
   dataSource = new MatTableDataSource<Appointments>();
 
   constructor(
-    private schedulingService: SchedulingService,
+    private docterService: DoctorService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.schedulingService.getAllAppointmentList().subscribe((appointment) => {
-      this.appointmentData = appointment;
-      this.dataSource.data = this.appointmentData;
-      console.log('Data source : ', this.dataSource.data);
-    });
+    
+    this.docterService
+      .getRequestedAppointmentList()
+      .subscribe((appointment) => {
+        this.appointmentData = appointment;
+        this.dataSource.data = this.appointmentData;
+        console.log('Data source : ', this.dataSource.data);
+      });
   }
 
   displayedColumns: string[] = [
     'meetingTitle',
-    'employeeName',
+
     'specialisation',
     'appointmentDate',
     'timeSlot',
@@ -51,8 +54,16 @@ export class AppointmentListComponent implements OnInit {
 
   cancelAppointment(element: Appointments) {
     console.log(element);
-    this.schedulingService.cancelAppointment(element).subscribe();
-    this.router.navigate(['scheduling/appointment-list']);
+   
+    this.docterService.cancelAppointment(element).subscribe();
+    // this.router.navigate(['scheduling/appointment-list']);
+    window.location.reload();
+  }
+
+  approveAppointment(element: Appointments) {
+    console.log(element);
+
+    this.docterService.approveAppointment(element).subscribe();
     window.location.reload();
   }
 }

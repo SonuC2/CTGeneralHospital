@@ -26,8 +26,8 @@
 
         <mat-form-field appearance="fill" class="pad date w">
           <mat-label>Physician*</mat-label>
-          <mat-select formControlName="physician">
-            <mat-option *ngFor="let spe of physician" value="{{ spe }}">{{
+          <mat-select formControlName="employeeName">
+            <mat-option  *ngFor="let spe of employeeName"  value="{{ spe }}">{{
               spe
               }}</mat-option>
           </mat-select>
@@ -55,16 +55,15 @@
 
           <mat-form-field appearance="fill" class="pad date w">
             <mat-label>Appointment date*</mat-label>
-            <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="appointmentDate"
-              required />
+            <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="appointmentDate" required (dateChange)="loadTimeSlot()"/>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>&nbsp; &nbsp;
 
           <mat-form-field appearance="fill" class="pad date w">
             <mat-label>Time slot*</mat-label>
-            <mat-select formControlName="appointmentTime">
-              <mat-option *ngFor="let spe of appointmentTime" value="{{ spe }}">{{ spe }}</mat-option>
+            <mat-select formControlName="timeSlot">
+              <mat-option  *ngFor="let spe of timeSlot" value="{{ spe }}">{{ spe }}</mat-option>
             </mat-select>
           </mat-form-field>
           <!-- extra -->
@@ -109,18 +108,18 @@
 
         <mat-form-field appearance="fill" class="pad date w">
           <mat-label>Physician*</mat-label>
-          <mat-select formControlName="physician">
-            <mat-option *ngFor="let spe of physician" value="{{ spe }}">{{
+          <mat-select formControlName="employeeName">
+            <mat-option *ngFor="let spe of employeeName" value="{{ spe }}">{{
               spe
               }}</mat-option>
           </mat-select>
         </mat-form-field>
 
-        
+
         <mat-form-field appearance="fill" class="pad date w">
-          <mat-label>Patient*</mat-label>
-          <mat-select formControlName="specialisation">
-            <mat-option *ngFor="let spe of specialisation" value="{{ spe }}">{{
+          <mat-label>Patient Name*</mat-label>
+          <mat-select formControlName="patientName">
+            <mat-option *ngFor="let spe of patientName" value="{{ spe }}">{{
               spe
               }}</mat-option>
           </mat-select>
@@ -157,8 +156,8 @@
 
           <mat-form-field appearance="fill" class="pad date w">
             <mat-label>Time slot*</mat-label>
-            <mat-select formControlName="appointmentTime">
-              <mat-option *ngFor="let spe of appointmentTime" value="{{ spe }}">{{ spe }}</mat-option>
+            <mat-select formControlName="timeSlot">
+              <mat-option *ngFor="let spe of timeSlot" value="{{ spe }}">{{ spe }}</mat-option>
             </mat-select>
           </mat-form-field>
           <!-- extra -->
@@ -190,25 +189,29 @@
   <div class="bounds">
     <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
       <div fxFlex="100" class="sec1" fxFlex.xs="100">
-
-        <!-- Patient name       //////// need working -->
-        <mat-form-field appearance="fill" class="pad date w" style="width: 45%;">
-          <mat-label>Patient*</mat-label>
-          <mat-select formControlName="patient">
-            <mat-option *ngFor="let spe of patient" value="{{ spe }}">{{
-              spe
-              }}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        &nbsp;
-        <mat-form-field appearance="fill" class="pad date w" style="width: 45%;">
-          <mat-label>Patient*</mat-label>
-          <mat-select formControlName="patient">
-            <mat-option *ngFor="let spe of patient" value="{{ spe }}">{{
-              spe
-              }}</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div fxLayout="row wrap">
+          <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+            <!-- Patient name       //////// need working -->
+            <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
+              <mat-label>Patient Id*</mat-label>
+              <mat-select formControlName="patientId">
+                <mat-option *ngFor="let spe of patientId" value="{{ spe }}">{{
+                  spe
+                  }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+            <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
+              <mat-label>Patient name*</mat-label>
+              <mat-select formControlName="patientName">
+                <mat-option *ngFor="let spe of patientName" value="{{ spe }}">{{
+                  spe
+                  }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
 
         <mat-expansion-panel>
           <!-- // expension Header -->
@@ -240,8 +243,8 @@
 
           <mat-form-field appearance="fill" class="pad date w">
             <mat-label>Time slot*</mat-label>
-            <mat-select formControlName="appointmentTime">
-              <mat-option *ngFor="let spe of appointmentTime" value="{{ spe }}">{{ spe }}</mat-option>
+            <mat-select formControlName="timeSlot">
+              <mat-option *ngFor="let spe of timeSlot" value="{{ spe }}">{{ spe }}</mat-option>
             </mat-select>
           </mat-form-field>
           <!-- extra -->
