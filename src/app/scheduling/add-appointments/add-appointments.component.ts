@@ -20,8 +20,8 @@ export class AddAppointmentsComponent implements OnInit {
   appointmentData: Appointments[] = [];
   appointmentTest: any;
   isNurse:boolean=false;
-  isPatient:boolean=true;
-  isPhysician:boolean=false;
+  isPatient:boolean=false;
+  isPhysician:boolean=true;
   timeSlotData:Timeslot[]=[];
 
   constructor(
@@ -82,6 +82,7 @@ export class AddAppointmentsComponent implements OnInit {
     // this.form.get('employeeName')?.setValue('Dr. John Auguston');
     this.form.get('appointmentStatus')?.setValue('Requested');
     this.service.addAppointment(this.form.value).subscribe();
+    this.route.navigate(["/scheduling/appointment-list"]);
   }
 
   //date picker filter

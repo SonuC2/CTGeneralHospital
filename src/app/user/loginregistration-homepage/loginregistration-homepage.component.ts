@@ -173,10 +173,21 @@ export class LoginregistrationHomepageComponent implements OnInit {
   
       if(this.userDetails.userRoleId.roleType === "Patient"){
         console.log("Patient logs in")
-        this.router.navigate(['/shared/'])
+        this.router.navigate(['/shared/sidebar/patient'])
         this.patientregistrationService.getPatientDetailsByUserId(this.userDetails.userId).subscribe((patientDetails =>{
           this.patientDetails = patientDetails;
           sessionStorage.setItem('patientDetails', JSON.stringify(this.patientDetails));
+
+        }))
+
+      }
+
+      if(this.userDetails.userRoleId.roleType === "Admin"){
+        console.log("Patient logs in")
+        this.router.navigate(['/shared/'])
+        this.employeeService.getEmployeeDetailsByUserId(this.userDetails.userId).subscribe((emploeeDetails =>{
+          this.employeeDetailsFromLogin = emploeeDetails;
+          sessionStorage.setItem('adminDetailsFromLogin', JSON.stringify(this.employeeDetailsFromLogin));
 
         }))
 

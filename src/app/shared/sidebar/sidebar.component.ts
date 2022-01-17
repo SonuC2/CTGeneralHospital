@@ -14,8 +14,8 @@ export class SidebarComponent {
   isExpanded: boolean = true;
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
-  isPatient: boolean = false;
-  isPhysician: boolean = true;
+  isPatient: boolean = true;
+  isPhysician: boolean = false;
 
   showSubmenu: boolean = false;
   isShowing = false;
@@ -24,10 +24,13 @@ export class SidebarComponent {
   showEmployeeSubMenu : boolean = false;
   showPhysicianSubMenu : boolean = false;
 
-  
+
+
+
+  // disabled link
   enterDetails:boolean=false;
-  viewDetails:boolean=true;
-  MyVisitHistory:boolean=true;
+  viewDetails:boolean=false;
+  MyVisitHistory:boolean=false;
   downloadMydata:boolean=true;
   appointment:boolean=true;
   userDetail !:any;
@@ -44,10 +47,28 @@ export class SidebarComponent {
     if(this.userDetail.userRoleId.roleType === "Nurse"){
       this.isNurse =true;
       this.isPatient = false;
+      this.isAdmin = false;
+      this.isPhysician = false;
     }
     if(this.userDetail.userRoleId.roleType === "Patient"){
       this.isNurse =false;
       this.isPatient = true;
+      this.isAdmin =false;
+      this.isPhysician = false;
+    }
+
+    if(this.userDetail.userRoleId.roleType === "Admin"){
+      this.isNurse =false;
+      this.isPatient = false;
+      this.isAdmin = true;
+      this.isPhysician = false;
+    }
+
+    if(this.userDetail.userRoleId.roleType === "Physician"){
+      this.isNurse =false;
+      this.isPatient = false;
+      this.isAdmin = false;
+      this.isPhysician = true;
     }
    }
    
