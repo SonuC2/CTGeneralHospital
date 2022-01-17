@@ -1,0 +1,30 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.center-text-size {
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+th {
+  background-color: #0055d2;
+  font-weight: unset;
+  font-size: 12px;
+  color: white;
+}
+
+/* for mat chip */
+

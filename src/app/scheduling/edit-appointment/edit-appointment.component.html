@@ -31,8 +31,8 @@
 
                             <mat-form-field appearance="fill" class="pad date w">
                                 <mat-label>Physician*</mat-label>
-                                <mat-select formControlName="physician">
-                                    <mat-option *ngFor="let spe of physician" value="{{ spe }}">{{
+                                <mat-select formControlName="employeeName">
+                                    <mat-option *ngFor="let spe of employeeName" value="{{ spe }}">{{
                                         spe
                                         }}</mat-option>
                                 </mat-select>
@@ -68,8 +68,8 @@
 
                                 <mat-form-field appearance="fill" class="pad w">
                                     <mat-label>Time slot*</mat-label>
-                                    <mat-select formControlName="appointmentTime">
-                                        <mat-option *ngFor="let spe of appointmentTime" value="{{ spe }}">{{ spe }}
+                                    <mat-select formControlName="timeSlot">
+                                        <mat-option *ngFor="let spe of timeSlot" value="{{ spe }}">{{ spe }}
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>
@@ -82,20 +82,22 @@
                                             formControlName="reason"></textarea>
                                     </mat-form-field>
                               
-                                <mat-form-field appearance="fill" class="pad date w">
-                                    <mat-label>ReSchedule time*</mat-label>
-                                    <mat-select formControlName="rescheduleTime">
-                                        <mat-option *ngFor="let spe of rescheduleTime" value="{{ spe }}">{{ spe }}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                &nbsp; &nbsp; &nbsp;
+                             
+                               
                                 <mat-form-field appearance="fill" class="pad date w">
                                     <mat-label>Appointment date*</mat-label>
                                     <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker1" formControlName="rescheduleDate"
                                         required />
                                     <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                     <mat-datepicker #picker1></mat-datepicker>
+                                </mat-form-field>
+                                &nbsp; &nbsp; &nbsp;
+                                <mat-form-field appearance="fill" class="pad date w">
+                                    <mat-label>ReSchedule time*</mat-label>
+                                    <mat-select formControlName="rescheduleTimeSlot">
+                                        <mat-option *ngFor="let spe of rescheduleTimeSlot" value="{{ spe }}">{{ spe }}
+                                        </mat-option>
+                                    </mat-select>
                                 </mat-form-field>
 
                                 &nbsp; &nbsp;

@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+// import { DashboardComponent } from './dashboard/dashboard.component';
 import { DefaultComponent } from './default/default.component';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -31,8 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReplyNoteDialogComponent } from './reply-note-dialog/reply-note-dialog.component';
 import { UserModule } from '../user/user.module';
-import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
-import { PatientDetailsComponent } from '../patient/patient-details/patient-details.component';
+// import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
   {
     path: '',
@@ -86,7 +85,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     SidebarComponent,
-    DashboardComponent,
+    // DashboardComponent,
     DefaultComponent,
     InboxComponent,
     ReplyNoteDialogComponent,
@@ -116,7 +115,6 @@ const routes: Routes = [
     MatSelectModule,
     MatDialogModule,
     MatRadioModule,
-    ScheduleModule,
     RouterModule.forChild(routes)
   ],
 })

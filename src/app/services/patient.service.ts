@@ -7,6 +7,9 @@ import { Patient } from '../entities/patient';
   providedIn: 'root',
 })
 export class PatientService {
+  getAllApprovePatientList() {
+    throw new Error('Method not implemented.');
+  }
   PatientData!: Patient;
   downloadPatinet!: Patient;
   firstName!: string;

@@ -49,8 +49,15 @@ export class AppointmentListComponent implements OnInit {
 
   }
 
-  displayedColumns: string[] = ['meetingTitle', 'physician', 'specialisation', 'appointmentDate','appointmentTime','appointmentStatus','action'];
- 
+  displayedColumns: string[] = [
+    'meetingTitle',
+    'employeeName',
+    'specialisation',
+    'appointmentDate',
+    'timeSlot',
+    'appointmentStatus',
+    'action',
+  ];
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -64,9 +71,10 @@ export class AppointmentListComponent implements OnInit {
 //  this.router.navigate(['/scheduling/edit-appointment/',row])
 // }
 
-deleteById(){
-  console.log(this.appointmentid)
-    this.schedulingService.deleteAppointmentById(this.appointmentid);
-}
-
+  cancelAppointment(element: Appointments) {
+    console.log(element);
+    this.schedulingService.cancelAppointment(element).subscribe();
+    this.router.navigate(['scheduling/appointment-list']);
+    window.location.reload();
+  }
 }
