@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Allergy } from 'src/app/entities/allergy';
 import { Patient } from 'src/app/entities/patient';
+import { PatientRegistration } from 'src/app/entities/patient-registration';
 import { PatientService } from 'src/app/services/patient.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MasterAllergyDataService } from 'src/app/services/master-allergy-data.service';
@@ -72,6 +73,7 @@ export class PatientDetailsComponent implements OnInit {
   updateId!: number;
   paddress: string = '';
   eaddress: string = '';
+  patientDetailsFromLogin!:PatientRegistration;
   count:number=0;
   allergyTypeById!: string;
   allergyT1:string[]=[];
@@ -100,6 +102,10 @@ export class PatientDetailsComponent implements OnInit {
   section4=true;
   varifyNew!:boolean;
   ngOnInit(): void {
+
+    this.patientDetailsFromLogin = JSON.parse(sessionStorage.getItem('patientDetails') || '{}');
+    console.log("PAtient Details from login: ", this.patientDetailsFromLogin);
+    
     this.form = this.fb.group({
       patientId:[1],
       firstName: [''],

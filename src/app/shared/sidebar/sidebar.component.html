@@ -68,7 +68,7 @@
 </mat-toolbar>
 <mat-sidenav-container *ngIf="isNurse">
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" routerLink="nurse/">
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </button>
@@ -93,12 +93,12 @@
       <span *ngIf="isExpanded || isShowing">Patient</span>
     </button>
     <div class="submenu" [ngClass]="{ expanded: showPatientSubMenu }" *ngIf="isShowing || isExpanded">
-      <button mat-button class="menu-button" routerLink="nurse/patient/patient-details">
+      <button mat-button class="menu-button" routerLink="nurse/register-patient">
         <mat-icon>person</mat-icon>
         <span>Register Patient</span>
       </button>
      
-      <button mat-button class="menu-button" routerLink="/nurse/patient-visit">
+      <button mat-button class="menu-button" routerLink="nurse/patient-visit">
         <mat-icon>person</mat-icon>
         <span>Add Patient Visit Details</span>
       </button>
@@ -106,7 +106,7 @@
         <mat-icon>person</mat-icon>
         <span>Patient Visit History</span>
       </button>
-      <button mat-button class="menu-button" routerLink="/nurse/patient-list">
+      <button mat-button class="menu-button" routerLink="nurse/patient-list">
         <mat-icon>list</mat-icon>
         <span>Patient list</span>
       </button>
@@ -127,8 +127,8 @@
           <span >Patient Visit</span>
         </button> -->
     </div>
-    <button mat-button class="menu-button"  routerLink="nurse/inbox/inbox">
-      <mat-icon></mat-icon>
+    <button mat-button class="menu-button"  routerLink="nurse/notes">
+      <mat-icon>send</mat-icon>
       <span>Inbox</span>
     </button>
 
@@ -198,14 +198,7 @@
         <mat-icon>person</mat-icon>
         <span>Enter your Details</span>
       </button>
-    
-      <button
-        mat-button
-        class="menu-button"
-        routerLink="patient/my-details"
-        
-        
-      >
+      <button mat-button class="menu-button" routerLink="patient/my-details">
         <mat-icon>list</mat-icon>
         <span>My Details</span>
       </button>
@@ -348,11 +341,11 @@
       [ngClass]="{ expanded: showSubmenu }"
       *ngIf="isShowing || isExpanded"
     >
-      <button mat-button class="menu-button" routerLink="/admin/register-user"> 
+      <button mat-button class="menu-button" routerLink="admin/register-user"> 
         <mat-icon>person</mat-icon>
         <span>Register User</span>
       </button>
-      <button mat-button class="menu-button" routerLink="/admin/employee-details">
+      <button mat-button class="menu-button" routerLink="admin/employee-details">
         <mat-icon>list</mat-icon>
         <span>View User Details</span>
       </button>
@@ -455,7 +448,7 @@
     </div>
 
 
-    <button mat-button class="menu-button" routerLink="/">
+    <button mat-button class="menu-button" routerLink="doctor/nurse/notes">
       <mat-icon>textsms</mat-icon>
       <span style="padding-left: 5px;"> Inbox</span>
     </button>

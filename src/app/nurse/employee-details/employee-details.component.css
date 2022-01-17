@@ -42,3 +42,12 @@
       width: 100%;
   }
 
+  .submitButton {
+    position: fixed;
+    top: 6rem;
+    /* bottom: 1rem; */
+    right: 1.5rem;
+  cursor: pointer;
+  
+  }
+

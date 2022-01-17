@@ -4,7 +4,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Patient } from 'src/app/entities/patient';
+import { PatientRegistration } from 'src/app/entities/patient-registration';
 import { PatientService } from 'src/app/services/patient.service';
+import { PatientRegistrationService } from 'src/app/services/patientRegistration.service';
 
 export interface PatientData {
   patientId: number;
@@ -34,17 +36,27 @@ const ELEMENT_DATA: PatientData[] = [
 })
 export class PatientListComponent implements OnInit {
   patient : Patient[] = [];
-  displayedColumns: string[] = ['patientId', 'firstName', 'lastName', 'mobileNo','email','actions'];
-  dataSource = new MatTableDataSource<Patient>();
+  patientList: PatientRegistration[] = [];
+  // displayedColumns: string[] = ['patientId', 'firstName', 'lastName', 'mobileNo','email','actions'];
+  displayedColumns: string[] = ['patientId', 'firstName', 'lastName', 'contactNumber','email','actions'];
+  // dataSource = new MatTableDataSource<Patient>();
+  dataSource = new MatTableDataSource<PatientRegistration>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private router: Router,private route: ActivatedRoute,private patientService : PatientService) { }
+  constructor(private router: Router,private route: ActivatedRoute,private patientService : PatientService, private patientRegistrationService: PatientRegistrationService) { }
 
   ngOnInit(): void {
-    this.patientService.getAllPatientList().subscribe(patients => {
-      this.patient = patients;
-      this.dataSource.data = this.patient;
+    // this.patientService.getAllPatientList().subscribe(patients => {
+    //   this.patient = patients;
+    //   this.dataSource.data = this.patient;
+    //   console.log("patient List: " , this.dataSource.data);
+      
+    // })
+
+    this.patientRegistrationService.getAllPatientList().subscribe(patients => {
+      this.patientList = patients;
+      this.dataSource.data = this.patientList;
       console.log("patient List: " , this.dataSource.data);
       
     })

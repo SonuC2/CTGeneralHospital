@@ -35,6 +35,10 @@ import {MatStepperModule} from '@angular/material/stepper';
 const routes: Routes = [
   {
     path: '',
+    component: PatientDashboardComponent,
+  },
+  {
+    path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },

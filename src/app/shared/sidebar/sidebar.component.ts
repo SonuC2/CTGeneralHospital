@@ -33,21 +33,57 @@ export class SidebarComponent {
   MyVisitHistory:boolean=false;
   downloadMydata:boolean=true;
   appointment:boolean=true;
+  userDetail !:any;
+  userObject!:any;
+ 
+   constructor(private observer: BreakpointObserver) {
+    // console.log("From sidebar sessionstorage: " , sessionStorage['get']('userDetails'))
+   }
+ 
+   ngOnInit(): void {
+     console.log("From sidebar sessionstorage: " , sessionStorage.getItem('userDetails'))
+    this.userDetail = JSON.parse(sessionStorage.getItem('userDetails') || '{}');
+   // this.userObject =JSON.parse(sessionStorage.getItem('userDetails'));
+    if(this.userDetail.userRoleId.roleType === "Nurse"){
+      this.isNurse =true;
+      this.isPatient = false;
+      this.isAdmin = false;
+      this.isPhysician = false;
+    }
+    if(this.userDetail.userRoleId.roleType === "Patient"){
+      this.isNurse =false;
+      this.isPatient = true;
+      this.isAdmin =false;
+      this.isPhysician = false;
+    }
 
-  constructor(private observer: BreakpointObserver) {}
-  
-  ngAfterViewInit() {
-    this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
-      if (res.matches) {
-        this.sidenav.mode = 'over';
-        this.sidenav.close();
-      } else {
-        this.sidenav.mode = 'side';
-        this.sidenav.open();
-      }
-    });
-  }
-  mouseenter() {
+    if(this.userDetail.userRoleId.roleType === "Admin"){
+      this.isNurse =false;
+      this.isPatient = false;
+      this.isAdmin = true;
+      this.isPhysician = false;
+    }
+
+    if(this.userDetail.userRoleId.roleType === "Physician"){
+      this.isNurse =false;
+      this.isPatient = false;
+      this.isAdmin = false;
+      this.isPhysician = true;
+    }
+   }
+   
+   ngAfterViewInit() {
+     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
+       if (res.matches) {
+         this.sidenav.mode = 'over';
+         this.sidenav.close();
+       } else {
+         this.sidenav.mode = 'side';
+         this.sidenav.open();
+       }
+     });
+   }
+   mouseenter() {
     if (!this.isExpanded) {
       this.isShowing = true;
     }

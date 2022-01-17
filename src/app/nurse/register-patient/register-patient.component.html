@@ -1,0 +1,91 @@
+<div class="main" fxLayout="row wrap">
+
+    <div class="sub1" fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px;">
+        <mat-card>
+            <mat-card-header>
+                <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                <mat-card-title  style="color: #0055D2;">Register Patient</mat-card-title>
+                <!-- <mat-progress-bar mode="determinate"></mat-progress-bar> -->
+                <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+              </mat-card-header>
+            <mat-card-content>
+                <form class="example-form" [formGroup]="personalDetailsForm" (ngSubmit)="registerPatient()">
+                    <div fxLayout="row wrap">
+                        <div fxFlex.gt-sm="20" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                            <mat-form-field appearance="fill" class="example-full-width" style="width:100%">
+                                <mat-label>Title</mat-label>
+                                <mat-select formControlName="title" required>
+                                    <mat-option value="Mr">Mr.</mat-option>
+                                    <mat-option value="Ms">Ms.</mat-option>
+                                    <mat-option value="Mrs">Mrs.</mat-option>
+                                    <mat-option value="Dr">Dr.</mat-option>
+                                  </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex.gt-sm="40" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                            <mat-form-field appearance="fill" class="example-full-width" style="width:100%">
+                                <mat-label>First Name</mat-label>
+                                <input matInput  formControlName="firstName" required />
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex.gt-sm="40" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                            <mat-form-field appearance="fill" class="example-full-width" style="width:100%">
+                                <mat-label>Last Name</mat-label>
+                                <input matInput  formControlName="lastName" required  />
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <!-- second row -->
+                    <div fxLayout="row wrap">
+                        <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                            <mat-form-field appearance="fill" class="example-full-width"
+                                style="width: 100%;">
+                                <mat-label>Choose a DOB</mat-label>
+                                <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" required>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                       
+                        <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                            <mat-form-field appearance="fill" class="example-full-width"
+                                style="width: 100%;">
+                                <mat-label>Mobile No</mat-label>
+                                <input matInput formControlName="contactNumber"  required/>
+                            </mat-form-field>
+                        </div>
+                       
+                    </div>
+
+                    <!-- third row -->
+                    <div fxLayout="row wrap">
+                        <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                            <mat-form-field appearance="fill" class="example-full-width"
+                                style="width: 100%;">
+                                <mat-label>Enter your email</mat-label>
+                                <input matInput placeholder="pat@example.com" required formControlName="email" required />
+                            </mat-form-field>
+                        </div>
+                    
+                        <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                            <mat-radio-group aria-label="Select an option" class="example-full-width"
+                                style="width: 100%;" formControlName="gender" >
+                                <mat-label>Gender : </mat-label>
+                                <mat-radio-button value="Male" [checked]= "true">Male</mat-radio-button> &nbsp;
+                                <mat-radio-button value="Female">Female</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+
+                        <div fxLayout="row wrap">
+                            <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px;width:100%" >
+                             <button mat-raised-button color="primary" class="example-full-width"
+                                style="background-color: #03A66A;width:100%" >Register</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
