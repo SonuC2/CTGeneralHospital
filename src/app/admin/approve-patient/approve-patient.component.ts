@@ -17,6 +17,7 @@ export class ApprovePatientComponent implements OnInit {
 
   disabled = false;
   patient: PatientRegistration[] = [];
+  approvePatient!:PatientRegistration;
 
   displayedColumns = ['patientId', 'firstName', 'lastName','contactNumber', 'email', 'action'];
   dataSource = new MatTableDataSource<PatientRegistration>();
@@ -28,12 +29,10 @@ export class ApprovePatientComponent implements OnInit {
   constructor(private router: Router,private route: ActivatedRoute, private patientRegistrationService : PatientRegistrationService) { }
 
   ngOnInit(): void {
-    this.patientRegistrationService.getAllApprovePatientList().subscribe(patient =>{
+    this.patientRegistrationService.getAllInactivePatientList().subscribe(patient =>{
       this.patient = patient;
       this.dataSource.data = this.patient;
       console.log("Data source : " , this.dataSource.data);
-
-      
     })
     // window.location.reload();
   }
@@ -55,10 +54,9 @@ export class ApprovePatientComponent implements OnInit {
     }
   }
 
-  approveRegistration(row:any) {
-    console.log(row);
+  approveRegistration(row:PatientRegistration) {
     this.patientRegistrationService.approvePatient(row).subscribe();
-    // window.location.reload();
+    window.location.reload();
     console.log("done");
   }
 

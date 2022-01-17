@@ -23,7 +23,7 @@ import { PatientListComponent } from './patient-list/patient-list.component';
 import { HomeComponent } from './home/home.component';
 import {ChartModule} from 'primeng/chart';
 import {ToggleButtonModule} from 'primeng/togglebutton';
-
+import {MatChipsModule} from '@angular/material/chips'
 
 import {CardModule} from 'primeng/card';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
@@ -49,7 +49,7 @@ const routes: Routes = [
   },
   {
     path: 'edit-user/:index',
-    component: RegisterUserComponent,
+    component: EditUserComponent,
   },
   {
     path: 'employee-details',
@@ -97,6 +97,7 @@ const routes: Routes = [
     ChartModule,
     CardModule,
     ToggleButtonModule,
+    MatChipsModule,
     RouterModule.forChild(routes)
   ],
 })

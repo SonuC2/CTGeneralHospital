@@ -28,7 +28,7 @@ export class PatientListComponent implements OnInit {
   constructor(private router: Router,private route: ActivatedRoute, private patientRegistrationService : PatientRegistrationService) { }
 
   ngOnInit(): void {
-    this.patientRegistrationService.getAllApprovePatientList().subscribe(patient =>{
+    this.patientRegistrationService.getAllActivePatientList().subscribe(patient =>{
       this.patient = patient;
       this.dataSource.data = this.patient;
       console.log("Data source : " , this.dataSource.data);
@@ -51,12 +51,5 @@ export class PatientListComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  approveRegistration(row:any) {
-    console.log(row);
-    this.patientRegistrationService.approvePatient(row).subscribe();
-    console.log("done");
-    // this.router.navigate(['/nurse/employee-list']);
   }
 }

@@ -13,5 +13,6 @@ export class Employee {
 	 qualification!:string;
 	 specialisation!:string;
      status!:string;
+     blockStatus!:string;
      userRole!:UserRole;
 }

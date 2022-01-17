@@ -64,15 +64,15 @@
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
           <td mat-cell *matCellDef="let row">
-            <button mat-raised-button color="primary" *ngIf="row.status=='active'"
-              style="background-color: #03a66a; width: 30%; font-size: 12px;" class="example-full-width" type="submit"
-              mat-stroked-button>
+            <button mat-raised-button color="primary" *ngIf="row.status=='Active'"
+              style="background-color: #03a66a; width: 70%; font-size: 12px;" (click)="activeToInactiveStatus(row)"
+              class="example-full-width" type="submit" mat-stroked-button>
               Active
             </button>
             &nbsp;
-            <button mat-raised-button color="primary" *ngIf="row.status=='inactive'"
-              style="background-color: #f52323; width: 70%; font-size: 12px;" class="example-full-width" type="submit"
-              mat-stroked-button>
+            <button mat-raised-button color="primary" *ngIf="row.status !=='Active'"
+              style="background-color: #f52323; width: 70%; font-size: 12px;" (click)="inactiveToActiveStatus(row)"
+              class="example-full-width" type="submit" mat-stroked-button>
               Inactive
             </button>
           </td>
@@ -81,10 +81,25 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
           <td mat-cell *matCellDef="let row">
-            
             <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary">
               <mat-icon aria-label="Edit" [state]="row" routerLink="/admin/edit-user/{{ row.employeeId }}">edit
               </mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="blockAction">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Blcok action</th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-raised-button color="primary" *ngIf="row.blockStatus =='Block'"
+              style="background-color: #03a66a; width: 70%; font-size: 12px;" (click)="blockToUnblockStatus(row)"
+              class="example-full-width" type="submit" mat-stroked-button>
+              Block
+            </button>
+            &nbsp;
+            <button mat-raised-button color="primary" *ngIf="row.blockStatus !=='Block'"
+              style="background-color: #f52323; width: 70%; font-size: 12px;" (click)="unblockToBlockStatus(row)"
+              class="example-full-width" type="submit" mat-stroked-button>
+              Unblock
             </button>
           </td>
         </ng-container>
