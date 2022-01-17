@@ -6,10 +6,8 @@ import {
   FormBuilder,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { EmployeeData } from 'src/app/models/employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Location } from '@angular/common';
-// import { checking, Employee } from 'src/app/entities/employee';
 
 @Component({
   selector: 'app-register-user',
@@ -19,7 +17,6 @@ import { Location } from '@angular/common';
 export class RegisterUserComponent implements OnInit {
   index: number = -1;
   employeeId: any;
-  // @Input() employeData!: EmployeeData;
   form!: FormGroup;
   constructor(
     private route: ActivatedRoute,
@@ -47,13 +44,14 @@ export class RegisterUserComponent implements OnInit {
       email: [],
       dateOfBirth: [],
       dateOfJoining: [],
-      status: [],
+      // status: [],
       mobileNO: [],
       address: [],
       gender: [],
       qualification: [],
       specialisation: [],
       userRole: [],
+      // blockStatus:[]
     });
     this.getEmployeeData();
   }
@@ -64,16 +62,7 @@ export class RegisterUserComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value);
-
-    // const chec = new checking("kuldeep")
-
-    // console.log(empUpdate);
-    // if (this.employeeId === -1) {
-    // this.employeeService.addEmployee(this.form.value).subscribe();
-    // } else {
-    this.employeeService.updateEmployee(this.form.value).subscribe();
-    // }
-    // Nabvigation
+    this.employeeService.addEmployee(this.form.value).subscribe();
     // this.router.navigate(['/nurse/employee-list']);
   }
 
@@ -87,12 +76,16 @@ export class RegisterUserComponent implements OnInit {
     this.form.get('email')?.setValue(data.email);
     this.form.get('dateOfBirth')?.setValue(data.dateOfBirth);
     this.form.get('dateOfJoining')?.setValue(data.dateOfJoining);
-    this.form.get('status')?.setValue(data.status);
+    // this.form.get('status')?.setValue(data.status);
     this.form.get('mobileNO')?.setValue(data.mobileNO);
     this.form.get('address')?.setValue(data.address);
     this.form.get('gender')?.setValue(data.gender);
     this.form.get('qualification')?.setValue(data.qualification);
     this.form.get('specialisation')?.setValue(data.specialisation);
     this.form.get('roleType')?.setValue(data.roleType);
+    // this.form.get('blockStatus')?.setValue(data.blockStatus);
+  }
+  backToEmployeeList() {
+    this.router.navigate(['/admin/employee-details']);
   }
 }

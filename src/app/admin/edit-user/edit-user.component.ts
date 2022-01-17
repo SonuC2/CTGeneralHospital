@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-edit-user',
@@ -47,8 +48,9 @@ export class EditUserComponent implements OnInit {
       qualification: [],
       specialisation: [],
       userRole: [],
+      blockStatus: [],
     });
-    // this.getEmployeeData();
+    this.getEmployeeData();
   }
 
   onClear() {
@@ -57,36 +59,31 @@ export class EditUserComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value);
-
-    // const chec = new checking("kuldeep")
-
-    // console.log(empUpdate);
-    // if (this.employeeId === -1) {
-    // this.employeeService.addEmployee(this.form.value).subscribe();
-    // } else {
     this.employeeService.updateEmployee(this.form.value).subscribe();
-    // }
-    // Nabvigation
     // this.router.navigate(['/nurse/employee-list']);
   }
 
-  // getEmployeeData() {
-  //   let data: any = this.location.getState();
-  //   console.log(data);
-  //   this.form.get('employeeId')?.setValue(data.employeeId);
-  //   this.form.get('title')?.setValue(data.title);
-  //   this.form.get('firstName')?.setValue(data.firstName);
-  //   this.form.get('lastName')?.setValue(data.lastName);
-  //   this.form.get('email')?.setValue(data.email);
-  //   this.form.get('dateOfBirth')?.setValue(data.dateOfBirth);
-  //   this.form.get('dateOfJoining')?.setValue(data.dateOfJoining);
-  //   this.form.get('status')?.setValue(data.status);
-  //   this.form.get('mobileNO')?.setValue(data.mobileNO);
-  //   this.form.get('address')?.setValue(data.address);
-  //   this.form.get('gender')?.setValue(data.gender);
-  //   this.form.get('qualification')?.setValue(data.qualification);
-  //   this.form.get('specialisation')?.setValue(data.specialisation);
-  //   this.form.get('roleType')?.setValue(data.roleType);
-  // }
+  getEmployeeData() {
+    let data: any = this.location.getState();
+    console.log(data);
+    this.form.get('employeeId')?.setValue(data.employeeId);
+    this.form.get('title')?.setValue(data.title);
+    this.form.get('firstName')?.setValue(data.firstName);
+    this.form.get('lastName')?.setValue(data.lastName);
+    this.form.get('email')?.setValue(data.email);
+    this.form.get('dateOfBirth')?.setValue(data.dateOfBirth);
+    this.form.get('dateOfJoining')?.setValue(data.dateOfJoining);
+    this.form.get('status')?.setValue(data.status);
+    this.form.get('mobileNO')?.setValue(data.mobileNO);
+    this.form.get('address')?.setValue(data.address);
+    this.form.get('gender')?.setValue(data.gender);
+    this.form.get('qualification')?.setValue(data.qualification);
+    this.form.get('specialisation')?.setValue(data.specialisation);
+    this.form.get('roleType')?.setValue(data.roleType);
+    this.form.get('blockStatus')?.setValue(data.blockStatus);
+  }
 
+  backToEmployeeList() {
+    this.router.navigate(['/admin/employee-details']);
+  }
 }

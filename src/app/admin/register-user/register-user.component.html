@@ -99,13 +99,10 @@
               </div>
               <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                 <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
-                  <mat-label>dateOfBirth</mat-label>
-                  <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1"
-                    placeholder="Select date of birth" required />
-                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                  <mat-datepicker #picker1></mat-datepicker>
+                  <mat-label>Mobile No</mat-label>
+                  <input matInput formControlName="mobileNO" placeholder="Enter mobileNO" required />
                 </mat-form-field>
-                <p *ngIf="form.controls['dateOfBirth']?.errors?.['required'] && form.controls['dateOfBirth'].touched"
+                <p *ngIf="form.controls['mobileNO']?.errors?.['required'] && form.controls['mobileNO'].touched"
                   style="color: red">
                   This field is required
                 </p>
@@ -124,50 +121,63 @@
                   This field is required
                 </p>
               </div>
-              <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+              <!-- <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                 <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
                   <mat-label>Status</mat-label>
                   <mat-select formControlName="status" required>
-                    <mat-option value="active">Active</mat-option>
-                    <mat-option value="blocked">Blocked</mat-option>
-                    <mat-option value="inactive">Inactive </mat-option>
-                    <mat-option value="unblock">Unblock </mat-option>
+                    <mat-option value="Active">Active</mat-option>
+                    <mat-option value="Inactive">Inactive </mat-option>
                   </mat-select>
                 </mat-form-field>
                 <p *ngIf="form.controls['status']?.errors?.['required'] && form.controls['status'].touched"
                   style="color: red">
                   This field is required
                 </p>
-              </div>
-            </div>
-            <div fxLayout="row wrap">
+              </div> -->
               <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                 <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
-                  <mat-label>mobileNO</mat-label>
-                  <input matInput formControlName="mobileNO" placeholder="Enter mobileNO" required />
+                  <mat-label>DateOfBirth</mat-label>
+                  <input matInput formControlName="dateOfBirth" [matDatepicker]="picker1"
+                    placeholder="Select date of birth" required />
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
-                <p *ngIf="form.controls['mobileNO']?.errors?.['required'] && form.controls['mobileNO'].touched"
+                <p *ngIf="form.controls['dateOfBirth']?.errors?.['required'] && form.controls['dateOfBirth'].touched"
                   style="color: red">
                   This field is required
                 </p>
               </div>
-              <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
-                <!-- <mat-form-field appearance="fill" class="example-full-width" style="width: 100%"> -->
+            </div>
+            <div fxLayout="row wrap">
+              
+              <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                 <mat-label>Gender :</mat-label>
                 <mat-radio-group formControlName="gender" required>
                   <mat-radio-button value="male">Male</mat-radio-button>
                   <mat-radio-button value="female">Female</mat-radio-button>
                 </mat-radio-group>
-                <!-- </mat-form-field> -->
                 <p *ngIf="form.controls['gender']?.errors?.['required'] && form.controls['gender'].touched"
                   style="color: red">
                   This field is required
                 </p>
               </div>
+              <!-- <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
+                  <mat-label>Block Status</mat-label>
+                  <mat-select formControlName="blockStatus" required>
+                    <mat-option value="Block">Blocked</mat-option>
+                    <mat-option value="Unblock">Unblock </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <p *ngIf="form.controls['blockStatus']?.errors?.['required'] && form.controls['blockStatus'].touched"
+                  style="color: red">
+                  This field is required
+                </p>
+              </div> -->
             </div>
 
             <div fxLayout="row wrap">
-              <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+              <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                 <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
                   <mat-label>Qualification</mat-label>
                   <input matInput formControlName="qualification" placeholder="Enter qualification" required />
@@ -181,9 +191,7 @@
                 <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
                   <mat-label>Specialisation*</mat-label>
                   <mat-select formControlName="specialisation">
-                    <mat-option *ngFor="let spe of specialisation" value="{{ spe }}">{{
-                      spe
-                      }}</mat-option>
+                    <mat-option *ngFor="let spe of specialisation" value="{{ spe }}">{{ spe }}</mat-option>
                   </mat-select>
                 </mat-form-field>
                 &nbsp; &nbsp;
@@ -205,16 +213,15 @@
                 </p>
               </div>
             </div>
-
-            <!-- Last row -->
-            <div fxLayout="row wrap">
-              <div fxFlex.gt-sm="50" fxFlex.gt-lg="50" fxFlex="100" style="padding: 10px">
-                <button [disabled]="!form.valid" type="submit" mat-raised-button color="primary"
-                  style="background-color: #03a66a; width: 30vh">
-                  Register
-                </button>
-              </div>
-            </div>
+            <button [disabled]="!form.valid" type="submit" mat-raised-button color="primary"
+              style="background-color: #03a66a; width: 20vh">
+              Register
+            </button>
+            &nbsp;&nbsp;
+            <button mat-raised-button color="warn" (click)="backToEmployeeList()"
+              style="background-color: #e91212; width: 20vh">
+              Back
+            </button>
           </mat-card-content>
         </mat-card>
       </div>

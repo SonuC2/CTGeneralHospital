@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { windowWhen } from 'rxjs';
 import { Employee } from 'src/app/entities/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
 
@@ -15,7 +16,7 @@ export class EmployeeDetailsComponent implements OnInit {
   disabled = false;
   employees: Employee[] = [];
 
-  displayedColumns = ['employeeId', 'firstName', 'lastName','mobileNO', 'email','specialisation', 'roleType','status', 'action'];
+  displayedColumns = ['employeeId', 'firstName', 'lastName','mobileNO', 'email','specialisation', 'roleType','status', 'action', 'blockAction'];
   dataSource = new MatTableDataSource<Employee>();
   id!:number;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -29,7 +30,6 @@ export class EmployeeDetailsComponent implements OnInit {
       this.employees = employees;
       this.dataSource.data = this.employees;
       console.log("Data source : " , this.dataSource.data);
-      
     })
   }
 
@@ -50,11 +50,26 @@ export class EmployeeDetailsComponent implements OnInit {
     }
   }
 
-  // deleteEmployee(employeeId:number) {
-  //   console.log(employeeId);
-  //   if(confirm("Are you sure!")) {
-  //     this.employeeService.deleteEmployeeById(employeeId).subscribe();
-  //     window.location.reload();
-  //   }
-  // }
+  activeToInactiveStatus(employee:Employee) {
+    console.log(employee);
+    this.employeeService.activeToInactiveStatus(employee).subscribe();
+    window.location.reload();
+  }
+  inactiveToActiveStatus(employee:Employee) {
+    console.log(employee);
+    this.employeeService.inactiveToActiveStatus(employee).subscribe();
+    window.location.reload();
+  }
+
+  unblockToBlockStatus(employee:Employee) {
+    console.log(employee);
+    this.employeeService.unblockToBlockStatus(employee).subscribe();
+    window.location.reload();
+  }
+
+  blockToUnblockStatus(employee:Employee) {
+    console.log(employee);
+    this.employeeService.blockToUnblockStatus(employee).subscribe();
+    window.location.reload();
+  }
 }
