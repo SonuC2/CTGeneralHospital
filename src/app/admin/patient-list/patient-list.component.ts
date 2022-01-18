@@ -52,4 +52,27 @@ export class PatientListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  activeToInactiveStatus(patient:PatientRegistration) {
+    console.log(patient);
+    this.patientRegistrationService.activeToInactiveStatus(patient).subscribe();
+    window.location.reload();
+  }
+  inactiveToActiveStatus(patient:PatientRegistration) {
+    console.log(patient);
+    this.patientRegistrationService.inactiveToActiveStatus(patient).subscribe();
+    window.location.reload();
+  }
+
+  // unblockToBlockStatus(employee:Employee) {
+  //   console.log(employee);
+  //   this.employeeService.unblockToBlockStatus(employee).subscribe();
+  //   window.location.reload();
+  // }
+
+  // blockToUnblockStatus(employee:Employee) {
+  //   console.log(employee);
+  //   this.employeeService.blockToUnblockStatus(employee).subscribe();
+  //   window.location.reload();
+  // }
 }

@@ -34,7 +34,7 @@ export class PatientService {
     lastName: string
   ): Observable<Patient> {
     return this._httpClient.get<Patient>(
-      'http://localhost:9093/patientDetails/patient' +
+      'http://localhost:9003/patientDetails/patient' +
         '/' +
         firstName +
         '/' +
@@ -44,20 +44,20 @@ export class PatientService {
 
   submitPatientDetails(data: Patient): Observable<Patient> {
     return this._httpClient.post<Patient>(
-      'http://localhost:9093/patientDetails/patient',
+      'http://localhost:9003/patientDetails/patient',
       data
     );
   }
 
   getAllPatientDetails(id: number): Observable<Patient> {
     return this._httpClient.get<Patient>(
-      'http://localhost:9093/patientDetails/patient' + '/' + id
+      'http://localhost:9003/patientDetails/patient' + '/' + id
     );
   }
 
   getPatientDataByEmail(email: string): Observable<Patient> {
     return this._httpClient.get<Patient>(
-      'http://localhost:9093/patientDetails/patient' + '/' + email
+      'http://localhost:9003/patientDetails/patient' + '/' + email
     );
   }
 
@@ -65,7 +65,7 @@ export class PatientService {
     patient: Patient
   ): Observable<number> {
     return this._httpClient.get<number>(
-      'http://localhost:9093/patientDetails/patient' +
+      'http://localhost:9003/patientDetails/patient' +
         '/' +
         patient.firstName +
         '/' +
@@ -77,12 +77,12 @@ export class PatientService {
 
   updatePatientById(patient: Patient, id: number): Observable<Patient> {
     return this._httpClient.put<Patient>(
-      'http://localhost:9093/patientDetails/patient' + '/' + id,
+      'http://localhost:9003/patientDetails/patient' + '/' + id,
       patient
     );
   }
 
   getAllPatientList():Observable<Patient[]>{
-    return this._httpClient.get<Patient[]>('http://localhost:9093/patientDetails/patients' );
+    return this._httpClient.get<Patient[]>('http://localhost:9003/patientDetails/patients' );
   }
 }

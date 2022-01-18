@@ -88,18 +88,22 @@
           </td>
         </ng-container>
         <ng-container matColumnDef="blockAction">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Blcok action</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Block User</th>
           <td mat-cell *matCellDef="let row">
             <button mat-raised-button color="primary" *ngIf="row.blockStatus =='Block'"
-              style="background-color: #03a66a; width: 70%; font-size: 12px;" (click)="blockToUnblockStatus(row)"
+              style="background-color: #f52323; width: 70%; font-size: 12px;" (click)="blockToUnblockStatus(row)"
               class="example-full-width" type="submit" mat-stroked-button>
-              Block
+              <mat-icon aria-label="lock">lock
+              </mat-icon>
+              <!-- Block -->
             </button>
             &nbsp;
             <button mat-raised-button color="primary" *ngIf="row.blockStatus !=='Block'"
-              style="background-color: #f52323; width: 70%; font-size: 12px;" (click)="unblockToBlockStatus(row)"
+              style="background-color: #03a66a; width: 70%; font-size: 12px;" (click)="unblockToBlockStatus(row)"
               class="example-full-width" type="submit" mat-stroked-button>
-              Unblock
+              <mat-icon aria-label="lock_open">lock_open
+              </mat-icon>
+             <!-- / Unblock -->
             </button>
           </td>
         </ng-container>
