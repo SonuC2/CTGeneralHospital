@@ -207,15 +207,15 @@
         <mat-icon>person</mat-icon>
         <span>My visit history</span>
       </button>
-      <!-- <button
+      <button
       mat-button
       class="menu-button"
       routerLink="patient/get-my-data"
-      [disabled]="downloadMydata"
+      
     >
       <mat-icon>download</mat-icon>
       <span>Download</span>
-    </button> -->
+    </button>
     </div>
     <button mat-button class="menu-button" (click)="showSubmenu = !showSubmenu" (mouseenter)="mouseenter()"
       (mouseleave)="mouseleave()">
@@ -289,7 +289,7 @@
 
 <mat-sidenav-container *ngIf="isAdmin">
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-    <button mat-button class="menu-button"  routerLink="/admin/home">
+    <button mat-button class="menu-button"  routerLink="admin/home">
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </button>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Patient } from 'src/app/entities/patient';
+import { PatientRegistration } from 'src/app/entities/patient-registration';
 import { PatientService } from 'src/app/services/patient.service';
 import * as XLXS from 'xlsx';
 
@@ -16,12 +17,23 @@ export class GetMyDataComponent implements OnInit {
   firstName!:string;
   lastName!:string;
   abc!:string;
+  patientDetailsFromLogin!:PatientRegistration;
   list:string[]=["Bhushan","sonu","Priyanka","Mansi","Parag"];
   constructor(private patientService:PatientService) { }
 
   ngOnInit(): void {
   
-   
+    this.patientDetailsFromLogin = JSON.parse(sessionStorage.getItem('patientDetails') || '{}');
+    console.log("PAtient Details from login: ", this.patientDetailsFromLogin);
+
+    this.patientService.getPatientDetailsById(this.patientDetailsFromLogin.patientId).subscribe(d=>
+      {
+        this.patientData=d;
+      //   this.PatientDataForTable = d.allergy;
+      // console.log('welocome to allergy mapping');
+      // this.dataSource.data = this.PatientDataForTable;
+      })
+    
     
   }
   getExcelData() {

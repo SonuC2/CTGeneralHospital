@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatAccordion } from '@angular/material/expansion';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Appointments } from 'src/app/entities/appointments';
+import { PatientRegistration } from 'src/app/entities/patient-registration';
 import { Timeslot } from 'src/app/entities/timeslot';
 import { SchedulingService } from 'src/app/services/scheduling.service';
 import { TimeslotService } from 'src/app/services/timeslot.service';
@@ -20,9 +21,10 @@ export class AddAppointmentsComponent implements OnInit {
   appointmentData: Appointments[] = [];
   appointmentTest: any;
   isNurse:boolean=false;
-  isPatient:boolean=false;
-  isPhysician:boolean=true;
+  isPatient:boolean=true;
+  isPhysician:boolean=false;
   timeSlotData:Timeslot[]=[];
+  patientDetailsFromLogin!:PatientRegistration;
 
   constructor(
     private fb: FormBuilder,
@@ -34,21 +36,28 @@ export class AddAppointmentsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    this.patientDetailsFromLogin = JSON.parse(sessionStorage.getItem('patientDetails') || '{}');
+    console.log("PAtient Details from login: ", this.patientDetailsFromLogin);
+    
     this.form = this.fb.group({
       meetingTitle!:[],
       description!: [],
       specialisation!: [],
-      employeeId!:[1],
-      employeeName!:['Dr. John'],
+      employeeId!:[3],
+      employeeName!:['Dr. Desai'],
       appointmentDate!:[],
       timeSlot!: [],
       reason!:[],
       rescheduleDate!:[],
       rescheduleTimeSlot!:[],
-      patientId!:[1],
-      patientName!:['Ram charan'],
+      patientId!:[],
+      patientName!:[],
       appointmentStatus!:[]
     });
+    let name=this.patientDetailsFromLogin.firstName+" "+this.patientDetailsFromLogin.lastName;
+    this.form.get('patientId')?.setValue(this.patientDetailsFromLogin.patientId);
+    this.form.get('patientName')?.setValue(name);
     // this.appointmentTest=this.router.snapshot.paramMap.get("index");
     // console.log(this.appointmentTest)
     // this.form.get('employeeId')?.setValue('1');

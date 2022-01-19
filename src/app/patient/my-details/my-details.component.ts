@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { isEmpty } from 'rxjs';
 import { Allergy } from 'src/app/entities/allergy';
 import { Patient } from 'src/app/entities/patient';
+import { PatientRegistration } from 'src/app/entities/patient-registration';
 import { PatientService } from 'src/app/services/patient.service';
 //import * as XLXS from 'xlsx';
 
@@ -50,7 +51,7 @@ export class MyDetailsComponent implements OnInit {
   updateId!: number;
   paddress: string = '';
   eaddress: string = '';
-  
+  patientDetailsFromLogin!:PatientRegistration;
   
   constructor(private fb: FormBuilder,
     private router: Router,
@@ -61,7 +62,12 @@ export class MyDetailsComponent implements OnInit {
     firstName: string = '';
     lastName!: string;
     ngOnInit(): void {
+
+    this.patientDetailsFromLogin = JSON.parse(sessionStorage.getItem('patientDetails') || '{}');
+    console.log("PAtient Details from login: ", this.patientDetailsFromLogin);
+
       this.form = this.fb.group({
+        patientId:[],
         firstName: [''],
         lastName: [''],
         dateOfBirth: [''],
@@ -72,15 +78,16 @@ export class MyDetailsComponent implements OnInit {
         email: [''],
         language: [''],
         address: [''],
-        status: ['pending'],
+        status: [''],
         userRole: this.fb.group({
-          roleType: ['patient'],
+          userRoleId:[3],
+          roleType: ['Patient'],
         }),
         allergy: this.fb.array([this.addAllergy()]),
         emergencyContactDetails: this.fb.group({
           firstName: [''],
           lastName: [''],
-          relationship: [''],
+          ralationship: [''],
           mobileNo: [''],
           email: [''],
           address: [''],
@@ -90,7 +97,7 @@ export class MyDetailsComponent implements OnInit {
       
        let d:any=this.location.getState();
        this.patientData=d;
-       this.patientService.getPatientDetailsById(1).subscribe(d=>
+       this.patientService.getPatientDetailsById(this.patientDetailsFromLogin.patientId).subscribe(d=>
         {
           this.patientData=d;
           this.PatientDataForTable = d.allergy;
@@ -98,19 +105,19 @@ export class MyDetailsComponent implements OnInit {
         this.dataSource.data = this.PatientDataForTable;
         })
        
-      this.getDataPatientDetails();
+      // this.getDataPatientDetails();
       
 
-      this.patientData= this.patientService.sendDataToPatientDetailsTs();
-      console.log( "this is from patientDetailsTs "+this.patientData.firstName);
-      this.patientService
-      .getPatientDataByFirstNameAndEmail(this.patientData)
-      .subscribe((allergy) => {
-        this.PatientDataForTable = allergy;
-        console.log('welocome to allergy mapping');
-        this.dataSource.data = this.PatientDataForTable;
-        console.log('Data source : ', this.dataSource.data);
-      });
+      // this.patientData= this.patientService.sendDataToPatientDetailsTs();
+      // console.log( "this is from patientDetailsTs "+this.patientData.firstName);
+      // this.patientService
+      // .getPatientDataByFirstNameAndEmail(this.patientData)
+      // .subscribe((allergy) => {
+      //   this.PatientDataForTable = allergy;
+      //   console.log('welocome to allergy mapping');
+      //   this.dataSource.data = this.PatientDataForTable;
+      //   console.log('Data source : ', this.dataSource.data);
+      // });
       
     }
     // timepass()
@@ -207,6 +214,11 @@ export class MyDetailsComponent implements OnInit {
       'German',
       'Japnies',
     ];
+
+    downloadDetails()
+    {
+      this.router.navigate(['/shared/sidebar/patient/get-my-data']);
+    }
     //for allergy
     addAllergy() {
       return this.fb.group({
@@ -311,18 +323,7 @@ export class MyDetailsComponent implements OnInit {
       //   this.form.get('firstName').value,
       //   this.form.get('lastName').value
       // );
-      this.firstName = this.form.get('firstName').value;
-      this.firstName = this.form.get('firstName').value;
-      this.lastName = this.form.get('firstName').value;
-      this.firstName = this.form.get('firstName').value;
-      this.firstName = this.form.get('firstName').value;
-      this.firstName = this.form.get('firstName').value;
-      this.firstName = this.form.get('firstName').value;
-      this.firstName = this.form.get('firstName').value;
-      this.firstName = this.form.get('firstName').value;
-      this.firstName = this.form.get('firstName').value;
-      this.firstName = this.form.get('firstName').value;
-      this.firstName = this.form.get('firstName').value;
+      
   
       this.section1 = true;
       this.section2 = false;
@@ -340,14 +341,14 @@ export class MyDetailsComponent implements OnInit {
       // console.log(this.form.value)
       //recent end
       console.log('registered');
-      this.patientService
-        .getPatientDataByFirstNameAndEmail(this.form.value)
-        .subscribe((allergy) => {
-          this.PatientDataForTable = allergy;
-          console.log('welocome to allergy mapping');
-          this.dataSource.data = this.PatientDataForTable;
-          console.log('Data source : ', this.dataSource.data);
-        });
+      // this.patientService
+      //   .getPatientDataByFirstNameAndEmail(this.form.value)
+      //   .subscribe((allergy) => {
+      //     this.PatientDataForTable = allergy;
+      //     console.log('welocome to allergy mapping');
+      //     this.dataSource.data = this.PatientDataForTable;
+      //     console.log('Data source : ', this.dataSource.data);
+      //   });
         
     }
     update() {
@@ -376,7 +377,7 @@ export class MyDetailsComponent implements OnInit {
         .setValue(this.patientData.emergencyContactDetails.lastName);
       this.form
         .get('emergencyContactDetails')
-        .get('relationship')
+        .get('ralationship')
         .setValue(this.patientData.emergencyContactDetails.ralationship);
       this.form
         .get('emergencyContactDetails')
