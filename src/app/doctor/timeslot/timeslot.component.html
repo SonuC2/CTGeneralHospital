@@ -13,9 +13,10 @@
                     <br>
                     <mat-form-field appearance="fill" style="width: 35vh;">
                         <mat-label>Appointment date</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="date" required />
+                        <input matInput [matDatepicker]="picker" formControlName="date" required (dateChange) = "getSelectedDate($event)"/>
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
+                        <!-- <input type = "date" matInput  formControlName="date" required (dateChange) = "getSelectedDate($event)"/> -->
                     </mat-form-field>
                     &nbsp;
                     <mat-form-field appearance="fill" style="width: 35vh;">
