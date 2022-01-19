@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Employee } from 'src/app/entities/employee';
 import { Timeslot } from 'src/app/entities/timeslot';
 import { TimeslotService } from 'src/app/services/timeslot.service';
 
@@ -12,11 +13,15 @@ export class TimeslotListComponent implements OnInit {
   timeslot: Timeslot[] = [];
   dataSource = new MatTableDataSource<Timeslot>();
   constructor(private timeslotService: TimeslotService) {}
-
+  physicianDetailsFromLogin!:Employee;
   displayedColumns: string[] = ['date', 'startTime', 'endTime','slotStatus','action'];
 
   ngOnInit(): void {
-    this.timeslotService.getAllTimeSlot().subscribe((newtimeslot) => {
+
+    this.physicianDetailsFromLogin = JSON.parse(sessionStorage.getItem('physicianDetailsFromLogin') || '{}');
+    console.log("PAtient Details from login: ", this.physicianDetailsFromLogin);
+
+    this.timeslotService.getAllTimeSlot(this.physicianDetailsFromLogin.employeeId).subscribe((newtimeslot) => {
       this.timeslot = newtimeslot;
       this.dataSource.data = this.timeslot;
       console.log('Data source : ', this.dataSource.data);

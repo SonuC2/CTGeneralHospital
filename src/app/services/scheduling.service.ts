@@ -12,16 +12,16 @@ export class SchedulingService {
 
 
   addAppointment(ap:Appointments){
-    return this._httpClient.post("http://localhost:8080/appointment",ap);
+    return this._httpClient.post("http://localhost:9005/appointment",ap);
   }
 
   getAllAppointmentList(): Observable<Appointments[]> {
-    return this._httpClient.get<Appointments[]>('http://localhost:8080/getBookedAndRescheduleAppointment');
+    return this._httpClient.get<Appointments[]>('http://localhost:9005/getBookedAndRescheduleAppointment');
 
   }
 
   updateAppointment(appointment:Appointments):Observable<Appointments>{
-      return this._httpClient.patch<Appointments>('http://localhost:8080/appointment/',appointment);
+      return this._httpClient.patch<Appointments>('http://localhost:9005/appointment/',appointment);
       
   }
 
@@ -30,7 +30,17 @@ export class SchedulingService {
   // }
 
   cancelAppointment(appointment: Appointments): Observable<Appointments[]>{
-    return this._httpClient.patch<Appointments[]>('http://localhost:8080/cancelAppointment/',appointment);
+    return this._httpClient.patch<Appointments[]>('http://localhost:9005/cancelAppointment/',appointment);
+  }
+
+  getAppointmentForEmployee(employeeId:number): Observable<Appointments[]> {
+    return this._httpClient.get<Appointments[]>('http://localhost:9005/appointment/employee/' + employeeId);
+
+  }
+
+  getAppointmentForPatient(patientId:number): Observable<Appointments[]> {
+    return this._httpClient.get<Appointments[]>('http://localhost:9005/appointment/patient/' + patientId);
+
   }
   
 }

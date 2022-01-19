@@ -7,7 +7,9 @@ import { map, Observable, startWith } from 'rxjs';
 import { Allergy } from 'src/app/entities/allergy';
 import { Employee } from 'src/app/entities/employee';
 import { Patient } from 'src/app/entities/patient';
+import { PatientRegistration } from 'src/app/entities/patient-registration';
 import { PatientService } from 'src/app/services/patient.service';
+import { PatientRegistrationService } from 'src/app/services/patientRegistration.service';
 
 export interface AllergyData {
   id: string;
@@ -101,11 +103,14 @@ export class PatientVisitComponent implements OnInit {
   ];
   dataSourcePrescription = new MatTableDataSource();
   drugTiming!: FormGroup;
+
+  patientListFromRegistration!:PatientRegistration[];
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private patientService: PatientService
+    private patientService: PatientService,
+    private patientRegService:PatientRegistrationService
   ) {
     this.drugTiming = fb.group({
       morning: false,
@@ -154,6 +159,12 @@ export class PatientVisitComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.patientRegService.getAllPatientList().subscribe(patients =>{
+      this.patientListFromRegistration = patients;
+      console.log("Patient list", this.patientListFromRegistration);
+    })
+
     if (this.route.snapshot.paramMap.get('id') !== null) {
       this.pId = this.route.snapshot.paramMap.get('id');
       console.log('id from patient list', this.pId);
