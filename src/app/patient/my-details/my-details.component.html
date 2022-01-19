@@ -73,7 +73,7 @@
         >
         </button>
         <button mat-raised-button class="btn" type="button">
-          Download<mat-icon aria-hidden="false" routerLink="/patient/get-my-data" [state]="patientData" aria-label="Example home icon"
+          Download<mat-icon aria-hidden="false"  (click) = "downloadDetails()"  aria-label="Example home icon"
             >download</mat-icon
           >
         </button>
@@ -456,7 +456,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="fill" class="pad w">
                   <mat-label>Relationship*</mat-label>
-                  <mat-select formControlName="relationship">
+                  <mat-select formControlName="ralationship">
                     <mat-option
                       *ngFor="let relationship of list"
                       value="{{ relationship }}"

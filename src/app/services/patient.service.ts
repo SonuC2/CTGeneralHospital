@@ -128,4 +128,8 @@ export class PatientService {
       'http://localhost:9093/patientDetails/PatientById'+"/"+id
     ); 
   }
+  addAllergy( id:number,allergy:Allergy[]):Observable<Allergy[]>
+  {
+    return this._httpClient.put<Allergy[]>('http://localhost:9093/patientDetails/storeAllergy'+"/"+id,allergy);
+  }
 }

@@ -1,343 +1,331 @@
-<div [hidden]="section1">
-  <form [formGroup]="form">
-    <div class="bounds">
-      <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
-        <div fxFlex="50" class="sec1" fxFlex.xs="55">
-          <mat-card>
-            <mat-card-content>
-              <h1 class="head">Demographic Details</h1>
-              <mat-form-field appearance="fill" class="pad w">
-                <mat-label>First Name*</mat-label>
-                <input matInput formControlName="firstName" /> </mat-form-field
-              >&nbsp; &nbsp;
-              <mat-form-field appearance="fill" class="pad w">
-                <mat-label>Last Name*</mat-label>
-                <input matInput formControlName="lastName" />
-              </mat-form-field>
 
-              <mat-form-field appearance="fill" class="pad date w">
-                <mat-label>Choose a date*</mat-label>
+<div [hidden]="section1">
+  <mat-stepper linear #stepper>
+    <mat-step [editable]="isEditable">
+      <form [formGroup]="form"> 
+        <ng-template matStepLabel>Demographic and Emergency Contact Information</ng-template>
+        <div class="bounds">
+          <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+            <div fxFlex="50" class="sec1" fxFlex.xs="55">
+        <mat-card>
+          <mat-card-content>
+            <h1 class="head">Demographic Details</h1>
+            <mat-form-field appearance="fill" class="pad w">
+              <mat-label>First Name*</mat-label>
+              <input matInput formControlName="firstName" /> </mat-form-field
+            >&nbsp; &nbsp;
+            <mat-form-field appearance="fill" class="pad w">
+              <mat-label>Last Name*</mat-label>
+              <input matInput formControlName="lastName" />
+            </mat-form-field>
+  
+            <mat-form-field appearance="fill" class="pad date w">
+              <mat-label>Choose a date*</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker"
+                formControlName="dateOfBirth"
+                [max]="today"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker> </mat-form-field
+            >&nbsp; &nbsp;
+            <mat-form-field appearance="fill" class="pad w">
+              <mat-label>Mobile No*</mat-label>
+              <input matInput formControlName="mobileNo" /> </mat-form-field
+            ><br />
+            <div>
+              <mat-radio-group
+                aria-label="Select an option"
+                formControlName="gender"
+              >
+                <mat-label>Gender :</mat-label>&nbsp;
+  
+                <mat-radio-button value="Male">Male</mat-radio-button>&nbsp;
+                &nbsp;
+                <mat-radio-button value="Female">Female</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <br />
+            <mat-form-field appearance="fill" class="pad w">
+              <mat-label>Race</mat-label>
+              <!-- <input matInput formControlName="race" /> -->
+              <mat-select formControlName="race">
+                <mat-option *ngFor="let race of races" value="{{ race }}">{{
+                  race
+                }}</mat-option>
+              </mat-select> </mat-form-field
+            >&nbsp; &nbsp;
+            <mat-form-field appearance="fill" class="pad w">
+              <mat-label>Ethnicity</mat-label>
+              <!-- <input matInput formControlName="ethnicity" /> -->
+              <mat-select formControlName="ethnicity">
+                <mat-option
+                  *ngFor="let ethnicity of ethnicities"
+                  value="{{ ethnicity }}"
+                  >{{ ethnicity }}</mat-option
+                >
+              </mat-select>
+            </mat-form-field>
+            <div class="example-container">
+              <mat-form-field
+                appearance="fill"
+                class="example-full-width wid pad"
+              >
+                <mat-label>Enter your email</mat-label>
                 <input
                   matInput
-                  [matDatepicker]="picker"
-                  formControlName="dateOfBirth"
-                  [max]="today"
+                  placeholder="pat@example.com"
+                  formControlName="email"
                 />
-                <mat-datepicker-toggle
-                  matSuffix
-                  [for]="picker"
-                ></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker> </mat-form-field
-              >&nbsp; &nbsp;
-              <mat-form-field appearance="fill" class="pad w">
-                <mat-label>Mobile No*</mat-label>
-                <input matInput formControlName="mobileNo" /> </mat-form-field
-              ><br />
-              <div>
-                <mat-radio-group
-                  aria-label="Select an option"
-                  formControlName="gender"
-                >
-                  <mat-label>Gender :</mat-label>&nbsp;
-
-                  <mat-radio-button value="Male">Male</mat-radio-button>&nbsp;
-                  &nbsp;
-                  <mat-radio-button value="Female">Female</mat-radio-button>
-                </mat-radio-group>
-              </div>
-              <br />
-              <mat-form-field appearance="fill" class="pad w">
-                <mat-label>Race</mat-label>
-                <!-- <input matInput formControlName="race" /> -->
-                <mat-select formControlName="race">
-                  <mat-option *ngFor="let race of races" value="{{ race }}">{{
-                    race
-                  }}</mat-option>
-                </mat-select> </mat-form-field
-              >&nbsp; &nbsp;
-              <mat-form-field appearance="fill" class="pad w">
-                <mat-label>Ethnicity</mat-label>
-                <!-- <input matInput formControlName="ethnicity" /> -->
-                <mat-select formControlName="ethnicity">
+              </mat-form-field>
+            </div>
+            <div class="example-container">
+              <mat-form-field appearance="fill">
+                <mat-label>Known Languages</mat-label>
+                <mat-select formControlName="language" multiple>
+                  <mat-select-trigger>
+                    {{
+                      form.get("language").value
+                        ? form.get("language").value[0]
+                        : ""
+                    }}
+                    <span
+                      *ngIf="form.get('language').value?.length > 1"
+                      class="example-additional-selection"
+                    >
+                      (+{{ form.get("language").value.length - 1 }}
+                      {{
+                        form.get("language").value.length === 2
+                          ? "other"
+                          : "others"
+                      }})
+                    </span>
+                  </mat-select-trigger>
                   <mat-option
-                    *ngFor="let ethnicity of ethnicities"
-                    value="{{ ethnicity }}"
-                    >{{ ethnicity }}</mat-option
+                    *ngFor="let language of languageList"
+                    [value]="language"
+                    >{{ language }}</mat-option
                   >
                 </mat-select>
               </mat-form-field>
-              <div class="example-container">
-                <mat-form-field
-                  appearance="fill"
-                  class="example-full-width wid pad"
-                >
-                  <mat-label>Enter your email</mat-label>
-                  <input
-                    matInput
-                    placeholder="pat@example.com"
-                    formControlName="email"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="example-container">
-                <mat-form-field appearance="fill">
-                  <mat-label>Known Languages</mat-label>
-                  <mat-select formControlName="language" multiple>
-                    <mat-select-trigger>
-                      {{
-                        form.get("language").value
-                          ? form.get("language").value[0]
-                          : ""
-                      }}
-                      <span
-                        *ngIf="form.get('language').value?.length > 1"
-                        class="example-additional-selection"
-                      >
-                        (+{{ form.get("language").value.length - 1 }}
-                        {{
-                          form.get("language").value.length === 2
-                            ? "other"
-                            : "others"
-                        }})
-                      </span>
-                    </mat-select-trigger>
-                    <mat-option
-                      *ngFor="let language of languageList"
-                      [value]="language"
-                      >{{ language }}</mat-option
-                    >
-                  </mat-select>
-                </mat-form-field>
-              </div>
-
-              <p>
-                <mat-form-field
-                  class="example-full-width wid"
-                  appearance="fill"
-                >
-                  <mat-label>Address</mat-label>
-                  <textarea
-                    matInput
-                    placeholder="Ex. 100 Main St"
-                    formControlName="address"
-                    [(ngModel)]="paddress"
-                  ></textarea>
-                </mat-form-field>
-              </p>
-              <div [hidden]="headingAllergy">
-                <h1 class="head">Allergies</h1>
-
-                <div>
-                  <mat-radio-group aria-label="Select an option">
-                    <mat-label>Patient has any known allergies? :</mat-label>
-
-                    <mat-radio-button
-                      value="1"
-                      (click)="allergyFalse($event)"
-                      #event
-                      >Yes</mat-radio-button
-                    >&nbsp; &nbsp;
-                    <mat-radio-button value="2" (click)="allergyTrue($event)"
-                      >No</mat-radio-button
-                    >
-                  </mat-radio-group>
-                </div>
-              </div>
-              <br />
-
-              <div [hidden]="hideAllergy">
-                <div formArrayName="allergy">
-                  <div
-                    *ngFor="let data of allegyArray.controls; let i = index"
-                    [formGroupName]="i"
-                  >
-                    <h1 class="head">Allergy No: {{ i + 1 }}</h1>
+            </div>
+  
+            <p>
+              <mat-form-field
+                class="example-full-width wid"
+                appearance="fill"
+              >
+                <mat-label>Address</mat-label>
+                <textarea
+                  matInput
+                  placeholder="Ex. 100 Main St"
+                  formControlName="address"
+                  [(ngModel)]="paddress"
+                ></textarea>
+              </mat-form-field>
+            </p>
+            <br />
+          </mat-card-content>
+        </mat-card>
+            </div>
+            <div fxFlex="50" class="sec2" fxFlex.xs="40">
+              <mat-card>
+                <mat-card-content>
+                  <h1 class="head">Emergency Contact Information</h1>
+                  <div formGroupName="emergencyContactDetails">
                     <mat-form-field appearance="fill" class="pad w">
-                      <mat-label>AllergyId*</mat-label>
-                      <mat-select formControlName="allergyId" (ngModelChange)="onChange($event)">
+                      <mat-label>First Name*</mat-label>
+                      <input
+                        matInput
+                        formControlName="firstName"
+                      /> </mat-form-field
+                    >&nbsp; &nbsp;
+                    <mat-form-field appearance="fill" class="pad w">
+                      <mat-label>Last Name*</mat-label>
+                      <input matInput formControlName="lastName" />
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="pad w">
+                      <mat-label>Relationship*</mat-label>
+                      <mat-select formControlName="ralationship">
                         <mat-option
-                          *ngFor="let allergydata of allergyI"
-                          value="{{ allergydata }}"
-                          >{{ allergydata }}</mat-option
+                          *ngFor="let ralationship of list"
+                          value="{{ ralationship }}"
+                          >{{ ralationship }}</mat-option
                         >
                       </mat-select> </mat-form-field
                     >&nbsp; &nbsp;
-                    <mat-form-field
-                      appearance="fill"
-                      class="example-full-width pad w"
+                    <mat-form-field appearance="fill" class="pad w">
+                      <mat-label>Mobile No*</mat-label>
+                      <input matInput formControlName="mobileNo" />
+                    </mat-form-field>
+                    <div class="example-container">
+                      <mat-form-field
+                        appearance="fill"
+                        class="example-full-width wid"
+                      >
+                        <mat-label>Enter your email</mat-label>
+                        <input
+                          matInput
+                          placeholder="pat@example.com"
+                          required
+                          formControlName="email"
+                        />
+                      </mat-form-field>
+                    </div>
+                    <mat-checkbox
+                      class="example-margin"
+                      id="checkBox"
+                      (click)="chackBox()"
+                      >Same as per patient</mat-checkbox
                     >
-                      <mat-label>Allergy Type</mat-label>
-
-                      <mat-select formControlName="allergyType" >
-                        <mat-option
-                          *ngFor="let allergyType of allergyT"
-                          value="{{ allergyType }}"
-                          
-                          >{{ allergyType }}</mat-option
+    
+                    <p>
+                      <mat-form-field
+                        class="example-full-width wid"
+                        appearance="fill"
+                      >
+                        <mat-label>Address</mat-label>
+                        <textarea
+                          matInput
+                          placeholder="Ex. 100 Main St"
+                          formControlName="address"
+                          [(ngModel)]="eaddress"
+                        ></textarea>
+                      </mat-form-field>
+                    </p>
+                    <div>
+                      <mat-radio-group
+                        aria-label="Select an option"
+                        formControlName="access"
+                      >
+                        <mat-label
+                          >Do you need to access patient portal? :</mat-label
                         >
-                      </mat-select>
-                    </mat-form-field>
-
-                    <mat-form-field
-                      appearance="fill"
-                      class="example-full-width pad w"
-                    >
-                      <mat-label>Allergy Name</mat-label>
-
-                      <mat-select formControlName="allergyName">
-                        <mat-option
-                          *ngFor="let allergyName of allergyN"
-                          value="{{ allergyName }}"
-                          >{{ allergyName }}</mat-option
-                        >
-                      </mat-select> </mat-form-field
-                    >&nbsp; &nbsp;
-
-                    <mat-form-field
-                      appearance="fill"
-                      class="example-full-width pad w"
-                    >
-                      <mat-label>Allergy Description</mat-label>
-                      <input matInput formControlName="allergyDescription" />
-                    </mat-form-field>
-                    <mat-form-field
-                      appearance="fill"
-                      class="example-full-width wid"
-                    >
-                      <mat-label>Allergy clinical information</mat-label>
-                      <input matInput formControlName="clinicalInformation" />
-                    </mat-form-field>
+    
+                        <mat-radio-button value="Yes">Yes</mat-radio-button>&nbsp;
+                        &nbsp;
+                        <mat-radio-button value="No">No</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+    
+                  <br />
+                  <div [hidden]="isRegister">
                     <button
                       mat-raised-button
                       color="primary"
+                      style="background-color: #03a66a; width: 50vh"
+                      class="example-full-width"
                       type="button"
-                      style="background-color: #03a66a; margin: 5px"
-                      (click)="pushAllergy()"
-                      
+                      matTooltip="Click here to submit patientDetails"
+                      mat-stroked-button
+                      class="example-button"
+                      matTooltipClass="example-tooltip-red"
+                      (click)="submitDetails()"
+                      matStepperNext
                     >
-                      <mat-icon>add</mat-icon>
-                    </button>
-                    <button
-                      mat-raised-button
-                      color="primary"
-                      type="button"
-                      style="background-color: #03a66a; margin: 5px"
-                      (click)="removeAllergy(i)"
-                    >
-                      <mat-icon>remove</mat-icon>
+                      Submit
                     </button>
                   </div>
-                </div>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </div>
-        <div fxFlex="50" class="sec2" fxFlex.xs="40">
-          <mat-card>
-            <mat-card-content>
-              <h1 class="head">Emergency Contact Information</h1>
-              <div formGroupName="emergencyContactDetails">
-                <mat-form-field appearance="fill" class="pad w">
-                  <mat-label>First Name*</mat-label>
-                  <input
-                    matInput
-                    formControlName="firstName"
-                  /> </mat-form-field
-                >&nbsp; &nbsp;
-                <mat-form-field appearance="fill" class="pad w">
-                  <mat-label>Last Name*</mat-label>
-                  <input matInput formControlName="lastName" />
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="pad w">
-                  <mat-label>Relationship*</mat-label>
-                  <mat-select formControlName="ralationship">
-                    <mat-option
-                      *ngFor="let ralationship of list"
-                      value="{{ ralationship }}"
-                      >{{ ralationship }}</mat-option
-                    >
-                  </mat-select> </mat-form-field
-                >&nbsp; &nbsp;
-                <mat-form-field appearance="fill" class="pad w">
-                  <mat-label>Mobile No*</mat-label>
-                  <input matInput formControlName="mobileNo" />
-                </mat-form-field>
-                <div class="example-container">
-                  <mat-form-field
-                    appearance="fill"
-                    class="example-full-width wid"
+                </mat-card-content>
+              </mat-card>
+            </div>
+            
+          </div>
+          
+          </div>
+      </form>
+    </mat-step>
+    <mat-step >
+      <form [formGroup]="allergyForm"> 
+        <ng-template matStepLabel>Allergies</ng-template>
+  
+              <mat-form-field appearance="fill" class="pad w">
+                <mat-label>AllergyId*</mat-label>
+                <mat-select formControlName="allergyId" >
+                  <mat-option
+                    *ngFor="let allergydata of allergyI"
+                    value="{{ allergydata }}"
+                    >{{ allergydata }}</mat-option
                   >
-                    <mat-label>Enter your email</mat-label>
-                    <input
-                      matInput
-                      placeholder="pat@example.com"
-                      required
-                      formControlName="email"
-                    />
-                  </mat-form-field>
-                </div>
-                <mat-checkbox
-                  class="example-margin"
-                  id="checkBox"
-                  (click)="chackBox()"
-                  >Same as per patient</mat-checkbox
-                >
-
-                <p>
-                  <mat-form-field
-                    class="example-full-width wid"
-                    appearance="fill"
+                </mat-select> </mat-form-field
+              >&nbsp; &nbsp;
+              <mat-form-field
+                appearance="fill"
+                class="example-full-width pad w"
+              >
+                <mat-label>Allergy Type</mat-label>
+  
+                <mat-select  formControlName="allergyType">
+                  <mat-option
+                    *ngFor="let allergyType of allergyT"
+                    value="{{ allergyType }}"
+                    
+                    >{{ allergyType }}</mat-option
                   >
-                    <mat-label>Address</mat-label>
-                    <textarea
-                      matInput
-                      placeholder="Ex. 100 Main St"
-                      formControlName="address"
-                      [(ngModel)]="eaddress"
-                    ></textarea>
-                  </mat-form-field>
-                </p>
-                <div>
-                  <mat-radio-group
-                    aria-label="Select an option"
-                    formControlName="access"
+                </mat-select>
+              </mat-form-field>
+  
+              <mat-form-field
+                appearance="fill"
+                class="example-full-width pad w"
+              >
+                <mat-label>Allergy Name</mat-label>
+  
+                <mat-select formControlName="allergyName">
+                  <mat-option
+                    *ngFor="let allergyName of allergyN"
+                    value="{{ allergyName }}"
+                    >{{ allergyName }}</mat-option
                   >
-                    <mat-label
-                      >Do you need to access patient portal? :</mat-label
-                    >
-
-                    <mat-radio-button value="Yes">Yes</mat-radio-button>&nbsp;
-                    &nbsp;
-                    <mat-radio-button value="No">No</mat-radio-button>
-                  </mat-radio-group>
-                </div>
-              </div>
-
-              <br />
-              <div [hidden]="isRegister">
-                <button
-                  mat-raised-button
-                  color="primary"
-                  style="background-color: #03a66a; width: 50vh"
-                  class="example-full-width"
-                  type="button"
-                  matTooltip="Click here to submit patientDetails"
-                  mat-stroked-button
-                  class="example-button"
-                  matTooltipClass="example-tooltip-red"
-                  (click)="submitDetails()"
-                 
-                >
-                  Submit
-                </button>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </div>
+                </mat-select> </mat-form-field
+              >&nbsp; &nbsp;
+  
+              <mat-form-field
+                appearance="fill"
+                class="example-full-width pad w"
+              >
+                <mat-label>Allergy Description</mat-label>
+                <input matInput  formControlName="allergyDescription"/>
+              </mat-form-field>
+              <mat-form-field
+                appearance="fill"
+                class="example-full-width wid"
+              >
+                <mat-label>Allergy clinical information</mat-label>
+                <input matInput  formControlName="clinicalInformation"/>
+              </mat-form-field>
+              <button
+                mat-raised-button
+                color="primary"
+                type="button"
+                (click)="pushAllergy()"
+                style="background-color: #03a66a; margin: 5px"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                type="button"
+                (click)="submitAllergy()"
+                
+                style="background-color: #03a66a; margin: 5px;width: 50%;"
+              >
+                <mat-icon>done</mat-icon>
+              </button>
+            </form>
         
-      </div>
-    </div>
-  </form>
-</div>
-<div [hidden]="section4" class="success">You have successfully submitted your details</div>
-<router-outlet></router-outlet>
+      
+    </mat-step>
+    
+  </mat-stepper>
+  </div>
+  
+  <div [hidden]="section4" class="success">You have successfully submitted your details</div>
+  <router-outlet></router-outlet>
+  
