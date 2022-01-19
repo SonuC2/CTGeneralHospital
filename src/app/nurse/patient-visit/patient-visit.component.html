@@ -15,9 +15,9 @@
                                                 [formControl]="myControl" [matAutocomplete]="auto"
                                                 formControlName="patientId" [readonly]="isReadOnly">
                                             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                                                <mat-option *ngFor="let option of filteredOptions | async"
-                                                    [value]="option">
-                                                    {{option}}
+                                                <mat-option *ngFor="let patient of patientListFromRegistration"
+                                                    [value]="patient.patientId" >
+                                                    {{patient.patientId}}
                                                 </mat-option>
                                             </mat-autocomplete>
                                         </mat-form-field>

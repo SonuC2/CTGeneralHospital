@@ -28,6 +28,8 @@ import { AppointmentListComponent } from './appointment-list/appointment-list.co
 import { MatExpansionModule } from '@angular/material/expansion';
 import { AddAppointmentsComponent } from './add-appointments/add-appointments.component';
 import { EditAppointmentComponent } from './edit-appointment/edit-appointment.component';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 const routes: Routes = [
   {
@@ -82,6 +84,8 @@ const routes: Routes = [
     MatProgressBarModule,
     MatChipsModule,
     ScheduleModule,
+    MatMomentDateModule,
+    MatTooltipModule,
     RouterModule.forChild(routes),
   ],
 })

@@ -26,6 +26,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { DoctorsDashboardComponent } from './doctors-dashboard/doctors-dashboard.component';
 import { RequestedAppointmentComponent } from './requested-appointment/requested-appointment.component';
 import { EditTimeslotComponent } from './edit-timeslot/edit-timeslot.component';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MomentDateModule } from '@angular/material-moment-adapter';
 
 const routes: Routes = [
   {
@@ -91,6 +93,8 @@ const routes: Routes = [
     MatNativeDateModule,
     MatProgressBarModule,
     MatChipsModule,
+    MatMomentDateModule,
+    MomentDateModule,
     RouterModule.forChild(routes)
   ]
 })

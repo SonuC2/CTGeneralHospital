@@ -12,10 +12,18 @@
 </mat-form-field>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <!-- meetingTitle Column -->
-    <ng-container matColumnDef="meetingTitle">
-        <th mat-header-cell *matHeaderCellDef>Meeting Title</th>
-        <td mat-cell *matCellDef="let element">{{ element.meetingTitle }}</td>
+    
+
+     <!-- patient Id Column -->
+     <ng-container matColumnDef="patientId">
+        <th mat-header-cell *matHeaderCellDef>Patient ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.patientId }}</td>
+    </ng-container>
+
+    <!-- patient name Column -->
+    <ng-container matColumnDef="patientName">
+        <th mat-header-cell *matHeaderCellDef>Patient Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.patientName }}</td>
     </ng-container>
 
     <!-- physician Column -->
@@ -34,6 +42,11 @@
     <ng-container matColumnDef="appointmentDate">
         <th mat-header-cell *matHeaderCellDef>Date</th>
         <td mat-cell *matCellDef="let element">{{ element.appointmentDate |date }}</td>
+    </ng-container>
+    <!-- meetingTitle Column -->
+    <ng-container matColumnDef="meetingTitle">
+        <th mat-header-cell *matHeaderCellDef>Meeting Title</th>
+        <td mat-cell *matCellDef="let element">{{ element.meetingTitle }}</td>
     </ng-container>
 
     <ng-container matColumnDef="appointmentStatus">
@@ -57,22 +70,28 @@
         </td>
     </ng-container>
 
-    <ng-container matColumnDef="timeSlot">
+    <ng-container matColumnDef="timeSlotString">
         <th mat-header-cell *matHeaderCellDef>Time</th>
-        <td mat-cell *matCellDef="let element">{{ element.timeSlot }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.timeSlotString }}</td>
     </ng-container>
 
     <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
             <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary">
-                <mat-icon aria-label="Edit" [state]=" element"
-                    routerLink="/scheduling/edit-appointment/{{ element}}">edit</mat-icon>
+                <mat-icon aria-label="Edit"  (click) = "editAppointment(element.appointmentId)"
+                    >edit</mat-icon>
                 <!-- <mat-icon aria-label="Edit" (click)="navigateToUpdate(element.appointmentId)" >edit</mat-icon> -->
             </button>
 
             <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn" (click)="cancelAppointment(element)">
                 <mat-icon aria-label="Delete">cancel</mat-icon>
+            </button>
+
+            <button mat-icon-button matTooltip="Click to Add visit" class="iconbutton" color="primary" *ngIf="isEmployee">
+                <mat-icon aria-label="Add Visit"  (click) = "addPatientVisit(element)"
+                    >launch</mat-icon>
+                <!-- <mat-icon aria-label="Edit" (click)="navigateToUpdate(element.appointmentId)" >edit</mat-icon> -->
             </button>
         </td>
     </ng-container>

@@ -53,4 +53,8 @@ export class EmployeeService {
   blockToUnblockStatus(employee:Employee): Observable<Employee> {
     return this.httpClient.patch<Employee>("http://localhost:9004/unblock/",employee);
   }
+
+  getEmployeeBySpecialisation(specialisation:string):Observable<Employee[]>{
+    return this.httpClient.get<Employee[]>('http://localhost:9004/employee/specialisation/'+ specialisation );
+  }
 }
