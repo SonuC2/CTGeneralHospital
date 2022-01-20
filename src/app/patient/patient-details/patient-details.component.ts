@@ -43,7 +43,8 @@ export class PatientDetailsComponent implements OnInit {
   PatientDataForTable: Allergy[] = [];
   dataSource = new MatTableDataSource<Allergy>();
 
-  today = new Date();
+  today = Date.now();
+  time=  Date.now();
 
   displayedColumns: string[] = [
     'AllergyId',
@@ -58,6 +59,8 @@ export class PatientDetailsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  
+  isEditable = false;
   hideAllergy = true;
   isRegister = false;
   isUpdate = true;
@@ -100,14 +103,17 @@ export class PatientDetailsComponent implements OnInit {
   allergyMasterData!: AllergyMasterData[];
   AllergyValue!: string;
   section4=true;
+  allergyForm!:any;
   varifyNew!:boolean;
+  allergyArrays:Allergy[]=[];
+  
   ngOnInit(): void {
 
     this.patientDetailsFromLogin = JSON.parse(sessionStorage.getItem('patientDetails') || '{}');
     console.log("PAtient Details from login: ", this.patientDetailsFromLogin);
     
     this.form = this.fb.group({
-      patientId:[1],
+      patientId:[],
       firstName: [''],
       lastName: [''],
       dateOfBirth: [''],
@@ -123,7 +129,7 @@ export class PatientDetailsComponent implements OnInit {
         userRoleId:[3],
         roleType: ['Patient'],
       }),
-      allergy: this.fb.array([this.addAllergy()]),
+      
       emergencyContactDetails: this.fb.group({
         firstName: [''],
         lastName: [''],
@@ -134,7 +140,14 @@ export class PatientDetailsComponent implements OnInit {
         access: [''],
       }),
     });
-    this.patientService.checkPatientDetailsById(1).subscribe(data=>
+    this.allergyForm= this.fb.group({
+      allergyId: [''],
+      allergyType: [''],
+      allergyName: [''],
+      allergyDescription: [''],
+      clinicalInformation: [''],
+    }),
+    this.patientService.checkPatientDetailsById(this.patientDetailsFromLogin.patientId).subscribe(data=>
       {
         this.varifyNew=data;
    if(data===true)
@@ -143,7 +156,15 @@ export class PatientDetailsComponent implements OnInit {
       
       this.section4=true;
       this.section1=false;
-      this.form.get('firstName').setValue('bhushan')
+      this.form.get('patientId').setValue(this.patientDetailsFromLogin.patientId);
+      this.form.get('firstName').setValue(this.patientDetailsFromLogin.firstName);
+      this.form.get('lastName').setValue(this.patientDetailsFromLogin.lastName);
+      this.form.get('dateOfBirth').setValue(this.patientDetailsFromLogin.dateOfBirth);
+      this.form.get('mobileNo').setValue(this.patientDetailsFromLogin.contactNumber);
+      this.form.get('email').setValue(this.patientDetailsFromLogin.email);
+      this.form.get('status').setValue("Active");
+
+      
 
     }if(data===false){
       this.section4=false;
@@ -171,33 +192,30 @@ export class PatientDetailsComponent implements OnInit {
   onChange(value: any) {
       
       
-    // console.log('on change ' + value);
-    // this.allergyService.getAllergyType(value).subscribe((d) => {
-    //   this.allergyT = d;
-    //   console.log('type ' + d);
-    //   this.setAllergyType = d;
-    // });
-    // this.allergyService.getAllergyName(value).subscribe((d1) => {
-    //   this.allergyN = d1;
-    //   console.log('name ' + d1);
-    // });
+    console.log('on change ' + value);
+    this.allergyService.getAllergyType(value).subscribe((d) => {
+      this.allergyT = d;
+      console.log('type ' + d);
+      this.setAllergyType = d;
+    });
+    this.allergyService.getAllergyName(value).subscribe((d1) => {
+      this.allergyN = d1;
+      console.log('name ' + d1);
+    });
   
   
   }
   
-  // onChangeType(event: any) {
-  //   console.log('on change Name' + event);
-  //   this.allergyService.getAllergyNameByType(event).subscribe((d) => {
-  //     this.allergyN = d;
-  //     console.log('type ' + d);
+  onChangeType(event: any) {
+    console.log('on change Name' + event);
+    this.allergyService.getAllergyNameByType(event).subscribe((d) => {
+      this.allergyN = d;
+      console.log('type ' + d);
       
-  //   });
-  // }
-    // this.allergyService.getAllergyName(event).subscribe((d1) => {
-    //   this.allergyN = d1;
-    //   console.log('name ' + d1);
-    // });
+    });
   
+    
+  }
 
   list: string[] = ['Father', 'Mother', 'Son', 'Daughter', 'Friend', 'Other'];
   allergylist: string[] = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO'];
@@ -313,11 +331,23 @@ export class PatientDetailsComponent implements OnInit {
       clinicalInformation: [''],
     });
   }
+
+  submitAllergy()
+  {
+    console.log("hi"+this.allergyArrays);
+    this.patientService.addAllergy(this.patientDetailsFromLogin.patientId,this.allergyArrays).subscribe();
+    this.section1=true;
+    this.section4=false;
+  }
   get allegyArray() {
     return <FormArray>this.form.get('allergy');
   }
   pushAllergy() {
-    this.allegyArray.push(this.addAllergy());
+    // this.allegyArray.push(this.allergyForm.value);
+    console.log(this.allergyForm.value);
+    this.allergyArrays.push(this.allergyForm.value);
+    //this.patientService.addAllergy(this.allergyForm.value).subscribe();
+    this.allergyForm.reset();
     
   }
   removeAllergy(index: any) {
@@ -344,18 +374,18 @@ export class PatientDetailsComponent implements OnInit {
     this.patientData = this.form.value;
     this.patientEmail = this.form.email;
     this.patientService.submitPatientDetails(this.form.value).subscribe();
-    this.patientService.getHerePatientDataFromPatientDetails(this.form.value);
-    this.section1 = true;
-    this.section2 = false;
-    this.section4=false;
+    // this.patientService.getHerePatientDataFromPatientDetails(this.form.value);
+    // this.section1 = true;
+    // this.section2 = false;
+    // this.section4=false;
     this.patientData = this.form.value;
     this.isRegister = true;
     this.submitData = true;
     this.updateData = false;
     this.headingAllergy = true;
     this.isEdit = false;
-    this.PatientDataForTable = this.form.get('allergy').value;
-    this.dataSource.data = this.PatientDataForTable;
+    // this.PatientDataForTable = this.form.get('allergy').value;
+    // this.dataSource.data = this.PatientDataForTable;
     console.log('registered');
     // this.patientService
     //   .getPatientDataByFirstNameAndEmail(this.form.value)
