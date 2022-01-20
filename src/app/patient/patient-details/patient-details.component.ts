@@ -192,33 +192,30 @@ export class PatientDetailsComponent implements OnInit {
   onChange(value: any) {
       
       
-    // console.log('on change ' + value);
-    // this.allergyService.getAllergyType(value).subscribe((d) => {
-    //   this.allergyT = d;
-    //   console.log('type ' + d);
-    //   this.setAllergyType = d;
-    // });
-    // this.allergyService.getAllergyName(value).subscribe((d1) => {
-    //   this.allergyN = d1;
-    //   console.log('name ' + d1);
-    // });
+    console.log('on change ' + value);
+    this.allergyService.getAllergyType(value).subscribe((d) => {
+      this.allergyT = d;
+      console.log('type ' + d);
+      this.setAllergyType = d;
+    });
+    this.allergyService.getAllergyName(value).subscribe((d1) => {
+      this.allergyN = d1;
+      console.log('name ' + d1);
+    });
   
   
   }
   
-  // onChangeType(event: any) {
-  //   console.log('on change Name' + event);
-  //   this.allergyService.getAllergyNameByType(event).subscribe((d) => {
-  //     this.allergyN = d;
-  //     console.log('type ' + d);
+  onChangeType(event: any) {
+    console.log('on change Name' + event);
+    this.allergyService.getAllergyNameByType(event).subscribe((d) => {
+      this.allergyN = d;
+      console.log('type ' + d);
       
-  //   });
-  // }
-    // this.allergyService.getAllergyName(event).subscribe((d1) => {
-    //   this.allergyN = d1;
-    //   console.log('name ' + d1);
-    // });
+    });
   
+    
+  }
 
   list: string[] = ['Father', 'Mother', 'Son', 'Daughter', 'Friend', 'Other'];
   allergylist: string[] = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO'];
