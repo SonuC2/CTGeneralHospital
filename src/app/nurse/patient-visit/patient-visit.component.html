@@ -1,5 +1,4 @@
 <div>
-
     <div class="main" fxLayout="row wrap">
         <div class="sub1" fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px;">
             <mat-card>
@@ -16,7 +15,7 @@
                                                 formControlName="patientId" [readonly]="isReadOnly">
                                             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                                                 <mat-option *ngFor="let patient of patientListFromRegistration"
-                                                    [value]="patient.patientId" >
+                                                    [value]="patient.patientId">
                                                     {{patient.patientId}}
                                                 </mat-option>
                                             </mat-autocomplete>
@@ -214,34 +213,36 @@
                         </mat-tab>
                         <!-- second tab -->
                         <mat-tab label="Vital Signs" style="color: #0055D2;">
-                            <div fxLayout="row wrap">
-                                <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
-                                    <mat-form-field appearance="fill" class="example-full-width" style="width: 100%;">
-                                        <mat-label>Physician Name</mat-label>
-                                        <input type="text" placeholder="Pick one" aria-label="Physician Name" matInput
-                                            [formControl]="physicanNameControl" [matAutocomplete]="auto">
-                                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                                            <mat-option *ngFor="let option of filteredOptions1 | async"
-                                                [value]="option">
-                                                {{option}}
-                                            </mat-option>
-                                        </mat-autocomplete>
-                                    </mat-form-field>
+                            <form class="example-form" [formGroup]="appointmentDetailsForm">
+                                <div fxLayout="row wrap">
+                                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
+                                        <mat-form-field appearance="fill" class="example-full-width"
+                                            style="width: 100%;">
+                                            <mat-label>Physician Name</mat-label>
+                                            <input type="text" placeholder="Pick one" aria-label="Physician Name"
+                                                matInput [formControl]="physicanNameControl" [matAutocomplete]="auto">
+                                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                                <mat-option *ngFor="let option of filteredOptions1 | async"
+                                                    [value]="option">
+                                                    {{option}}
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
+                                        <mat-form-field appearance="fill" class="example-full-width" style="width:100%">
+                                            <mat-label>Appointment Time</mat-label>
+                                            <input matInput />
+                                        </mat-form-field>
+                                    </div>
+                                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
+                                        <mat-form-field appearance="fill" class="example-full-width" style="width:100%">
+                                            <mat-label>Reason</mat-label>
+                                            <textarea matInput placeholder="Ex. 100 Main St"></textarea>
+                                        </mat-form-field>
+                                    </div>
                                 </div>
-                                <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
-                                    <mat-form-field appearance="fill" class="example-full-width" style="width:100%">
-                                        <mat-label>Appointment Time</mat-label>
-                                        <input matInput />
-                                    </mat-form-field>
-                                </div>
-                                <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
-                                    <mat-form-field appearance="fill" class="example-full-width" style="width:100%">
-                                        <mat-label>Reason</mat-label>
-                                        <textarea matInput placeholder="Ex. 100 Main St"></textarea>
-                                    </mat-form-field>
-                                </div>
-                            </div>
-
+                            </form>
                             <form class="example-form">
                                 <div class="main" fxLayout="row wrap">
 
@@ -362,7 +363,7 @@
                                                             </button>
                                                             <!-- <button mat-raised-button color="primary"
                                             style="background-color: #03A66A;margin:5px;"><mat-icon>edit</mat-icon></button>
-                            <button mat-raised-button color="primary"
+                                        <button mat-raised-button color="primary"
                                             style="background-color: #03A66A;margin:5px;"><mat-icon>delete</mat-icon></button> -->
                                                         </div>
                                                         <!-- </div> -->

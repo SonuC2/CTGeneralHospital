@@ -89,7 +89,7 @@
             </button>
 
             <button mat-icon-button matTooltip="Click to Add visit" class="iconbutton" color="primary" *ngIf="isEmployee">
-                <mat-icon aria-label="Add Visit"  (click) = "addPatientVisit(element)"
+                <mat-icon aria-label="Add Visit"  (click) = "addPatientVisit(element.appointmentId)"
                     >launch</mat-icon>
                 <!-- <mat-icon aria-label="Edit" (click)="navigateToUpdate(element.appointmentId)" >edit</mat-icon> -->
             </button>

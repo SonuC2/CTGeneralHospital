@@ -5,11 +5,14 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
 import { Allergy } from 'src/app/entities/allergy';
+import { Appointments } from 'src/app/entities/appointments';
 import { Employee } from 'src/app/entities/employee';
 import { Patient } from 'src/app/entities/patient';
 import { PatientRegistration } from 'src/app/entities/patient-registration';
+import { PatientVisit } from 'src/app/entities/patient-visit';
 import { PatientService } from 'src/app/services/patient.service';
 import { PatientRegistrationService } from 'src/app/services/patientRegistration.service';
+import { SchedulingService } from 'src/app/services/scheduling.service';
 
 export interface AllergyData {
   id: string;
@@ -55,9 +58,9 @@ export class PatientVisitComponent implements OnInit {
   physicianDetails: Employee[] = [];
   patientIdList: Patient[] = [];
   personalDetailsForm!: any;
-  isReadOnly : boolean = false;
-  isEditButtonHide:boolean =  false;
-  isUpdateButtonHide : boolean = true;
+  isReadOnly: boolean = false;
+  isEditButtonHide: boolean = false;
+  isUpdateButtonHide: boolean = true;
   hideAllergy = true;
   allergyform!: FormGroup;
   myControl = new FormControl();
@@ -104,13 +107,18 @@ export class PatientVisitComponent implements OnInit {
   dataSourcePrescription = new MatTableDataSource();
   drugTiming!: FormGroup;
 
-  patientListFromRegistration!:PatientRegistration[];
+  patientListFromRegistration!: PatientRegistration[];
+  patientVisitForm!: any;
+  appointementId!:any;
+  appointmentDetails!: Appointments;
+  appointmentDetailsForm!:any;
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private patientService: PatientService,
-    private patientRegService:PatientRegistrationService
+    private patientRegService: PatientRegistrationService,
+    private schedulingService: SchedulingService
   ) {
     this.drugTiming = fb.group({
       morning: false,
@@ -132,6 +140,21 @@ export class PatientVisitComponent implements OnInit {
       emergencyContactDetails: this.fb.array([this.addEmergencyInfo()]),
     });
 
+    this.patientVisitForm = this.fb.group({
+      height: [''],
+      weight: [''],
+      bloodPressure: [''],
+      bodyTemperature: [],
+      respirationRate: [],
+      patientId: [],
+      patientName: [],
+      appointment: this.fb.group({
+        appointmentId: [],
+      }),
+      prescription: this.fb.array([this.addPrescription()]),
+      diagnosis: this.fb.array([this.addDiagnosis()]),
+      procedure: this.fb.array([this.addProcedure()]),
+    });
   }
 
   addAllergy() {
@@ -146,7 +169,6 @@ export class PatientVisitComponent implements OnInit {
 
   addEmergencyInfo() {
     return this.fb.group({
-
       firstName: [''],
       lastName: [''],
       relationship: [''],
@@ -154,40 +176,69 @@ export class PatientVisitComponent implements OnInit {
       email: [''],
       address: [''],
       access: [''],
-      
+    });
+  }
+
+  addPrescription() {
+    return this.fb.group({
+      prescriptionId: [],
+    });
+  }
+
+  addDiagnosis() {
+    return this.fb.group({
+      diagnosisId: [],
+    });
+  }
+
+  addProcedure() {
+    return this.fb.group({
+      procedureId: [],
     });
   }
 
   ngOnInit(): void {
+    // console.log("State from link: " , history.state.data)
 
-    this.patientRegService.getAllPatientList().subscribe(patients =>{
+    this.patientRegService.getAllPatientList().subscribe((patients) => {
       this.patientListFromRegistration = patients;
-      console.log("Patient list", this.patientListFromRegistration);
-    })
+      console.log('Patient list', this.patientListFromRegistration);
+    });
 
     if (this.route.snapshot.paramMap.get('id') !== null) {
       this.pId = this.route.snapshot.paramMap.get('id');
       console.log('id from patient list', this.pId);
 
-      this.patientService.getAllPatientDetails(this.pId).subscribe((patient) => {
-        this.patient = patient;
-        console.log('Patient details by id:', this.patient);
-        const patientDetails = this.patient;
-        console.log('patientDetails:----', patientDetails);
+      this.patientService
+        .getAllPatientDetails(this.pId)
+        .subscribe((patient) => {
+          this.patient = patient;
+          console.log('Patient details by id:', this.patient);
+          const patientDetails = this.patient;
+          console.log('patientDetails:----', patientDetails);
 
-        this.personalDetailsForm.patchValue({
-          patientId: this.patient.patientId,
-          firstName: this.patient.firstName,
-          lastName:this.patient.lastName,
-          dateOfBirth: this.patient.dateOfBirth,
-          mobileNo: this.patient.mobileNo,
-          gender:this.patient.gender,
-          email: this.patient.email,
-          address:this.patient.address,
+          this.personalDetailsForm.patchValue({
+            patientId: this.patient.patientId,
+            firstName: this.patient.firstName,
+            lastName: this.patient.lastName,
+            dateOfBirth: this.patient.dateOfBirth,
+            mobileNo: this.patient.mobileNo,
+            gender: this.patient.gender,
+            email: this.patient.email,
+            address: this.patient.address,
+          });
+
+          this.isReadOnly = true;
         });
+    }
 
-        this.isReadOnly = true;
-      });
+    if (this.route.snapshot.paramMap.get('appointmentId') !== null) {
+      this.appointementId = this.route.snapshot.paramMap.get('appointmentId');
+      console.log('id from appointment list', this.appointementId);
+      this.schedulingService.getAppointmentById(this.appointementId).subscribe(response =>{
+        this.appointmentDetails =response;
+        console.log("appointemnt details: ", this.appointmentDetails);
+      })
     }
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
@@ -255,22 +306,20 @@ export class PatientVisitComponent implements OnInit {
     );
   }
 
-  clickEdit(){
+  clickEdit() {
     this.isEditButtonHide = true;
     this.isUpdateButtonHide = false;
     this.isReadOnly = false;
-    
   }
 
-  clickUpdate(){
+  clickUpdate() {
     this.isEditButtonHide = true;
     this.isUpdateButtonHide = false;
-    
-    console.log("Form values: " + this.personalDetailsForm.get('email').value);
+
+    console.log('Form values: ' + this.personalDetailsForm.get('email').value);
     this.patient.email = this.personalDetailsForm.get('email').value;
-    console.log("PAtient details after changing value : " , this.patient);
-    
-    
-   // this.patient.firstName = this.personalDetailsForm.value.
+    console.log('PAtient details after changing value : ', this.patient);
+
+    // this.patient.firstName = this.personalDetailsForm.value.
   }
 }

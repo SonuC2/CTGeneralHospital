@@ -73,6 +73,10 @@ const routes: Routes = [
       component: InboxComponent,
       // data:{id: 1}
       },
+      {
+        path: "add-visit/:appointmentId",
+        component: PatientVisitComponent
+      },
     {
       path: 'patient',
       loadChildren: () =>
