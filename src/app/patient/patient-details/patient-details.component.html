@@ -244,23 +244,23 @@
       <form [formGroup]="allergyForm"> 
         <ng-template matStepLabel>Allergies</ng-template>
   
-              <mat-form-field appearance="fill" class="pad w">
+              <!-- <mat-form-field appearance="fill" class="pad w">
                 <mat-label>AllergyId*</mat-label>
-                <mat-select formControlName="allergyId" >
+                <mat-select formControlName="allergyId">
                   <mat-option
                     *ngFor="let allergydata of allergyI"
                     value="{{ allergydata }}"
                     >{{ allergydata }}</mat-option
                   >
                 </mat-select> </mat-form-field
-              >&nbsp; &nbsp;
+              >&nbsp; &nbsp; -->
               <mat-form-field
                 appearance="fill"
                 class="example-full-width pad w"
               >
                 <mat-label>Allergy Type</mat-label>
   
-                <mat-select  formControlName="allergyType">
+                <mat-select  formControlName="allergyType" (ngModelChange)="onChangeType($event)">
                   <mat-option
                     *ngFor="let allergyType of allergyT"
                     value="{{ allergyType }}"
@@ -269,7 +269,7 @@
                   >
                 </mat-select>
               </mat-form-field>
-  
+              &nbsp; &nbsp;
               <mat-form-field
                 appearance="fill"
                 class="example-full-width pad w"
@@ -291,7 +291,7 @@
               >
                 <mat-label>Allergy Description</mat-label>
                 <input matInput  formControlName="allergyDescription"/>
-              </mat-form-field>
+              </mat-form-field>&nbsp; &nbsp;
               <mat-form-field
                 appearance="fill"
                 class="example-full-width wid"
