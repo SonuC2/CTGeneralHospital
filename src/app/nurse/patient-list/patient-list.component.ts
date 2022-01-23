@@ -90,4 +90,8 @@ export class PatientListComponent implements OnInit {
 
   }
 
+  openVisitHistory(patientId:any){
+    this.router.navigate(['/shared/sidebar/nurse/visit-history/',patientId])
+  }
+
 }

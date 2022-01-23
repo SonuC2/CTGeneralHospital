@@ -130,6 +130,6 @@ export class AppointmentListComponent implements OnInit {
 
   addPatientVisit(element:any){
     console.log("Element data:" , element);
-    this.router.navigate(['shared/sidebar/nurse/patient-visit'])
+    this.router.navigate(['shared/sidebar/nurse/add-visit/',element])
   }
 }

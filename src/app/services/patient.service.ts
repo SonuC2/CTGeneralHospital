@@ -68,7 +68,7 @@ export class PatientService {
     );
   }
 
-  getAllPatientDetails(id: number): Observable<Patient> {
+  getAllPatientDetails(id: any): Observable<Patient> {
     return this._httpClient.get<Patient>(
       'http://localhost:9093/patientDetails/patient' + '/' + id
     );
