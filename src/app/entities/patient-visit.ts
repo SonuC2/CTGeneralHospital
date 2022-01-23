@@ -1,5 +1,6 @@
 import { Appointments } from "./appointments";
 import { Diagnosis } from "./diagnosis";
+import { Medication } from "./medication";
 import { Prescription } from "./prescription";
 import { Procedure } from "./procedure";
 
@@ -17,4 +18,6 @@ export class PatientVisit {
     prescription!:Prescription[];
     diagnosis!:Diagnosis[];
     procedure!:Procedure[];
+	visitStatus!:string;
+	medication!:Medication[];
 }

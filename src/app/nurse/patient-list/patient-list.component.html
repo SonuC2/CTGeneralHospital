@@ -45,10 +45,11 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Action
             </th>
             <td mat-cell *matCellDef="let row">
-                <button mat-icon-button matTooltip="Click to Edit"
-                    class="iconbutton" color="primary">
-                    <mat-icon aria-label="Edit" (click) = "openDialog(row.patientId)">edit</mat-icon>
-                </button>
+              <button mat-icon-button matTooltip="Click to check visit history" class="iconbutton" color="primary"  (click) = "openVisitHistory(row.patientId)">
+                <mat-icon aria-label=" Visit history"  
+                    >launch</mat-icon>
+                <!-- <mat-icon aria-label="Edit" (click)="navigateToUpdate(element.appointmentId)" >edit</mat-icon> -->
+            </button>
             </td>
         </ng-container>
 

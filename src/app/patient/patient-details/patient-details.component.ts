@@ -81,6 +81,8 @@ export class PatientDetailsComponent implements OnInit {
   allergyTypeById!: string;
   allergyT1:string[]=[];
   allergyN1:string[]=[]; 
+
+  
   constructor(
     public dialog: MatDialog,
     private _snackbar: MatSnackBar,

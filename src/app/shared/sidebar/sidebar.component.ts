@@ -41,6 +41,7 @@ export class SidebarComponent {
   loggedInUserEmail!:string;
   employeeDetailsFromLogin!:Employee;
   patientDetailsFromLogin!:PatientRegistration;
+  patientIdForVisitHistory !:any;
    constructor(private observer: BreakpointObserver,private employeeService :EmployeeService,private patientService:PatientRegistrationService) {
     // console.log("From sidebar sessionstorage: " , sessionStorage['get']('userDetails'))
    
@@ -71,6 +72,7 @@ export class SidebarComponent {
       this.isPhysician = false;
       this.patientDetailsFromLogin = JSON.parse(sessionStorage.getItem('patientDetails') || '{}');
       this.loggedInUserName = this.patientDetailsFromLogin.title + " " + this.patientDetailsFromLogin.firstName + " " + this.patientDetailsFromLogin.lastName
+      this.patientIdForVisitHistory = this.patientDetailsFromLogin.patientId
     }
 
     if(this.userDetail.userRoleId.roleType === "Admin"){

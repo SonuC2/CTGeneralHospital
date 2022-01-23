@@ -3,6 +3,7 @@ import { Time } from "@angular/common";
 
 export class Appointments {
   
+  appointmentId!:number;
   meetingTitle!: string;
   description!: string;
   specialisation!: string;
@@ -16,5 +17,6 @@ export class Appointments {
   patientId!:number;
   patientName!:String;
   appointmentStatus!:String;
+  timeSlotString!:string;
 
 }

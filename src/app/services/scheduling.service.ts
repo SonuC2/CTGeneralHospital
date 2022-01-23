@@ -48,5 +48,10 @@ export class SchedulingService {
 
   }
 
+  getAppointmentByAppointmentId(id:any): Observable<Appointments> {
+    return this._httpClient.get<Appointments>('http://localhost:9005/appointment/' + id);
+
+  }
+
   
 }

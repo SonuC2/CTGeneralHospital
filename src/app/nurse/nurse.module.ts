@@ -30,6 +30,8 @@ import { InboxComponent } from './inbox/inbox.component';
 import { ReplyNoteDialogComponent } from './reply-note-dialog/reply-note-dialog.component';
 import { RegisterPatientComponent } from './register-patient/register-patient.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { VisitHistoryComponent } from './visit-history/visit-history.component';
 const routes: Routes = [
   {
     path: "",
@@ -77,6 +79,10 @@ const routes: Routes = [
         path: "add-visit/:appointmentId",
         component: PatientVisitComponent
       },
+      {
+        path: "visit-history/:patientId",
+        component: VisitHistoryComponent
+      },
     {
       path: 'patient',
       loadChildren: () =>
@@ -100,7 +106,8 @@ const routes: Routes = [
     NurseDashboardComponent,
     InboxComponent,
     ReplyNoteDialogComponent,
-    RegisterPatientComponent
+    RegisterPatientComponent,
+    VisitHistoryComponent
   ],
   imports: [
     CommonModule,
@@ -124,6 +131,7 @@ const routes: Routes = [
     MatCheckboxModule,
     MatDialogModule,
     MatProgressBarModule,
+    MatTooltipModule,
     RouterModule.forChild(routes)
   ]
 })
