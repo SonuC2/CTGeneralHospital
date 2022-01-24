@@ -61,4 +61,8 @@ export class EmployeeService {
   getAllEmpoyeeActiveCount(): Observable<Employee> {
     return this.httpClient.get<Employee>("http://localhost:9004/employee/active");
   }
+
+  getEmployeeBySpecialisation(specialisation:string):Observable<Employee[]>{
+    return this.httpClient.get<Employee[]>('http://localhost:9004/employee/specialisation/'+ specialisation );
+  }
 }

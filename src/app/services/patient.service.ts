@@ -53,7 +53,7 @@ export class PatientService {
     lastName: string
   ): Observable<Patient> {
     return this._httpClient.get<Patient>(
-      'http://localhost:9003/patientDetails/patient' +
+      'http://localhost:9093/patientDetails/patient' +
         '/' +
         firstName +
         '/' +
@@ -63,20 +63,20 @@ export class PatientService {
 
   submitPatientDetails(data: Patient): Observable<Patient> {
     return this._httpClient.post<Patient>(
-      'http://localhost:9003/patientDetails/patient',
+      'http://localhost:9093/patientDetails/patient',
       data
     );
   }
 
-  getAllPatientDetails(id: number): Observable<Patient> {
+  getAllPatientDetails(id: any): Observable<Patient> {
     return this._httpClient.get<Patient>(
-      'http://localhost:9003/patientDetails/patient' + '/' + id
+      'http://localhost:9093/patientDetails/patient' + '/' + id
     );
   }
 
   getPatientDataByEmail(email: string): Observable<Patient> {
     return this._httpClient.get<Patient>(
-      'http://localhost:9003/patientDetails/patient' + '/' + email
+      'http://localhost:9093/patientDetails/patient' + '/' + email
     );
   }
 
@@ -94,7 +94,7 @@ export class PatientService {
     patient: Patient
   ): Observable<number> {
     return this._httpClient.get<number>(
-      'http://localhost:9003/patientDetails/patient' +
+      'http://localhost:9093/patientDetails/patient' +
         '/' +
         patient.firstName +
         '/' +
@@ -108,7 +108,7 @@ export class PatientService {
  
 
   getAllPatientList():Observable<Patient[]>{
-    return this._httpClient.get<Patient[]>('http://localhost:9003/patientDetails/patients' );
+    return this._httpClient.get<Patient[]>('http://localhost:9093/patientDetails/patients' );
   }
   getPatientDetails(): Observable<Patient> {
     return this._httpClient.get<Patient>(
@@ -127,5 +127,9 @@ export class PatientService {
     return this._httpClient.get<Patient>(
       'http://localhost:9093/patientDetails/PatientById'+"/"+id
     ); 
+  }
+  addAllergy( id:number,allergy:Allergy[]):Observable<Allergy[]>
+  {
+    return this._httpClient.put<Allergy[]>('http://localhost:9093/patientDetails/storeAllergy'+"/"+id,allergy);
   }
 }

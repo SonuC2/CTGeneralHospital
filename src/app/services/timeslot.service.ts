@@ -11,13 +11,13 @@ export class TimeslotService {
   constructor( private _httpClient: HttpClient) { }
 
   addTimeSlot(newTimeSlot: Timeslot){
-    return this._httpClient.post("http://localhost:8080/time-slot",newTimeSlot);
+    return this._httpClient.post("http://localhost:9005/time-slot",newTimeSlot);
   }
   
 
-  getAllTimeSlot(): Observable<Timeslot[]> {
+  getAllTimeSlot(employeeId:number): Observable<Timeslot[]> {
 
-    return this._httpClient.get<Timeslot[]>('http://localhost:8080/time-slot');
+    return this._httpClient.get<Timeslot[]>('http://localhost:9005/time-slot/'+ employeeId);
 
   }
 
@@ -26,6 +26,6 @@ export class TimeslotService {
   // }
 
   getTimeSlotByDoctorIdAndDate(id:number,appointmentDate:Date):Observable<Timeslot[]>{
-    return this._httpClient.get<Timeslot[]>("http://localhost:8080/time/"+id+ "/"+ appointmentDate);
+    return this._httpClient.get<Timeslot[]>("http://localhost:9005/time/"+id+ "/"+ appointmentDate);
   }
 }

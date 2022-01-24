@@ -59,7 +59,8 @@ const routes: Routes = [
   },
   {
     path: 'my-details',
-    component: MyDetailsComponent,children:[{path:"complite-details",component:MyCompliteDetailsComponent}]
+    component: MyDetailsComponent,
+    
   },
   // {
   //   path: 'scheduling',

@@ -33,7 +33,7 @@
       "
       mat-menu-item
     >
-      Priyanka Gaykhe</mat-label
+      {{loggedInUserName}}</mat-label
     >
 
     <mat-label
@@ -43,7 +43,7 @@
       "
       mat-menu-item
     >
-      <mat-icon>alternate_email</mat-icon>priyanka.gaykhe@gmail.com
+      <mat-icon>alternate_email</mat-icon>{{loggedInUserEmail}}
     </mat-label>
     <button
       style="
@@ -102,7 +102,7 @@
         <mat-icon>person</mat-icon>
         <span>Add Patient Visit Details</span>
       </button>
-      <button mat-button class="menu-button">
+      <button mat-button class="menu-button" routerLink="nurse/patient-list">
         <mat-icon>person</mat-icon>
         <span>Patient Visit History</span>
       </button>
@@ -203,19 +203,19 @@
         <span>My Details</span>
       </button>
 
-      <button mat-button class="menu-button" [disabled]="MyVisitHistory">
+      <button mat-button class="menu-button" [disabled]="MyVisitHistory" routerLink="nurse/visit-history/{{patientIdForVisitHistory}}">
         <mat-icon>person</mat-icon>
         <span>My visit history</span>
       </button>
-      <!-- <button
+      <button
       mat-button
       class="menu-button"
       routerLink="patient/get-my-data"
-      [disabled]="downloadMydata"
+      
     >
       <mat-icon>download</mat-icon>
       <span>Download</span>
-    </button> -->
+    </button>
     </div>
     <button mat-button class="menu-button" (click)="showSubmenu = !showSubmenu" (mouseenter)="mouseenter()"
       (mouseleave)="mouseleave()">
@@ -416,7 +416,7 @@
         <mat-icon>add</mat-icon>
         <span style="padding-left: 5px;">Add Patient Visit</span>
       </button>
-      <button mat-button class="menu-button" routerLink="nurse/patient-visit">
+      <button mat-button class="menu-button" routerLink="nurse/patient-list">
         <mat-icon>restore</mat-icon>
         <span style="padding-left: 5px;">Patient Visit History</span>
       </button>
