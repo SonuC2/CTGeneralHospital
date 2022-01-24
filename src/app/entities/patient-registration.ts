@@ -11,6 +11,7 @@ export class PatientRegistration {
 	dateOfBirth!:Date;
 	password!:string;
     status!:string;
+	blockStatus!:string;
     createdBy!:number;
     userRole!:UserRole;
     user!:User;

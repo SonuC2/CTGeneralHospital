@@ -32,7 +32,7 @@
           <div fxLayout="row wrap">
             <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
               <mat-radio-group aria-label="Select an option" class="example-full-width" style="width: 100%"
-                formControlName="urgencyLevel">
+              formControlName="urgencyLevel">
                 <mat-label>Urgency : </mat-label>
                 <mat-radio-button value="Urgent">Urgent</mat-radio-button>
                 &nbsp;
@@ -65,5 +65,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align ="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button style="background-color: #03a66a;" cdkFocusInitial>Send</button>
+  <button mat-button style="background-color: #03a66a;" cdkFocusInitial [mat-dialog-close]="data">Send</button>
 </mat-dialog-actions>

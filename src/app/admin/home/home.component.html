@@ -4,7 +4,7 @@
             <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                 <mat-card class="example-card">
                     <mat-card-header>
-                        <mat-card-title>Bar Chart </mat-card-title>
+                        <!-- <mat-card-title>Bar Chart </mat-card-title> -->
                     </mat-card-header>
                     <p-chart type="bar" [data]="userUsageHoursData"></p-chart>
                 </mat-card>
@@ -14,7 +14,7 @@
                             <mat-card-header>
                                 <mat-card-title>All Users</mat-card-title>
                             </mat-card-header>
-                            <mat-card-content style="text-align: center;">12</mat-card-content>
+                            <mat-card-content style="text-align: center;">{{employeeCountTest}}</mat-card-content>
                         </mat-card>
                     </div>
                     <div fxFlex.gt-sm="50" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
@@ -22,7 +22,7 @@
                             <mat-card-header>
                                 <mat-card-title>All Patients</mat-card-title>
                             </mat-card-header>
-                            <mat-card-content style="text-align: center;">27</mat-card-content>
+                            <mat-card-content style="text-align: center;">{{patientInactiveCount}}</mat-card-content>
                         </mat-card>
                     </div>
                     <div fxFlex.gt-sm="50" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
@@ -30,15 +30,15 @@
                             <mat-card-header>
                                 <mat-card-title>Active Users</mat-card-title>
                             </mat-card-header>
-                            <mat-card-content style="text-align: center;">3</mat-card-content>
+                            <mat-card-content style="text-align: center;">{{employeeActiveCount}}</mat-card-content>
                         </mat-card>
                     </div>
                     <div fxFlex.gt-sm="50" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
                         <mat-card class="example-card">
                             <mat-card-header>
-                                <mat-card-title >Active Patients</mat-card-title>
+                                <mat-card-title>Active Patients</mat-card-title>
                             </mat-card-header>
-                            <mat-card-content style="text-align: center;">7</mat-card-content>
+                            <mat-card-content style="text-align: center;">{{patientActiveCount}}</mat-card-content>
                         </mat-card>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
             <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                 <mat-card class="example-card">
                     <mat-card-header>
-                        <mat-card-title>Pie Chart </mat-card-title>
+                        <!-- <mat-card-title>Pie Chart </mat-card-title> -->
                     </mat-card-header>
                     <p-chart type="pie" [data]="userAppData" style="height: 1px;"></p-chart>
                 </mat-card>

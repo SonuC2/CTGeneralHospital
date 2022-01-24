@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { Moment } from 'moment';
-import * as moment from 'moment';
 import { Employee } from 'src/app/entities/employee';
 import { Timeslot } from 'src/app/entities/timeslot';
 import { TimeslotService } from 'src/app/services/timeslot.service';
