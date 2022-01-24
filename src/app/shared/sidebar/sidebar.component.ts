@@ -1,6 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 import { Employee } from 'src/app/entities/employee';
 import { PatientRegistration } from 'src/app/entities/patient-registration';
 import { EmployeeService } from 'src/app/services/employee.service';
@@ -41,7 +42,7 @@ export class SidebarComponent {
   loggedInUserEmail!:string;
   employeeDetailsFromLogin!:Employee;
   patientDetailsFromLogin!:PatientRegistration;
-   constructor(private observer: BreakpointObserver,private employeeService :EmployeeService,private patientService:PatientRegistrationService) {
+   constructor(private observer: BreakpointObserver,private employeeService :EmployeeService,private patientService:PatientRegistrationService,private router:Router) {
     // console.log("From sidebar sessionstorage: " , sessionStorage['get']('userDetails'))
    
     
@@ -116,6 +117,9 @@ export class SidebarComponent {
     if (!this.isExpanded) {
       this.isShowing = false;
     }
+  } 
+
+  changePassword(){
+    this.router.navigate(['shared/sidebar/user/design/',this.loggedInUserEmail])
   }
-  
 }

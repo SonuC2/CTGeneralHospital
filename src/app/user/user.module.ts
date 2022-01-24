@@ -39,7 +39,7 @@ const routes: Routes = [
     component: PatientRegistrationComponent,
   },
   {
-    path: 'design',
+    path: 'design/:email',
     component: DesignComponent,
   },
   {
