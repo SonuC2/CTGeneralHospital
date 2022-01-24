@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { PatientRegistrationService } from 'src/app/services/patientRegistration.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  public employeeCountTest!: number;
+  public patientActiveCount!: any;
+  public patientInactiveCount!: any;
+  public employeeActiveCount!: any;
   public userAppData: any;
   public appUserCount1: any;
   public appUserCount2: any;
@@ -14,87 +20,94 @@ export class HomeComponent implements OnInit {
   public appUserCount5: any;
   public userLabel: any;
   public options: any;
-  public userUsageHoursData:any;
-  constructor() {}
+  public userUsageHoursData: any;
+  constructor(
+    public employeeService: EmployeeService,
+    public patientRegistrationService: PatientRegistrationService
+  ) {}
 
   appUsageData = [
-    { name: 'user1', country: 'USA', appname: 'Patients' },
-    { name: 'user2', country: 'UK', appname: 'Patients' },
-    { name: 'user3', country: 'Canada', appname: 'Patients' },
-    { name: 'user4', country: 'Germany', appname: 'Patients' },
-    { name: 'user5', country: 'Poland', appname: 'Hospital users' },
-    { name: 'user6', country: 'USA', appname: 'Hospital users' },
-    { name: 'user7', country: 'Canada', appname: 'Hospital users' },
-    { name: 'user8', country: 'Germany', appname: 'Active Patients' },
-    { name: 'user9', country: 'USA', appname: 'Active Patients' },
-    { name: 'user10', country: 'Germany', appname: 'Active Patients' },
-    { name: 'user11', country: 'Canada', appname: 'Active Patients' },
-    { name: 'user12', country: 'USA', appname: 'Active Patients' },
-    { name: 'user13', country: 'India', appname: 'Active Patients' },
-    { name: 'user14', country: 'India', appname: 'Active Patients' },
-    { name: 'user17', country: 'India', appname: 'Active hospital users' },
-    { name: 'user18', country: 'India', appname: 'Active hospital users' },
-    { name: 'user19', country: 'Canada', appname: 'Active hospital users' },
-    { name: 'user20', country: 'USA', appname: 'Active hospital users' },
-    { name: 'user21', country: 'manager', appname: 'Active hospital users' },
+    { appname: 'Hospital users' },
+    { appname: 'Active hospital users' },
+    { appname: 'Active Patients' },
+    { appname: 'All patients' },
+    { appname: 'Inactive patients' },
   ];
 
   ngOnInit() {
-    this.appUserCount1 = this.appUsageData.filter(
-      (app) => app.appname === 'Patients'
-    ).length;
-    this.appUserCount2 = this.appUsageData.filter(
-      (app) => app.appname === 'Hospital users'
-    ).length;
-    this.appUserCount3 = this.appUsageData.filter(
-      (app) => app.appname === 'Active Patients'
-    ).length;
-    this.appUserCount5 = this.appUsageData.filter(
-      (app) => app.appname === 'Active hospital users'
-    ).length;
+    this.employeeService
+      .getAllEmpoyeeCount()
+      .subscribe((employeeCount1: number) => {
+        this.employeeCountTest = employeeCount1;
+      });
+
+    this.employeeService
+      .getAllEmpoyeeActiveCount()
+      .subscribe((employeeActiveCount) => {
+        this.employeeActiveCount = employeeActiveCount;
+        console.log(this.employeeActiveCount);
+      });
+
+    this.patientRegistrationService
+      .getAllActivePatientCount()
+      .subscribe((patientActiveCount) => {
+        this.patientActiveCount = patientActiveCount;
+        console.log(this.patientActiveCount);
+      });
+
+    this.patientRegistrationService
+      .getAllInactivePatientList()
+      .subscribe((patientInactiveCount) => {
+        this.patientInactiveCount = patientInactiveCount;
+        console.log(this.patientInactiveCount);
+      });
 
     this.userLabel = this.appUsageData
       .map((app) => app.appname)
       .filter((value, index, self) => self.indexOf(value) === index);
 
-    this.userAppData = {
-      labels: this.userLabel,
-      datasets: [
-        {
-          data: [
-            this.appUserCount1,
-            this.appUserCount2,
-            this.appUserCount3,
-            this.appUserCount4,
-            this.appUserCount5,
-          ],
-          backgroundColor: [
-            '#ff0000',
-            '#0000FF',
-            '#FFFF00',
-            '#FFC0CB',
-            '#7f00ff ',
-          ],
-        },
-      ],
-    };
-
-    this.userUsageHoursData = {
-      labels: ['Jan', 'Feb', 'March', 'April'],
-      datasets: [
-        {
-          label: 'Hospital Users',
-          backgroundColor: '#42A5F5',
-          data: [44, 65, 23, 77],
-        },
-        {
-          label: 'Patients',
-          backgroundColor: '#ff0000',
-          borderColor: '#7CB342',
-          data: [14, 65, 16, 100],
-        },
-      ],
-    };
+    setTimeout(() => {
+      this.userAppData = {
+        labels: this.userLabel,
+        datasets: [
+          {
+            data: [
+              this.employeeCountTest,
+              this.employeeActiveCount,
+              this.patientActiveCount,
+              this.patientInactiveCount,
+              this.patientInactiveCount,
+            ],
+            backgroundColor: [
+              '#ff0000',
+              '#0000FF',
+              '#FFFF00',
+              '#FFC0CB',
+              '#7f00ff ',
+            ],
+          },
+        ],
+      };
+      this.userUsageHoursData = {
+        labels: [
+          'All Hospital Users',
+          'Active Hospital Users',
+          'All Patients',
+          'Active Patients',
+        ],
+        datasets: [
+          {
+            label: 'All Users',
+            backgroundColor: '#42A5F5',
+            data: [
+              this.employeeCountTest,
+              this.employeeActiveCount,
+              this.patientInactiveCount,
+              this.patientActiveCount,
+            ],
+          },
+        ],
+      };
+    }, 1000);
   }
 }
-

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -6,6 +7,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { windowWhen } from 'rxjs';
 import { Employee } from 'src/app/entities/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { DailogBoxesComponent } from '../dailog-boxes/dailog-boxes.component';
 
 @Component({
   selector: 'app-employee-details',
@@ -23,7 +25,8 @@ export class EmployeeDetailsComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   @Input() queryID =0;
   isAdmin:boolean = false;
-  constructor(private router: Router,private route: ActivatedRoute, private employeeService : EmployeeService) { }
+  // employee: any;
+  constructor(public dialog: MatDialog, private router: Router,private route: ActivatedRoute, private employeeService : EmployeeService) { }
 
   ngOnInit(): void {
     this.employeeService.getAllEmployeeList().subscribe(employees =>{
@@ -68,8 +71,28 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   blockToUnblockStatus(employee:Employee) {
+    this.employees.push(employee);
+    const dialogRef = this.dialog.open(DailogBoxesComponent, {
+      data: {
+        id: this.employees
+      }
+    });
     console.log(employee);
-    this.employeeService.blockToUnblockStatus(employee).subscribe();
-    window.location.reload();
+    dialogRef.afterOpened().subscribe(result => {
+      this.employeeService.blockToUnblockStatus(employee).subscribe();
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      window.location.reload();
+    });
+  }
+
+  registerUser() {
+    this.router.navigate(["/shared/sidebar/admin/register-user/"]);
+  }
+
+  editUser(row:Employee) {
+    console.log("inside edit user",row.employeeId);
+    this.router.navigate(["/shared/sidebar/admin/edit-user/"+row.employeeId]);
   }
 }

@@ -21,7 +21,7 @@ export class PatientRegistrationService {
   }
 
   getAllPatientList():Observable<PatientRegistration[]>{
-    return this._httpClient.get<PatientRegistration[]>('http://localhost:9004/register-patient' );
+    return this._httpClient.get<PatientRegistration[]>('http://localhost:9004/register-patient/approval-list' );
   }
 
   getPatientDetailsByUserId(userId:number):Observable<PatientRegistration>{
@@ -39,8 +39,29 @@ export class PatientRegistrationService {
     return this._httpClient.patch<PatientRegistration>('http://localhost:9004/register-patient/approve-registration', patientApproveData);
   }
 
-  // All Inctive Patient list status= Inactive
-  getAllInactivePatientList():Observable<PatientRegistration[]>{
-    return this._httpClient.get<PatientRegistration[]>('http://localhost:9004/register-patient/approval-list');
+  // All Active Patient list status count = Active
+  getAllActivePatientCount():Observable<PatientRegistration[]>{
+    return this._httpClient.get<PatientRegistration[]>('http://localhost:9004/register-patient/active');
   }
+
+   // All Inactive Patient list status count = Inactive
+   getAllInactivePatientList():Observable<PatientRegistration[]>{
+    return this._httpClient.get<PatientRegistration[]>('http://localhost:9004/register-patient/approval-count');
+  }
+
+  activeToInactiveStatus(patient:PatientRegistration): Observable<PatientRegistration> {
+    return this._httpClient.patch<PatientRegistration>("http://localhost:9004/inactivePatient/",patient);
+  }
+ 
+  inactiveToActiveStatus(patient:PatientRegistration): Observable<PatientRegistration> {
+    return this._httpClient.patch<PatientRegistration>("http://localhost:9004/activePatient/",patient);
+  }
+ 
+  unblockToBlockStatus(patient:PatientRegistration): Observable<PatientRegistration> {
+    return this._httpClient.patch<PatientRegistration>("http://localhost:9004/block-patient/",patient);
+  }
+
+  blockToUnblockStatus(patient:PatientRegistration): Observable<PatientRegistration> {
+    return this._httpClient.patch<PatientRegistration>("http://localhost:9004/unblock-patient/",patient);
+  }  
 }

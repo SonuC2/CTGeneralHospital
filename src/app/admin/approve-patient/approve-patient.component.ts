@@ -29,7 +29,7 @@ export class ApprovePatientComponent implements OnInit {
   constructor(private router: Router,private route: ActivatedRoute, private patientRegistrationService : PatientRegistrationService) { }
 
   ngOnInit(): void {
-    this.patientRegistrationService.getAllInactivePatientList().subscribe(patient =>{
+    this.patientRegistrationService.getAllPatientList().subscribe(patient =>{
       this.patient = patient;
       this.dataSource.data = this.patient;
       console.log("Data source : " , this.dataSource.data);

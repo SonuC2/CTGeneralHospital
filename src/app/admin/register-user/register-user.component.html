@@ -8,23 +8,23 @@
           </mat-card-header>
           <mat-card-content>
             <div fxLayout="row wrap">
-              <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+              <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                <div formGroupName="userRole">
                 <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
-                  <!-- <div formGroupName="userRole"> -->
                   <mat-label>Select Role</mat-label>
-                  <mat-select formControlName="userRole">
-                    <mat-option value="physician">Physician</mat-option>
-                    <mat-option value="nurse">Nurse</mat-option>
-                    <mat-option value="admin">Admin</mat-option>
+                  <mat-select formControlName="roleType">
+                    <mat-option value="Physician">Physician</mat-option>
+                    <mat-option value="Nurse">Nurse</mat-option>
+                    <mat-option value="Admin">Admin</mat-option>
                   </mat-select>
-                  <!-- </div> -->
                 </mat-form-field>
-                <p *ngIf="form.controls['userRole']?.errors?.['required'] && form.controls['userRole'].touched"
+                </div>
+                <p *ngIf="form.controls['roleType']?.errors?.['required'] && form.controls['roleType'].touched"
                   style="color: red">
                   This field is required
                 </p>
               </div>
-              <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+              <!-- <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                 <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
                   <mat-label>EmployeeId</mat-label>
                   <input matInput formControlName="employeeId" placeholder="Enter employee id" required />
@@ -33,17 +33,17 @@
                   style="color: red">
                   This field is required
                 </p>
-              </div>
+              </div> -->
             </div>
             <div fxLayout="row wrap">
               <div fxFlex.gt-sm="20" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                 <mat-form-field appearance="fill" class="example-full-width" style="width: 100%">
                   <mat-label>Title</mat-label>
                   <mat-select formControlName="title" required>
-                    <mat-option value="mr.">Mr.</mat-option>
-                    <mat-option value="ms.">Ms.</mat-option>
-                    <mat-option value="mrs.">Mrs.</mat-option>
-                    <mat-option value="dr.">Dr.</mat-option>
+                    <mat-option value="Mr.">Mr.</mat-option>
+                    <mat-option value="Ms.">Ms.</mat-option>
+                    <mat-option value="Mrs.">Mrs.</mat-option>
+                    <mat-option value="Dr.">Dr.</mat-option>
                   </mat-select>
                 </mat-form-field>
                 <p *ngIf="form.controls['title']?.errors?.['required'] && form.controls['title'].touched"
