@@ -18,7 +18,7 @@ export class PatientListComponent implements OnInit {
   disabled = false;
   patient: PatientRegistration[] = [];
 
-  displayedColumns = ['patientId', 'firstName', 'lastName','contactNumber', 'email', 'status'];
+  displayedColumns = ['patientId', 'firstName', 'lastName','contactNumber', 'email', 'status', 'blockAction'];
   dataSource = new MatTableDataSource<PatientRegistration>();
   id!:number;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -64,15 +64,26 @@ export class PatientListComponent implements OnInit {
     window.location.reload();
   }
 
-  // unblockToBlockStatus(employee:Employee) {
-  //   console.log(employee);
-  //   this.employeeService.unblockToBlockStatus(employee).subscribe();
-  //   window.location.reload();
-  // }
+  unblockToBlockStatus(patient:PatientRegistration) {
+    console.log(patient);
+    this.patientRegistrationService.unblockToBlockStatus(patient).subscribe();
+    window.location.reload();
+  }
 
-  // blockToUnblockStatus(employee:Employee) {
-  //   console.log(employee);
-  //   this.employeeService.blockToUnblockStatus(employee).subscribe();
-  //   window.location.reload();
-  // }
+  blockToUnblockStatus(patient:PatientRegistration) {
+    // this.employees.push(patient);
+    // const dialogRef = this.dialog.open(DailogBoxesComponent, {
+    //   data: {
+    //     id: this.employees
+    //   }s
+    // });
+    // console.log(employee);
+    // dialogRef.afterOpened().subscribe(result => {
+      this.patientRegistrationService.blockToUnblockStatus(patient).subscribe();
+    // });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(`Dialog result: ${result}`);
+      window.location.reload();
+    // });
+  }
 }

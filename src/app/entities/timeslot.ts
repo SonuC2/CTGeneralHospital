@@ -1,10 +1,7 @@
-import { Time } from "@angular/common";
-
 export class Timeslot {
-
-    physicainId!:number;
+    employeeId!:number;
+    employeeName!:string;
     date!:Date;
-    startTime!:Time;
-    endTime!:Time;
-
+    startTime!:String;
+    endTime!:string;
 }

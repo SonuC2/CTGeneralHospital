@@ -1,0 +1,82 @@
+table {
+  width: 100%;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.center-text-size {
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+th {
+  background-color: #0055d2;
+  font-weight: unset;
+  font-size: 12px;
+  color: white;
+}
+.backer {
+  background-color: #dad8d8;
+  border-radius: 4px;
+}
+
+.textc {
+  color: black;
+  font-weight: 700;
+  font-family: sans-serif;
+}
+.heading {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-size: 30px;
+    font-weight: 1500px;
+}
+
+.head {
+  color: #0055d2;
+}
+.wid {
+  width: 50vh;
+}
+.date {
+  width: 33vh;
+}
+.w {
+  width: 40%;
+}
+
+.middle {
+  background-color: grey;
+  text-align: center;
+  height: 100vh;
+  padding-top: 40vh;
+  color: white;
+  font-size: 30px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+@media (max-width: 700px) {
+  .pad {
+    width: 100%;
+  }
+}
+
+.datepicker {
+  display: inherit;
+}
+
+/* @media (min-width:700px) {
+    .pad{
+        width: 100%;
+    }
+   
+} */

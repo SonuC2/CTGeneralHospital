@@ -1,3 +1,4 @@
+import { User } from "./user";
 import { UserRole } from "./user-role";
 export class Employee {
      employeeId !: number;
@@ -15,4 +16,5 @@ export class Employee {
      status!:string;
      blockStatus!:string;
      userRole!:UserRole;
+	 user!:User;
 }

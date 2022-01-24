@@ -8,6 +8,8 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Location } from '@angular/common';
+import { UserRole } from 'src/app/entities/user-role';
+import { Employee } from 'src/app/entities/employee';
 
 @Component({
   selector: 'app-register-user',
@@ -15,6 +17,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./register-user.component.css'],
 })
 export class RegisterUserComponent implements OnInit {
+  employeeDetails!:Employee;
   index: number = -1;
   employeeId: any;
   form!: FormGroup;
@@ -37,23 +40,22 @@ export class RegisterUserComponent implements OnInit {
     this.employeeId = this.route.snapshot.paramMap.get('index');
 
     this.form = this.fb.group({
-      employeeId: [],
-      title: [],
-      firstName: [],
-      lastName: [],
-      email: [],
-      dateOfBirth: [],
-      dateOfJoining: [],
-      // status: [],
-      mobileNO: [],
-      address: [],
-      gender: [],
-      qualification: [],
-      specialisation: [],
-      userRole: [],
-      // blockStatus:[]
+      title: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      dateOfBirth: ['', Validators.required],
+      dateOfJoining: ['', Validators.required],
+      mobileNO: ['', Validators.required],
+      address: ['', Validators.required],
+      gender: ['', Validators.required],
+      qualification: ['', Validators.required],
+      specialisation: ['', Validators.required],
+      userRole:this.fb.group({
+        userRoleId: [],
+        roleType :['', Validators.required]
+      }),
     });
-    this.getEmployeeData();
   }
 
   onClear() {
@@ -62,30 +64,33 @@ export class RegisterUserComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value);
-    this.employeeService.addEmployee(this.form.value).subscribe();
-    // this.router.navigate(['/nurse/employee-list']);
+    if(this.form.get('userRole')?.get("roleType")?.value === 'Physician') {
+      this.employeeDetails = this.form.value;
+      this.employeeDetails.userRole.userRoleId = 1;
+      this.employeeDetails.userRole.roleType = "Physician";
+     
+      this.employeeService.addEmployee(this.employeeDetails).subscribe();
+    }
+    if(this.form.get('userRole')?.get("roleType")?.value  === 'Nurse') {
+      this.employeeDetails = this.form.value;
+      this.employeeDetails.userRole.userRoleId = 2;
+      this.employeeDetails.userRole.roleType = "Nurse";
+     
+      this.employeeService.addEmployee(this.employeeDetails).subscribe();
+    }
+    if(this.form.get('userRole')?.get("roleType")?.value  === 'Admin') {
+      this.employeeDetails = this.form.value;
+      this.employeeDetails.userRole.userRoleId = 4;
+      this.employeeDetails.userRole.roleType = "Admin";
+     
+      this.employeeService.addEmployee(this.employeeDetails).subscribe();
+    }
+   
+    this.router.navigate(['/shared/sidebar/admin/employee-details']);
   }
 
-  getEmployeeData() {
-    let data: any = this.location.getState();
-    console.log(data);
-    this.form.get('employeeId')?.setValue(data.employeeId);
-    this.form.get('title')?.setValue(data.title);
-    this.form.get('firstName')?.setValue(data.firstName);
-    this.form.get('lastName')?.setValue(data.lastName);
-    this.form.get('email')?.setValue(data.email);
-    this.form.get('dateOfBirth')?.setValue(data.dateOfBirth);
-    this.form.get('dateOfJoining')?.setValue(data.dateOfJoining);
-    // this.form.get('status')?.setValue(data.status);
-    this.form.get('mobileNO')?.setValue(data.mobileNO);
-    this.form.get('address')?.setValue(data.address);
-    this.form.get('gender')?.setValue(data.gender);
-    this.form.get('qualification')?.setValue(data.qualification);
-    this.form.get('specialisation')?.setValue(data.specialisation);
-    this.form.get('roleType')?.setValue(data.roleType);
-    // this.form.get('blockStatus')?.setValue(data.blockStatus);
-  }
+  
   backToEmployeeList() {
-    this.router.navigate(['/admin/employee-details']);
+    this.router.navigate(['/shared/sidebar/admin/employee-details']);
   }
 }

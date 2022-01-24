@@ -43,15 +43,15 @@
       fxLayoutAlign="center center"
     >
       <mat-card fxLayoutAlign="center center" class="mat1"
-        ><form>
+        ><form [formGroup]="loginForm" (ngSubmit)="login()">
           <mat-card-content>
             <h2 style="color: blue">Login</h2>
 
             <mat-form-field class="full-width-input">
-              <input matInput type="email" placeholder="email/username"required />
+              <input matInput type="email" placeholder="email/username"required formControlName="email"/>
             </mat-form-field>
             <mat-form-field class="full-width-input">
-              <input matInput type="password" placeholder="password" />
+              <input matInput type="password" placeholder="password"formControlName="password" />
             </mat-form-field>
 
             <button
@@ -96,14 +96,14 @@
     >
       <mat-card class="mat2">
         <mat-card-content
-          ><form  [formGroup]="form" (ngSubmit)="submitRegister()" >
+          ><form  [formGroup]="registerForm" (ngSubmit)="submitRegister()" >
             <h1 class="head">Registration</h1>
             
             <div fxLayout="row" fxLayout.xs="column" style="margin-top: 10px">
               <div class="pad">
                 <mat-form-field appearance="fill">
                   <mat-label>Title</mat-label>
-                  <mat-select [(ngModel)]="selectedValue" name="title">
+                  <mat-select [(ngModel)]="selectedValue" name="title"  formControlName="title">
                     <mat-option
                       *ngFor="let title of titles"
                       [value]="title.value"
@@ -116,36 +116,30 @@
               &nbsp; &nbsp;
               <mat-form-field appearance="fill" id="firsN" class="pad">
                 <mat-label>First Name*</mat-label>
-                <input matInput />
+                <input matInput  formControlName="firstName"  [ngClass]="{ 'is-invalid': submitted && this.registerForm.controls.firstName.errors }" />
+                <div *ngIf="submitted && this.registerForm.controls.firstName.errors" class="invalid-feedback">
+                  <div *ngIf="this.registerForm.controls.firstName.errors.required">First Name is required</div>
+              </div>
               </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayout.xs="column">
               <mat-form-field appearance="fill" class="pad">
                 <mat-label>Last Name*</mat-label>
-                <input matInput /> </mat-form-field
+                <input matInput  formControlName="lastName"/> 
+              
+                </mat-form-field
               >&nbsp; &nbsp;
               <mat-form-field appearance="fill" class="pad">
                 <mat-label>Contact number</mat-label>
-                <input matInput />
-              </mat-form-field>
-            </div>
-
-            <div fxLayout="row" fxLayout.xs="column">
-              <mat-form-field appearance="fill" class="pad">
-                <mat-label>password</mat-label>
-                <input type="password" matInput /> </mat-form-field
-              >&nbsp; &nbsp;
-              <mat-form-field appearance="fill" class="pad">
-                <mat-label>Confirm password</mat-label>
-                <input type="password" matInput />
+                <input matInput   formControlName="contactNumber"/>
               </mat-form-field>
             </div>
 
             <div fxLayout="row" fxLayout.xs="column">
               <mat-form-field appearance="fill" class="pad date">
                 <mat-label>DOB</mat-label>
-                <input matInput [matDatepicker]="picker" />
+                <input matInput [matDatepicker]="picker"  formControlName="dateOfBirth" />
                 <mat-datepicker-toggle
                   matSuffix
                   [for]="picker"
@@ -158,14 +152,33 @@
                   class="example-full-width wid"
                 >
                   <mat-label>Enter your email</mat-label>
-                  <input matInput  required />
+                  <input matInput  formControlName="email"  required />
                  <!---<input matInput placeholder="google@example.com" required />-->
                 </mat-form-field>
               </div>
+              
             </div>
-            <button
+            <div fxLayout="row" fxLayout.xs="column">
+              <mat-form-field appearance="fill" class="pad">
+                <mat-label>password</mat-label>
+                <input type="password" matInput  formControlName="password" /> </mat-form-field
+              >&nbsp; &nbsp;
+              <mat-form-field appearance="fill" class="pad">
+                <mat-label>Confirm password</mat-label>
+                <input type="password"   formControlName="confirmPassword" matInput />
+              </mat-form-field>
+            </div>
+            <!-- <button
               mat-raised-button
               (click)="onRegister()"
+              color="primary"
+              style="background-color: #0d5be1; width: 100%"
+              class="example-full-width"
+            >
+              Register
+            </button> -->
+            <button
+              mat-raised-button
               color="primary"
               style="background-color: #0d5be1; width: 100%"
               class="example-full-width"

@@ -1,39 +1,74 @@
 <!-- <app-side-nav></app-side-nav> -->
-
 <mat-toolbar class="mat-elevation-z8">
   <button mat-icon-button (click)="sidenav.toggle()">
     <mat-icon> menu </mat-icon>
+
     <!-- <mat-icon >
+
             close
+
         </mat-icon> -->
   </button>
-  <img class="img-logo"
+
+  <img
+    class="img-logo"
     src="https://s3.amazonaws.com/company-photo.theladders.com/863/c5139e28-4756-456d-a8fa-fc5694ebc565.png"
-    alt="CTGeneralHospital logo">&nbsp;
-  CTGeneralHospital
+    alt="CTGeneralHospital logo"
+  />&nbsp; CTGeneralHospital
+
   <span class="example-spacer"></span>
+
   <button mat-icon-button class="example-icon" [matMenuTriggerFor]="beforeMenu">
     <mat-icon>account_circle</mat-icon>
   </button>
+
   <mat-menu #beforeMenu="matMenu" xPosition="before" class="profile">
     <!-- <h4 mat-menu-item style="font-weight: bold;">Priyanka Gaykhe</h4> -->
-    <mat-label style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-weight: bold; text-align:10%;"
-      mat-menu-item>
-      Priyanka Gaykhe</mat-label>
-    <mat-label style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align:10%;" mat-menu-item>
+
+    <mat-label
+      style="
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: bold;
+        text-align: 10%;
+      "
+      mat-menu-item
+    >
+      Priyanka Gaykhe</mat-label
+    >
+
+    <mat-label
+      style="
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: 10%;
+      "
+      mat-menu-item
+    >
       <mat-icon>alternate_email</mat-icon>priyanka.gaykhe@gmail.com
     </mat-label>
-    <button style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align:10%;" mat-menu-item>
+    <button
+      style="
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: 10%;
+      "
+      mat-menu-item
+    >
       <mat-icon>visibility</mat-icon>Change Password
     </button>
-    <button style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align:10%;" mat-menu-item>
+
+    <button
+      style="
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: 10%;
+      "
+      mat-menu-item
+    >
       <mat-icon>exit_to_app</mat-icon>Logout
     </button>
   </mat-menu>
 </mat-toolbar>
 <mat-sidenav-container *ngIf="isNurse">
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" routerLink="nurse/">
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </button>
@@ -58,12 +93,12 @@
       <span *ngIf="isExpanded || isShowing">Patient</span>
     </button>
     <div class="submenu" [ngClass]="{ expanded: showPatientSubMenu }" *ngIf="isShowing || isExpanded">
-      <button mat-button class="menu-button" routerLink="nurse/patient/patient-details">
+      <button mat-button class="menu-button" routerLink="nurse/register-patient">
         <mat-icon>person</mat-icon>
         <span>Register Patient</span>
       </button>
      
-      <button mat-button class="menu-button" routerLink="/nurse/patient-visit">
+      <button mat-button class="menu-button" routerLink="nurse/patient-visit">
         <mat-icon>person</mat-icon>
         <span>Add Patient Visit Details</span>
       </button>
@@ -71,7 +106,7 @@
         <mat-icon>person</mat-icon>
         <span>Patient Visit History</span>
       </button>
-      <button mat-button class="menu-button" routerLink="/nurse/patient-list">
+      <button mat-button class="menu-button" routerLink="nurse/patient-list">
         <mat-icon>list</mat-icon>
         <span>Patient list</span>
       </button>
@@ -92,8 +127,8 @@
           <span >Patient Visit</span>
         </button> -->
     </div>
-    <button mat-button class="menu-button"  routerLink="nurse/inbox/inbox">
-      <mat-icon></mat-icon>
+    <button mat-button class="menu-button"  routerLink="nurse/notes">
+      <mat-icon>send</mat-icon>
       <span>Inbox</span>
     </button>
 
@@ -146,6 +181,15 @@
       [ngClass]="{ expanded: showPatientSubMenu }"
       *ngIf="isShowing || isExpanded"
     >
+    <!-- <button
+        mat-button
+        class="menu-button"
+        routerLink="patient/dashboard"
+        
+      >
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </button> -->
       <button
         mat-button
         class="menu-button"
@@ -159,19 +203,19 @@
         <span>My Details</span>
       </button>
 
-
-      <button mat-button class="menu-button">
-        <mat-icon>person</mat-icon>
-        <span>My Visits</span>
-      </button>
-      <button mat-button class="menu-button">
+      <button mat-button class="menu-button" [disabled]="MyVisitHistory">
         <mat-icon>person</mat-icon>
         <span>My visit history</span>
       </button>
-      <button mat-button class="menu-button" routerLink="patient/get-my-data">
-        <mat-icon>download</mat-icon>
-        <span>Download My Data</span>
-      </button>
+      <!-- <button
+      mat-button
+      class="menu-button"
+      routerLink="patient/get-my-data"
+      [disabled]="downloadMydata"
+    >
+      <mat-icon>download</mat-icon>
+      <span>Download</span>
+    </button> -->
     </div>
     <button mat-button class="menu-button" (click)="showSubmenu = !showSubmenu" (mouseenter)="mouseenter()"
       (mouseleave)="mouseleave()">
@@ -238,12 +282,14 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+<!--  patient end-->
+
 
 <!-- For admin -->
 
 <mat-sidenav-container *ngIf="isAdmin">
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-    <button mat-button class="menu-button"  routerLink="/admin/home">
+    <button mat-button class="menu-button"  routerLink="admin/home">
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </button>
@@ -295,11 +341,11 @@
       [ngClass]="{ expanded: showSubmenu }"
       *ngIf="isShowing || isExpanded"
     >
-      <button mat-button class="menu-button" routerLink="/admin/register-user"> 
+      <button mat-button class="menu-button" routerLink="admin/register-user"> 
         <mat-icon>person</mat-icon>
         <span>Register User</span>
       </button>
-      <button mat-button class="menu-button" routerLink="/admin/employee-details">
+      <button mat-button class="menu-button" routerLink="admin/employee-details">
         <mat-icon>list</mat-icon>
         <span>View User Details</span>
       </button>
@@ -344,7 +390,82 @@
     </button>
   </mat-sidenav>
 
-  <mat-sidenav-content >
+  <mat-sidenav-content>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<!-- For Doctor  -->
+
+<mat-sidenav-container *ngIf="isPhysician">
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <button mat-button class="menu-button">
+      <mat-icon>home</mat-icon>
+      <span style="padding-left: 5px;">DashBoard</span>
+    </button>
+    <button mat-button class="menu-button" (click)="showPatientSubMenu = !showPatientSubMenu" (mouseenter)="mouseenter()"
+      (mouseleave)="mouseleave()">
+      <mat-icon>person</mat-icon>
+      <span *ngIf="isExpanded || isShowing" style="padding-left: 5px;">Patient</span>
+    </button>
+    <div class="submenu" [ngClass]="{ expanded: showPatientSubMenu }" *ngIf="isShowing || isExpanded">
+      <button mat-button class="menu-button" routerLink="nurse/patient-visit">
+        <mat-icon>add</mat-icon>
+        <span style="padding-left: 5px;">Add Patient Visit</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="nurse/patient-visit">
+        <mat-icon>restore</mat-icon>
+        <span style="padding-left: 5px;">Patient Visit History</span>
+      </button>
+    </div>
+
+    <button mat-button class="menu-button" routerLink="doctor/timeslot">
+      <mat-icon>event</mat-icon>
+      <span style="padding-left: 5px;">Time-Slot</span>
+    </button>
+
+    <button mat-button class="menu-button" (click)="showSubmenu = !showSubmenu" (mouseenter)="mouseenter()"
+      (mouseleave)="mouseleave()">
+      <mat-icon>date_range</mat-icon>
+      <span *ngIf="isExpanded || isShowing" style="padding-left: 5px;">Appointments</span>
+    </button>
+    <div class="submenu" [ngClass]="{ expanded: showSubmenu }" *ngIf="isShowing || isExpanded">
+      <button mat-button class="menu-button" routerLink="scheduling/appointment-calendar">
+        <mat-icon>add</mat-icon>
+        <span style="padding-left: 5px;">Schedule Appointment</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="scheduling/appointment-list">
+        <mat-icon>list </mat-icon>
+        <span style="padding-left: 5px;">Appointment list</span>
+      </button>
+      <button mat-button class="menu-button" routerLink="doctor/requested-appointment-list">
+        <mat-icon>assignment_turned_in </mat-icon>
+        <span style="padding-left: 5px;">Approve Appointment</span>
+      </button>
+    </div>
+
+
+    <button mat-button class="menu-button" routerLink="doctor/nurse/notes">
+      <mat-icon>textsms</mat-icon>
+      <span style="padding-left: 5px;"> Inbox</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button">
+      <mat-icon>info</mat-icon>
+      <span style="padding-left: 5px;">About</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>help_outline</mat-icon>
+      <span style="padding-left: 5px;">Help</span>
+    </button>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
     <div class="content">
       <router-outlet></router-outlet>
     </div>

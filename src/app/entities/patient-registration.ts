@@ -8,9 +8,11 @@ export class PatientRegistration {
 	lastName!:string;
 	email!:string;
 	contactNumber!:number;
+	dateOfBirth!:Date;
 	password!:string;
-	status!:string;
-	createdBy!:number;
-	userRole!:UserRole;
-	user!:User;
+    status!:string;
+	blockStatus!:string;
+    createdBy!:number;
+    userRole!:UserRole;
+    user!:User;
 }
