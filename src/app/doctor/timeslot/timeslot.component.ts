@@ -11,6 +11,8 @@ import { DatePipe } from '@angular/common';
 // import { EventEmitter } from 'stream';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { DialogComponent } from '../dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
  
 export const APP_DATE_FORMATS = {
     parse: {
@@ -38,11 +40,13 @@ export const APP_DATE_FORMATS = {
 export class TimeslotComponent implements OnInit {
   form!: FormGroup;
   physicianDetailsFromLogin!:Employee;
+  
   @ViewChild(MatDatepicker)
   picker!: MatDatepicker<Moment>;
   constructor(
     private fb: FormBuilder,
-    private timeslotService: TimeslotService
+    private timeslotService: TimeslotService,
+    public dialog: MatDialog
   ) {}
 
   startTime: String[] = [
@@ -80,6 +84,7 @@ export class TimeslotComponent implements OnInit {
     this.physicianDetailsFromLogin = JSON.parse(sessionStorage.getItem('physicianDetailsFromLogin') || '{}');
     console.log("PAtient Details from login: ", this.physicianDetailsFromLogin);
 
+    
     this.form = this.fb.group({
       employeeId: [],
       employeeName: [],
@@ -111,7 +116,7 @@ export class TimeslotComponent implements OnInit {
     //     throw Error(error);
     //   })
     this.timeslotService.addTimeSlot(this.form.value).subscribe();
-    window.location.reload();
+    // window.location.reload();
   }
 
   getSelectedDate(event :any){
@@ -135,4 +140,13 @@ export class TimeslotComponent implements OnInit {
   //  this.form.get('date')?.setValue(m.format('DD-MM-YYYY'));
   console.log(this.form.get('date')?.value)
   }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      window.location.reload();
+    });
+}
 }

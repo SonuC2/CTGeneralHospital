@@ -33,9 +33,11 @@ export class EditAppointmentComponent implements OnInit {
       employeeName: [],
       appointmentDate: [],
       timeSlot: [],
+      timeSlotString:[],
       reason: [],
       rescheduleDate: [],
       rescheduleTimeSlot: [],
+      rescheduleTimeSlotString:[],
       patientId: [],
       patientName: [],
       appointmentStatus: [],
@@ -94,6 +96,11 @@ export class EditAppointmentComponent implements OnInit {
     this.form.get('description')?.setValue(data.description);
     this.form.get('appointmentDate')?.setValue(data.appointmentDate);
     this.form.get('timeSlot')?.setValue(data.timeSlot);
+    this.form.get('timeSlotString')?.setValue(data.timeSlotString);
+    this.form.get('reason')?.setValue(data.reason);
+    this.form.get('rescheduleDate')?.setValue(data.rescheduleDate);
+    this.form.get('rescheduleTimeSlot')?.setValue(data.rescheduleTimeSlot);
+    this.form.get('rescheduleTimeSlotString')?.setValue(data.rescheduleTimeSlotString);
     this.form.get('appointmentStatus')?.setValue(data.appointmentStatus);
   }
 }

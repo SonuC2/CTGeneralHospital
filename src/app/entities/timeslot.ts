@@ -1,4 +1,5 @@
 export class Timeslot {
+    slotId!:number;
     employeeId!:number;
     employeeName!:string;
     date!:Date;

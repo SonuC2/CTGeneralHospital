@@ -43,7 +43,7 @@
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
             <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary">
-                <mat-icon aria-label="Edit" [state]="element" routerLink="timeslot/edit-timeslot/{{ element.slotId }}">
+                <mat-icon aria-label="Edit"  (click)="editRoute(element)">
                     edit</mat-icon>
                 <!-- <mat-icon aria-label="Edit" (click)="navigateToUpdate(element.appointmentId)" >edit</mat-icon> -->
             </button>

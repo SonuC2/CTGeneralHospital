@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/entities/employee';
 import { Timeslot } from 'src/app/entities/timeslot';
 import { TimeslotService } from 'src/app/services/timeslot.service';
@@ -12,7 +13,7 @@ import { TimeslotService } from 'src/app/services/timeslot.service';
 export class TimeslotListComponent implements OnInit {
   timeslot: Timeslot[] = [];
   dataSource = new MatTableDataSource<Timeslot>();
-  constructor(private timeslotService: TimeslotService) {}
+  constructor(private timeslotService: TimeslotService, private router:ActivatedRoute, private route:Router) {}
   physicianDetailsFromLogin!:Employee;
   displayedColumns: string[] = ['date', 'startTime', 'endTime','slotStatus','action'];
 
@@ -32,7 +33,11 @@ export class TimeslotListComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  editRoute(element:Timeslot){
+    console.log(element + "edit time slot ememnt"+ element.employeeId)
 
+      this.route.navigate(['src/app/doctor/edit-timeslot/'+ element.employeeId])
+  }
 
   deleteById() {}
 }

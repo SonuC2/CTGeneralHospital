@@ -33,7 +33,7 @@
             <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
               <mat-label>Physician*</mat-label>
               <mat-select formControlName="employeeName"> 
-                <mat-option *ngFor="let employee of employeeDetails" value="employee.title + ' ' + employee.firstName + ' ' employee.lastName ">
+                <mat-option *ngFor="let employee of employeeDetails" [value]='employee.title + " " + employee.firstName + " " + employee.lastName'  (onSelectionChange)="setDoctorId(employee.employeeId, $event)" (onSelectionChange)="loadTimeSlot()">
                 {{employee.title}}  {{ employee.firstName }} {{ employee.lastName }}  
                 </mat-option>
               </mat-select>
@@ -61,29 +61,42 @@
             </mat-form-field>
           </p>
 
-          <mat-form-field appearance="fill" class="pad date w">
+          <!-- <mat-form-field appearance="fill" class="pad date w">
             <mat-label>Appointment date*</mat-label>
-            <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="appointmentDate"
-              required (dateChange)="loadTimeSlot()" />
+            <input matInput  [matDatepicker]="picker" formControlName="appointmentDate"
+              required (dateChange)="loadTimeSlot()" (ngModelChange)="modelChanged($event)" />
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>&nbsp; &nbsp;
+          </mat-form-field>&nbsp; &nbsp; -->
 
-          <mat-form-field appearance="fill" class="pad date w">
+          <!-- <mat-form-field appearance="fill" class="pad date w">
             <mat-label>Time slot*</mat-label>
             <mat-select formControlName="timeSlot">
               <mat-option *ngFor="let spe of timeSlot" value="{{ spe }}">{{ spe }}</mat-option>
             </mat-select>
-          </mat-form-field>
-          <!-- extra -->
-          <!-- <mat-form-field appearance="fill" class="pad wid " *ngIf="index === 1">
-            <mat-label>ReSchedule time*</mat-label>
-            <mat-select formControlName="appointmentTime">
-              <mat-option *ngFor="let spe of appointmentTime" value="{{ spe }}">{{
-                spe
-                }}</mat-option>
-            </mat-select>
           </mat-form-field> -->
+          <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
+            <mat-label>timslot id*</mat-label>
+            <mat-select formControlName="timeSlot"> 
+              <mat-option *ngFor="let slot of timeSlotData" [value]='slot.slotId' (onSelectionChange)="LoadTimeSlot(slot, $event)">
+               <strong> {{slot.date|date}}</strong> <b> => </b>  {{slot.startTime}} - {{slot.endTime}}  
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+     
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>TimeSlot</mat-label>
+            <!-- <mat-select formControlName="timeSlotString">
+              <mat-option>-- None --</mat-option>
+      
+                <mat-option *ngFor="let slot of timeSlotData" value="slot.date+'*' slot.startTime + ' -- ' + slot.endTime">
+               {{slot.startTime}}   {{slot.startTime}} - {{slot.endTime}}
+                </mat-option>
+              
+            </mat-select> -->
+            <input matInput formControlName="timeSlotString" />
+          </mat-form-field>
+
           <button mat-raised-button color="primary" style="background-color: #03a66a; width: 100%"
             class="example-full-width" type="submit" mat-stroked-button>
             Create Appointment
@@ -177,7 +190,7 @@
 
       <mat-form-field appearance="fill" class="pad date w">
         <mat-label>Appointment date*</mat-label>
-        <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="appointmentDate"
+        <input matInput  [matDatepicker]="picker" formControlName="appointmentDate"
           required />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
@@ -239,7 +252,7 @@
                   spe
                   }}</mat-option>
               </mat-select> -->
-              <input matInput formControlName="patientName" />
+              <input matInput formControlName="patientName" readonly />
             </mat-form-field>
           </div>
         </div>
