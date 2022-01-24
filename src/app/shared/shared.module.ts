@@ -74,6 +74,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('src/app/doctor/doctor.module').then((m) => m.DoctorModule),
       },
+      {
+        path: 'user',
+
+        loadChildren: () =>
+          import('src/app/user/user.module').then((m) => m.UserModule),
+      },
     ]
   },
   
