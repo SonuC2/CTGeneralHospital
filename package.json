@@ -27,6 +27,8 @@
     "@syncfusion/ej2-schedule": "^19.4.41",
     "apexcharts": "^3.33.0",
     "chart.js": "^3.7.0",
+    "exceljs": "^1.12.0",
+    "file-saver": "^2.0.5",
     "moment": "^2.29.1",
     "ng2-charts": "^3.0.6",
     "primeicons": "^5.0.0",
