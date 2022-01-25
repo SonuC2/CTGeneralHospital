@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SavedialogComponent } from '../savedialog/savedialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,6 +10,10 @@ import { User } from 'src/app/entities/user';
 import { UserService } from 'src/app/services/user.service';
 import { Employee } from 'src/app/entities/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { matchValidator } from 'src/app/services/password-validator.service';
+
+
+
 //import { PatientRegistrationService } from '../services/patientRegistration.service';
 //import { PatientRegistrationService } from '../services/PatientRegistration.service';
 interface Title {
@@ -39,6 +43,7 @@ export class LoginregistrationHomepageComponent implements OnInit {
   employeeDetailsFromLogin!:Employee;
 
   patientRegistration !: PatientRegistration;
+  
   constructor(
     private router: Router,
     private dialog: MatDialog,
@@ -46,12 +51,16 @@ export class LoginregistrationHomepageComponent implements OnInit {
     private userService:UserService,
    private patientregistrationService: PatientRegistrationService,
    private employeeService: EmployeeService,
-   private route: ActivatedRoute
+   private route: ActivatedRoute,
+  
+  
   ) {}
   registerForm!: any;
-  loginForm!:any;
+  public loginForm!:any;
+ 
   userDetails!:User;
   dateOfBirth!: Date;
+  
   ngOnInit(): void {
     // this.registerForm = this.fb.group({
     //   title: ['',Validators.required],
@@ -68,31 +77,38 @@ export class LoginregistrationHomepageComponent implements OnInit {
     // );
 
     this.registerForm = this.fb.group({
-      title: [''],
-      firstName: [''],
-      lastName: [''],
-      email: [''],
-      dateOfBirth: [''],
-      contactNumber: [''],
-      password: [''],
-      confirmPassword: [''],
+      title: ['',[Validators.required]],
+      firstName: ['',[Validators.required]],
+      lastName: ['',[Validators.required]],
+      email: ['',[Validators.required,Validators.email]],
+      dateOfBirth: ['',[Validators.required]],
+      contactNumber: ['',[Validators.required,Validators.minLength(10),Validators.maxLength(10),]],
+      password: ['', [
+        Validators.required,
+      
+       Validators.minLength(6),
+      
+        matchValidator('confirmpassword', true)
+      ]],
+      confirmPassword: ['', [
+        Validators.required,
+        Validators.minLength(6),
+        matchValidator('password'), ]],
       createdBy:[''],
       userRole: this.fb.group({
         userRoleId:3,
         roleType:"Patient"
       })
 ,
-      // { 
-      //   validator: this.ConfirmedValidator('password', 'confirm_password')
-      // }
+     
     });
 
     this.loginForm = this.fb.group({
-      email:[''],
-      password:['']
+      email:['',[Validators.required]],
+      password:['',[Validators.required]]
     })
   }
-
+ 
   ConfirmedValidator(controlName: string, matchingControlName: string){
     return (formGroup: FormGroup) => {
         const control = formGroup.controls[controlName];
@@ -109,11 +125,13 @@ export class LoginregistrationHomepageComponent implements OnInit {
 }
   loginPageShow() {
     this.isFormShown = true;
+   
     this.isRegFormShown = false;
   }
   registerPageShow(): void {
     this.isRegFormShown = true;
-    this.isFormShown = false;
+    this.isFormShown=false;
+   
   }
   onLogin(): void {
     this.router.navigate(['/dashboard']);
@@ -123,8 +141,11 @@ export class LoginregistrationHomepageComponent implements OnInit {
     this.dialog.open(SavedialogComponent);
   }
   submitRegister() {
-
+   
     console.log(this.registerForm.value);
+    this.isRegFormShown = false;
+    this.isFormShown=true;
+  //  this.registerForm.reset();//for form clear
   //   if (this.registerForm.invalid) {
   //     return;
   // }
@@ -142,6 +163,7 @@ export class LoginregistrationHomepageComponent implements OnInit {
   // this.patientRegistration.userRole = userRole;
   // console.log("PAtient registration data: " , this.patientRegistration)
    this.patientregistrationService.registerPatient(this.registerForm.value).subscribe();
+
   }
 
   login(){
@@ -192,6 +214,8 @@ export class LoginregistrationHomepageComponent implements OnInit {
         }))
 
       }
+// changes 21
+
     },
     (error) =>{
       
@@ -201,5 +225,11 @@ export class LoginregistrationHomepageComponent implements OnInit {
     });
 
     
+  }
+  get registerFormControl() {
+    return this.registerForm.controls;
+  }
+  get loginFormControl() {
+    return this.loginForm.controls;
   }
 }
