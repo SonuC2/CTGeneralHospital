@@ -47,7 +47,7 @@ export class PatientDetailsComponent implements OnInit {
   time=  Date.now();
 
   displayedColumns: string[] = [
-    'AllergyId',
+    
     'AllergyType',
     'AllergyName',
     'AllergyDescription',
@@ -349,6 +349,9 @@ export class PatientDetailsComponent implements OnInit {
     console.log(this.allergyForm.value);
     this.allergyArrays.push(this.allergyForm.value);
     //this.patientService.addAllergy(this.allergyForm.value).subscribe();
+    this.PatientDataForTable = this.allergyArrays;
+        console.log('welocome to allergy mapping');
+        this.dataSource.data = this.PatientDataForTable;
     this.allergyForm.reset();
     
   }
