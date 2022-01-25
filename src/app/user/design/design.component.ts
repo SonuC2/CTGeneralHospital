@@ -43,6 +43,8 @@ export class DesignComponent implements OnInit {
     this.form.get('oldpassword').setValue('');
     this.form.get('newPassword').setValue('');
     this.passwordService.changePassword(this.form.value).subscribe();
+
+    //hello
     this.form.reset();
    // this.router.navigate(['']);
   }
