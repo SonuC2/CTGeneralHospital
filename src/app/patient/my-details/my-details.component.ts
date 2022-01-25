@@ -142,7 +142,7 @@ export class MyDetailsComponent implements OnInit {
     // {
     //   console.log(this.topping);
     // }
-    list: string[] = ['Father', 'Mother', 'Son', 'Daughter', 'Other'];
+    list: string[] = ['Father', 'Mother', 'Son', 'Daughter', 'Friend', 'Other'];
     allergylist: string[] = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO'];
     races:string[]=["American Indian","Asian","Black","Latino","Other Pacific Islander","White"];
     ethnicities:string[]=["Abazins","Afemai","Afrikaners","Aja","Bambara","Banda","Copts","Garos","Hazaras","Isoko","Japanese"]
@@ -254,6 +254,9 @@ export class MyDetailsComponent implements OnInit {
       console.log(this.allergyForm.value);
     this.allergyArrays.push(this.allergyForm.value);
     //this.patientService.addAllergy(this.allergyForm.value).subscribe();
+    this.PatientDataForTable = this.allergyArrays;
+        console.log('welocome to allergy mapping');
+        this.dataSource.data = this.PatientDataForTable;
     this.allergyForm.reset();
     }
     removeAllergy(index: any) {
@@ -382,7 +385,7 @@ export class MyDetailsComponent implements OnInit {
       this.patientService.addAllergy(this.patientDetailsFromLogin.patientId,this.allergyArrays).subscribe();
       this.block1 = false;
       this.block2 = true;
-      window.location.reload();
+      // window.location.reload();
     }
     onChangeType(event:any)
     {
