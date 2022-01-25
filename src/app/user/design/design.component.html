@@ -16,10 +16,33 @@
         </p> -->
           <mat-form-field class="full-width-input">
             <input matInput type="password" placeholder="new password" formControlName="newPassword"/>
+            <mat-hint
+            class="fielderror"
+            *ngIf=" (formControl.newPassword.touched || submitted) &&
+              formControl.newPassword.errors?.required"
+          >
+            password is required
+              </mat-hint>
+            <mat-hint
+              class="fielderror"
+              *ngIf="formControl.newPassword.errors?.minlength"
+            >
+              password must atleast 6 char
+            </mat-hint>
           </mat-form-field>
          
           <mat-form-field class="full-width-input">
             <input matInput type="password" placeholder="confirm new password" formControlName="password"/>
+            <mat-hint
+            class="fielderror"
+            *ngIf=" (formControl.password.touched || submitted) &&
+            formControl.password.errors?.required"
+          >
+            password is required
+              </mat-hint>          
+          <mat-hint class="fielderror" *ngIf="(formControl.password.minlength) || formControl.password.errors?.matching">
+            password must be match
+          </mat-hint>
           </mat-form-field>
           <button mat-raised-button color="primary"  class="btn" type="submit">
             change password 

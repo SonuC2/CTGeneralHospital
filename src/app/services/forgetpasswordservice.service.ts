@@ -22,6 +22,37 @@ export class ForgetpasswordService{
 
   return throwError('username might not be correct');
   }
- 
+
+////new changes for reference
+
+  // changePassword(user:User):Observable<String>
+  // {
+  //   return this.httpClient.post<String>("http://localhost:9004/password/change-password",user)
+  //   .pipe( catchError(this.errorHandler));
+  // }
+  errorHandler1(error:any)
+  {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+      console.log("hello from serviceup"+errorMessage)
+
+    } else {
+      // Get server-side error
+      errorMessage = `${error.status}`;
+      console.log("hello from servicedown"+errorMessage)
+    }
+    if(errorMessage==="201")
+    {
+    window.alert("Password Successfully changed");
+    
+    }
+    else{
+      window.alert("new password must be different from last 10 password")
+    }
+    return throwError(errorMessage);
+
   }
+ }
 

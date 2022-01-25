@@ -19,6 +19,10 @@ background-position: center;
 .abc{background-image: url("/assets/images/changepassword.jpg");
   width: 100vh;
 height: 100vh;}*/
+
+.fielderror{
+  color: red;
+}
 .first {
   background-image: url("/assets/images/changepassword.jpg");
   width: 100%;

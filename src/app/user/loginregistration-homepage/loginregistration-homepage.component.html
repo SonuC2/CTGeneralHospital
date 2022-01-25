@@ -166,8 +166,8 @@
                 <mat-hint
                 class="fielderror"
                 *ngIf="
-                  (registerFormControl.firstName.touched || submitted) &&
-                  registerFormControl.firstName.errors?.required
+                  (registerFormControl.lastName.touched || submitted) &&
+                  registerFormControl.lastName.errors?.required
                 "
               >
                 lastName is required
@@ -205,7 +205,7 @@
             <div fxLayout="row" fxLayout.xs="column">
               <mat-form-field appearance="fill" class="pad date">
                 <mat-label>DOB</mat-label>
-                <input matInput [matDatepicker]="picker"  formControlName="dateOfBirth" />
+                <input matInput [matDatepicker]="picker"  formControlName="dateOfBirth" [max]="today"/>
                 <mat-datepicker-toggle
                   matSuffix
                   [for]="picker"

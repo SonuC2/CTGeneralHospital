@@ -41,6 +41,7 @@ export class LoginregistrationHomepageComponent implements OnInit {
   errorMessage!:any;
   patientDetails!:PatientRegistration;
   employeeDetailsFromLogin!:Employee;
+  today = new Date;
 
   patientRegistration !: PatientRegistration;
   

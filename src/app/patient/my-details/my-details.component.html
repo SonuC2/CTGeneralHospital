@@ -205,215 +205,391 @@
         <div class="bounds">
           <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
             <div fxFlex="50" class="sec1" fxFlex.xs="55">
-        <mat-card>
-          <mat-card-content>
-            <h1 class="head">Demographic Details</h1>
-            <mat-form-field appearance="fill" class="pad w">
-              <mat-label>First Name*</mat-label>
-              <input matInput formControlName="firstName" readonly/> </mat-form-field
-            >&nbsp; &nbsp;
-            <mat-form-field appearance="fill" class="pad w">
-              <mat-label>Last Name*</mat-label>
-              <input matInput formControlName="lastName" readonly/>
-            </mat-form-field>
-  
-            <mat-form-field appearance="fill" class="pad date w">
-              <mat-label>Choose a date*</mat-label>
-              <input
-                matInput
-                [matDatepicker]="picker"
-                formControlName="dateOfBirth"
-                [max]="today"
-                readonly
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="picker"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker> </mat-form-field
-            >&nbsp; &nbsp;
-            <mat-form-field appearance="fill" class="pad w">
-              <mat-label>Mobile No*</mat-label>
-              <input matInput formControlName="mobileNo" /> </mat-form-field
-            ><br />
-            <div>
-              <mat-radio-group
-                aria-label="Select an option"
-                formControlName="gender"
-              >
-                <mat-label>Gender :</mat-label>&nbsp;
-  
-                <mat-radio-button value="Male">Male</mat-radio-button>&nbsp;
-                &nbsp;
-                <mat-radio-button value="Female">Female</mat-radio-button>
-              </mat-radio-group>
-            </div>
-            <br />
-            <mat-form-field appearance="fill" class="pad w">
-              <mat-label>Race</mat-label>
-              <!-- <input matInput formControlName="race" /> -->
-              <mat-select formControlName="race">
-                <mat-option *ngFor="let race of races" value="{{ race }}">{{
-                  race
-                }}</mat-option>
-              </mat-select> </mat-form-field
-            >&nbsp; &nbsp;
-            <mat-form-field appearance="fill" class="pad w">
-              <mat-label>Ethnicity</mat-label>
-              <!-- <input matInput formControlName="ethnicity" /> -->
-              <mat-select formControlName="ethnicity">
-                <mat-option
-                  *ngFor="let ethnicity of ethnicities"
-                  value="{{ ethnicity }}"
-                  >{{ ethnicity }}</mat-option
-                >
-              </mat-select>
-            </mat-form-field>
-            <div class="example-container">
-              <mat-form-field
-                appearance="fill"
-                class="example-full-width wid pad"
-              >
-                <mat-label>Enter your email</mat-label>
-                <input
-                  matInput
-                  placeholder="pat@example.com"
-                  formControlName="email"
-                  readonly
-                />
-              </mat-form-field>
-            </div>
-            <div class="example-container">
-              <mat-form-field appearance="fill">
-                <mat-label>Known Languages</mat-label>
-                <mat-select formControlName="language" multiple>
-                  <mat-select-trigger>
-                    {{
-                      form.get("language").value
-                        ? form.get("language").value[0]
-                        : ""
-                    }}
-                    <span
-                      *ngIf="form.get('language').value?.length > 1"
-                      class="example-additional-selection"
-                    >
-                      (+{{ form.get("language").value.length - 1 }}
-                      {{
-                        form.get("language").value.length === 2
-                          ? "other"
-                          : "others"
-                      }})
-                    </span>
-                  </mat-select-trigger>
-                  <mat-option
-                    *ngFor="let language of languageList"
-                    [value]="language"
-                    >{{ language }}</mat-option
-                  >
-                </mat-select>
-              </mat-form-field>
-            </div>
-  
-            <p>
-              <mat-form-field
-                class="example-full-width wid"
-                appearance="fill"
-              >
-                <mat-label>Address</mat-label>
-                <textarea
-                  matInput
-                  placeholder="Ex. 100 Main St"
-                  formControlName="address"
-                  [(ngModel)]="paddress"
-                ></textarea>
-              </mat-form-field>
-            </p>
-            <br />
-          </mat-card-content>
-        </mat-card>
-            </div>
-            <div fxFlex="50" class="sec2" fxFlex.xs="40">
               <mat-card>
                 <mat-card-content>
-                  <h1 class="head">Emergency Contact Information</h1>
-                  <div formGroupName="emergencyContactDetails">
-                    <mat-form-field appearance="fill" class="pad w">
-                      <mat-label>First Name*</mat-label>
+                  <h1 class="head">Demographic Details</h1>
+                  <mat-form-field appearance="fill" class="pad w">
+                    <mat-label>First Name*</mat-label>
+                    <input matInput formControlName="firstName" /> 
+                    <mat-hint
+                    class="fielderror"
+                    *ngIf="
+                      (formControl.firstName.touched || submitted) &&
+                      formControl.firstName.errors?.required
+                    "
+                  >
+                    first Name is required
+                    </mat-hint>
+                    </mat-form-field
+                  >&nbsp; &nbsp;
+                  <mat-form-field appearance="fill" class="pad w">
+                    <mat-label>Last Name*</mat-label>
+                    <input matInput formControlName="lastName" />
+                    <mat-hint
+                    class="fielderror"
+                    *ngIf="
+                      (formControl.lastName.touched || submitted) &&
+                      formControl.lastName.errors?.required
+                    "
+                  >
+                    Last Name is required
+                    </mat-hint>
+                  </mat-form-field>
+        
+                  <mat-form-field appearance="fill" class="pad date w">
+                    <mat-label>Choose a date*</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="picker"
+                      formControlName="dateOfBirth"
+                      [max]="today"
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-hint
+                    class="fielderror"
+                    *ngIf="
+                      (formControl.dateOfBirth.touched || submitted) &&
+                      formControl.dateOfBirth.errors?.required
+                    "
+                  >
+                    Date of Birth is required
+                    </mat-hint>
+                    </mat-form-field
+                  >&nbsp; &nbsp;
+                  <mat-form-field appearance="fill" class="pad w">
+                    <mat-label>Mobile No*</mat-label>
+                    <input matInput formControlName="mobileNo" /> 
+                    <mat-hint
+                            class="fielderror"
+                            *ngIf="
+                              (formControl.mobileNo.touched || submitted) &&
+                              formControl.mobileNo.errors?.required
+                            "
+                          >
+                            Mobile No is required
+                            </mat-hint>
+                            <mat-hint
+                    class="fielderror"
+                    *ngIf="formControl.mobileNo.errors?.minlength"
+                  >
+                    valid number required
+                  </mat-hint>
+                  <mat-hint
+                  class="fielderror"
+                  *ngIf="formControl.mobileNo.errors?.maxlength"
+                >
+                  valid number is required
+                </mat-hint>
+                    
+                    </mat-form-field
+                  ><br />
+                  <div>
+                    <mat-radio-group
+                      aria-label="Select an option"
+                      formControlName="gender"
+                    >
+                      <mat-label>Gender :</mat-label>&nbsp;
+        
+                      <mat-radio-button value="Male">Male</mat-radio-button>&nbsp;
+                      &nbsp;
+                      <mat-radio-button value="Female">Female</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                  <br />
+                  <mat-form-field appearance="fill" class="pad w">
+                    <mat-label>Race</mat-label>
+                    <!-- <input matInput formControlName="race" /> -->
+                    <mat-select formControlName="race">
+                      <mat-option *ngFor="let race of races" value="{{ race }}">{{
+                        race
+                      }}</mat-option>
+                    </mat-select> 
+                    <mat-hint
+                    class="fielderror"
+                    *ngIf="
+                      (formControl.race.touched || submitted) &&
+                      formControl.race.errors?.required
+                    "
+                  >
+                    Race is required
+                    </mat-hint>
+                    </mat-form-field
+                  >&nbsp; &nbsp;
+                  <mat-form-field appearance="fill" class="pad w">
+                    <mat-label>Ethnicity</mat-label>
+                    <!-- <input matInput formControlName="ethnicity" /> -->
+                    <mat-select formControlName="ethnicity">
+                      <mat-option
+                        *ngFor="let ethnicity of ethnicities"
+                        value="{{ ethnicity }}"
+                        >{{ ethnicity }}</mat-option
+                      >
+                    </mat-select>
+                    <mat-hint
+                    class="fielderror"
+                    *ngIf="
+                      (formControl.ethnicity.touched || submitted) &&
+                      formControl.ethnicity.errors?.required
+                    "
+                  >
+                    Ethnicity is required
+                    </mat-hint>
+                  </mat-form-field>
+                  <div class="example-container">
+                    <mat-form-field
+                      appearance="fill"
+                      class="example-full-width wid pad"
+                    >
+                      <mat-label>Enter your email</mat-label>
                       <input
                         matInput
-                        formControlName="firstName"
-                      /> </mat-form-field
-                    >&nbsp; &nbsp;
-                    <mat-form-field appearance="fill" class="pad w">
-                      <mat-label>Last Name*</mat-label>
-                      <input matInput formControlName="lastName" />
+                        placeholder="pat@example.com"
+                        formControlName="email"
+                      />
+                      <mat-hint
+                    class="fielderror"
+                    *ngIf="
+                      (formControl.email.touched || submitted) &&
+                      formControl.email.errors?.required
+                    "
+                  >
+                    Email is required
+                    </mat-hint>
+                    <mat-hint
+                    class="fielderror"
+                    *ngIf="formControl.email.errors?.email"
+                  >
+                    email must be valid
+                  </mat-hint>
                     </mat-form-field>
-                    <mat-form-field appearance="fill" class="pad w">
-                      <mat-label>Relationship*</mat-label>
-                      <mat-select formControlName="ralationship">
-                        <mat-option
-                          *ngFor="let ralationship of list"
-                          value="{{ ralationship }}"
-                          >{{ ralationship }}</mat-option
-                        >
-                      </mat-select> </mat-form-field
-                    >&nbsp; &nbsp;
-                    <mat-form-field appearance="fill" class="pad w">
-                      <mat-label>Mobile No*</mat-label>
-                      <input matInput formControlName="mobileNo" />
-                    </mat-form-field>
-                    <div class="example-container">
-                      <mat-form-field
-                        appearance="fill"
-                        class="example-full-width wid"
-                      >
-                        <mat-label>Enter your email</mat-label>
-                        <input
-                          matInput
-                          placeholder="pat@example.com"
-                          required
-                          formControlName="email"
-                        />
-                      </mat-form-field>
-                    </div>
-                    <mat-checkbox
-                      class="example-margin"
-                      id="checkBox"
-                      (click)="chackBox()"
-                      >Same as per patient</mat-checkbox
-                    >
-    
-                    <p>
-                      <mat-form-field
-                        class="example-full-width wid"
-                        appearance="fill"
-                      >
-                        <mat-label>Address</mat-label>
-                        <textarea
-                          matInput
-                          placeholder="Ex. 100 Main St"
-                          formControlName="address"
-                          [(ngModel)]="eaddress"
-                        ></textarea>
-                      </mat-form-field>
-                    </p>
-                    <div>
-                      <mat-radio-group
-                        aria-label="Select an option"
-                        formControlName="access"
-                      >
-                        <mat-label
-                          >Do you need to access patient portal? :</mat-label
-                        >
-    
-                        <mat-radio-button value="Yes">Yes</mat-radio-button>&nbsp;
-                        &nbsp;
-                        <mat-radio-button value="No">No</mat-radio-button>
-                      </mat-radio-group>
-                    </div>
                   </div>
-    
+                  <div class="example-container">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Known Languages</mat-label>
+                      <mat-select formControlName="language" multiple>
+                        <mat-select-trigger>
+                          {{
+                            form.get("language").value
+                              ? form.get("language").value[0]
+                              : ""
+                          }}
+                          <span
+                            *ngIf="form.get('language').value?.length > 1"
+                            class="example-additional-selection"
+                          >
+                            (+{{ form.get("language").value.length - 1 }}
+                            {{
+                              form.get("language").value.length === 2
+                                ? "other"
+                                : "others"
+                            }})
+                          </span>
+                        </mat-select-trigger>
+                        <mat-option
+                          *ngFor="let language of languageList"
+                          [value]="language"
+                          >{{ language }}</mat-option
+                        >
+                      </mat-select>
+                      <mat-hint
+                    class="fielderror"
+                    *ngIf="
+                      (formControl.language.touched || submitted) &&
+                      formControl.language.errors?.required
+                    "
+                  >
+                    language is required
+                    </mat-hint>
+                    </mat-form-field>
+                  </div>
+        
+                  <p>
+                    <mat-form-field
+                      class="example-full-width wid"
+                      appearance="fill"
+                    >
+                      <mat-label>Address</mat-label>
+                      <textarea
+                        matInput
+                        placeholder="Ex. 100 Main St"
+                        formControlName="address"
+                        [(ngModel)]="paddress"
+                      ></textarea>
+                      <mat-hint
+                    class="fielderror"
+                    *ngIf="
+                      (formControl.address.touched || submitted) &&
+                      formControl.address.errors?.required
+                    "
+                  >
+                    address is required
+                    </mat-hint>
+                    </mat-form-field>
+                  </p>
                   <br />
+                </mat-card-content>
+              </mat-card>
+                  </div>
+                  <div fxFlex="50" class="sec2" fxFlex.xs="40">
+                    <mat-card>
+                      <mat-card-content>
+                        <h1 class="head">Emergency Contact Information</h1>
+                        <div formGroupName="emergencyContactDetails">
+                          <mat-form-field appearance="fill" class="pad w">
+                            <mat-label>First Name*</mat-label>
+                            <input
+                              matInput
+                              formControlName="firstName"
+                            /> 
+                            <mat-hint
+                            class="fielderror"
+                            *ngIf="
+                              (formEmergencyControl.firstName.touched || submitted) &&
+                              formEmergencyControl.firstName.errors?.required
+                            "
+                          >
+                            first Name is required
+                            </mat-hint>
+                            </mat-form-field
+                          >&nbsp; &nbsp;
+                          <mat-form-field appearance="fill" class="pad w">
+                            <mat-label>Last Name*</mat-label>
+                            <input matInput formControlName="lastName" />
+                            <mat-hint
+                            class="fielderror"
+                            *ngIf="
+                              (formEmergencyControl.lastName.touched || submitted) &&
+                              formEmergencyControl.lastName.errors?.required
+                            "
+                          >
+                            Last Name is required
+                            </mat-hint>
+                          </mat-form-field>
+                          <mat-form-field appearance="fill" class="pad w">
+                            <mat-label>Relationship*</mat-label>
+                            <mat-select formControlName="ralationship">
+                              <mat-option
+                                *ngFor="let ralationship of list"
+                                value="{{ ralationship }}"
+                                >{{ ralationship }}</mat-option
+                              >
+                            </mat-select> 
+                            <mat-hint
+                            class="fielderror"
+                            *ngIf="
+                              (formEmergencyControl.ralationship.touched || submitted) &&
+                              formEmergencyControl.ralationship.errors?.required
+                            "
+                          >
+                            Relationship is required
+                            </mat-hint>
+                            </mat-form-field
+                          >&nbsp; &nbsp;
+                          <mat-form-field appearance="fill" class="pad w">
+                            <mat-label>Mobile No*</mat-label>
+                            <input matInput formControlName="mobileNo" />
+                            <mat-hint
+                            class="fielderror"
+                            *ngIf="
+                              (formEmergencyControl.mobileNo.touched || submitted) &&
+                              formEmergencyControl.mobileNo.errors?.required
+                            "
+                          >
+                            Mobile No is required
+                            </mat-hint>
+                            <mat-hint
+                    class="fielderror"
+                    *ngIf="formEmergencyControl.mobileNo.errors?.minlength"
+                  >
+                    valid number required
+                  </mat-hint>
+                  <mat-hint
+                  class="fielderror"
+                  *ngIf="formEmergencyControl.mobileNo.errors?.maxlength"
+                >
+                  valid number is required
+                </mat-hint>
+                          </mat-form-field>
+                          <div class="example-container">
+                            <mat-form-field
+                              appearance="fill"
+                              class="example-full-width wid"
+                            >
+                              <mat-label>Enter your email</mat-label>
+                              <input
+                                matInput
+                                placeholder="pat@example.com"
+                                required
+                                formControlName="email"
+                              />
+                              <mat-hint
+                            class="fielderror"
+                            *ngIf="
+                              (formEmergencyControl.email.touched || submitted) &&
+                              formEmergencyControl.email.errors?.required
+                            "
+                          >
+                            Email is required
+                            </mat-hint>
+                            <mat-hint
+                    class="fielderror"
+                    *ngIf="formEmergencyControl.email.errors?.email"
+                  >
+                    email must be valid
+                  </mat-hint>
+                            </mat-form-field>
+                          </div>
+                          <mat-checkbox
+                            class="example-margin"
+                            id="checkBox"
+                            (click)="chackBox()"
+                            >Same as per patient</mat-checkbox
+                          >
+          
+                          <p>
+                            <mat-form-field
+                              class="example-full-width wid"
+                              appearance="fill"
+                            >
+                              <mat-label>Address</mat-label>
+                              <textarea
+                                matInput
+                                placeholder="Ex. 100 Main St"
+                                formControlName="address"
+                                [(ngModel)]="eaddress"
+                              ></textarea>
+                              <mat-hint
+                            class="fielderror"
+                            *ngIf="
+                              (formEmergencyControl.address.touched || submitted) &&
+                              formEmergencyControl.address.errors?.required
+                            "
+                          >
+                            address is required
+                            </mat-hint>
+                            </mat-form-field>
+                          </p>
+                          <div>
+                            <mat-radio-group
+                              aria-label="Select an option"
+                              formControlName="access"
+                            >
+                              <mat-label
+                                >Do you need to access patient portal? :</mat-label
+                              >
+          
+                              <mat-radio-button value="Yes">Yes</mat-radio-button>&nbsp;
+                              &nbsp;
+                              <mat-radio-button value="No">No</mat-radio-button>
+                            </mat-radio-group>
+                          </div>
+                        </div>
+          
+                        <br />
                   <div [hidden]="isRegister">
                     <button
                       mat-raised-button
