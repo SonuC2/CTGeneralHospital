@@ -23,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { AfterRegLendingPageComponent } from './after-reg-lending-page/after-reg-lending-page.component';
 import { DefaultComponent } from './default/default.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 
 const routes: Routes = [
   {
@@ -45,12 +46,16 @@ const routes: Routes = [
     path: 'afterreg-lendingpage',
     component: AfterRegLendingPageComponent,
   },
+  {
+    path: 'forget',
+    component: ForgetpasswordComponent,
+  },
   { path: 'shared/', redirectTo: '/shared', pathMatch: 'full' },
   {
     path: 'shared',
     loadChildren: () =>
       import('src/app/shared/shared.module').then((m) => m.SharedModule),
-  }
+  },
 ];
 
 @NgModule({
@@ -61,6 +66,7 @@ const routes: Routes = [
     SavedialogComponent,
     AfterRegLendingPageComponent,
     DefaultComponent,
+    ForgetpasswordComponent,
   ],
   imports: [
     CommonModule,
