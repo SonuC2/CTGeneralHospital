@@ -43,7 +43,7 @@ export class PatientDetailsComponent implements OnInit {
   PatientDataForTable: Allergy[] = [];
   dataSource = new MatTableDataSource<Allergy>();
 
-  today = Date.now();
+  today = new Date;
   time=  Date.now();
 
   displayedColumns: string[] = [
@@ -59,7 +59,7 @@ export class PatientDetailsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  
+  submitted = false;
   isEditable = false;
   hideAllergy = true;
   isRegister = false;
@@ -116,16 +116,16 @@ export class PatientDetailsComponent implements OnInit {
     
     this.form = this.fb.group({
       patientId:[],
-      firstName: [''],
-      lastName: [''],
-      dateOfBirth: [''],
-      mobileNo: [''],
-      gender: [''],
-      race: [''],
-      ethnicity: [''],
-      email: [''],
-      language: [''],
-      address: [''],
+      firstName: ['',[Validators.required]],
+      lastName: ['',[Validators.required]],
+      dateOfBirth: ['',[Validators.required]],
+      mobileNo: ['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+      gender: ['',[Validators.required]],
+      race: ['',[Validators.required]],
+      ethnicity: ['',[Validators.required]],
+      email: ['',[Validators.required,Validators.email]],
+      language: ['',[Validators.required]],
+      address: ['',[Validators.required]],
       status: [''],
       userRole: this.fb.group({
         userRoleId:[3],
@@ -133,13 +133,13 @@ export class PatientDetailsComponent implements OnInit {
       }),
       
       emergencyContactDetails: this.fb.group({
-        firstName: [''],
-        lastName: [''],
-        ralationship: [''],
-        mobileNo: [''],
-        email: [''],
-        address: [''],
-        access: [''],
+        firstName: ['',[Validators.required]],
+        lastName: ['',[Validators.required]],
+        ralationship: ['',[Validators.required]],
+        mobileNo: ['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+        email: ['',[Validators.required,Validators.email]],
+        address: ['',[Validators.required]],
+        access: ['',[Validators.required]],
       }),
     });
     this.allergyForm= this.fb.group({
@@ -191,6 +191,13 @@ export class PatientDetailsComponent implements OnInit {
     
   }
   
+  get formControl() {
+    return this.form.controls;
+  }
+  get formEmergencyControl()
+  {
+    return this.form.get('emergencyContactDetails').controls;
+  }
   onChange(value: any) {
       
       
