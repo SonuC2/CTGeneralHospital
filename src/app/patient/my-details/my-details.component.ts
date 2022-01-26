@@ -395,7 +395,7 @@ export class MyDetailsComponent implements OnInit {
       this.patientService.addAllergy(this.patientDetailsFromLogin.patientId,this.allergyArrays).subscribe();
       this.block1 = false;
       this.block2 = true;
-      // window.location.reload();
+      window.location.reload();
     }
     onChangeType(event:any)
     {
