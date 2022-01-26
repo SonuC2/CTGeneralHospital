@@ -28,6 +28,7 @@ import { RequestedAppointmentComponent } from './requested-appointment/requested
 import { EditTimeslotComponent } from './edit-timeslot/edit-timeslot.component';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MomentDateModule } from '@angular/material-moment-adapter';
+import { DialogComponent } from './dialog/dialog.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'doctors-dashboard',
     component: DoctorsDashboardComponent,
+  },
+  {
+    path: 'edit-timeslot/:index',
+    component: EditTimeslotComponent,
   },
   {
     path: 'requested-appointment-list',
@@ -65,11 +70,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    
+    DoctorsDashboardComponent,
     TimeslotComponent,
     TimeslotListComponent,
     RequestedAppointmentComponent,
-    EditTimeslotComponent
+    EditTimeslotComponent,
+    DialogComponent
   ],
   imports: [
     CommonModule,

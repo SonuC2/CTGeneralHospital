@@ -9,17 +9,19 @@ import { Appointments } from '../entities/appointments';
 export class DoctorService {
   constructor(private httpClient: HttpClient) {}
 
-  getRequestedAppointmentList(): Observable<Appointments[]> {
-    return this.httpClient.get<Appointments[]>(
-      'http://localhost:8080/getAllRequestedAppointments'
-    );
+  // getRequestedAppointmentList(employeeId:number): Observable<Appointments[]> {
+  //   return this.httpClient.get<Appointments[]>('http://localhost:8080/getAllRequestedAppointments/',employeeId);
+  // }
+  getAppointmentForEmployee(employeeId:number): Observable<Appointments[]> {
+    return this.httpClient.get<Appointments[]>('http://localhost:9005/appointment/employee/' + employeeId);
+
   }
 
   cancelAppointment(appointment: Appointments): Observable<Appointments[]>{
-    return this.httpClient.patch<Appointments[]>('http://localhost:8080/cancelAppointment/',appointment);
+    return this.httpClient.patch<Appointments[]>('http://localhost:9005/cancelAppointment/',appointment);
   }
 
   approveAppointment(appointment: Appointments):Observable<Appointments[]> {
-    return this.httpClient.patch<Appointments[]>('http://localhost:8080/approveToBookedAppointment/',appointment);
+    return this.httpClient.patch<Appointments[]>('http://localhost:9005/approveToBookedAppointment/',appointment);
   }
 }

@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import {MatChipsModule} from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -114,6 +115,7 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatChipsModule,
     MatButtonModule,
     FlexLayoutModule,
     FormsModule,

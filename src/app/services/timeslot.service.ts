@@ -17,7 +17,7 @@ export class TimeslotService {
 
   getAllTimeSlot(employeeId:number): Observable<Timeslot[]> {
 
-    return this._httpClient.get<Timeslot[]>('http://localhost:9005/time-slot/'+ employeeId);
+    return this._httpClient.get<Timeslot[]>('http://localhost:9005/time-slot/all/'+ employeeId);
 
   }
 
@@ -25,7 +25,15 @@ export class TimeslotService {
   //   return this._httpClient.get<Timeslot[]>('http://localhost:8080/time/'+id , date);
   // }
 
-  getTimeSlotByDoctorIdAndDate(id:number,appointmentDate:Date):Observable<Timeslot[]>{
+  getTimeSlotByDoctorIdAndDate(id:number,appointmentDate:String):Observable<Timeslot[]>{
     return this._httpClient.get<Timeslot[]>("http://localhost:9005/time/"+id+ "/"+ appointmentDate);
+  }
+
+  getTimeSlotByDoctorId(employeeId:number):Observable<Timeslot[]>{
+    return this._httpClient.get<Timeslot[]>("http://localhost:9005/time-slot/" + employeeId);
+  }
+
+  deleteTimeSlotBySlotId(slotId:number){
+    return this._httpClient.delete('http://localhost:9005/time-slot/delete/'+slotId);
   }
 }

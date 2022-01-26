@@ -21,7 +21,7 @@ export class SchedulingService {
   }
 
   updateAppointment(appointment:Appointments):Observable<Appointments>{
-      return this._httpClient.patch<Appointments>('http://localhost:9005/appointment/',appointment);
+      return this._httpClient.patch<Appointments>('http://localhost:9005/appointment',appointment);
       
   }
 
@@ -30,7 +30,7 @@ export class SchedulingService {
   // }
 
   cancelAppointment(appointment: Appointments): Observable<Appointments[]>{
-    return this._httpClient.patch<Appointments[]>('http://localhost:9005/cancelAppointment/',appointment);
+    return this._httpClient.patch<Appointments[]>('http://localhost:9005/appointment/',appointment);
   }
 
   getAppointmentForEmployee(employeeId:number): Observable<Appointments[]> {
@@ -53,5 +53,8 @@ export class SchedulingService {
 
   }
 
-  
+  getRequestedAppointmentForEmployee(employeeId:number): Observable<Appointments[]> {
+    return this._httpClient.get<Appointments[]>('http://localhost:9005/appointment/employee/requested/' + employeeId);
+
+  }
 }

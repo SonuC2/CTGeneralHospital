@@ -43,6 +43,7 @@ export class SidebarComponent {
   employeeDetailsFromLogin!:Employee;
   patientDetailsFromLogin!:PatientRegistration;
   patientIdForVisitHistory !:any;
+  loggedInRole: any;
    constructor(private observer: BreakpointObserver,private employeeService :EmployeeService,private patientService:PatientRegistrationService,private router:Router) {
     // console.log("From sidebar sessionstorage: " , sessionStorage['get']('userDetails'))
    
@@ -64,6 +65,9 @@ export class SidebarComponent {
       this.employeeDetailsFromLogin = JSON.parse(sessionStorage.getItem('nurseDetailsFromLogin') || '{}');
       this.loggedInUserName = this.employeeDetailsFromLogin.title + " " + this.employeeDetailsFromLogin.firstName + " " + this.employeeDetailsFromLogin.lastName;
       console.log("User name: " , this.loggedInUserName);
+      this.loggedInRole=this.userDetail.userRoleId.roleType;
+      console.log("user role: " , this.loggedInRole);
+
       
     }
     if(this.userDetail.userRoleId.roleType === "Patient"){
@@ -74,6 +78,8 @@ export class SidebarComponent {
       this.patientDetailsFromLogin = JSON.parse(sessionStorage.getItem('patientDetails') || '{}');
       this.loggedInUserName = this.patientDetailsFromLogin.title + " " + this.patientDetailsFromLogin.firstName + " " + this.patientDetailsFromLogin.lastName
       this.patientIdForVisitHistory = this.patientDetailsFromLogin.patientId
+      this.loggedInRole=this.userDetail.userRoleId.roleType;
+      console.log("user role: " , this.loggedInRole);
     }
 
     if(this.userDetail.userRoleId.roleType === "Admin"){
@@ -84,6 +90,8 @@ export class SidebarComponent {
       this.employeeDetailsFromLogin = JSON.parse(sessionStorage.getItem('adminDetailsFromLogin') || '{}');
       this.loggedInUserName = this.employeeDetailsFromLogin.title + " " + this.employeeDetailsFromLogin.firstName + " " + this.employeeDetailsFromLogin.lastName;
       console.log("User name: " , this.loggedInUserName);
+      this.loggedInRole=this.userDetail.userRoleId.roleType;
+      console.log("user role: " , this.loggedInRole);
     }
 
     if(this.userDetail.userRoleId.roleType === "Physician"){
@@ -94,6 +102,8 @@ export class SidebarComponent {
       this.employeeDetailsFromLogin = JSON.parse(sessionStorage.getItem('physicianDetailsFromLogin') || '{}');
       this.loggedInUserName = this.employeeDetailsFromLogin.title + " " + this.employeeDetailsFromLogin.firstName + " " + this.employeeDetailsFromLogin.lastName;
       console.log("User name", this.loggedInUserName);
+      this.loggedInRole=this.userDetail.userRoleId.roleType;
+      console.log("user role: " , this.loggedInRole);
       
     }
    }
