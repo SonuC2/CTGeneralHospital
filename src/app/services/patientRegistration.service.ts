@@ -64,4 +64,8 @@ export class PatientRegistrationService {
   blockToUnblockStatus(patient:PatientRegistration): Observable<PatientRegistration> {
     return this._httpClient.patch<PatientRegistration>("http://localhost:9004/unblock-patient/",patient);
   }  
+
+  getPatientDetailsByPatientId(patientId:number):Observable<PatientRegistration>{
+    return this._httpClient.get<PatientRegistration>('http://localhost:9004/register-patient/patient/'+ patientId );
+  }
 }

@@ -54,6 +54,8 @@ export class RegisterPatientComponent implements OnInit {
     this.patientDetails.createdBy=this.employeeDetailsFromLogin.employeeId;
     console.log("under nurse patient reg - ", this.patientDetails) 
     this.patientRegistrationService.registerPatient( this.patientDetails).subscribe();
+    window.alert("New patient details added successfully!");
+    this.personalDetailsForm.reset();
   }
 
 }
