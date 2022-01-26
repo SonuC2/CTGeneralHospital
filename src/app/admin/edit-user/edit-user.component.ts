@@ -71,7 +71,7 @@ export class EditUserComponent implements OnInit {
     this.employeeData = this.form.value;
     this.employeeData.employeeId = this.employeeId;
     this.employeeService.updateEmployee(this.employeeData).subscribe();
-    this.router.navigate(['/shared/sidebar/admin/employee-details']);
+    this.router.navigate(['shared/sidebar/admin/employee-details']);
   }
 
   getEmployeeData() { 
@@ -97,6 +97,6 @@ export class EditUserComponent implements OnInit {
   }
 
   backToEmployeeList() {
-    this.router.navigate(['/shared/sidebar/admin/employee-details']);
+    this.router.navigate(['shared/sidebar/admin/employee-details']);
   }
 }

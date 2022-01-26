@@ -5,6 +5,9 @@ table {
   font-size: 14px;
   width: 100%;
 }
+.fielderror{
+  color: red;
+}
 
 .center-text-size {
   font-size: 10px;
