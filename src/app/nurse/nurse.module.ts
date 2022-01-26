@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import {MatChipsModule} from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -30,6 +31,8 @@ import { InboxComponent } from './inbox/inbox.component';
 import { ReplyNoteDialogComponent } from './reply-note-dialog/reply-note-dialog.component';
 import { RegisterPatientComponent } from './register-patient/register-patient.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { VisitHistoryComponent } from './visit-history/visit-history.component';
 const routes: Routes = [
   {
     path: "",
@@ -73,6 +76,14 @@ const routes: Routes = [
       component: InboxComponent,
       // data:{id: 1}
       },
+      {
+        path: "add-visit/:appointmentId",
+        component: PatientVisitComponent
+      },
+      {
+        path: "visit-history/:patientId",
+        component: VisitHistoryComponent
+      },
     {
       path: 'patient',
       loadChildren: () =>
@@ -96,13 +107,15 @@ const routes: Routes = [
     NurseDashboardComponent,
     InboxComponent,
     ReplyNoteDialogComponent,
-    RegisterPatientComponent
+    RegisterPatientComponent,
+    VisitHistoryComponent
   ],
   imports: [
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatChipsModule,
     MatButtonModule,
     FlexLayoutModule,
     FormsModule,
@@ -120,6 +133,7 @@ const routes: Routes = [
     MatCheckboxModule,
     MatDialogModule,
     MatProgressBarModule,
+    MatTooltipModule,
     RouterModule.forChild(routes)
   ]
 })

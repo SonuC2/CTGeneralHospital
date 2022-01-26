@@ -24,11 +24,12 @@ import { HomeComponent } from './home/home.component';
 import {ChartModule} from 'primeng/chart';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {MatChipsModule} from '@angular/material/chips'
-
+import {MatDialogModule} from '@angular/material/dialog';
 import {CardModule} from 'primeng/card';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { ApprovePatientComponent } from './approve-patient/approve-patient.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { DailogBoxesComponent } from './dailog-boxes/dailog-boxes.component';
 const routes: Routes = [
   {
     path: '',
@@ -54,6 +55,7 @@ const routes: Routes = [
   {
     path: 'employee-details',
     component: EmployeeDetailsComponent,
+    children:[{path:'edit-user', component:EditUserComponent}]
   },
   {
     path: 'patient-details',
@@ -62,7 +64,7 @@ const routes: Routes = [
   {
     path: 'nurse',
     loadChildren: () =>
-      import('src/app/nurse/nurse.module').then((m) => m.NurseModule),
+    import('src/app/nurse/nurse.module').then((m) => m.NurseModule),
   },
 ];
 @NgModule({
@@ -74,6 +76,7 @@ const routes: Routes = [
     EmployeeDetailsComponent,
     ApprovePatientComponent,
     EditUserComponent,
+    DailogBoxesComponent,
   ],
   imports: [
     MatFormFieldModule,
@@ -98,6 +101,7 @@ const routes: Routes = [
     CardModule,
     ToggleButtonModule,
     MatChipsModule,
+    MatDialogModule,
     RouterModule.forChild(routes)
   ],
 })

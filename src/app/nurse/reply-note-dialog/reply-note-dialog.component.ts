@@ -20,7 +20,9 @@ export class ReplyNoteDialogComponent implements OnInit {
 
   sendNote(sendNoteForm:any) {
 
-    
+   
+
+    sendNoteForm.controls['senderId'].setValue(this.data.senderId)
     this.sendNoteForm.controls['senderId'].setValue(this.data.senderId);
       // let name = employee.firstName + " " + employee.lastName
       this.sendNoteForm.controls['senderName'].setValue(this.data.senderName);
@@ -32,9 +34,9 @@ export class ReplyNoteDialogComponent implements OnInit {
     console.log('note is sent');
   }
 
-  // onNoClick(): void {
-  //   this.dialogRef.close();
-  // }
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
 }
 

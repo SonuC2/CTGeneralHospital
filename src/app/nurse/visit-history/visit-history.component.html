@@ -1,0 +1,161 @@
+<div class="main" fxLayout="row wrap">
+    <div class="sub1" fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px;"
+        *ngFor="let history of visitDetails;let i = index">
+        <mat-card>
+            <mat-card-header>
+                <div fxLayout="row wrap">
+
+                    <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+
+                        <mat-card-title class="example-full-width" style="width: 100%;color: #0055D2;">
+                            Name: {{history.appointment.patientName}}
+                            <!-- <span class="example-spacer">Doctor Name:{{history.appointment.employeeName}} </span> -->
+                        </mat-card-title>
+                        <!-- <mat-card-subtitle> Doctor Name: {{history.appointment.employeeName}}</mat-card-subtitle>
+                        <mat-card-subtitle> Appointment Date: {{history.appointment.appointmentDate}}
+                            {{history.appointment.rescheduleDate}}</mat-card-subtitle> -->
+                    </div>
+                </div>
+            </mat-card-header>
+            <mat-card-content>
+
+                <h3 style="color:#0055D2;">Appoitment Details</h3>
+                <div fxLayout="row wrap">
+
+                    <div fxFlex.gt-sm="10" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Title</h4>
+                    </div>
+                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{history.appointment.meetingTitle}}</mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="10" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Description</h4>
+                    </div>
+                    <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{history.appointment.description}}</mat-label>
+                    </div>
+                   
+                </div>
+
+                <div fxLayout="row wrap">
+                    <div fxFlex.gt-sm="10" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Date</h4>
+                    </div>
+                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{history.appointment.appointmentDate}}</mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="10" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Time</h4>
+                    </div>
+                    <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{history.appointment.timeSlotString}}</mat-label>
+                    </div>
+                </div>
+                <div fxLayout="row wrap">
+                    <div fxFlex.gt-sm="10" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Physician Name</h4>
+                    </div>
+                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{history.appointment.employeeName}}</mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="15" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Specialisation</h4>
+                    </div>
+                    <div fxFlex.gt-sm="45" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{history.appointment.specialisation}}</mat-label>
+                    </div>
+                </div>
+                <hr>
+            
+                <h3 style="color:#0055D2;">Vital sign Details</h3>
+                <div fxLayout="row wrap">
+
+                    <div fxFlex.gt-sm="10" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Height</h4>
+                    </div>
+                    <div fxFlex.gt-sm="20" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{history.height}}</mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="10" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Weight</h4>
+                    </div>
+                    <div fxFlex.gt-sm="20" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{history.weight}}</mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="20" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Respiration Rate</h4>
+                    </div>
+                    <div fxFlex.gt-sm="20" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{history.respirationRate}}</mat-label>
+                    </div>
+                </div>
+
+                <div fxLayout="row wrap">
+                    <div fxFlex.gt-sm="10" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Blood Pressure</h4>
+                    </div>
+                    <div fxFlex.gt-sm="20" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{history.bloodPressure}}</mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="20" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Body Temperature</h4>
+                    </div>
+                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{history.bodyTemperature}}</mat-label>
+                    </div>
+                </div>
+                <hr>
+                <h2 style="color:#0055D2;">Visit Details</h2>
+                <h3 style="color:  #03A66A">Diagnosis Details</h3>
+                <div fxLayout="row wrap" *ngFor= "let diagnosis of history.diagnosis">
+                    <div fxFlex.gt-sm="10" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Diagnosis Code:</h4>
+                    </div>
+                    <div fxFlex.gt-sm="20" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{diagnosis.diagnosisCode}}</mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="20" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Description</h4>
+                    </div>
+                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{diagnosis.diagnosisDescription}}</mat-label>
+                    </div>
+                </div>
+                <h3 style="color:  #03A66A">Procedure Details</h3>
+                <div fxLayout="row wrap" *ngFor= "let procedure of history.procedure">
+                    <div fxFlex.gt-sm="10" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Procedure Code:</h4>
+                    </div>
+                    <div fxFlex.gt-sm="20" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{procedure.procedureCode}}</mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="20" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Description</h4>
+                    </div>
+                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{procedure.procedureDescription}}</mat-label>
+                    </div>
+                </div>
+                <h3 style="color:  #03A66A">Medication Details</h3>
+                <div fxLayout="row wrap" *ngFor= "let medication of history.medication" >
+                    <div fxFlex.gt-sm="10" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Medication Code:</h4>
+                    </div>
+                    <div fxFlex.gt-sm="20" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{medication.drugID}}</mat-label>
+                    </div>
+                    <div fxFlex.gt-sm="20" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                        <h4 style="font-weight: bold;">Name</h4>
+                    </div>
+                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
+                        <mat-label>{{medication.drugName}}</mat-label>
+                    </div>
+                </div>
+                
+            </mat-card-content>
+
+        </mat-card>
+
+    </div>
+
+</div>

@@ -39,5 +39,10 @@ export class TimeslotListComponent implements OnInit {
       this.route.navigate(['src/app/doctor/edit-timeslot/'+ element.employeeId])
   }
 
-  deleteById() {}
+  deleteById(slotId:number){
+    console.log("hello slot id for delete functionality",slotId);
+    this.timeslotService.deleteTimeSlotBySlotId(slotId).subscribe();
+    window.location.reload();
+
+  }
 }

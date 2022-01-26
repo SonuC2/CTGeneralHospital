@@ -63,7 +63,7 @@
                     {{ element.appointmentStatus }}
                 </mat-chip>
                 <mat-chip *ngIf="element.appointmentStatus =='Rescheduled'"
-                style="background-color:rgb(233, 193, 18);width: 11vh;color: white; font-weight:lighter;font-size: 12px;">
+                style="background-color:#008a17;width: 12vh;color: white; font-weight:lighter;font-size: 12px;">
                 {{ element.appointmentStatus }}
             </mat-chip>
             </mat-chip-list>
@@ -79,7 +79,7 @@
         <th mat-header-cell *matHeaderCellDef>Action</th>
         <td mat-cell *matCellDef="let element">
             <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary">
-                <mat-icon aria-label="Edit"  (click) = "editAppointment(element.appointmentId)"
+                <mat-icon aria-label="Edit"  (click) = "editAppointment(element)"
                     >edit</mat-icon>
                 <!-- <mat-icon aria-label="Edit" (click)="navigateToUpdate(element.appointmentId)" >edit</mat-icon> -->
             </button>
@@ -89,7 +89,7 @@
             </button>
 
             <button mat-icon-button matTooltip="Click to Add visit" class="iconbutton" color="primary" *ngIf="isEmployee">
-                <mat-icon aria-label="Add Visit"  (click) = "addPatientVisit(element)"
+                <mat-icon aria-label="Add Visit"  (click) = "addPatientVisit(element.appointmentId)"
                     >launch</mat-icon>
                 <!-- <mat-icon aria-label="Edit" (click)="navigateToUpdate(element.appointmentId)" >edit</mat-icon> -->
             </button>

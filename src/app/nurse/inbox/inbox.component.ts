@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/entities/employee';
 import { EmployeeDTO } from 'src/app/entities/employee-dto';
 import { Inbox } from 'src/app/entities/inbox';
+import { User } from 'src/app/entities/user';
 import { InboxService } from 'src/app/services/inbox.service';
 import { ReplyNoteDialogComponent } from '../reply-note-dialog/reply-note-dialog.component';
 
@@ -36,20 +37,33 @@ export class InboxComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   senderId !:number;
   receiverId!:number;
-
+  userDetailsFromLogin!:User;
+  employeeDetailsFromLogin!:Employee;
 
   
   constructor(private fb: FormBuilder,private router: Router,private route: ActivatedRoute, private inboxService: InboxService,public dialog: MatDialog) { }
 
   selectedEmployee: any;
   ngOnInit(): void {
+    this.userDetailsFromLogin = JSON.parse(sessionStorage.getItem('userDetails') || '{}');
+    console.log("User Details from login: ", this.userDetailsFromLogin);
+
+    if(this.userDetailsFromLogin.userRoleId.roleType === "Physician"){
+      this.employeeDetailsFromLogin = JSON.parse(sessionStorage.getItem('physicianDetailsFromLogin') || '{}');
+      console.log("Physician Details from login: ", this.employeeDetailsFromLogin);
+    }
+    if(this.userDetailsFromLogin.userRoleId.roleType === "Nurse"){
+      this.employeeDetailsFromLogin = JSON.parse(sessionStorage.getItem('nurseDetailsFromLogin') || '{}');
+      console.log("Nurse Details from login: ", this.employeeDetailsFromLogin);
+    }
+
     this.sendNoteForm = this.fb.group({
       receiverId: [''],
       receiverName:[''],
       receiverSpecialisation:[''],
-      senderId:[2],
-      senderName:['Amol Baykar'],
-      senderSpecialisation:['Dermatologists'],
+      senderId:[''],
+      senderName:[''],
+      senderSpecialisation:[''],
       messege:[''],
       urgencyLevel:[''],
       responseStatus:['']
@@ -105,10 +119,10 @@ export class InboxComponent implements OnInit {
   sendNote() {
 
     
-    this.sendNoteForm.controls['senderId'].setValue(1);
-      // let name = employee.firstName + " " + employee.lastName
-      this.sendNoteForm.controls['senderName'].setValue('Priyanka Gaykhe');
-      this.sendNoteForm.controls['senderSpecialisation'].setValue('Heart Surgeon');
+    this.sendNoteForm.controls['senderId'].setValue(this.employeeDetailsFromLogin.employeeId);
+      let name = this.employeeDetailsFromLogin.title + " " + this.employeeDetailsFromLogin.firstName + " " + this.employeeDetailsFromLogin.lastName;
+      this.sendNoteForm.controls['senderName'].setValue(name);
+      this.sendNoteForm.controls['senderSpecialisation'].setValue(this.employeeDetailsFromLogin.specialisation);
       console.log("form: ",this.sendNoteForm.value);
     this.inboxService.sendNote(this.sendNoteForm.value).subscribe();
     
@@ -152,9 +166,9 @@ export class InboxComponent implements OnInit {
       console.log("sent notes tab clicked");
 
    
-    console.log("sender id: ", this.senderId);
+    // console.log("sender id: ", this.senderId);
     
-    this.inboxService.getAllSentNote(this.senderId).subscribe(sentNotes =>{
+    this.inboxService.getAllSentNote(this.employeeDetailsFromLogin.employeeId).subscribe(sentNotes =>{
       this.sentNotes = sentNotes;
       this.dataSourceSent.data = this.sentNotes
       console.log("Data source : " , this.dataSourceSent.data);     
@@ -171,7 +185,7 @@ export class InboxComponent implements OnInit {
     console.log("receiver id: ", this.receiverId);
     
     // this.inboxService.getAllReceivedNote(this.senderId).subscribe(receivedNotes =>{
-      this.inboxService.getAllReceivedNote(2).subscribe(receivedNotes =>{
+      this.inboxService.getAllReceivedNote(this.employeeDetailsFromLogin.employeeId).subscribe(receivedNotes =>{
       this.receivedNote = receivedNotes;
       this.dataSourceReceived.data = this.receivedNote
       console.log("Data source : " , this.dataSourceReceived.data);     
@@ -192,12 +206,27 @@ export class InboxComponent implements OnInit {
         receiverSpecialisation : row.receiverSpecialisation,
         senderId:row.senderId,
         senderName: row.senderName,
-        senderSpecialisation : row.senderSpecialisation
+        senderSpecialisation : row.senderSpecialisation,
+        messege:row.messege,
+        urgencyLevel:row.urgencyLevel
       },
     });
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log('Dialog result:',result);
+      if(result){
+        this.sendNoteForm.controls['senderId'].setValue(this.employeeDetailsFromLogin.employeeId);
+        let name = this.employeeDetailsFromLogin.title + " " + this.employeeDetailsFromLogin.firstName + " " + this.employeeDetailsFromLogin.lastName;
+      this.sendNoteForm.controls['senderName'].setValue(name);
+      this.sendNoteForm.controls['senderSpecialisation'].setValue(this.employeeDetailsFromLogin.specialisation);
+      this.sendNoteForm.controls['receiverId'].setValue(result.receiverId);
+      this.sendNoteForm.controls['receiverName'].setValue(result.receiverName);
+      this.sendNoteForm.controls['receiverSpecialisation'].setValue(result.receiverSpecialisation);
+      this.sendNoteForm.controls['messege'].setValue(result.messege);
+      this.sendNoteForm.controls['urgencyLevel'].setValue(result.urgencyLevel);
+      console.log("Dialog form content: " , this.sendNoteForm.value);
+ 
+      }
     });
   }
 
@@ -205,7 +234,7 @@ export class InboxComponent implements OnInit {
     const dialogRef = this.dialog.open(ReplyNoteDialogComponent);
   
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log('Dialog result from inbox: ',result);
     });
   }
 

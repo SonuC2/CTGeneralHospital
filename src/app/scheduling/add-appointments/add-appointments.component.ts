@@ -69,10 +69,15 @@ export class AddAppointmentsComponent implements OnInit {
       this.isPatient = false;
       this.isNurse =false;
 
-      this.patientRegService.getAllPatientList().subscribe(patients =>{
+      this.patientRegService.getAllActivePatientList().subscribe(patients =>{
         this.patients = patients;
         console.log("Allpatient list: ", this.patients)
       })
+      this.timeSlotService.getTimeSlotByDoctorId(this.physicianDetailsFromLogin.employeeId).subscribe(res=>{
+        this.timeSlotData= res;
+        console.log("Time slot data:",this.timeSlotData);
+      })
+
     }
     if(this.userDetailsFromLogin.userRoleId.roleType === "Nurse"){
       this.physicianDetailsFromLogin = JSON.parse(sessionStorage.getItem('nurseDetailsFromLogin') || '{}');
@@ -81,7 +86,7 @@ export class AddAppointmentsComponent implements OnInit {
       this.isPatient = false;
       this.isNurse =true;
 
-      this.patientRegService.getAllPatientList().subscribe(patients =>{
+      this.patientRegService.getAllActivePatientList().subscribe(patients =>{
         this.patients = patients;
         console.log("Allpatient list: ", this.patients)
       })
@@ -159,9 +164,31 @@ export class AddAppointmentsComponent implements OnInit {
       // this.form.get('employeeName')?.setValue('Dr. John Auguston');
       this.form.get('appointmentStatus')?.setValue('Requested');
       this.service.addAppointment(this.form.value).subscribe();
-      this.route.navigate(["/scheduling/appointment-list"]);
+      this.route.navigate(["shared/sidebar/scheduling/appointment-list"]);
       console.log(this.form.value); 
      }
+  }
+
+  onSubmitByNurse(){
+    this.form.get('employeeId')?.setValue(this.selectedEmployeeId);
+    this.form.get('appointmentStatus')?.setValue("Booked");
+    this.service.addAppointment(this.form.value).subscribe();
+    this.form.reset();
+    // this.form.get('patientName')?.setValue(this.patientsDetailsFromLogin.firstName + " " + this.patientsDetailsFromLogin.lastName);
+    console.log("form submiteed by nurse - " , this.form.value)
+  }
+
+  onSubmitByDoctor(){
+    this.form.get('employeeId')?.setValue(this.physicianDetailsFromLogin.employeeId);
+    this.form.get('specialisation')?.setValue(this.physicianDetailsFromLogin.specialisation);
+    this.form.get('specialisation')?.setValue(this.physicianDetailsFromLogin.specialisation);
+    this.form.get('employeeName')?.setValue(this.physicianDetailsFromLogin.title +" " + this.physicianDetailsFromLogin.firstName + " " + this.physicianDetailsFromLogin.lastName);
+    this.form.get('appointmentStatus')?.setValue("Booked");
+    console.log("form submiteed by Doctor - " , this.form.value);
+
+    this.service.addAppointment(this.form.value).subscribe();
+    this.form.reset();
+
   }
 
   // //date picker filter
@@ -195,7 +222,7 @@ export class AddAppointmentsComponent implements OnInit {
        console.log(employeeName);
      }
 
-     console.log("selected date: iiiiiiiiiii" , this.form.get('appointmentDate')?.value);
+  
      
     // console.log(this.form.get('appointmentDate')?.value +" Check onesssssssssssss");
     // this.timeSlotService.getTimeSlotByDoctorIdAndDate(this.selectedEmployeeId,this.dateToDB).subscribe(res=>{
@@ -232,6 +259,7 @@ export class AddAppointmentsComponent implements OnInit {
       console.log("specialisation from select: " , specialisation);
       this.employeeService.getEmployeeBySpecialisation(specialisation).subscribe(response =>{
         this.employeeDetails = response;
+        
       })
     }
   }
@@ -240,6 +268,7 @@ export class AddAppointmentsComponent implements OnInit {
     if(event.isUserInput){
       console.log("Doctor employee Id " , employeeId);
      this.selectedEmployeeId=employeeId;
+
     }
   }
 

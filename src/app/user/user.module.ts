@@ -21,10 +21,6 @@ import { SavedialogComponent } from './savedialog/savedialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
-
-import { SidebarComponent } from '../shared/sidebar/sidebar.component';
-import { SharedModule } from '../shared/shared.module';
 import { AfterRegLendingPageComponent } from './after-reg-lending-page/after-reg-lending-page.component';
 import { DefaultComponent } from './default/default.component';
 
@@ -33,13 +29,12 @@ const routes: Routes = [
     path: '',
     component: DefaultComponent,
   },
-  
   {
     path: 'patient-registration',
     component: PatientRegistrationComponent,
   },
   {
-    path: 'design',
+    path: 'design/:email',
     component: DesignComponent,
   },
   {
@@ -55,25 +50,17 @@ const routes: Routes = [
     path: 'shared',
     loadChildren: () =>
       import('src/app/shared/shared.module').then((m) => m.SharedModule),
-  },
- 
-   /*{
-            path: "dashboard",
-            component:Dashbo,
-            }*/
+  }
 ];
 
 @NgModule({
   declarations: [
-   
     PatientRegistrationComponent,
     DesignComponent,
     LoginregistrationHomepageComponent,
     SavedialogComponent,
     AfterRegLendingPageComponent,
     DefaultComponent,
-
-   
   ],
   imports: [
     CommonModule,
@@ -89,20 +76,18 @@ const routes: Routes = [
     MatButtonModule,
     ReactiveFormsModule,
     MatCardModule,
-    
     MatDialogModule,
     MatIconModule,
     MatToolbarModule,
     RouterModule.forChild(routes),
-    MatButtonModule
+    MatButtonModule,
   ],
   exports: [
-   
     PatientRegistrationComponent,
     DesignComponent,
     LoginregistrationHomepageComponent,
     SavedialogComponent,
-   AfterRegLendingPageComponent
+    AfterRegLendingPageComponent,
   ],
 })
 export class UserModule {}

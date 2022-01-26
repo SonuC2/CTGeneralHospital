@@ -5,6 +5,7 @@ import { PatientService } from 'src/app/services/patient.service';
 import * as XLXS from 'xlsx';
 
 
+
 @Component({
   selector: 'app-get-my-data',
   templateUrl: './get-my-data.component.html',
@@ -36,6 +37,7 @@ export class GetMyDataComponent implements OnInit {
     
     
   }
+  
   getExcelData() {
     // this.firstName=this.patientService.getFirstName();
     // this.lastName=this.patientService.getLastName();
@@ -44,11 +46,13 @@ export class GetMyDataComponent implements OnInit {
     //   this.patientData=data;
       
     // });
+   
     let element = document.getElementById('excel-id');
     const ws: XLXS.WorkSheet = XLXS.utils.table_to_sheet(element);
-
+   
     const wb: XLXS.WorkBook = XLXS.utils.book_new();
-    XLXS.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLXS.utils.book_append_sheet(wb, ws, 'Patient Details');
+
     XLXS.writeFile(wb, this.fileName);
    }
 }

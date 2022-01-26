@@ -7,20 +7,25 @@
           <h2 style="color: #00ccff">Change password</h2>
 
           <mat-form-field class="full-width-input">
-            <input matInput type="password" placeholder="password" />
+            <input matInput type="password" placeholder="old password"  formControlName="oldpassword" (keyup)="hello($event)"/>
+           
           </mat-form-field>
+          <!-- <p *ngIf="form.controls['oldpassword']?.errors?.['required'] && form.controls['oldpassword'].touched"
+          style="color: red">
+          This field is required
+        </p> -->
           <mat-form-field class="full-width-input">
-            <input matInput type="password" placeholder="change password" />
+            <input matInput type="password" placeholder="new password" />
           </mat-form-field>
          
           <mat-form-field class="full-width-input">
-            <input matInput type="password" placeholder="confirm password" />
+            <input matInput type="password" placeholder="confirm new password" formControlName="password"/>
           </mat-form-field>
-          <button mat-raised-button color="primary"  class="btn"(click)="onChangepassword()" >
-            change password
+          <button mat-raised-button color="primary"  class="btn" type="submit">
+            change password 
           </button>
+          
         </mat-card-content>
       </form>
     </mat-card></section>
   </div>
-

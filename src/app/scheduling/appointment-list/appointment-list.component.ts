@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Appointments } from 'src/app/entities/appointments';
@@ -7,26 +8,6 @@ import { PatientRegistration } from 'src/app/entities/patient-registration';
 import { User } from 'src/app/entities/user';
 import { SchedulingService } from 'src/app/services/scheduling.service';
 
-
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
-
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-//   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-//   {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-//   {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-//   {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-//   {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-//   {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-//   {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-//   {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-//   {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-// ];
 @Component({
   selector: 'app-appointment-list',
   templateUrl: './appointment-list.component.html',
@@ -34,7 +15,7 @@ import { SchedulingService } from 'src/app/services/scheduling.service';
 })
 
 export class AppointmentListComponent implements OnInit {
-
+  form!: FormGroup;
   appointmentData: Appointments[]=[];
   dataSource = new MatTableDataSource<Appointments>();
   @Input() appointmentid=0;
@@ -42,7 +23,8 @@ export class AppointmentListComponent implements OnInit {
   employeeDetailsFromLogin!:Employee;
   patientDetailsFromLogin!:PatientRegistration;
   isEmployee:boolean =false;
-  constructor(private schedulingService:SchedulingService,private router: Router,private route: ActivatedRoute) { }
+  cancelAppointmentData!:Appointments;
+  constructor(private schedulingService:SchedulingService,private router: Router,private route: ActivatedRoute,private fb: FormBuilder,) { }
 
   ngOnInit(): void {
 
@@ -81,14 +63,27 @@ export class AppointmentListComponent implements OnInit {
         this.appointmentData = appointment;
         this.dataSource.data = this.appointmentData;
         console.log('Data source : ', this.dataSource.data);
-      })
-    
+      })  
     }
 
-   
-
-
-
+    this.form = this.fb.group({
+      appointmentId!:[],
+      meetingTitle!:[],
+      description!: [],
+      specialisation!: [],
+      employeeId!:[],
+      employeeName!:[],
+      appointmentDate!:[],
+      timeSlot!: [],
+      timeSlotString:[],
+      reason!:[],
+      rescheduleDate!:[],
+      rescheduleTimeSlot!:[],
+      rescheduleTimeSlotString:[],
+      patientId!:[],
+      patientName!:[],
+      appointmentStatus!:[]
+    });
   }
 
   displayedColumns: string[] = [
@@ -116,20 +111,36 @@ export class AppointmentListComponent implements OnInit {
 // }
 
   cancelAppointment(element: Appointments) {
-    console.log(element);
-    this.schedulingService.cancelAppointment(element).subscribe();
-    this.router.navigate(['scheduling/appointment-list']);
+    this.form.get('appointmentId')?.setValue(element.appointmentId);
+    this.form.get('specialisation')?.setValue(element.specialisation);
+    this.form.get('employeeId')?.setValue(element.employeeId);
+    this.form.get('employeeName')?.setValue(element.employeeName);
+    this.form.get('patientId')?.setValue(element.patientId);
+    this.form.get('patientName')?.setValue(element.patientName);
+    this.form.get('meetingTitle')?.setValue(element.meetingTitle);
+    this.form.get('description')?.setValue(element.description);
+    this.form.get('appointmentDate')?.setValue(element.appointmentDate);
+    this.form.get('timeSlot')?.setValue(element.timeSlot);
+    this.form.get('timeSlotString')?.setValue(element.timeSlotString);
+    this.form.get('reason')?.setValue(element.reason);
+    this.form.get('rescheduleDate')?.setValue(element.rescheduleDate);
+    this.form.get('rescheduleTimeSlot')?.setValue(element.rescheduleTimeSlot);
+    this.form.get('rescheduleTimeSlotString')?.setValue(element.rescheduleTimeSlotString);
+     this.form.get('appointmentStatus')?.setValue("Cancelled");
+     console.log("hello cancel check" ,this.form.value);
+    this.schedulingService.cancelAppointment(this.form.value).subscribe();
+    // this.router.navigate(['/shared/sidebar/scheduling/appointment-list']);
     window.location.reload();
   }
 
-  editAppointment(element:any){
-    console.log("inside edit appointemnt",element);
-    this.router.navigate(["/shared/sidebar/scheduling/edit-appointment/",element]);
+  editAppointment(element:Appointments){
+    console.log("inside edit appointemnt",element.appointmentId);
+    this.router.navigate(["/shared/sidebar/scheduling/edit-appointment/",element.appointmentId]);
     
   }
 
   addPatientVisit(element:any){
     console.log("Element data:" , element);
-    this.router.navigate(['shared/sidebar/nurse/patient-visit'])
+    this.router.navigate(['shared/sidebar/nurse/add-visit/',element])
   }
 }
