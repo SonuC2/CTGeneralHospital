@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/entities/employee';
 import { Password } from 'src/app/entities/password';
+import { User } from 'src/app/entities/user';
 import { matchValidator } from 'src/app/services/password-validator.service';
 import { PasswordService } from 'src/app/services/password.service';
 
@@ -22,6 +23,8 @@ export class DesignComponent implements OnInit {
   ) {}
   form!: any;
   email!: any;
+  checkOldPassword!:string;
+  userDetails!:User;
   submitted=false;
   msgFromBackend!: String;
   employeeDetailsFromLogin!: Employee;
@@ -54,6 +57,11 @@ export class DesignComponent implements OnInit {
         ],
       ],
     });
+    this.userDetails=JSON.parse(sessionStorage.getItem('userDetails') || '{}');
+    console.log("userDetails :"+this.userDetails.userRoleId.roleType)
+    console.log("userDetails :"+this.userDetails.password)
+
+
   }
 
   ConfirmedValidator(controlName: string, matchingControlName: string) {
@@ -82,15 +90,38 @@ export class DesignComponent implements OnInit {
     // this.isFormShown=true;
   }
   submitPassword() {
+
+    if(this.userDetails.password===this.form.get('oldpassword').value)
+    {
     this.form.get('oldpassword').setValue('');
     this.form.get('newPassword').setValue('');
     this.passwordService.changePassword(this.form.value).subscribe();
-
+    
     //hello
     this.form.reset();
-    
-      this.router.navigate(['/shared/sidebar']);
-    
+    if(this.userDetails.userRoleId.roleType==="Patient")
+    {
+      this.router.navigate(['/shared/sidebar/patient']);
+    }
+    else if(this.userDetails.userRoleId.roleType==="Physician")
+    {
+      this.router.navigate(['/shared/sidebar/doctor']);
+
+    }
+    else if(this.userDetails.userRoleId.roleType==="Nurse")
+    {
+      this.router.navigate(['/shared/sidebar/nurse']);
+
+    }
+    else if(this.userDetails.userRoleId.roleType==="Admin")
+    {
+      this.router.navigate(['/shared/sidebar/admin/home']);
+
+    }
+    }
+    else{
+      window.alert("please enter currect old password")
+    }
     // this.router.navigate(['']);
   }
   hello(event: any) {
