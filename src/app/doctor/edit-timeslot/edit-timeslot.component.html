@@ -1,1 +1,63 @@
-<p>edit-timeslot works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" style="width: 100%;">
+    <div class="bounds">
+        <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+            <div fxFlex="100" class="sec1" fxFlex.xs="55">
+                <mat-card>
+                    <div class="center">
+                        <mat-card-header>
+                            <mat-card-title style="color: #03a66a;">Update Time-Slot</mat-card-title>
+                            <mat-card-subtitle class="center-text-size">Add Available TimeSlot</mat-card-subtitle>
+                        </mat-card-header>
+                    </div>
+                    <mat-progress-bar></mat-progress-bar>
+                    <br>
+                    <!-- <mat-form-field appearance="fill" style="width: 35vh;">
+                        <mat-label>Appointment date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="date" required />
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field> -->
+                    <mat-form-field appearance="fill" class="pad date w">
+                        <mat-label>Appointment date*</mat-label>
+                        <input
+                          matInput
+                          [matDatepicker]="picker"
+                          formControlName="date"
+                        />
+                        <mat-datepicker-toggle
+                          matSuffix
+                          [for]="picker"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    &nbsp;
+                    <mat-form-field appearance="fill" style="width: 35vh;">
+                        <mat-label>startTime</mat-label>
+                        <mat-select formControlName="startTime" required>
+                            <mat-option *ngFor="let spe of startTime" value="{{ spe }}">{{
+                                spe
+                                }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    &nbsp;
+                    <mat-form-field appearance="fill" style="width: 35vh;">
+                        <mat-label>endTime</mat-label>
+                        <mat-select formControlName="endTime" required>
+                            <mat-option *ngFor="let spe of endTime" value="{{ spe }}">{{spe }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    &nbsp;&nbsp;
+                    <button mat-raised-button color="primary" style="background-color: #03a66a;width: 35vh;;height:6vh;"
+                        class="example-full-width" type="submit" [disabled]="!form.valid" mat-stroked-button>
+                       Update
+                    </button>
+                </mat-card>
+            </div>&nbsp;
+            
+        </div>
+    </div>
+</form>
+
+    <mat-card>
+        <app-timeslot-list></app-timeslot-list>
+    </mat-card>

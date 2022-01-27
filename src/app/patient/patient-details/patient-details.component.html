@@ -12,11 +12,30 @@
             <h1 class="head">Demographic Details</h1>
             <mat-form-field appearance="fill" class="pad w">
               <mat-label>First Name*</mat-label>
-              <input matInput formControlName="firstName" /> </mat-form-field
+              <input matInput formControlName="firstName" /> 
+              <mat-hint
+              class="fielderror"
+              *ngIf="
+                (formControl.firstName.touched || submitted) &&
+                formControl.firstName.errors?.required
+              "
+            >
+              first Name is required
+              </mat-hint>
+              </mat-form-field
             >&nbsp; &nbsp;
             <mat-form-field appearance="fill" class="pad w">
               <mat-label>Last Name*</mat-label>
               <input matInput formControlName="lastName" />
+              <mat-hint
+              class="fielderror"
+              *ngIf="
+                (formControl.lastName.touched || submitted) &&
+                formControl.lastName.errors?.required
+              "
+            >
+              Last Name is required
+              </mat-hint>
             </mat-form-field>
   
             <mat-form-field appearance="fill" class="pad date w">
@@ -31,11 +50,44 @@
                 matSuffix
                 [for]="picker"
               ></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker> </mat-form-field
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-hint
+              class="fielderror"
+              *ngIf="
+                (formControl.dateOfBirth.touched || submitted) &&
+                formControl.dateOfBirth.errors?.required
+              "
+            >
+              Date of Birth is required
+              </mat-hint>
+              </mat-form-field
             >&nbsp; &nbsp;
             <mat-form-field appearance="fill" class="pad w">
               <mat-label>Mobile No*</mat-label>
-              <input matInput formControlName="mobileNo" /> </mat-form-field
+              <input matInput formControlName="mobileNo" /> 
+              <mat-hint
+                      class="fielderror"
+                      *ngIf="
+                        (formControl.mobileNo.touched || submitted) &&
+                        formControl.mobileNo.errors?.required
+                      "
+                    >
+                      Mobile No is required
+                      </mat-hint>
+                      <mat-hint
+              class="fielderror"
+              *ngIf="formControl.mobileNo.errors?.minlength"
+            >
+              valid number required
+            </mat-hint>
+            <mat-hint
+            class="fielderror"
+            *ngIf="formControl.mobileNo.errors?.maxlength"
+          >
+            valid number is required
+          </mat-hint>
+              
+              </mat-form-field
             ><br />
             <div>
               <mat-radio-group
@@ -57,7 +109,17 @@
                 <mat-option *ngFor="let race of races" value="{{ race }}">{{
                   race
                 }}</mat-option>
-              </mat-select> </mat-form-field
+              </mat-select> 
+              <mat-hint
+              class="fielderror"
+              *ngIf="
+                (formControl.race.touched || submitted) &&
+                formControl.race.errors?.required
+              "
+            >
+              Race is required
+              </mat-hint>
+              </mat-form-field
             >&nbsp; &nbsp;
             <mat-form-field appearance="fill" class="pad w">
               <mat-label>Ethnicity</mat-label>
@@ -69,6 +131,15 @@
                   >{{ ethnicity }}</mat-option
                 >
               </mat-select>
+              <mat-hint
+              class="fielderror"
+              *ngIf="
+                (formControl.ethnicity.touched || submitted) &&
+                formControl.ethnicity.errors?.required
+              "
+            >
+              Ethnicity is required
+              </mat-hint>
             </mat-form-field>
             <div class="example-container">
               <mat-form-field
@@ -81,6 +152,21 @@
                   placeholder="pat@example.com"
                   formControlName="email"
                 />
+                <mat-hint
+              class="fielderror"
+              *ngIf="
+                (formControl.email.touched || submitted) &&
+                formControl.email.errors?.required
+              "
+            >
+              Email is required
+              </mat-hint>
+              <mat-hint
+              class="fielderror"
+              *ngIf="formControl.email.errors?.email"
+            >
+              email must be valid
+            </mat-hint>
               </mat-form-field>
             </div>
             <div class="example-container">
@@ -111,6 +197,15 @@
                     >{{ language }}</mat-option
                   >
                 </mat-select>
+                <mat-hint
+              class="fielderror"
+              *ngIf="
+                (formControl.language.touched || submitted) &&
+                formControl.language.errors?.required
+              "
+            >
+              language is required
+              </mat-hint>
               </mat-form-field>
             </div>
   
@@ -126,6 +221,15 @@
                   formControlName="address"
                   [(ngModel)]="paddress"
                 ></textarea>
+                <mat-hint
+              class="fielderror"
+              *ngIf="
+                (formControl.address.touched || submitted) &&
+                formControl.address.errors?.required
+              "
+            >
+              address is required
+              </mat-hint>
               </mat-form-field>
             </p>
             <br />
@@ -142,11 +246,30 @@
                       <input
                         matInput
                         formControlName="firstName"
-                      /> </mat-form-field
+                      /> 
+                      <mat-hint
+                      class="fielderror"
+                      *ngIf="
+                        (formEmergencyControl.firstName.touched || submitted) &&
+                        formEmergencyControl.firstName.errors?.required
+                      "
+                    >
+                      first Name is required
+                      </mat-hint>
+                      </mat-form-field
                     >&nbsp; &nbsp;
                     <mat-form-field appearance="fill" class="pad w">
                       <mat-label>Last Name*</mat-label>
                       <input matInput formControlName="lastName" />
+                      <mat-hint
+                      class="fielderror"
+                      *ngIf="
+                        (formEmergencyControl.lastName.touched || submitted) &&
+                        formEmergencyControl.lastName.errors?.required
+                      "
+                    >
+                      Last Name is required
+                      </mat-hint>
                     </mat-form-field>
                     <mat-form-field appearance="fill" class="pad w">
                       <mat-label>Relationship*</mat-label>
@@ -156,11 +279,42 @@
                           value="{{ ralationship }}"
                           >{{ ralationship }}</mat-option
                         >
-                      </mat-select> </mat-form-field
+                      </mat-select> 
+                      <mat-hint
+                      class="fielderror"
+                      *ngIf="
+                        (formEmergencyControl.ralationship.touched || submitted) &&
+                        formEmergencyControl.ralationship.errors?.required
+                      "
+                    >
+                      Relationship is required
+                      </mat-hint>
+                      </mat-form-field
                     >&nbsp; &nbsp;
                     <mat-form-field appearance="fill" class="pad w">
                       <mat-label>Mobile No*</mat-label>
                       <input matInput formControlName="mobileNo" />
+                      <mat-hint
+                      class="fielderror"
+                      *ngIf="
+                        (formEmergencyControl.mobileNo.touched || submitted) &&
+                        formEmergencyControl.mobileNo.errors?.required
+                      "
+                    >
+                      Mobile No is required
+                      </mat-hint>
+                      <mat-hint
+              class="fielderror"
+              *ngIf="formEmergencyControl.mobileNo.errors?.minlength"
+            >
+              valid number required
+            </mat-hint>
+            <mat-hint
+            class="fielderror"
+            *ngIf="formEmergencyControl.mobileNo.errors?.maxlength"
+          >
+            valid number is required
+          </mat-hint>
                     </mat-form-field>
                     <div class="example-container">
                       <mat-form-field
@@ -174,6 +328,21 @@
                           required
                           formControlName="email"
                         />
+                        <mat-hint
+                      class="fielderror"
+                      *ngIf="
+                        (formEmergencyControl.email.touched || submitted) &&
+                        formEmergencyControl.email.errors?.required
+                      "
+                    >
+                      Email is required
+                      </mat-hint>
+                      <mat-hint
+              class="fielderror"
+              *ngIf="formEmergencyControl.email.errors?.email"
+            >
+              email must be valid
+            </mat-hint>
                       </mat-form-field>
                     </div>
                     <mat-checkbox
@@ -195,6 +364,15 @@
                           formControlName="address"
                           [(ngModel)]="eaddress"
                         ></textarea>
+                        <mat-hint
+                      class="fielderror"
+                      *ngIf="
+                        (formEmergencyControl.address.touched || submitted) &&
+                        formEmergencyControl.address.errors?.required
+                      "
+                    >
+                      address is required
+                      </mat-hint>
                       </mat-form-field>
                     </p>
                     <div>
@@ -227,6 +405,7 @@
                       matTooltipClass="example-tooltip-red"
                       (click)="submitDetails()"
                       matStepperNext
+                      [disabled]="form.invalid"
                     >
                       Submit
                     </button>
@@ -319,6 +498,91 @@
                 <mat-icon>done</mat-icon>
               </button>
             </form>
+        <br>
+        
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- meetingTitle Column -->
+    <!-- <ng-container matColumnDef="AllergyId">
+      <th mat-header-cell *matHeaderCellDef>AllergyId</th>
+      <td mat-cell *matCellDef="let element">{{ element.allergyId }}</td>
+    </ng-container> -->
+
+    <!-- physician Column -->
+    <ng-container matColumnDef="AllergyType">
+      <th mat-header-cell *matHeaderCellDef>AllergyType</th>
+      <td mat-cell *matCellDef="let element">{{ element.allergyType }}</td>
+    </ng-container>
+
+    <!-- specialisation Column -->
+    <ng-container matColumnDef="AllergyName">
+      <th mat-header-cell *matHeaderCellDef>AllergyName</th>
+      <td mat-cell *matCellDef="let element">{{ element.allergyName }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="AllergyDescription">
+      <th mat-header-cell *matHeaderCellDef>AllergyDescription</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.allergyDescription }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ClinicalInformation">
+      <th mat-header-cell *matHeaderCellDef>ClinicalInformation</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.clinicalInformation }}
+      </td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="appointmentTime">
+      <th mat-header-cell *matHeaderCellDef>Time</th>
+      <td mat-cell *matCellDef="let element">{{ element?.allergy?.allergyType  }}</td>
+    </ng-container> -->
+
+    <!-- <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          matTooltip="Click to Edit"
+          class="iconbutton"
+          color="primary"
+        >
+          <mat-icon
+            aria-label="Edit"
+            [state]="element"
+            routerLink="/scheduling/edit-appointment/{{
+              element.appointmentId
+            }}"
+            >edit</mat-icon
+          >
+          <mat-icon aria-label="Edit" (click)="navigateToUpdate(element.appointmentId)" >edit</mat-icon>
+        </button>
+
+        <button
+          mat-icon-button
+          matTooltip="Click to Delete"
+          class="iconbutton"
+          color="warn"
+          
+        >
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </td>
+    </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <!-- <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No data matching the filter "{{ input.value }}"
+      </td>
+    </tr> -->
+  </table>
+        
+  
         
       
     </mat-step>

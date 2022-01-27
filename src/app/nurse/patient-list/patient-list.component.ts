@@ -54,7 +54,7 @@ export class PatientListComponent implements OnInit {
       
     // })
 
-    this.patientRegistrationService.getAllPatientList().subscribe(patients => {
+    this.patientRegistrationService.getAllActivePatientList().subscribe(patients => {
       this.patientList = patients;
       this.dataSource.data = this.patientList;
       console.log("patient List: " , this.dataSource.data);
@@ -80,12 +80,12 @@ export class PatientListComponent implements OnInit {
     
   // this.queryID= row.id;
     
-    // this.router.navigate(['/nurse/employee-details/{{this.queryID}}'])
+    // this.router.navigate(['/shared/sidebar/nurse/employee-details/',row.patientId])
     
   }
   openDialog(row:any){
     console.log("patient id " + row.patientId);
-    this.router.navigate(['/nurse/edit-patient-details/',row])
+    this.router.navigate(['/shared/sidebar/nurse/edit-patient-details/',row])
     
 
   }

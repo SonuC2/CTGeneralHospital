@@ -11,12 +11,14 @@ export class Appointments {
   employeeName!:String;
   appointmentDate!:Date;
   timeSlot!: number;
+  timeSlotString!:String;
   reason!:String;
   rescheduleDate!:Date;
   rescheduleTimeSlot!:number;
+  rescheduleTimeSlotString!:String;
   patientId!:number;
   patientName!:String;
   appointmentStatus!:String;
-  timeSlotString!:string;
+  
 
 }

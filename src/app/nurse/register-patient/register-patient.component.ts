@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Employee } from 'src/app/entities/employee';
 import { PatientRegistration } from 'src/app/entities/patient-registration';
 import { PatientRegistrationService } from 'src/app/services/patientRegistration.service';
 
@@ -13,6 +14,7 @@ export class RegisterPatientComponent implements OnInit {
 
   personalDetailsForm!: any;
   patientDetails!: PatientRegistration;
+  employeeDetailsFromLogin!: Employee;
 
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
@@ -42,12 +44,18 @@ export class RegisterPatientComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+
+    this.employeeDetailsFromLogin = JSON.parse(sessionStorage.getItem('nurseDetailsFromLogin') || '{}');
   }
 
   registerPatient(){
     console.log(this.personalDetailsForm.value); 
-    this.patientDetails = this.personalDetailsForm.value; 
+    this.patientDetails = this.personalDetailsForm.value;
+    this.patientDetails.createdBy=this.employeeDetailsFromLogin.employeeId;
+    console.log("under nurse patient reg - ", this.patientDetails) 
     this.patientRegistrationService.registerPatient( this.patientDetails).subscribe();
+    window.alert("New patient details added successfully!");
+    this.personalDetailsForm.reset();
   }
 
 }

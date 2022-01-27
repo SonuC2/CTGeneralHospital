@@ -4,7 +4,7 @@
             <mat-card>
                 <mat-card-content>
                     <mat-tab-group mat-stretch-tabs class="example-stretched-tabs " (selectedTabChange)="onTabClick($event)">
-                        <mat-tab label="Patient details" style="color: #0055D2;">
+                        <mat-tab label="Patient details" style="color: hsl(216, 100%, 41%);">
                             <form class="example-form" [formGroup]="personalDetailsForm">
                                 <div fxLayout="row wrap">
                                     <div fxFlex.gt-sm="30" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
@@ -55,18 +55,14 @@
                                             <input matInput formControlName="mobileNo" [readonly]="isReadOnly" />
                                         </mat-form-field>
                                     </div>
-                                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
+                                    <!-- <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
                                         <mat-radio-group aria-label="Select an option" class="example-full-width"
                                             style="width: 100%;" formControlName="gender">
                                             <mat-label>Gender : </mat-label>
                                             <mat-radio-button value="Male">Male</mat-radio-button> &nbsp;
                                             <mat-radio-button value="Female">Female</mat-radio-button>
                                         </mat-radio-group>
-                                    </div>
-                                </div>
-
-                                <!-- third row -->
-                                <div fxLayout="row wrap">
+                                    </div> -->
                                     <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
                                         <mat-form-field appearance="fill" class="example-full-width"
                                             style="width: 100%;">
@@ -75,14 +71,26 @@
                                                 formControlName="email" [readonly]="isReadOnly" />
                                         </mat-form-field>
                                     </div>
-                                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
+                                </div>
+
+                                <!-- third row -->
+                                <!-- <div fxLayout="row wrap"> -->
+                                    <!-- <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
+                                        <mat-form-field appearance="fill" class="example-full-width"
+                                            style="width: 100%;">
+                                            <mat-label>Enter your email</mat-label>
+                                            <input matInput placeholder="pat@example.com" required
+                                                formControlName="email" [readonly]="isReadOnly" />
+                                        </mat-form-field>
+                                    </div> -->
+                                    <!-- <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px">
                                         <mat-form-field class="example-full-width" appearance="fill"
                                             style="width: 100%;">
                                             <mat-label>Address</mat-label>
                                             <input matInput formControlName="address" [readonly]="isReadOnly" />
                                         </mat-form-field>
-                                    </div>
-                                    <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px"
+                                    </div> -->
+                                    <!-- <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100" style="padding: 10px"
                                         [hidden]="isEditButtonHide">
                                         <button mat-raised-button color="primary"
                                             style="background-color: #03A66A;width: 30vh"
@@ -95,7 +103,7 @@
                                             style="background-color: #03A66A;width: 30vh"
                                             (click)="clickUpdate()">Update</button>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- next row -->
                                 <!-- <div fxLayout="row wrap">
                                     <div fxFlex.gt-sm="100" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
@@ -327,7 +335,7 @@
                                                     <div fxFlex.gt-sm="30" fxFlex.gt-lg="30" fxFlex="100"
                                                         style="padding: 10px">
                                                         <button mat-raised-button color="primary"
-                                                            style="background-color: #03A66A;width: 30vh" (click) ="addPatientVisit()">Add</button>
+                                                            style="background-color: #03A66A;width: 30vh" (click) ="addPatientVisit()" [disabled] ="isAddButtonDisabled">Add</button>
                                                     </div>
                                                 </div>
                                             </mat-card-content>
@@ -449,7 +457,7 @@
                                                                                 <button mat-icon-button
                                                                                     matTooltip="Click to Delete"
                                                                                     class="iconbutton" color="warn">
-                                                                                    <mat-icon aria-label="Delete">delete
+                                                                                    <mat-icon aria-label="Delete" (click) ="deleteDiagnosis(row)">delete
                                                                                     </mat-icon>
                                                                                 </button>
                                                                             </td>
@@ -578,7 +586,7 @@
                                                                                 <button mat-icon-button
                                                                                     matTooltip="Click to Delete"
                                                                                     class="iconbutton" color="warn">
-                                                                                    <mat-icon aria-label="Delete">delete
+                                                                                    <mat-icon aria-label="Delete" (click) ="deleteProcedure(row)">delete
                                                                                     </mat-icon>
                                                                                 </button>
                                                                             </td>
@@ -707,7 +715,7 @@
                                                                                 <button mat-icon-button
                                                                                     matTooltip="Click to Delete"
                                                                                     class="iconbutton" color="warn">
-                                                                                    <mat-icon aria-label="Delete">delete
+                                                                                    <mat-icon aria-label="Delete" (click) ="deleteMedication(row)">delete
                                                                                     </mat-icon>
                                                                                 </button>
                                                                             </td>

@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -65,6 +65,7 @@ export class MyDetailsComponent implements OnInit {
     firstName: string = '';
     lastName!: string;
     allergyForm!:any;
+    submitted=false;
     ngOnInit(): void {
 
     this.patientDetailsFromLogin = JSON.parse(sessionStorage.getItem('patientDetails') || '{}');
@@ -72,16 +73,16 @@ export class MyDetailsComponent implements OnInit {
 
     this.form = this.fb.group({
       patientId:[],
-      firstName: [''],
-      lastName: [''],
-      dateOfBirth: [''],
-      mobileNo: [''],
-      gender: [''],
-      race: [''],
-      ethnicity: [''],
-      email: [''],
-      language: [''],
-      address: [''],
+      firstName: ['',[Validators.required]],
+      lastName: ['',[Validators.required]],
+      dateOfBirth: ['',[Validators.required]],
+      mobileNo: ['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+      gender: ['',[Validators.required]],
+      race: ['',[Validators.required]],
+      ethnicity: ['',[Validators.required]],
+      email: ['',[Validators.required,Validators.email]],
+      language: ['',[Validators.required]],
+      address: ['',[Validators.required]],
       status: [''],
       userRole: this.fb.group({
         userRoleId:[3],
@@ -89,13 +90,13 @@ export class MyDetailsComponent implements OnInit {
       }),
       
       emergencyContactDetails: this.fb.group({
-        firstName: [''],
-        lastName: [''],
-        ralationship: [''],
-        mobileNo: [''],
-        email: [''],
-        address: [''],
-        access: [''],
+        firstName: ['',[Validators.required]],
+        lastName: ['',[Validators.required]],
+        ralationship: ['',[Validators.required]],
+        mobileNo: ['',[Validators.required,Validators.minLength(10),Validators.maxLength(10)]],
+        email: ['',[Validators.required,Validators.email]],
+        address: ['',[Validators.required]],
+        access: ['',[Validators.required]],
       }),
     });
     this.allergyForm= this.fb.group({
@@ -142,7 +143,16 @@ export class MyDetailsComponent implements OnInit {
     // {
     //   console.log(this.topping);
     // }
-    list: string[] = ['Father', 'Mother', 'Son', 'Daughter', 'Other'];
+
+    
+  get formControl() {
+    return this.form.controls;
+  }
+  get formEmergencyControl()
+  {
+    return this.form.get('emergencyContactDetails').controls;
+  }
+    list: string[] = ['Father', 'Mother', 'Son', 'Daughter', 'Friend', 'Other'];
     allergylist: string[] = ['ABC', 'DEF', 'GHI', 'JKL', 'MNO'];
     races:string[]=["American Indian","Asian","Black","Latino","Other Pacific Islander","White"];
     ethnicities:string[]=["Abazins","Afemai","Afrikaners","Aja","Bambara","Banda","Copts","Garos","Hazaras","Isoko","Japanese"]
@@ -254,6 +264,9 @@ export class MyDetailsComponent implements OnInit {
       console.log(this.allergyForm.value);
     this.allergyArrays.push(this.allergyForm.value);
     //this.patientService.addAllergy(this.allergyForm.value).subscribe();
+    this.PatientDataForTable = this.allergyArrays;
+        console.log('welocome to allergy mapping');
+        this.dataSource.data = this.PatientDataForTable;
     this.allergyForm.reset();
     }
     removeAllergy(index: any) {

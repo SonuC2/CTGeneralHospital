@@ -36,7 +36,7 @@
                     </mat-form-field>
                     &nbsp;&nbsp;
                     <button mat-raised-button color="primary" style="background-color: #03a66a;width: 35vh;;height:6vh;"
-                        class="example-full-width" type="submit" [disabled]="!form.valid" mat-stroked-button>
+                        class="example-full-width" type="submit" [disabled]="!form.valid" (click)="openDialog()" mat-stroked-button>
                         Add
                     </button>
                 </mat-card>
@@ -45,7 +45,7 @@
         </div>
     </div>
 </form>
-
+&nbsp;
     <mat-card>
         <app-timeslot-list></app-timeslot-list>
     </mat-card>

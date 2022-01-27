@@ -33,7 +33,9 @@
             <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
               <mat-label>Physician*</mat-label>
               <mat-select formControlName="employeeName"> 
-                <mat-option *ngFor="let employee of employeeDetails" value="employee.title + ' ' + employee.firstName + ' ' employee.lastName ">
+                <mat-option *ngFor="let employee of employeeDetails" [value]='employee.title + " " + employee.firstName + " " + employee.lastName' 
+                 (onSelectionChange)="setDoctorId(employee.employeeId, $event)" 
+                 (onSelectionChange)="loadTimeSlot()">
                 {{employee.title}}  {{ employee.firstName }} {{ employee.lastName }}  
                 </mat-option>
               </mat-select>
@@ -61,31 +63,36 @@
             </mat-form-field>
           </p>
 
-          <mat-form-field appearance="fill" class="pad date w">
+          <!-- <mat-form-field appearance="fill" class="pad date w">
             <mat-label>Appointment date*</mat-label>
-            <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="appointmentDate"
-              required (dateChange)="loadTimeSlot()" />
+            <input matInput  [matDatepicker]="picker" formControlName="appointmentDate"
+              required (dateChange)="loadTimeSlot()" (ngModelChange)="modelChanged($event)" />
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>&nbsp; &nbsp;
+          </mat-form-field>&nbsp; &nbsp; -->
 
-          <mat-form-field appearance="fill" class="pad date w">
+          <!-- <mat-form-field appearance="fill" class="pad date w">
             <mat-label>Time slot*</mat-label>
             <mat-select formControlName="timeSlot">
               <mat-option *ngFor="let spe of timeSlot" value="{{ spe }}">{{ spe }}</mat-option>
             </mat-select>
-          </mat-form-field>
-          <!-- extra -->
-          <!-- <mat-form-field appearance="fill" class="pad wid " *ngIf="index === 1">
-            <mat-label>ReSchedule time*</mat-label>
-            <mat-select formControlName="appointmentTime">
-              <mat-option *ngFor="let spe of appointmentTime" value="{{ spe }}">{{
-                spe
-                }}</mat-option>
-            </mat-select>
           </mat-form-field> -->
+          <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
+            <mat-label>Select Date-TimeSlot*</mat-label>
+            <mat-select formControlName="timeSlot"> 
+              <mat-option *ngFor="let slot of timeSlotData" [value]='slot.slotId' (onSelectionChange)="LoadTimeSlot(slot, $event)">
+               <strong> {{slot.date|date}}</strong> <b> => </b>  {{slot.startTime}} - {{slot.endTime}}  
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+     
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Time-Slot</mat-label>
+            <input matInput formControlName="timeSlotString" />
+          </mat-form-field>
+
           <button mat-raised-button color="primary" style="background-color: #03a66a; width: 100%"
-            class="example-full-width" type="submit" mat-stroked-button>
+            class="example-full-width" [disabled]="!form.valid" type="submit" mat-stroked-button>
             Create Appointment
           </button>
         </mat-expansion-panel>
@@ -99,7 +106,7 @@
 
 <!-- for nurse  -->
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="isNurse">
+<form [formGroup]="form" (ngSubmit)="onSubmitByNurse()" *ngIf="isNurse">
   <div class="bounds">
     <!-- <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill> -->
     <div fxLayout="row wrap">
@@ -120,7 +127,7 @@
         <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
           <mat-label>Physician*</mat-label>
           <mat-select formControlName="employeeName"> 
-            <mat-option *ngFor="let employee of employeeDetails" value="employee.title + ' ' + employee.firstName + ' ' employee.lastName ">
+            <mat-option *ngFor="let employee of employeeDetails" [value]='employee.title + " " + employee.firstName + " " + employee.lastName' (onSelectionChange)="setDoctorId(employee.employeeId, $event)" (onSelectionChange)="loadTimeSlot()">
             {{employee.title}}  {{ employee.firstName }} {{ employee.lastName }}  
             </mat-option>
           </mat-select>
@@ -133,7 +140,7 @@
         <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
           <mat-label>Patient Id*</mat-label>
           <mat-select formControlName="patientId">
-            <mat-option *ngFor="let patient of patients" value="patient.patientId"
+            <mat-option *ngFor="let patient of patients" [value]='patient.patientId'
               (onSelectionChange)="loadPatientName(patient, $event)">{{
               patient.patientId
               }}</mat-option>
@@ -170,19 +177,18 @@
         </mat-form-field>
       </p>
 
-      <mat-form-field appearance="fill" class="pad date w">
-        <mat-label>Appointment date*</mat-label>
-        <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="appointmentDate"
-          required />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>&nbsp; &nbsp;
-
-      <mat-form-field appearance="fill" class="pad date w">
-        <mat-label>Time slot*</mat-label>
-        <mat-select formControlName="timeSlot">
-          <mat-option *ngFor="let spe of timeSlot" value="{{ spe }}">{{ spe }}</mat-option>
+      <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
+        <mat-label>Select Date-TimeSlot*</mat-label>
+        <mat-select formControlName="timeSlot"> 
+          <mat-option *ngFor="let slot of timeSlotData" [value]='slot.slotId' (onSelectionChange)="LoadTimeSlot(slot, $event)">
+           <strong> {{slot.date|date}}</strong> <b> => </b>  {{slot.startTime}} - {{slot.endTime}}  
+          </mat-option>
         </mat-select>
+      </mat-form-field>
+ 
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Time-Slot</mat-label>
+        <input matInput formControlName="timeSlotString" />
       </mat-form-field>
       <!-- extra -->
       <!-- <mat-form-field appearance="fill" class="pad wid " *ngIf="index === 1">
@@ -193,7 +199,7 @@
                 }}</mat-option>
             </mat-select>
           </mat-form-field> -->
-      <button mat-raised-button color="primary" style="background-color: #03a66a; width: 100%"
+      <button  mat-raised-button color="primary" style="background-color: #03a66a; width: 100%"
         class="example-full-width" type="submit" mat-stroked-button>
         Create Appointment
       </button>
@@ -209,7 +215,7 @@
 
 <!--  for Doctor   -->
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="isPhysician">
+<form [formGroup]="form" (ngSubmit)="onSubmitByDoctor()" *ngIf="isPhysician">
   <div class="bounds">
     <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
       <div fxFlex="100" class="sec1" fxFlex.xs="100">
@@ -219,7 +225,7 @@
             <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
               <mat-label>Patient Id*</mat-label>
               <mat-select formControlName="patientId">
-                <mat-option *ngFor="let patient of patients" value="patient.patientId"
+                <mat-option *ngFor="let patient of patients" [value]='patient.patientId'
                   (onSelectionChange)="loadPatientName(patient, $event)">{{
                   patient.patientId
                   }}</mat-option>
@@ -234,7 +240,7 @@
                   spe
                   }}</mat-option>
               </mat-select> -->
-              <input matInput formControlName="patientName" />
+              <input matInput formControlName="patientName" readonly />
             </mat-form-field>
           </div>
         </div>
@@ -259,19 +265,18 @@
             </mat-form-field>
           </p>
 
-          <mat-form-field appearance="fill" class="pad date w">
-            <mat-label>Appointment date*</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="appointmentDate" required
-              (dateChange)="loadTimeSlot()" />
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>&nbsp; &nbsp;
-
-          <mat-form-field appearance="fill" class="pad date w">
-            <mat-label>Time slot*</mat-label>
-            <mat-select formControlName="timeSlot">
-              <mat-option *ngFor="let spe of timeSlot" value="{{ spe }}">{{ spe }}</mat-option>
+          <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
+            <mat-label>Select Date-TimeSlot*</mat-label>
+            <mat-select formControlName="timeSlot"> 
+              <mat-option *ngFor="let slot of timeSlotData" [value]='slot.slotId' (onSelectionChange)="LoadTimeSlot(slot, $event)">
+               <strong> {{slot.date|date}}</strong> <b> => </b>  {{slot.startTime}} - {{slot.endTime}}  
+              </mat-option>
             </mat-select>
+          </mat-form-field>
+     
+          <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>Time-Slot</mat-label>
+            <input matInput formControlName="timeSlotString" />
           </mat-form-field>
           <!-- extra -->
           <!-- <mat-form-field appearance="fill" class="pad wid " *ngIf="index === 1">
