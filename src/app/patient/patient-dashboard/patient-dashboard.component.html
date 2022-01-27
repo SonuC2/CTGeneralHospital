@@ -1,11 +1,74 @@
- <p>patient-dashboard works!</p>
-<!--<button
-mat-button
-class="menu-button"
-routerLink="/patient/my-details"
+<div fxLayout="row wrap">
+    <div fxFlex.gt-sm="100" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
+        <mat-card class="example-card center">
+            <mat-card-content class="center"  style="margin-bottom: 100px;">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <!-- <div *ngIf="isMale">
+                                <img class="img" src="/assets/images/doctor-male.jpg"
+                                    style="width:300px;height:280px;" />
+                            </div> -->
+                            <div >
+                                <img class="img" src="/assets/images/p11.png"
+                                    style="width:300px;height:280px;" />
+                            </div>
+                            <h6> flip for more detail</h6>
+                        </div>
 
->
-<mat-icon>list</mat-icon>
-<span>My Details</span>
-</button>
-<router-outlet></router-outlet> -->
+                        <div class="flip-card-back">
+                            <h2>{{patientName}}</h2>
+                            <p> DOB     - {{patientdob |date}}</p>
+                            <p> EmailId - {{emailId}}</p>
+                            <p> Contact - {{contactNo}}</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<div fxLayout="row wrap">
+    <div fxFlex.gt-sm="100" fxFlex.gt-lg="50" fxFlex="100" style="padding: 5px; justify-content: center; display: flex;
+    justify-content: center;
+    align-items: center;" >
+        <mat-card class="mat-card-status">
+            <mat-card-header>
+                <mat-card-title  style="text-align: center;position:initial; font-size:15px;">My Appointments</mat-card-title>
+            </mat-card-header>
+            <mat-card-content style="text-align: center;">  
+                <div class="count-status">
+               
+                <div style="text-align: center;padding-top: 8px; padding-bottom: 5px;">{{countAllAppointment}}</div>
+            </div>
+        </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- <div fxFlex.gt-sm="32" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
+        <mat-card class="mat-card-status">
+            <mat-card-header>
+                <mat-card-title>Active Physician</mat-card-title>
+            </mat-card-header>
+            <mat-card-content style="text-align: center;">  
+                <div class="count-status">
+               
+                <div style="text-align: center;padding-top: 5px; padding-bottom: 5px;">{{employeeActiveCount}}</div>
+            </div>
+        </mat-card-content>
+        </mat-card>
+    </div>
+    <div fxFlex.gt-sm="32" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
+        <mat-card class="mat-card-status">
+            <mat-card-header>
+                <mat-card-title>Active patient</mat-card-title>
+            </mat-card-header>
+            <mat-card-content style="text-align: center;">  
+                <div class="count-status">
+               
+                <div style="text-align: center;padding-top: 5px; padding-bottom: 5px;">{{patientActiveCount}}</div>
+            </div>
+        </mat-card-content>
+        </mat-card>
+    </div> -->
+</div>

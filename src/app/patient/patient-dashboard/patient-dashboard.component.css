@@ -1,0 +1,89 @@
+.example-card {
+    max-width: 100%;
+    height: 60vh;
+    backdrop-filter: blur(7px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* .center1 {
+    margin: auto;
+    /* width: auto; */
+  /* height: 200px; */
+  /* border: 3px solid green; */
+  /* padding: 100px;
+  } */
+  */ .profile-content {
+    margin-bottom: 100px;
+  }
+  
+  /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+  .flip-card {
+    background-color: transparent;
+    backdrop-filter: blur(7px);
+    width: 300px;
+    height: 200px;
+    /* text-align: center; */
+    border: 1px solid #f1f1f1;
+    /* margin-top: 10px;
+      padding-top: 10px; */
+  
+    /* perspective: 1000px; Remove this if you don't want the 3D effect */
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Position the front and back side */
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+  
+  /* Style the front side (fallback if image is missing) */
+  .flip-card-front {
+    backdrop-filter: blur(7px);
+    background-color: rgb(236, 236, 236);
+    color: black;
+  }
+  
+  /* Style the back side */
+  .flip-card-back {
+    background-color: rgb(182, 182, 182);
+    backdrop-filter: blur(7px);
+    color: rgb(0, 0, 0);
+    transform: rotateY(180deg);
+  }
+  
+  .count-status {
+    background-color: #03a66a;
+    width: 100%;
+    height: 6vh;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 5px;
+  }
+  

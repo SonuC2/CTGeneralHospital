@@ -6,7 +6,11 @@ mat-toolbar {
 /* image logo */
 
 img{
-   size: 35px;
+   size: 50px;
+   border-radius: 5px;
+   border: 1px solid;
+   border-color: black;
+   align-items: left;
 }
 
 

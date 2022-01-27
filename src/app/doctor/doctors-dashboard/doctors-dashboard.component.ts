@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Appointments } from 'src/app/entities/appointments';
 import { Employee } from 'src/app/entities/employee';
 import { User } from 'src/app/entities/user';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { PatientRegistrationService } from 'src/app/services/patientRegistration.service';
+import { SchedulingService } from 'src/app/services/scheduling.service';
 
 @Component({
   selector: 'app-doctors-dashboard',
@@ -19,12 +21,17 @@ export class DoctorsDashboardComponent implements OnInit {
   employeeGender!:String;
   specialisation!:String;
   employeeDetailsFromLogin!:Employee;
+  appointmentData!:Appointments[];
+  appointmentCount!:number;
+  requestAppointmentCount!: number;
+  
 
   
 
   constructor(
     private patientRegService: PatientRegistrationService,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private schedulingService:SchedulingService
   ) {}
 
   ngOnInit(): void {
@@ -43,12 +50,24 @@ export class DoctorsDashboardComponent implements OnInit {
       this.employeeGender=this.physicianDetailsFromLogin.gender;
       this.specialisation=this.physicianDetailsFromLogin.specialisation;
       // get gender for male/female  Profile pic 
-      if (this.physicianDetailsFromLogin.gender === 'male'){
+      if(this.physicianDetailsFromLogin.gender==="Male" || this.physicianDetailsFromLogin.gender==="male"){
         this.isMale=true;
       }
-      if (this.physicianDetailsFromLogin.gender === 'female'){
+      if(this.physicianDetailsFromLogin.gender==="Female" || this.physicianDetailsFromLogin.gender==="female"){
         this.isFemale=true;
       }
+
+      this.schedulingService.getAppointmentForEmployee(this.physicianDetailsFromLogin.employeeId).subscribe(appointment =>{
+        this.appointmentData = appointment;
+       this.appointmentCount=  this.appointmentData.length;
+        console.log('Data source : ', this.appointmentCount);
+      })
+
+      this.schedulingService.getRequestedAppointmentForEmployee(this.physicianDetailsFromLogin.employeeId).subscribe(appointment =>{
+        this.appointmentData = appointment;
+       this.requestAppointmentCount=  this.appointmentData.length;
+        console.log('Data source : ', this.appointmentCount);
+      })
     }
    
   }

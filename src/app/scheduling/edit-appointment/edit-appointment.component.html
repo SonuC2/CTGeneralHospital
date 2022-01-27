@@ -166,7 +166,7 @@
                         <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                             <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
                                 <mat-label>Patient name*</mat-label>
-                                <input matInput  readonly formControlName="patientName" />
+                                <input matInput readonly formControlName="patientName" />
                             </mat-form-field>
                         </div>
                     </div>
@@ -193,13 +193,13 @@
                             <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                                 <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
                                     <mat-label>Appointment date*</mat-label>
-                                    <input matInput readonly [matDatepicker]="picker" formControlName="appointmentDate" required
-                                         />
+                                    <input matInput readonly [matDatepicker]="picker" formControlName="appointmentDate"
+                                        required />
                                     <!-- <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle> -->
                                     <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>
                             </div>
-                            
+
                             <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                                 <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
                                     <mat-label>Time-Slot</mat-label>
@@ -207,6 +207,13 @@
                                 </mat-form-field>
                             </div>
                         </div>
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Reason for ReSchedule</mat-label>
+                            <textarea matInput placeholder="Ex.Reason for reschduling not present/absence "
+                                formControlName="reason"></textarea>
+                        </mat-form-field>
+
+                        &nbsp; &nbsp;
                         <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
                             <mat-label>Select Date-TimeSlot*</mat-label>
                             <mat-select formControlName="rescheduleTimeSlot">
@@ -224,12 +231,113 @@
                         </mat-form-field>
                         <button mat-raised-button color="primary" style="background-color: #03a66a; width: 100%"
                             class="example-full-width" type="submit" mat-stroked-button>
-                           ReSchedule Appointment
+                            ReSchedule Appointment
                         </button>
                     </mat-expansion-panel>
                 </div>
             </form>
 
+            <!--  for Doctor   -->
+
+            <form [formGroup]="form" (ngSubmit)="onSubmitByDoctor()" *ngIf="isPhysician">
+                <div class="bounds">
+                    <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+                        <div fxFlex="100" class="sec1" fxFlex.xs="100">
+                            <div fxLayout="row wrap">
+                                <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                                    <!-- Patient name       //////// need working -->
+                                    <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
+                                        <mat-label>Patient Id*</mat-label>
+                                        <mat-select formControlName="patientId">
+                                            <mat-option *ngFor="let patient of patients" [value]='patient.patientId'
+                                                (onSelectionChange)="loadPatientName(patient, $event)">{{
+                                                patient.patientId
+                                                }}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div fxFlex.gt-sm="50" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
+                                    <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
+                                        <mat-label>Patient name*</mat-label>
+                                        <!-- <mat-select formControlName="patientName">
+                  <mat-option *ngFor="let spe of patientName" value="{{ spe }}">{{
+                    spe
+                    }}</mat-option>
+                </mat-select> -->
+                                        <input matInput readonly formControlName="patientName" />
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <mat-expansion-panel>
+                                <!-- // expension Header -->
+                                <mat-expansion-panel-header style="background-color: #03a66a; width: 100%">
+                                    <mat-panel-title class="center"> Add appointment </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                &nbsp; &nbsp; &nbsp;
+                                <!-- // expension body -->
+                                <mat-form-field appearance="fill" class="full-width">
+                                    <mat-label>Meeting Title</mat-label>
+                                    <input matInput formControlName="meetingTitle" required />
+                                </mat-form-field>
+
+                                <p>
+                                    <mat-form-field class="full-width" appearance="fill">
+                                        <mat-label>Description</mat-label>
+                                        <textarea matInput placeholder="Ex.patient Details-	Descriptive information "
+                                            formControlName="description"></textarea>
+                                    </mat-form-field>
+                                </p>
+
+                                <mat-form-field appearance="fill" class="pad date w">
+                                    <mat-label>Appointment date*</mat-label>
+                                    <input matInput [matDatepicker]="picker" formControlName="appointmentDate" required
+                                        readonly />
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+                                &nbsp; &nbsp; &nbsp; &nbsp;
+                                <mat-form-field appearance="fill" class="pad date w">
+                                    <mat-label>Time-Slot</mat-label>
+                                    <input matInput formControlName="timeSlotString" readonly />
+                                </mat-form-field>
+
+                                <mat-form-field class="full-width" appearance="fill">
+                                    <mat-label>Reason for ReSchedule</mat-label>
+                                    <textarea matInput placeholder="Ex.Reason for reschduling not present/absence "
+                                        formControlName="reason"></textarea>
+                                </mat-form-field>
+
+                                &nbsp; &nbsp;
+
+                                <mat-form-field appearance="fill" class="pad date w" style="width: 100%;">
+                                    <mat-label>Select Date-TimeSlot*</mat-label>
+                                    <mat-select formControlName="rescheduleTimeSlot">
+                                        <mat-option *ngFor="let slot of timeSlotData" [value]='slot.slotId'
+                                            (onSelectionChange)="LoadTimeSlot(slot, $event)">
+                                            <strong> {{slot.date|date}}</strong> <b> => </b> {{slot.startTime}} -
+                                            {{slot.endTime}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                &nbsp; &nbsp;
+                                <mat-form-field appearance="fill" style="width: 100%;">
+                                    <mat-label>Time-Slot</mat-label>
+                                    <input matInput formControlName="rescheduleTimeSlotString" />
+                                </mat-form-field>
+
+                                <button mat-raised-button color="primary" style="background-color: #03a66a; width: 100%"
+                                    class="example-full-width" type="submit" mat-stroked-button>
+                                   ReSchedule Appointment
+                                </button>
+                            </mat-expansion-panel>
+
+                            <!-- </mat-card-content>
+          </mat-card> -->
+                        </div>
+                    </div>
+                </div>
+            </form>
         </mat-card>
     </div>
     <br>

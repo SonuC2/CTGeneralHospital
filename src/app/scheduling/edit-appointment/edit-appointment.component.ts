@@ -102,6 +102,15 @@ export class EditAppointmentComponent implements OnInit {
     this.appointmentId = this.router.snapshot.paramMap.get('index');
 
     this.form = this.fb.group({
+      slotId!:[],
+      employeeId: [],
+      employeeName: [],
+      date: [],
+      startTime: [],
+      endTime: [],
+    });
+
+    this.form = this.fb.group({
       appointmentId:[],
       meetingTitle: [],
       description: [],
@@ -133,6 +142,8 @@ export class EditAppointmentComponent implements OnInit {
     'Anesthesiologists',
     'Psychiatrists',
     'Gynecologists',
+    'Dermatologists',
+    'Cardiologists'
   ];
  
   // timeSlot: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -154,12 +165,29 @@ export class EditAppointmentComponent implements OnInit {
    // for Nurse onSubmit method call
 
   onSubmitByNurse(){
+    this.form.get('appointmentId')?.setValue(this.appointmentId);
     this.form.get('employeeId')?.setValue(this.selectedEmployeeId);
     this.form.get('appointmentStatus')?.setValue("Booked");
-    // this.service.updateAppointment(this.form.value).subscribe();
-    // this.form.reset();
+    this.service.updateAppointment(this.form.value).subscribe();
+    this.form.reset();
     // this.form.get('patientName')?.setValue(this.patientsDetailsFromLogin.firstName + " " + this.patientsDetailsFromLogin.lastName);
     console.log("form submiteed by nurse - " , this.form.value)
+  }
+
+  // for Doctor onsubmit method call
+  onSubmitByDoctor(){
+    this.form.get('appointmentId')?.setValue(this.appointmentId);
+    
+    this.form.get('appointmentStatus')?.setValue("Booked");
+    this.form.get('employeeId')?.setValue(this.physicianDetailsFromLogin.employeeId);
+    this.form.get('specialisation')?.setValue(this.physicianDetailsFromLogin.specialisation);
+    this.form.get('employeeName')?.setValue(this.physicianDetailsFromLogin.title +" " + this.physicianDetailsFromLogin.firstName + " " + this.physicianDetailsFromLogin.lastName);
+    
+    console.log("form submiteed by Doctor - " , this.form.value);
+
+    this.service.updateAppointment(this.form.value).subscribe();
+    this.form.reset();
+
   }
 
   getAppointmentData() {

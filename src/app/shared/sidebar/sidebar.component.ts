@@ -44,6 +44,8 @@ export class SidebarComponent {
   patientDetailsFromLogin!:PatientRegistration;
   patientIdForVisitHistory !:any;
   loggedInRole: any;
+  isMale: boolean = false;
+  isFemale: boolean = false;
    constructor(private observer: BreakpointObserver,private employeeService :EmployeeService,private patientService:PatientRegistrationService,private router:Router) {
     // console.log("From sidebar sessionstorage: " , sessionStorage['get']('userDetails'))
    
@@ -67,7 +69,12 @@ export class SidebarComponent {
       console.log("User name: " , this.loggedInUserName);
       this.loggedInRole=this.userDetail.userRoleId.roleType;
       console.log("user role: " , this.loggedInRole);
-
+      if(this.employeeDetailsFromLogin.gender==="Male" || this.employeeDetailsFromLogin.gender==="male"){
+        this.isMale=true;
+      }
+      if(this.employeeDetailsFromLogin.gender==="Female" || this.employeeDetailsFromLogin.gender==="female"){
+        this.isFemale=true;
+      }
       
     }
     if(this.userDetail.userRoleId.roleType === "Patient"){
@@ -79,6 +86,13 @@ export class SidebarComponent {
       this.loggedInUserName = this.patientDetailsFromLogin.title + " " + this.patientDetailsFromLogin.firstName + " " + this.patientDetailsFromLogin.lastName
       this.patientIdForVisitHistory = this.patientDetailsFromLogin.patientId
       this.loggedInRole=this.userDetail.userRoleId.roleType;
+     
+      if(this.employeeDetailsFromLogin.title==="Mr"){
+        this.isMale=true;
+      }
+      if(this.employeeDetailsFromLogin.title==="Mrs"){
+        this.isFemale=true;
+      }
       console.log("user role: " , this.loggedInRole);
     }
 
@@ -104,7 +118,12 @@ export class SidebarComponent {
       console.log("User name", this.loggedInUserName);
       this.loggedInRole=this.userDetail.userRoleId.roleType;
       console.log("user role: " , this.loggedInRole);
-      
+      if(this.employeeDetailsFromLogin.gender==="Male" || this.employeeDetailsFromLogin.gender==="male"){
+        this.isMale=true;
+      }
+      if(this.employeeDetailsFromLogin.gender==="Female" || this.employeeDetailsFromLogin.gender==="female"){
+        this.isFemale=true;
+      }
     }
    }
    

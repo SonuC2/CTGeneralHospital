@@ -30,6 +30,7 @@ import { AddAppointmentsComponent } from './add-appointments/add-appointments.co
 import { EditAppointmentComponent } from './edit-appointment/edit-appointment.component';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { DialogComponent } from './dialog/dialog.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,7 @@ const routes: Routes = [
     AddAppointmentsComponent,
     AppointmentListComponent,
     EditAppointmentComponent,
+    DialogComponent,
   ],
   imports: [
     // ScheduleModule,

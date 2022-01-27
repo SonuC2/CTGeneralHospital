@@ -1,18 +1,21 @@
 <div fxLayout="row wrap">
     <div fxFlex.gt-sm="100" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
-        <mat-card class="example-card">
-            <mat-card-header>
-                <mat-card-title class="center">Profile</mat-card-title>
-            </mat-card-header>
-            <mat-card-content style="text-align: center;">
+        <mat-card class="example-card center">
+            <mat-card-content class="center"  style="margin-bottom: 100px;">
                 <div class="flip-card">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            
-                            <img src="http://www.saveethamedicalcollege.com/images/smc/faculty/Male_Doctor.png" alt="Avatar" style="width:300px;height:280px;">
+                            <div *ngIf="isMale">
+                                <img class="img" src="/assets/images/doctor-male.jpg"
+                                    style="width:300px;height:280px;" />
+                            </div>
+                            <div *ngIf="isFemale">
+                                <img class="img" src="/assets/images/doctorny female.jpg"
+                                    style="width:300px;height:280px;" />
+                            </div>
                             <h6> flip for more detail</h6>
                         </div>
-                        
+
                         <div class="flip-card-back">
                             <h2>{{employeeName}}</h2>
                             <p>{{employeeGender}}</p>
@@ -25,40 +28,43 @@
     </div>
 </div>
 <div fxLayout="row wrap">
-    <div fxFlex.gt-sm="25" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
+    <div fxFlex.gt-sm="48" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
         <mat-card class="mat-card-status">
             <mat-card-header>
-                <mat-card-title>Appointment Booked</mat-card-title>
+                <mat-card-title>Total Appointments</mat-card-title>
             </mat-card-header>
-            <mat-card-content style="text-align: center;"> 
-              <mat-chip focus style="background-color: #03a66a;width: 10vh; color: white;font-weight: lighter;font-size: 12px;">
-                <div style="text-align: center; position: relative;">Available</div>
-              </mat-chip>
+            <mat-card-content style="text-align: center;">  
+                <div class="count-status">
+               
+                <div style="text-align: center;padding-top: 8px; padding-bottom: 5px;">{{appointmentCount}}</div>
+            </div>
         </mat-card-content>
         </mat-card>
     </div>
-    <div fxFlex.gt-sm="25" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
+    <div fxFlex.gt-sm="48" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
         <mat-card class="mat-card-status">
             <mat-card-header>
-                <mat-card-title>Appointment Requested</mat-card-title>
+                <mat-card-title>Requested Appointment</mat-card-title>
             </mat-card-header>
-            <mat-card-content style="text-align: center;">6</mat-card-content>
+            <mat-card-content style="text-align: center;">  
+                <div class="count-status">
+               
+                <div style="text-align: center;padding-top: 5px; padding-bottom: 5px;">{{requestAppointmentCount}}</div>
+            </div>
+        </mat-card-content>
         </mat-card>
     </div>
-    <div fxFlex.gt-sm="25" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
+    <!-- <div fxFlex.gt-sm="32" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
         <mat-card class="mat-card-status">
             <mat-card-header>
-                <mat-card-title>All Appointment</mat-card-title>
+                <mat-card-title>Active patient</mat-card-title>
             </mat-card-header>
-            <mat-card-content style="text-align: center;">6</mat-card-content>
+            <mat-card-content style="text-align: center;">  
+                <div class="count-status">
+               
+                <div style="text-align: center;padding-top: 5px; padding-bottom: 5px;">{{requestAppointmentCount}}</div>
+            </div>
+        </mat-card-content>
         </mat-card>
-    </div>
-    <div fxFlex.gt-sm="25" fxFlex.gt-lg="30" fxFlex="100" style="padding: 5px">
-        <mat-card class="mat-card-status">
-            <mat-card-header>
-                <mat-card-title>Appointment Completed</mat-card-title>
-            </mat-card-header>
-            <mat-card-content style="text-align: center;">6</mat-card-content>
-        </mat-card>
-    </div>
+    </div> -->
 </div>
