@@ -68,7 +68,7 @@ export class RegisterUserComponent implements OnInit {
       this.employeeDetails = this.form.value;
       this.employeeDetails.userRole.userRoleId = 1;
       this.employeeDetails.userRole.roleType = "Physician";
-     
+  
       this.employeeService.addEmployee(this.employeeDetails).subscribe();
     }
     if(this.form.get('userRole')?.get("roleType")?.value  === 'Nurse') {

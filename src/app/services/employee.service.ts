@@ -34,7 +34,6 @@ export class EmployeeService {
   }
 
   updateEmployee(emp:Employee): Observable<Employee>{
-    console.log("employee from service ts :"+emp.userRole.userRoleId);
     return this.httpClient.patch<Employee>("http://localhost:9004/employee",emp);
   }
 

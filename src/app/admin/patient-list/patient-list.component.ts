@@ -71,19 +71,7 @@ export class PatientListComponent implements OnInit {
   }
 
   blockToUnblockStatus(patient:PatientRegistration) {
-    // this.employees.push(patient);
-    // const dialogRef = this.dialog.open(DailogBoxesComponent, {
-    //   data: {
-    //     id: this.employees
-    //   }s
-    // });
-    // console.log(employee);
-    // dialogRef.afterOpened().subscribe(result => {
       this.patientRegistrationService.blockToUnblockStatus(patient).subscribe();
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
       window.location.reload();
-    // });
   }
 }
