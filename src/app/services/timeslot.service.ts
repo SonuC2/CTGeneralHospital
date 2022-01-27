@@ -26,7 +26,7 @@ export class TimeslotService {
   // }
 
   getTimeSlotByDoctorIdAndDate(id:number,appointmentDate:String):Observable<Timeslot[]>{
-    return this._httpClient.get<Timeslot[]>("http://localhost:9005/time/"+id+ "/"+ appointmentDate);
+    return this._httpClient.get<Timeslot[]>("http://localhost:9005/time-slot/"+id+ "/"+ appointmentDate);
   }
 
   getTimeSlotByDoctorId(employeeId:number):Observable<Timeslot[]>{

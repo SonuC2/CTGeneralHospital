@@ -16,7 +16,7 @@ export class SchedulingService {
   }
 
   getAllAppointmentList(): Observable<Appointments[]> {
-    return this._httpClient.get<Appointments[]>('http://localhost:9005/getBookedAndRescheduleAppointment');
+    return this._httpClient.get<Appointments[]>('http://localhost:9005/appointment/getBookedAndRescheduleAppointment');
 
   }
 

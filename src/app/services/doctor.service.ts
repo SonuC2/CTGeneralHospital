@@ -18,10 +18,10 @@ export class DoctorService {
   }
 
   cancelAppointment(appointment: Appointments): Observable<Appointments[]>{
-    return this.httpClient.patch<Appointments[]>('http://localhost:9005/cancelAppointment/',appointment);
+    return this.httpClient.patch<Appointments[]>('http://localhost:9005/appointment/cancelAppointment/',appointment);
   }
 
   approveAppointment(appointment: Appointments):Observable<Appointments[]> {
-    return this.httpClient.patch<Appointments[]>('http://localhost:9005/approveToBookedAppointment/',appointment);
+    return this.httpClient.patch<Appointments[]>('http://localhost:9005/appointment/approveToBookedAppointment/',appointment);
   }
 }
