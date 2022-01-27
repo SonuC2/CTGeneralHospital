@@ -70,7 +70,7 @@ id!:number;
     
    this.queryID= row.id;
     
-    this.router.navigate(['/nurse/employee-details/',row])
+    this.router.navigate(['/shared/sidebar/nurse/employee-details/',row])
     
   }
   
