@@ -11,6 +11,7 @@ import { PatientRegistration } from 'src/app/entities/patient-registration';
 import { Timeslot } from 'src/app/entities/timeslot';
 import { User } from 'src/app/entities/user';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { PatientService } from 'src/app/services/patient.service';
 import { PatientRegistrationService } from 'src/app/services/patientRegistration.service';
 import { SchedulingService } from 'src/app/services/scheduling.service';
 import { TimeslotService } from 'src/app/services/timeslot.service';
@@ -42,7 +43,9 @@ export class AddAppointmentsComponent implements OnInit {
   slot!: Timeslot;
   slotId!: number;
   patientsDetailsFromLogin!: PatientRegistration;
-  
+  varifyNew!:boolean;
+  section1=false;
+  section2=true;
   constructor(
     private fb: FormBuilder,
     private service: SchedulingService,
@@ -52,7 +55,7 @@ export class AddAppointmentsComponent implements OnInit {
     private timeSlotService: TimeslotService,
     private patientRegService : PatientRegistrationService,
     private employeeService:EmployeeService,
-
+    private patientService:PatientService
   ) {}
 
  
@@ -95,6 +98,23 @@ export class AddAppointmentsComponent implements OnInit {
     if(this.userDetailsFromLogin.userRoleId.roleType === "Patient"){
       this.patientsDetailsFromLogin = JSON.parse(sessionStorage.getItem('patientDetails') || '{}');
       console.log("PAtient Details from login: ", this.patientsDetailsFromLogin);
+      this.patientService.checkPatientDetailsById(this.patientsDetailsFromLogin.patientId).subscribe(data=>
+        {
+          this.varifyNew=data;
+     if(data===true)
+      {
+        console.log("return true")
+        
+        this.section1=true;
+        this.section2=false;
+        
+      }if(data===false){
+        this.section1=false;
+        this.section2=true;
+      }
+      
+        });
+      
       this.isPhysician =false;
       this.isPatient = true;
       this.isNurse =false;
