@@ -1,3 +1,4 @@
+<div [hidden]="section1">
 <div class="center">
   <mat-card-header>
     <mat-card-title style="color: #03a66a;">Add Appointment Details</mat-card-title>
@@ -299,3 +300,8 @@
     </div>
   </div>
 </form>
+</div>
+<div [hidden]="section2" class="success"><div>To add Appointment<br><br><br> You need to <br> <br><br> fill your Details first</div>
+</div>
+  <router-outlet></router-outlet>
+  

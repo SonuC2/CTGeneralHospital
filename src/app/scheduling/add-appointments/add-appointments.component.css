@@ -17,6 +17,15 @@
 .full-width{
   width: 100%;
 }
+.success{
+  background-color: cornflowerblue;
+  text-align: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  height: 100vh;
+  font-size: 50px;
+  padding-top: 40vh;
+  border-radius: 5px;
+}
 
 @media (max-width: 700px) {
   .pad {
