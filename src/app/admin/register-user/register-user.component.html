@@ -153,8 +153,8 @@
               <div fxFlex.gt-sm="100" fxFlex.gt-lg="100" fxFlex="100" style="padding: 10px">
                 <mat-label>Gender :</mat-label>
                 <mat-radio-group formControlName="gender" required>
-                  <mat-radio-button value="male">Male</mat-radio-button>
-                  <mat-radio-button value="female">Female</mat-radio-button>
+                  <mat-radio-button value="Male">Male</mat-radio-button>
+                  <mat-radio-button value="Female">Female</mat-radio-button>
                 </mat-radio-group>
                 <p *ngIf="form.controls['gender']?.errors?.['required'] && form.controls['gender'].touched"
                   style="color: red">

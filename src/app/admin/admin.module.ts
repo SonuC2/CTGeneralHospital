@@ -29,7 +29,6 @@ import {CardModule} from 'primeng/card';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { ApprovePatientComponent } from './approve-patient/approve-patient.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
-import { DailogBoxesComponent } from './dailog-boxes/dailog-boxes.component';
 const routes: Routes = [
   {
     path: '',
@@ -76,7 +75,6 @@ const routes: Routes = [
     EmployeeDetailsComponent,
     ApprovePatientComponent,
     EditUserComponent,
-    DailogBoxesComponent,
   ],
   imports: [
     MatFormFieldModule,

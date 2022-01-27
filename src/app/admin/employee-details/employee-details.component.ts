@@ -7,7 +7,6 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { windowWhen } from 'rxjs';
 import { Employee } from 'src/app/entities/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
-import { DailogBoxesComponent } from '../dailog-boxes/dailog-boxes.component';
 
 @Component({
   selector: 'app-employee-details',
@@ -71,20 +70,8 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   blockToUnblockStatus(employee:Employee) {
-    this.employees.push(employee);
-    const dialogRef = this.dialog.open(DailogBoxesComponent, {
-      data: {
-        id: this.employees
-      }
-    });
-    console.log(employee);
-    dialogRef.afterOpened().subscribe(result => {
-      this.employeeService.blockToUnblockStatus(employee).subscribe();
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-      window.location.reload();
-    });
+    this.employeeService.blockToUnblockStatus(employee).subscribe();
+    window.location.reload();
   }
 
   registerUser() {

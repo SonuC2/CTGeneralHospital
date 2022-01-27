@@ -65,7 +65,6 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,
-    // SharedModule,
     UserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
